@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="14d34322-fb5c-456d-baed-061be64639fd" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Code/ScriptableObject/AttackSKillSO.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/ScriptableObject/AttackSKillSO.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/ScriptableObject/SkillSO.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/ScriptableObject/SkillSO.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Skills/RangeFinding.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Skills/RangeFinding.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tile.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tile.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Units/Component/Movement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Units/Component/Movement.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +107,7 @@
       <workItem from="1728311975587" duration="1703000" />
       <workItem from="1728395712765" duration="2465000" />
       <workItem from="1728724707810" duration="868000" />
-      <workItem from="1728729071633" duration="3923000" />
+      <workItem from="1728729071633" duration="4558000" />
     </task>
     <servers />
   </component>
