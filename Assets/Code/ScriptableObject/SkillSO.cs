@@ -1,18 +1,20 @@
 using UnityEngine;
+using UnityEngine.Serialization;
+
+public enum RangeType { Range, Hover, Always } //Range: 거리 전체 - Hover: 일정 거리 - Always: 상시
+public enum SelectType { Direction, Entire } //Direction: 방향 - Entire: 전체
 
 public class SkillSO : ScriptableObject
 {
-    public enum RangeType { OnlyX,Cross,Circle,Box } //OnlyX : x축만  Cross : 십자가 Circle : 원 Box : 사각형
-    public enum AreaType {Single,Direction,Entire} //Single : 타일 하나만 Direction : 방향 Entire : 전체
-
     public RangeType rangeType;
-    public AreaType areaType;
-    public int range;
+    public SelectType selectType;
+    
+    [Header("능력치")]
+    public int range = 1;
+    public int damage = 5;
+    public int attackCount = 1;
+    public float castingTime = 0.5f;
+    
+    [Header("인공지능")]
     public int priority;
-    public int skillDamage;
-    public int attackCount;
-    public float skillCool;
-
-
-
 }

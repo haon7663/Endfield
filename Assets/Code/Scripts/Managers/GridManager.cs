@@ -14,6 +14,8 @@ public class GridManager : Singleton<GridManager>
     [SerializeField] private Transform gridParent;
     [SerializeField] private Tile tilePrefab;
 
+    public List<SkillSO> skills;
+
     private void Awake()
     {
         GenerateTiles();
