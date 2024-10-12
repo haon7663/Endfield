@@ -13,24 +13,14 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     { 
-        MoveInPut();
+        MoveInput();
     }
 
-    private void MoveInPut()
+    private void MoveInput()
     {
-        var dir = Vector2.zero;
         if (Input.GetKeyDown(KeyCode.A))
-            dir = Vector2.left;
+            _movement.OnMove(GridManager.Inst.GetTile(_unit.Tile.Key - 1));
         if (Input.GetKeyDown(KeyCode.D))
-            dir = Vector2.right;
-        if (Input.GetKeyDown(KeyCode.W))
-            dir = Vector2.up;
-        if (Input.GetKeyDown(KeyCode.S))
-            dir = Vector2.down;
-
-        if (dir != Vector2.zero && GridManager.Tiles.TryGetValue(_unit.Tile.Point + dir, out var tile))
-        {
-            _movement.OnMove(tile);
-        }
+            _movement.OnMove(GridManager.Inst.GetTile(_unit.Tile.Key + 1));
     }
 }
