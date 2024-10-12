@@ -7,7 +7,7 @@ public class Unit : MonoBehaviour
 
     private void Start()
     {
-        Place(GridManager.Tiles[0]);
+        Place(GridManager.Inst.GetTile(20));
     }
 
     public void Place(Tile tile)

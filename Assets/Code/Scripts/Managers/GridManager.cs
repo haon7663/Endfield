@@ -5,9 +5,9 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 
-public class GridManager : MonoBehaviour
+public class GridManager : Singleton<GridManager>
 {
-    public static List<Tile> Tiles { get; private set; }
+    private List<Tile> _tiles;
 
     [SerializeField] private int tileCount;
     
@@ -21,7 +21,7 @@ public class GridManager : MonoBehaviour
 
     private void GenerateTiles()
     {
-        Tiles = new List<Tile>();
+        _tiles = new List<Tile>();
 
         for (var i = 0; i < tileCount; i++)
         {
@@ -29,7 +29,12 @@ public class GridManager : MonoBehaviour
             tile.transform.position = new Vector3(i - tileCount / 2, 0);
             tile.Init(i);
             
-            Tiles.Add(tile);
+            _tiles.Add(tile);
         }
+    }
+
+    public Tile GetTile(int index)
+    {
+        return _tiles[Mathf.Clamp(index, 0, tileCount - 1)];
     }
 }
