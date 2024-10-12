@@ -1,9 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.Tilemaps;
 
 public class GridManager : Singleton<GridManager>
 {
@@ -28,7 +25,7 @@ public class GridManager : Singleton<GridManager>
         for (var i = 0; i < tileCount; i++)
         {
             var tile = Instantiate(tilePrefab, gridParent);
-            tile.transform.position = new Vector3(i - tileCount / 2, 0);
+            tile.transform.position = new Vector3(i - Mathf.FloorToInt((float)tileCount / 2), 0);
             tile.Init(i);
             
             _tiles.Add(tile);
@@ -38,5 +35,10 @@ public class GridManager : Singleton<GridManager>
     public Tile GetTile(int index)
     {
         return _tiles[Mathf.Clamp(index, 0, tileCount - 1)];
+    }
+    
+    public Tile GetRandomTile()
+    {
+        return _tiles.Where(t => !t.IsOccupied).ToList().Random();
     }
 }

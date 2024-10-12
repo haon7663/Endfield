@@ -31,4 +31,9 @@ public class Movement : MonoBehaviour
                 _isMove = false;
             });
     }
+
+    public void OnFlip()
+    {
+        
+    }
 }

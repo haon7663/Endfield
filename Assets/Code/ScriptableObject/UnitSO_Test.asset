@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1979a2e370ef00448bfea30c7909d2bb, type: 3}
   m_Name: UnitSO_Test
   m_EditorClassIdentifier: 
-  unitName: 
-  unitHp: 100
-  unitSprite: {fileID: 624349270, guid: 228a69912d405da4cb73593e2682a202, type: 3}
-  unitAnimator: {fileID: 0}
-  unitSkills: []
+  name: 
+  hp: 0
+  sprite: {fileID: 0}
+  animator: {fileID: 0}
+  skills:
+  - {fileID: 11400000, guid: 5ccc7f62270e0f748ac90030cf992a5e, type: 2}
+  - {fileID: 11400000, guid: 5ccc7f62270e0f748ac90030cf992a5e, type: 2}
+  - {fileID: 11400000, guid: 5ccc7f62270e0f748ac90030cf992a5e, type: 2}

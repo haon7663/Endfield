@@ -13,7 +13,7 @@ public class SingletonDontDestroyOnLoad<T> : MonoBehaviour where T : MonoBehavio
         {
             if (_inst) return _inst;
             // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
-            _inst = (T)FindObjectOfType(typeof(T));
+            _inst = (T)FindFirstObjectByType(typeof(T));
 
             if (_inst) return _inst;
             var obj = new GameObject(typeof(T).Name, typeof(T));
@@ -26,7 +26,7 @@ public class SingletonDontDestroyOnLoad<T> : MonoBehaviour where T : MonoBehavio
     
     protected virtual void Awake()
     {
-        var obj = FindObjectsOfType<SingletonDontDestroyOnLoad<T>>();
+        var obj = FindObjectsByType<SingletonDontDestroyOnLoad<T>>(FindObjectsSortMode.None);
         if (obj.Length == 1)
         {
             DontDestroyOnLoad(gameObject);
