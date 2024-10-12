@@ -32,8 +32,8 @@ public class Movement : MonoBehaviour
             });
     }
 
-    public void OnFlip()
+    public void OnFlip(bool isFlip)  //SpriteBillboard 때문에 FlipX 안되서 로컬 스케일로 구현함
     {
-        
+        transform.localScale = new Vector3(isFlip?-1:1,1, 1);
     }
 }

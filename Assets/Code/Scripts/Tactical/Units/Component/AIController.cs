@@ -38,6 +38,7 @@ public class AIController : MonoBehaviour
 
         if (isRight) _movement.OnMove(GridManager.Inst.GetTile(_unit.Tile.Key+1));
         else _movement.OnMove(GridManager.Inst.GetTile(_unit.Tile.Key - 1));
+        _movement.OnFlip(!isRight);
 
     }
 }
