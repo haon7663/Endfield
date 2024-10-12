@@ -7,7 +7,7 @@ public class Unit : MonoBehaviour
 
     private void Start()
     {
-        Place(GridManager.Tiles[new Vector2Int(0, 0)]);
+        Place(GridManager.Tiles[0]);
     }
 
     public void Place(Tile tile)
