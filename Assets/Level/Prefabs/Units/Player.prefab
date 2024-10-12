@@ -8,10 +8,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2818163891923244700, guid: 621ea78252239a3418d94c0d027a8d00, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 563bc8a47d5848c469bc237c38f36f02, type: 3}
     - target: {fileID: 4976203370979620335, guid: 621ea78252239a3418d94c0d027a8d00, type: 3}
       propertyPath: m_Name
       value: Player
@@ -62,14 +58,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4976203370979620335, guid: 621ea78252239a3418d94c0d027a8d00, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1209373109566595647}
+      addedObject: {fileID: 5962787543850759491}
   m_SourcePrefab: {fileID: 100100000, guid: 621ea78252239a3418d94c0d027a8d00, type: 3}
 --- !u!1 &640993786143075253 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4976203370979620335, guid: 621ea78252239a3418d94c0d027a8d00, type: 3}
   m_PrefabInstance: {fileID: 5614373458782527066}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1209373109566595647
+--- !u!114 &5962787543850759491
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

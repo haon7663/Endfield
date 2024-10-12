@@ -18,7 +18,7 @@ public class Movement : MonoBehaviour
 
     public void OnMove(Tile tile)
     {
-        if (_isMove) return;
+        if (_isMove || tile.IsOccupied) return;
         
         var sequence = DOTween.Sequence();
 
