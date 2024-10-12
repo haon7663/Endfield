@@ -345,7 +345,6 @@ MonoBehaviour:
   tileCount: 9
   gridParent: {fileID: 1332315017}
   tilePrefab: {fileID: -8621221922590820186, guid: 66f7e1ec405887646b15d0aa757fec1a, type: 3}
-  skills: []
 --- !u!4 &214208013
 Transform:
   m_ObjectHideFlags: 0

@@ -23,7 +23,7 @@ public class SkillHolder : MonoBehaviour
 
             if (selectedSkill != null)
             {
-                //스킬 실행하는 코드(?)
+                Debug.Log(selectedSkill.name);
             }
         }
     }
