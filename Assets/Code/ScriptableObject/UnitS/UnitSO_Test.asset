@@ -18,5 +18,5 @@ MonoBehaviour:
   animator: {fileID: 0}
   skills:
   - {fileID: 11400000, guid: 5ccc7f62270e0f748ac90030cf992a5e, type: 2}
-  - {fileID: 11400000, guid: 5ccc7f62270e0f748ac90030cf992a5e, type: 2}
-  - {fileID: 11400000, guid: 5ccc7f62270e0f748ac90030cf992a5e, type: 2}
+  - {fileID: 11400000, guid: b75f9d6199b749e4a9d990226e56581f, type: 2}
+  - {fileID: 11400000, guid: 5e00a674d23f4a443bb1ccce0c4fcd6b, type: 2}

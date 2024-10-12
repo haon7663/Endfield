@@ -18,4 +18,4 @@ MonoBehaviour:
   damage: 5
   attackCount: 1
   castingTime: 0.5
-  priority: 0
+  priority: 1
