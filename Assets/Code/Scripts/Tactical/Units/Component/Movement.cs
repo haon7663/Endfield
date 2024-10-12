@@ -16,6 +16,45 @@ public class Movement : MonoBehaviour
         _unit = GetComponent<Unit>();
     }
 
+    private void Update()
+    {
+
+
+        //Test
+        if(_unit.role == Role.player)
+        {
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                OnMove(GridManager.Inst.GetTile(_unit.Tile.Key - 1));
+            }
+
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                OnMove(GridManager.Inst.GetTile(_unit.Tile.Key + 1));
+            }
+        }
+        
+
+        if (Input.GetKeyDown(KeyCode.F1) && _unit.role == Role.enemy)
+        {
+            EnemyMove();
+        }
+
+
+    }
+
+    void EnemyMove() // 적 -> 플레이어쪽으로 이동
+    {
+        Transform target = GameManager.Inst.player;
+        float direaction = target.position.x - transform.position.x;
+        int targetTileIndex = direaction > 0 ? _unit.Tile.Key + 1 : _unit.Tile.Key - 1;
+        OnMove(GridManager.Inst.GetTile(targetTileIndex));
+    }
+
+    
+
+
+
     public void OnMove(Tile tile)
     {
         if (_isMove || tile.IsOccupied) return;
