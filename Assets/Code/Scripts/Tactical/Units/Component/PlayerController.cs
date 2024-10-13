@@ -22,5 +22,8 @@ public class PlayerController : MonoBehaviour
             _movement.OnMove(GridManager.Inst.GetTile(_unit.Tile.Key - 1));
         if (Input.GetKeyDown(KeyCode.D))
             _movement.OnMove(GridManager.Inst.GetTile(_unit.Tile.Key + 1));
+        
+        if (Input.GetKeyDown(KeyCode.S))
+            _movement.OnFlip(Mathf.Approximately(transform.localScale.x, 1));
     }
 }
