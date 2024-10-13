@@ -1,0 +1,5 @@
+skillName,elixir,$type,damage,distance
+Fireball,10,AttackComponent,50,10
+,,MoveComponent,,10
+IceSpike,5,AttackComponent,30,15
+Dash,4,DashComponent,5,12

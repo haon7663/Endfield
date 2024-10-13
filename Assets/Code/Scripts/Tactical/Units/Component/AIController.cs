@@ -28,8 +28,8 @@ public class AIController : MonoBehaviour
         int max = -100, min = 100;
 
 
-        List<Tile> areaTile = target.Tile.GetAreaInRange(2);
-       // List<Tile> areaTile = target.Tile.GetTilesOnRange(2);
+        //List<Tile> areaTile = target.Tile.GetAreaInRange(2);
+        List<Tile> areaTile = target.Tile.GetTilesOnRange(2);
         foreach (Tile tile in areaTile) if (tile.Key == _unit.Tile.Key) return; //이미 범위 안에 있다면 리턴 및 스킬 시전
 
         for(var i = 0;i< areaTile.Count;i++)  //가장 높은 값과 가장 낮은 값을 찾아냄
@@ -51,7 +51,7 @@ public class AIController : MonoBehaviour
 
         if (tileIsRight) _movement.OnMove(GridManager.Inst.GetTile(_unit.Tile.Key+1));
         else _movement.OnMove(GridManager.Inst.GetTile(_unit.Tile.Key - 1));
+        
         _movement.OnFlip(!targetIsRight);
-
     }
 }
