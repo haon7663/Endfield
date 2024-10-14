@@ -366,6 +366,34 @@ MonoBehaviour:
   cropToFit:
     m_OverrideState: 1
     m_Value: 1
+--- !u!114 &-1487851999881468244
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d5e370ade5c55c45a36b51a35bf7ebd, type: 3}
+  m_Name: PostBlurComponent
+  m_EditorClassIdentifier: 
+  active: 1
+  BlurAmount:
+    m_OverrideState: 1
+    m_Value: 0
+  BlurOffset:
+    m_OverrideState: 1
+    m_Value: 0.1
+  BlurMask:
+    m_OverrideState: 1
+    m_Value: {fileID: 0}
+  BlurMask_Tilling:
+    m_OverrideState: 1
+    m_Value: {x: 1, y: 1}
+  BlurMask_Offset:
+    m_OverrideState: 1
+    m_Value: {x: 0, y: 0}
 --- !u!114 &-1410297666881709256
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -533,6 +561,7 @@ MonoBehaviour:
   - {fileID: 7518938298396184218}
   - {fileID: -1410297666881709256}
   - {fileID: -8132946993617508500}
+  - {fileID: -1487851999881468244}
 --- !u!114 &853819529557874667
 MonoBehaviour:
   m_ObjectHideFlags: 3
