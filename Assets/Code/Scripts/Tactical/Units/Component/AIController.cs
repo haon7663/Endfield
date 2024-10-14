@@ -41,7 +41,7 @@ public class AIController : MonoBehaviour
         if (targetIsRight) //멀리 가려는 AI
         {
             if (min > _unit.Tile.Key) tileIsRight = true;
-            else tileIsRight= false;
+            else tileIsRight = false;
         }
         else
         {
