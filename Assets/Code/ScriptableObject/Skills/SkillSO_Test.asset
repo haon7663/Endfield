@@ -12,10 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a77aff9729907fb4bbcc10c26294d3aa, type: 3}
   m_Name: SkillSO_Test
   m_EditorClassIdentifier: 
-  rangeType: 0
-  selectType: 0
-  range: 1
-  damage: 5
-  attackCount: 1
+  name: 
+  elixir: 0
   castingTime: 0.5
+  skills:
+  - type: 2
+    attackComponent:
+      damage: 0
+      distance: 0
+    moveComponent:
+      distance: 0
+    dashComponent:
+      damage: 0
+      distance: 0
+  - type: 2
+    attackComponent:
+      damage: 0
+      distance: 0
+    moveComponent:
+      distance: 0
+    dashComponent:
+      damage: 0
+      distance: 0
+  dashComponent:
+    damage: 0
+    distance: 0
   priority: 0
