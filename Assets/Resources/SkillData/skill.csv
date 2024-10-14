@@ -1,0 +1,5 @@
+,name,elixir,$type,damage,distance,,,,saveName
+1,FireBall,1,AttackComponent,50,10,,,,
+,,,MoveComponent,,10,,,,
+2,IceSpike,3,AttackComponent,30,15,,,,
+3,Spark,2,DashComponent,5,12,,,,

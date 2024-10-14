@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -6,13 +7,8 @@ public enum SelectType { Direction, Entire } //Direction: 방향 - Entire: 전�
 
 public class SkillSO : ScriptableObject
 {
-    public RangeType rangeType;
-    public SelectType selectType;
-    
-    [Header("능력치")]
-    public int range = 1;
-    public int damage = 5;
-    public int attackCount = 1;
+    public new string name;
+    public int elixir;
     public float castingTime = 0.5f;
     
     [Header("인공지능")]

@@ -15,7 +15,7 @@ public class Unit : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            (new Skill()).Use(this);
+            
         }
     }
 
