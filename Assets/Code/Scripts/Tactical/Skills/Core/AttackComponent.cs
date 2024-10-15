@@ -1,21 +1,17 @@
 using UnityEngine;
 
-public enum AttackType
-{
-    Projectile,
-    Appoint,
-    Immediate
-}
-
 public class AttackComponent : SkillComponent
 {
-    //public AttackType attackType;
-    //public string prefabName;
     public int damage;
     public int distance;
     
     public override void Execute(Unit user)
     {
-        
+        var targetUnit = GridManager.Inst.GetTile(user.Tile.Key + distance).content;
+        if (targetUnit == null) return;
+        if (targetUnit.TryGetComponent(out Health health))
+        {
+            health.OnDamage(damage);
+        }
     }
 }

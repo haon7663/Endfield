@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 public class Unit : MonoBehaviour
@@ -15,7 +16,8 @@ public class Unit : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            
+            var skill = SkillLoader.GetSkills("skill").FirstOrDefault(skill => skill.Name == "Slash");
+            skill?.Use(this);
         }
     }
 

@@ -39,6 +39,7 @@ public class Movement : MonoBehaviour
         
         var sequence = DOTween.Sequence();
         sequence.Append(transform.DOMove(tile.transform.position + Vector3.up * 0.5f, moveSpeed).SetEase(Ease.OutCirc))
+            .Join(spriteRenderer.transform.DOLocalJump(Vector3.zero, 0.1f, 1, moveSpeed).SetEase(Ease.OutCirc))
             .OnComplete(() =>
             {
                 _isMove = false;
