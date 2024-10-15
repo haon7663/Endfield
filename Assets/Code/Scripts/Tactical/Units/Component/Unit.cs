@@ -12,16 +12,6 @@ public class Unit : MonoBehaviour
         transform.position = Tile.transform.position + Vector3.up * 0.5f;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            var skill = SkillLoader.GetSkills("skill").FirstOrDefault(skill => skill.Name == "TestProjectile");
-            Debug.Log(skill);
-            skill?.Use(this);
-        }
-    }
-
     public void Place(Tile tile)
     {
         if (Tile)
