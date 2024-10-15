@@ -16,7 +16,8 @@ public class Unit : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            var skill = SkillLoader.GetSkills("skill").FirstOrDefault(skill => skill.Name == "Slash");
+            var skill = SkillLoader.GetSkills("skill").FirstOrDefault(skill => skill.Name == "TestProjectile");
+            Debug.Log(skill);
             skill?.Use(this);
         }
     }
