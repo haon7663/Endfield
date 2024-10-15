@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -14,6 +15,12 @@ public class PlayerController : MonoBehaviour
     private void Update()
     { 
         MoveInput();
+        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            var skill = SkillLoader.GetSkills("skill").FirstOrDefault(skill => skill.Name == "TestProjectile");
+            skill?.Use(_unit);
+        }
     }
 
     private void MoveInput()

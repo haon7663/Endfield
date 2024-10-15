@@ -2,6 +2,7 @@ using System;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class Movement : MonoBehaviour
 {
@@ -9,10 +10,11 @@ public class Movement : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private float moveSpeed;
     
+    [HideInInspector] public Vector2 dir = Vector2.right;
+    
     private Unit _unit;
     
     private bool _isMove;
-    private Vector2 _dir = Vector2.right;
     
     private static readonly int IsFrontDash = Animator.StringToHash("isFrontDash");
     private static readonly int IsBackDash = Animator.StringToHash("isBackDash");
@@ -31,7 +33,7 @@ public class Movement : MonoBehaviour
         var prevTile = _unit.Tile;
         var distance = tile.Key - prevTile.Key;
         var dir = distance > 0 ? Vector2.right : Vector2.left;
-        var anim = dir == _dir ? IsFrontDash : IsBackDash;
+        var anim = dir == this.dir ? IsFrontDash : IsBackDash;
         
         _isMove = true;
         animator.SetBool(anim, true);
@@ -49,7 +51,7 @@ public class Movement : MonoBehaviour
 
     public void OnFlip(bool isFlip)  //SpriteBillboard 때문에 FlipX 안되서 로컬 스케일로 구현함
     {
-        _dir = isFlip ? Vector2.left : Vector2.right;
+        dir = isFlip ? Vector2.left : Vector2.right;
         transform.localScale = new Vector3(isFlip ? -1 : 1, 1, 1);
     }
 }
