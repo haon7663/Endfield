@@ -47,6 +47,9 @@ TagManager:
   - name: Skill
     uniqueID: 3884774515
     locked: 0
+  - name: Particle
+    uniqueID: 1936051267
+    locked: 0
   m_RenderingLayers:
   - Default
   - Light Layer 1
