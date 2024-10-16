@@ -8,7 +8,7 @@ public class MoveComponent : SkillComponent
     {
         if (user.TryGetComponent(out Movement movement))
         {
-            movement.OnMove(GridManager.Inst.GetTile(user.Tile.Key + distance));
+            movement.OnMove(distance);
         }
     }
 }

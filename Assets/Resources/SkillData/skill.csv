@@ -1,6 +1,3 @@
 ,name,elixir,executeType,$type,damage,distance,projectileSpeed,prefabName,,saveName
-1,Slash,1,Start,AppointAttackComponent,5,1,,,,
+1,Slash,1,Start,AttackComponent,5,1,,,,
 2,TestProjectile,1,Start,ProjectileAttackComponent,5,4,24,Projectile,,
-,,,OnHit,StatusEffectComponent,,,,,,
-,,,End,SplashAttackComponent,,,,,,
-,,,OnMiss,,,,,,,

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,28 +7,42 @@ using UnityEngine.Serialization;
 
 public class Movement : MonoBehaviour
 {
-    public Vector2 Dir => _dir;
-    private Vector2 _dir = Vector2.right;
+    private Unit _unit;
+    
+    public Queue<Action> inputBuffer = new Queue<Action>();
     
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Animator animator;
     [SerializeField] private float moveSpeed;
     
-    private Unit _unit;
+    public Vector2 Dir => _dir;
     
+    private Vector2 _dir = Vector2.right;
     private bool _isMove;
     
     private static readonly int IsFrontDash = Animator.StringToHash("isFrontDash");
     private static readonly int IsBackDash = Animator.StringToHash("isBackDash");
+    private static readonly int IsFlip = Animator.StringToHash("isFlip");
 
     private void Start()
     {
         _unit = GetComponent<Unit>();
     }
-    
-    public void OnMove(Tile tile)
+
+    public void OnMove(int key)
     {
-        if (_isMove || tile.IsOccupied) return;
+        if (_isMove)
+        {
+            if (inputBuffer.Count < 1)
+                inputBuffer.Enqueue(() => OnMove(key));
+            return;
+        }
+        MoveTo(GridManager.Inst.GetTile(_unit.Tile.Key + key));
+    }
+    
+    public void MoveTo(Tile tile)
+    {
+        if (tile.IsOccupied) return;
 
         DOTween.Kill(this);
         
@@ -45,14 +60,41 @@ public class Movement : MonoBehaviour
             .Join(spriteRenderer.transform.DOLocalJump(Vector3.zero, 0.1f, 1, moveSpeed).SetEase(Ease.OutCirc))
             .OnComplete(() =>
             {
-                _isMove = false;
                 animator.SetBool(anim, false);
+                OnMoveEnd();
             });
     }
 
     public void OnFlip(bool isFlip)  //SpriteBillboard 때문에 FlipX 안되서 로컬 스케일로 구현함
     {
-        _dir = isFlip ? Vector2.left : Vector2.right;
-        transform.localScale = new Vector3(isFlip ? -1 : 1, 1, 1);
+        if (_isMove)
+        {
+            if (inputBuffer.Count < 1)
+                inputBuffer.Enqueue(() => OnFlip(isFlip));
+            return;
+        }
+        
+        _isMove = true;
+        animator.SetBool(IsFlip, true);
+        var sequence = DOTween.Sequence();
+        sequence.Append(spriteRenderer.transform.DOLocalJump(Vector3.zero, 0.2f, 1, moveSpeed).SetEase(Ease.Linear))
+            .InsertCallback(moveSpeed * 0.5f, () =>
+            {
+                _dir = isFlip ? Vector2.left : Vector2.right;
+                transform.localScale = new Vector3(isFlip ? -1 : 1, 1, 1);
+            })
+            .OnComplete(() =>
+            {
+                animator.SetBool(IsFlip, false);
+                OnMoveEnd();
+            });
+    }
+    
+    private void OnMoveEnd()
+    {
+        _isMove = false;
+
+        if (inputBuffer.Count > 0)
+            inputBuffer.Dequeue()?.Invoke();
     }
 }

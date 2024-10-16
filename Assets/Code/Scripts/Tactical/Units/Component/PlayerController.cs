@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -26,9 +27,9 @@ public class PlayerController : MonoBehaviour
     private void MoveInput()
     {
         if (Input.GetKeyDown(KeyCode.A))
-            _movement.OnMove(GridManager.Inst.GetTile(_unit.Tile.Key - 1));
+            _movement.OnMove(-1);
         if (Input.GetKeyDown(KeyCode.D))
-            _movement.OnMove(GridManager.Inst.GetTile(_unit.Tile.Key + 1));
+            _movement.OnMove(1);
         
         if (Input.GetKeyDown(KeyCode.S))
             _movement.OnFlip(Mathf.Approximately(transform.localScale.x, 1));
