@@ -2,53 +2,43 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillManager : MonoBehaviour
+public class SkillManager : Singleton<SkillManager>
 {
-
-    public List<SkillSO> realSkills;
-    List<SkillSO> skillBuffer;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        SetupSKillBuffer();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P)) PopSKill();
-    }
-
-
-    //어떻게 사용될지는 모르겠지만 필요하면 더 추가해서 활용하셈
-    public void PopSKill() //스킬 사용 
-    {
-        if(skillBuffer.Count ==0)SetupSKillBuffer();
-
-        SkillSO skill= skillBuffer[0];
-        skillBuffer.RemoveAt(0);
-        //return skill;
-    }
-
-    void SetupSKillBuffer()  //스킬 랜덤 재배치
-    {
-        skillBuffer= new List<SkillSO>();
-
-        for(int i = 0; i < realSkills.Count; i++)
-        {
-            SkillSO skill = realSkills[i];
-            skillBuffer.Add(skill);
-        }
-
-        for(int i = 0; i< skillBuffer.Count; i++)
-        {
-            int random = Random.Range(i,skillBuffer.Count);
-            SkillSO temp = skillBuffer[i];
-            skillBuffer[i] = skillBuffer[random];
-            skillBuffer[random] = temp;
-        }
-    }
-
+    private List<Skill> _skillBuffer;
+    private Skill[] _skills = new Skill[4];
     
+    private void Start()
+    {
+        SetupSkillBuffer();
+    }
+
+    public Skill GetSkillAtIndex(int index)
+    {
+        index = Mathf.Clamp(index, 0, 3);
+        return _skills[index];
+    }
+    
+    public void ArrangeSkills()
+    {
+        for (var i = 0; i < _skills.Length; i++)
+        {
+            _skills[i] ??= PopSkill();
+        }
+    }
+    
+    //어떻게 사용될지는 모르겠지만 필요하면 더 추가해서 활용하셈
+    private Skill PopSkill() //스킬 사용 
+    {
+        if (_skillBuffer.Count == 0) SetupSkillBuffer();
+
+        var skill = _skillBuffer[0];
+        _skillBuffer.RemoveAt(0);
+        return skill;
+    }
+
+    private void SetupSkillBuffer()  //스킬 랜덤 재배치
+    {
+        _skillBuffer = SkillLoader.GetSkills("skill");
+        _skillBuffer.Shuffle();
+    }
 }
