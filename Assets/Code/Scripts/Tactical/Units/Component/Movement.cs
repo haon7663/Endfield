@@ -9,7 +9,7 @@ public class Movement : MonoBehaviour
 {
     private Unit _unit;
     
-    public Queue<Action> inputBuffer = new Queue<Action>();
+    private readonly Queue<Action> _inputBuffer = new Queue<Action>();
     
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Animator animator;
@@ -33,8 +33,8 @@ public class Movement : MonoBehaviour
     {
         if (_isMove)
         {
-            if (inputBuffer.Count < 1)
-                inputBuffer.Enqueue(() => OnMove(key));
+            if (_inputBuffer.Count < 1)
+                _inputBuffer.Enqueue(() => OnMove(key));
             return;
         }
         MoveTo(GridManager.Inst.GetTile(_unit.Tile.Key + key));
@@ -69,8 +69,8 @@ public class Movement : MonoBehaviour
     {
         if (_isMove)
         {
-            if (inputBuffer.Count < 1)
-                inputBuffer.Enqueue(() => OnFlip(isFlip));
+            if (_inputBuffer.Count < 1)
+                _inputBuffer.Enqueue(() => OnFlip(isFlip));
             return;
         }
         
@@ -94,7 +94,7 @@ public class Movement : MonoBehaviour
     {
         _isMove = false;
 
-        if (inputBuffer.Count > 0)
-            inputBuffer.Dequeue()?.Invoke();
+        if (_inputBuffer.Count > 0)
+            _inputBuffer.Dequeue()?.Invoke();
     }
 }
