@@ -10,19 +10,27 @@ public class SkillManager : Singleton<SkillManager>
     private void Start()
     {
         SetupSkillBuffer();
+        ArrangeSkills();
     }
 
     public Skill GetSkillAtIndex(int index)
     {
         index = Mathf.Clamp(index, 0, 3);
-        return _skills[index];
+        var skill = _skills[index];
+        _skillBuffer.Add(skill);
+        
+        _skills[index] = null;
+        ArrangeSkills();
+        
+        return skill;
     }
     
     public void ArrangeSkills()
     {
         for (var i = 0; i < _skills.Length; i++)
         {
-            _skills[i] ??= PopSkill();
+            if (_skills[i] == null || string.IsNullOrEmpty(_skills[i].name))
+                _skills[i] = PopSkill();
         }
     }
     

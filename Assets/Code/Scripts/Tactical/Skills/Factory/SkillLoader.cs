@@ -29,7 +29,7 @@ public static class SkillLoader
         var skills = new List<Skill>();
         foreach (var skillComponent in data)
         {
-            var skill = skills.FirstOrDefault(s => s.Name == skillComponent.saveName);
+            var skill = skills.FirstOrDefault(s => s.name == skillComponent.saveName);
 
             if (skill != null)
             {
