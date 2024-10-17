@@ -13,7 +13,7 @@ public class SkillCastingViewer : MonoBehaviour
     {
         this.skillSO = skillSO;
         rectTransform.anchoredPosition = Pos;
-        //UpdateSkillImage(skillSO.skillImage);
+        selectSkill.sprite = skillSO.skillImage;
         Debug.Log(skillSO.name);
     }
 
@@ -28,10 +28,5 @@ public class SkillCastingViewer : MonoBehaviour
     {
         float fillAmount = Mathf.Clamp01(skillSO.castingTime / 100f); 
         fillImage.fillAmount = fillAmount;
-    }
-    
-    public  void UpdateSkillImage(Sprite skillImage)
-    {
-        selectSkill.sprite = skillImage;
-    }
+    }    
 }
