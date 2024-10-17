@@ -13,9 +13,11 @@ public class SkillCastingViewer : MonoBehaviour
     {
         this.skillSO = skillSO;
         rectTransform.anchoredPosition = Pos;
+        //UpdateSkillImage(skillSO.skillImage);
         Debug.Log(skillSO.name);
     }
 
+    
 
     private void Update()
     {  
