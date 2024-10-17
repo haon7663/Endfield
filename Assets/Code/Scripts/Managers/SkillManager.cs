@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SkillManager : Singleton<SkillManager>
 {
+    [SerializeField] private SkillPanelController skillPanelController;
+    
     private List<Skill> _skillBuffer;
     private Skill[] _skills = new Skill[4];
     
@@ -32,6 +34,7 @@ public class SkillManager : Singleton<SkillManager>
             if (_skills[i] == null || string.IsNullOrEmpty(_skills[i].name))
                 _skills[i] = PopSkill();
         }
+        skillPanelController.UpdatePanels(_skills, _skillBuffer[0]);
     }
     
     //어떻게 사용될지는 모르겠지만 필요하면 더 추가해서 활용하셈
