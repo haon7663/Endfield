@@ -16,6 +16,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private float moveSpeed;
     
     public Vector2 Dir => _dir;
+    public int DirX => (int)_dir.x;
     
     private Vector2 _dir = Vector2.right;
     private bool _isMove;
