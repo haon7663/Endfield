@@ -1,11 +1,19 @@
+using NUnit.Framework;
 using System.Collections;
 using System.Linq;
+using Unity.Android.Gradle;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class SkillHolder : MonoBehaviour
 {
     public UnitSO unitSO; 
     public float skillSelectCoolDown = 3f;
+    public List<SkillCastingViewer> castingViewers;
+    public SkillCastingViewer castingViewerPrefab;
+    public Transform skillCanvas;
+
+
 
     private void Start()
     {
@@ -18,15 +26,25 @@ public class SkillHolder : MonoBehaviour
         {
             yield return new WaitForSeconds(skillSelectCoolDown);
 
-            
             SkillSO selectedSkill = SelectSkill();
 
             if (selectedSkill != null)
             {
-                Debug.Log(selectedSkill.name);
+                Vector3 spawnPosition = new Vector3(0, 150, 0);
+
+                if (castingViewers.Count > 0)
+                {
+                    spawnPosition.y += castingViewers.Count * 70;
+                }
+
+                SkillCastingViewer newViewer = Instantiate(castingViewerPrefab, skillCanvas);
+                newViewer.Init(selectedSkill, spawnPosition);
+                castingViewers.Add(newViewer);
             }
         }
     }
+
+
 
 
     private SkillSO SelectSkill()
