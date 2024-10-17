@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class LinearProjectile : Projectile
+public class ThrowerProjectile : Projectile
 {
     public override void Init(Tile tile, Vector3 dir, int damage, int distance, int projectileSpeed)
     {
