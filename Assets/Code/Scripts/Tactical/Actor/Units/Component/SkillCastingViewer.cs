@@ -13,7 +13,7 @@ public class SkillCastingViewer : MonoBehaviour
     {
         this.skillSO = skillSO;
         rectTransform.anchoredPosition = Pos;
-        selectSkill.sprite = skillSO.skillImage;
+        //selectSkill.sprite = skillSO.skillImage;
         Debug.Log(skillSO.name);
     }
 
