@@ -1,8 +1,13 @@
+using System;
 using System.Collections.Generic;
+using UnityEngine.Serialization;
 
+[Serializable]
 public class Skill
 {
-    public string Name;
+    public string name;
+    public int elixir;
+    public float castingTime;
     public List<SkillComponent> SkillComponents = new();  // 스킬을 구성하는 컴포넌트 리스트
 
     public void Use(Unit user)
@@ -15,6 +20,6 @@ public class Skill
     
     public Skill(string name)
     {
-        Name = name;
+        this.name = name;
     }
 }

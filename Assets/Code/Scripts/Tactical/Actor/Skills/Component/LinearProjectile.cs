@@ -6,7 +6,7 @@ public class LinearProjectile : Projectile
     public override void Init(Tile tile, Vector3 dir, int damage, int distance, int projectileSpeed)
     {
         base.Init(tile, dir, damage, distance, projectileSpeed);
-        transform.position = tile.transform.position + Vector3.up * 0.5f;
+        transform.position = tile.transform.position + dir + Vector3.up * 1.2f;
     }
 
     private float _timer;
@@ -24,10 +24,10 @@ public class LinearProjectile : Projectile
         transform.position = Vector3.Lerp(prevPos, curPos, _timer * projectileSpeed - Mathf.FloorToInt(_timer * projectileSpeed));
         _timer += Time.deltaTime;
 
-        var tile = GridManager.Inst.GetTile(base.tile.Key + _currentLocalKey * (int)dir.x);
-        if (tile && tile.content)
+        var currentTile = GridManager.Inst.GetTile(tile.Key + _currentLocalKey * (int)dir.x);
+        if (currentTile && currentTile.content)
         {
-            if (tile.content.TryGetComponent(out Health health))
+            if (currentTile.content.TryGetComponent(out Health health))
             {
                 print(damage);
                 health.OnDamage(damage);

@@ -22,14 +22,16 @@ public static class SkillLoader
             NullValueHandling = NullValueHandling.Ignore,
             SerializationBinder = new SkillComponentSerializationBinder()
         };
-        
-        var skillJson = skillCSV.ConvertCSVToJson();
-        var data = JsonConvert.DeserializeObject<List<SkillComponent>>(skillJson, settings);
 
+        var skillJson = skillCSV.ConvertCSVToSkillJson();
+        var skillData = JsonConvert.DeserializeObject<List<Skill>>(skillJson, settings);
+        var skillComponentsJson = skillCSV.ConvertCSVToJson();
+        var skillComponentsData = JsonConvert.DeserializeObject<List<SkillComponent>>(skillComponentsJson, settings);
+        
         var skills = new List<Skill>();
-        foreach (var skillComponent in data)
+        foreach (var skillComponent in skillComponentsData)
         {
-            var skill = skills.FirstOrDefault(s => s.Name == skillComponent.saveName);
+            var skill = skills.FirstOrDefault(s => s.name == skillComponent.saveName);
 
             if (skill != null)
             {
@@ -37,7 +39,8 @@ public static class SkillLoader
             }
             else
             {
-                var newSkill = new Skill(skillComponent.saveName);
+                var newSkill = skillData.FirstOrDefault(s => s.name == skillComponent.saveName);
+                if (newSkill == null) continue;
                 newSkill.SkillComponents.Add(skillComponent);
                 skills.Add(newSkill);
             }

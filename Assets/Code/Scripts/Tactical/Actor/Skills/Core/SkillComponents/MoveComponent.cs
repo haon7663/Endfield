@@ -8,7 +8,7 @@ public class MoveComponent : SkillComponent
     {
         if (user.TryGetComponent(out Movement movement))
         {
-            movement.OnMove(distance);
+            movement.OnMove(distance * movement.DirX);
         }
     }
 }

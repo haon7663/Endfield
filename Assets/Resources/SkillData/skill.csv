@@ -1,3 +1,7 @@
-,name,elixir,executeType,$type,damage,distance,projectileSpeed,prefabName,,saveName
-1,Slash,1,Start,AttackComponent,5,1,,,,
-2,TestProjectile,1,Start,ProjectileAttackComponent,5,4,24,Projectile,,
+$type,name,elixir,castingTime,$type,executeType,damage,distance,projectileSpeed,prefabName,,saveName
+Skill,Slash,1,0.5,Attack,,5,1,,,,
+Skill,TestProjectile,1,0.5,ProjectileAttack,,5,4,24,LinearProjectile,,
+Skill,Throw,1,0.5,ProjectileAttack,,5,6,9,ThrowerProjectile,,
+Skill,Move,1,0.5,Move,,,2,,,,
+Skill,Spear,2,0.5,Attack,,8,2,,,,
+Skill,FireBall,1,0.5,ProjectileAttack,,4,3,15,LinearProjectile,,

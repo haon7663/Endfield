@@ -6,11 +6,13 @@ public class PlayerController : MonoBehaviour
 {
     private Movement _movement;
     private Unit _unit;
+    private SkillHolder _skillHolder;
 
     private void Awake()
     {
         _movement = GetComponent<Movement>();
         _unit = GetComponent<Unit>();
+        _skillHolder = GetComponent<SkillHolder>();
     }
 
     private void Update()
@@ -19,9 +21,18 @@ public class PlayerController : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            var skill = SkillLoader.GetSkills("skill").FirstOrDefault(skill => skill.Name == "TestProjectile");
+            var skill = SkillLoader.GetSkills("skill").FirstOrDefault(skill => skill.name == "TestProjectile");
             skill?.Use(_unit);
         }
+
+        if (Input.GetKeyDown(KeyCode.U))
+            _skillHolder.AddCastingViewer(SkillManager.Inst.GetSkillAtIndex(0));
+        if (Input.GetKeyDown(KeyCode.I))
+            _skillHolder.AddCastingViewer(SkillManager.Inst.GetSkillAtIndex(1));
+        if (Input.GetKeyDown(KeyCode.J))
+            _skillHolder.AddCastingViewer(SkillManager.Inst.GetSkillAtIndex(2));
+        if (Input.GetKeyDown(KeyCode.K))
+            _skillHolder.AddCastingViewer(SkillManager.Inst.GetSkillAtIndex(3));
     }
 
     private void MoveInput()
