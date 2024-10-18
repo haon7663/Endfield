@@ -1,15 +1,24 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class SkillHolder : MonoBehaviour
 {
+    private Unit _unit;
+    
     public List<SkillCastingViewer> castingViewers;
     public SkillCastingViewer castingViewerPrefab;
     public Transform skillCanvas;
 
     private const float InitialYPosition = 150f; // ��� ���� ��ġ
     private const float YOffset = 70f; // ���Ĥ��� �����Ǵ� ���� ���� ����
+
+    private void Start()
+    {
+        _unit = GetComponent<Unit>();
+    }
 
     private void Update()
     {
@@ -20,6 +29,20 @@ public class SkillHolder : MonoBehaviour
             {
                 RemoveCastingViewer(castingViewers[0]); // 0�� �ε����� ��� ����
             }
+        }
+    }
+
+    //모든 스킬 방출
+    public IEnumerator Execute()
+    {
+        var saveCastingViewers = new List<SkillCastingViewer>();
+        saveCastingViewers.AddRange(castingViewers);
+        
+        foreach (var castingViewer in saveCastingViewers)
+        {
+            yield return StartCoroutine(castingViewer.Cast());
+            castingViewer.Data?.Use(_unit);
+            RemoveCastingViewer(castingViewer);
         }
     }
 

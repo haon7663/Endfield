@@ -1,3 +1,7 @@
+using System.Collections;
+using System.Globalization;
+using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,6 +9,7 @@ public class SkillCastingViewer : MonoBehaviour
 {
     public Image fillImage;
     public Image selectSkill;
+    public TMP_Text castLabel;
     public RectTransform rectTransform;
 
     public Skill Data { get; private set; }
@@ -15,16 +20,17 @@ public class SkillCastingViewer : MonoBehaviour
         rectTransform.anchoredPosition = pos;
         //selectSkill.sprite = skillSO.skillImage;
         Debug.Log(skill.name);
+        
+        castLabel.text = skill.castingTime.ToString("F1");
     }
-
-    private void Update()
-    {  
-        UpdateSkillCastingTime();       
-    }
-
-    private void UpdateSkillCastingTime()
+    
+    public IEnumerator Cast()
     {
-        var fillAmount = Mathf.Clamp01(Data.castingTime / 100f); 
-        fillImage.fillAmount = fillAmount;
+        var tween = DOVirtual.Float(1, 0, Data.castingTime, value =>
+        {
+            fillImage.fillAmount = value;
+            castLabel.text = (value * Data.castingTime).ToString("F1");
+        }).SetEase(Ease.Linear);
+        yield return tween.WaitForCompletion();
     }    
 }
