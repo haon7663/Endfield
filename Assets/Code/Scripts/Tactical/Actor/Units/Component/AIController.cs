@@ -1,21 +1,36 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AIController : MonoBehaviour
 {
     private Movement _movement;
     private Unit _unit;
+    private SkillHolder _skillHolder;
+    [SerializeField] private float skillCoolTime,moveCool;
+    private float _curSkillCool, _curMoveCool;
 
     private void Awake()
     {
         _movement = GetComponent<Movement>();
         _unit = GetComponent<Unit>();
+        _skillHolder = GetComponent<SkillHolder>();
+        _curSkillCool = skillCoolTime;
+        _curMoveCool = moveCool;
     }
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0)) 
-            EnemyMove();
+           
+
+
+        if (_curMoveCool > 0) _curMoveCool -= Time.deltaTime;
+        else { EnemyMove(); _curMoveCool = moveCool; }
+
+        if (_curSkillCool > 0) _curSkillCool -= Time.deltaTime;
+        else { _skillHolder.AddCastingViewer(SkillManager.Inst.GetSkillAtIndex(0));_curSkillCool = 2f; }
+            
+     
     }
     
     private void EnemyMove() // 적 -> 플레이어쪽으로 이동
@@ -52,6 +67,6 @@ public class AIController : MonoBehaviour
         if (tileIsRight) _movement.OnMove(1);
         else _movement.OnMove(-1);
         
-        _movement.OnFlip(!targetIsRight);
+      
     }
 }
