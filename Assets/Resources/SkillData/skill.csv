@@ -1,7 +1,7 @@
 ,name,elixir,executeType,$type,damage,distance,projectileSpeed,prefabName,,saveName
 1,Slash,1,Start,AttackComponent,5,1,,,,
 2,TestProjectile,1,Start,ProjectileAttackComponent,5,4,24,LinearProjectile,,
-3,Throw,1,,ProjectileAttackComponent,5,4,4,ThrowerProjectile,,
+3,Throw,1,,ProjectileAttackComponent,5,6,9,ThrowerProjectile,,
 4,Move,1,,MoveComponent,,2,,,,
 5,Spear,2,,AttackComponent,8,2,,,,
 6,FireBall,1,,ProjectileAttackComponent,4,3,15,LinearProjectile,,
