@@ -21,8 +21,7 @@ public class PlayerController : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            var skill = SkillLoader.GetSkills("skill").FirstOrDefault(skill => skill.name == "TestProjectile");
-            skill?.Use(_unit);
+            StartCoroutine(_skillHolder.Execute());
         }
 
         if (Input.GetKeyDown(KeyCode.U))
