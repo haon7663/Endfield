@@ -6,6 +6,8 @@ using UnityEngine.Serialization;
 public class Skill
 {
     public string name;
+    public int elixir;
+    public float castingTime;
     public List<SkillComponent> SkillComponents = new();  // 스킬을 구성하는 컴포넌트 리스트
 
     public void Use(Unit user)

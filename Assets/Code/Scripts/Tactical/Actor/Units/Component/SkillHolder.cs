@@ -4,61 +4,43 @@ using UnityEngine;
 
 public class SkillHolder : MonoBehaviour
 {
-    public UnitSO unitSO;
-    public float skillSelectCoolDown = 3f;
     public List<SkillCastingViewer> castingViewers;
     public SkillCastingViewer castingViewerPrefab;
     public Transform skillCanvas;
 
-    private float initialYPosition = 150f; // ºä¾î »ý¼º À§Ä¡
-    private float yOffset = 70f; // ÀÌÈÄ¤¾¿¡ »ý¼ºµÇ´Â ºä¾îµé °£ÀÇ °£°Ý
-
-    private void Start()
-    {
-        StartCoroutine(SelectSkillRoutine());
-    }
+    private const float InitialYPosition = 150f; // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
+    private const float YOffset = 70f; // ï¿½ï¿½ï¿½Ä¤ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
     private void Update()
     {
-        // W Å°¸¦ ´­·¶À» ¶§ ¸®½ºÆ®ÀÇ 0¹ø ÀÎµ¦½º Á¦°Å
+        // W Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ 0ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (Input.GetKeyDown(KeyCode.W))
         {
             if (castingViewers.Count > 0)
             {
-                RemoveCastingViewer(castingViewers[0]); // 0¹ø ÀÎµ¦½ºÀÇ ºä¾î Á¦°Å
+                RemoveCastingViewer(castingViewers[0]); // 0ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             }
         }
     }
 
-
-    private System.Collections.IEnumerator SelectSkillRoutine()
+    public void AddCastingViewer(Skill skill)
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(skillSelectCoolDown);
+        var spawnPosition = GetNextSpawnPosition(castingViewers.Count); 
 
-            SkillSO selectedSkill = SelectSkill();
+        var newViewer = Instantiate(castingViewerPrefab, skillCanvas);
+        newViewer.Init(skill, spawnPosition);
 
-            if (selectedSkill != null)
-            {
-                Vector3 spawnPosition = GetNextSpawnPosition(castingViewers.Count); 
-
-                SkillCastingViewer newViewer = Instantiate(castingViewerPrefab, skillCanvas);
-                newViewer.Init(selectedSkill, spawnPosition);
-
-                castingViewers.Add(newViewer);
-            }
-        }
+        castingViewers.Add(newViewer);
     }
 
-    // ÀÎµ¦½º¿¡ µû¶ó¼­ À§Ä¡ °è»ê
+    // ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½
     private Vector3 GetNextSpawnPosition(int index)
     {
-        Vector3 spawnPosition = new Vector3(0, initialYPosition + (index * yOffset), 0);
+        Vector3 spawnPosition = new Vector3(0, InitialYPosition + (index * YOffset), 0);
         return spawnPosition;
     }
 
-    // ¸®½ºÆ®¿¡¼­ ºä¾î°¡ Á¦°ÅµÉ ¶§ È£ÃâÇÒ ÇÔ¼ö(½ºÅ³ »ç¿ë½Ã)
+    // ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½î°¡ ï¿½ï¿½ï¿½Åµï¿½ ï¿½ï¿½ È£ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½(ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½)
     public void RemoveCastingViewer(SkillCastingViewer viewer)
     {
         castingViewers.Remove(viewer);
@@ -66,7 +48,7 @@ public class SkillHolder : MonoBehaviour
         RepositionCastingViewers(); 
     }
 
-    // ºä¾îµé À§Ä¡ ÀçÁ¶Á¤ ½ÃÄÑÁÜ
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private void RepositionCastingViewers()
     {
         for (int i = 0; i < castingViewers.Count; i++)
@@ -74,14 +56,5 @@ public class SkillHolder : MonoBehaviour
             Vector3 newPosition = GetNextSpawnPosition(i);
             castingViewers[i].rectTransform.anchoredPosition = newPosition; 
         }
-    }
-
-    private SkillSO SelectSkill()
-    {
-        if (unitSO.skills == null || unitSO.skills.Count == 0) return null;
-
-        int maxPriority = unitSO.skills.Max(skill => skill.priority);
-
-        return unitSO.skills.Where(skill => skill.priority == maxPriority).ToList().Random();
     }
 }

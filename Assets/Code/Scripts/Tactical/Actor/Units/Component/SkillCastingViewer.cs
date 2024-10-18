@@ -7,17 +7,15 @@ public class SkillCastingViewer : MonoBehaviour
     public Image selectSkill;
     public RectTransform rectTransform;
 
-    private SkillSO skillSO;
+    public Skill Data { get; private set; }
 
-    public void Init(SkillSO skillSO, Vector3 Pos)
+    public void Init(Skill skill, Vector3 pos)
     {
-        this.skillSO = skillSO;
-        rectTransform.anchoredPosition = Pos;
+        Data = skill;
+        rectTransform.anchoredPosition = pos;
         //selectSkill.sprite = skillSO.skillImage;
-        Debug.Log(skillSO.name);
+        Debug.Log(skill.name);
     }
-
-    
 
     private void Update()
     {  
@@ -26,7 +24,7 @@ public class SkillCastingViewer : MonoBehaviour
 
     private void UpdateSkillCastingTime()
     {
-        float fillAmount = Mathf.Clamp01(skillSO.castingTime / 100f); 
+        var fillAmount = Mathf.Clamp01(Data.castingTime / 100f); 
         fillImage.fillAmount = fillAmount;
     }    
 }

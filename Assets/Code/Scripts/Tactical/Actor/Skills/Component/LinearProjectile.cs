@@ -6,7 +6,7 @@ public class LinearProjectile : Projectile
     public override void Init(Tile tile, Vector3 dir, int damage, int distance, int projectileSpeed)
     {
         base.Init(tile, dir, damage, distance, projectileSpeed);
-        transform.position = tile.transform.position + Vector3.up * 1.2f;
+        transform.position = tile.transform.position + dir + Vector3.up * 1.2f;
     }
 
     private float _timer;
