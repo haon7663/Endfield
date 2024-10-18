@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6955920105395409399}
-  - component: {fileID: 5696671471054383894}
+  - component: {fileID: 6493058641543050859}
   m_Layer: 0
   m_Name: ThrowerProjectile
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 7552578707740554684}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5696671471054383894
+--- !u!114 &6493058641543050859
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,7 +42,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2642049642991785200}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00789bacb5f85b64c82fa7a87b9da480, type: 3}
+  m_Script: {fileID: 11500000, guid: b2fd369d14d840448a9736274735a6f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3436036228923672305

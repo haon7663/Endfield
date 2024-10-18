@@ -6,33 +6,34 @@ public class ThrowerProjectile : Projectile
     public override void Init(Tile tile, Vector3 dir, int damage, int distance, int projectileSpeed)
     {
         base.Init(tile, dir, damage, distance, projectileSpeed);
-        transform.position = tile.transform.position + Vector3.up * 0.5f;
+        transform.position = tile.transform.position + Vector3.up * 1.2f;
+        _startPosition = tile.transform.position + Vector3.up * 1.2f;
+        _targetPosition = tile.transform.position + dir * distance + Vector3.up * 1.2f;
     }
 
     private float _timer;
     private int _currentLocalKey;
 
+    private Vector3 _startPosition, _targetPosition;
+
     private void Update()
     {
         _currentLocalKey = Mathf.FloorToInt(_timer * projectileSpeed) + 1;
         if (_currentLocalKey > distance)
-            Destroy(gameObject);
-
-        var prevPos = (base.tile.transform.position + dir * _currentLocalKey) + Vector3.up * 1.2f;
-        var curPos = (base.tile.transform.position + dir * (_currentLocalKey + 1))  + Vector3.up * 1.2f;
-        
-        transform.position = Vector3.Lerp(prevPos, curPos, _timer * projectileSpeed - Mathf.FloorToInt(_timer * projectileSpeed));
-        _timer += Time.deltaTime;
-
-        var currentTile = GridManager.Inst.GetTile(base.tile.Key + _currentLocalKey * (int)dir.x);
-        if (currentTile && currentTile.content)
         {
-            if (currentTile.content.TryGetComponent(out Health health))
+            var currentTile = GridManager.Inst.GetTile(tile.Key + distance);
+            if (currentTile && currentTile.content)
             {
-                print(damage);
-                health.OnDamage(damage);
-                Destroy(gameObject);
+                if (currentTile.content.TryGetComponent(out Health health))
+                {
+                    print(damage);
+                    health.OnDamage(damage);
+                }
             }
+            Destroy(gameObject);
         }
+        
+        transform.position = Vector3.Slerp(_startPosition, _targetPosition, _timer / ((distance - 1f) / projectileSpeed));
+        _timer += Time.deltaTime;
     }
 }
