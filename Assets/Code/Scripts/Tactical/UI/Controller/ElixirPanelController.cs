@@ -8,6 +8,6 @@ public class ElixirPanelController : MonoBehaviour
 
     private void Update()
     {
-        //fill.fillAmount = 
+        fill.fillAmount = GameManager.Inst.curElixir / GameManager.Inst.maxElixir;
     }
 }

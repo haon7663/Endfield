@@ -247,8 +247,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80f3ec419d3f17946a3b426dfe9f0717, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitSO: {fileID: 11400000, guid: e0de4a927f2c3fa4d8cd779fac7e1727, type: 2}
-  skillSelectCoolDown: 3
   castingViewers: []
   castingViewerPrefab: {fileID: 7637699245588232346, guid: e0ff67c338c32c042adba86596ca20fd, type: 3}
   skillCanvas: {fileID: 7426415124253376672}

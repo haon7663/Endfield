@@ -19,7 +19,6 @@ public class SkillCastingViewer : MonoBehaviour
         Data = skill;
         rectTransform.anchoredPosition = pos;
         //selectSkill.sprite = skillSO.skillImage;
-        Debug.Log(skill.name);
         
         castLabel.text = skill.castingTime.ToString("F1");
     }
@@ -32,5 +31,5 @@ public class SkillCastingViewer : MonoBehaviour
             castLabel.text = (value * Data.castingTime).ToString("F1");
         }).SetEase(Ease.Linear);
         yield return tween.WaitForCompletion();
-    }    
+    }
 }

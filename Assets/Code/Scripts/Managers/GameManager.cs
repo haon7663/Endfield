@@ -1,17 +1,16 @@
+using System;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
     public Unit player;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public int maxElixir;
+    public float curElixir;
+
+    private void Update()
     {
-        
+        curElixir += Time.deltaTime;
+        curElixir = Mathf.Clamp(curElixir, 0, maxElixir);
     }
 }

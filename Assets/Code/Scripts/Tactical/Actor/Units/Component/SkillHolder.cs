@@ -48,12 +48,16 @@ public class SkillHolder : MonoBehaviour
 
     public void AddCastingViewer(Skill skill)
     {
+        if (GameManager.Inst.curElixir < skill.elixir) return;
+        
         var spawnPosition = GetNextSpawnPosition(castingViewers.Count); 
 
         var newViewer = Instantiate(castingViewerPrefab, skillCanvas);
         newViewer.Init(skill, spawnPosition);
 
         castingViewers.Add(newViewer);
+
+        GameManager.Inst.curElixir -= skill.elixir;
     }
 
     // �ε����� ���� ��ġ ���
