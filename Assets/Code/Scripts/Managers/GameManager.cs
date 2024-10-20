@@ -1,3 +1,4 @@
+using DG.Tweening;
 using NUnit.Framework;
 using System;
 using Unity.VisualScripting;
@@ -25,7 +26,7 @@ public class GameManager : Singleton<GameManager>
     }
 
     public void BSVolume(bool inSimulation)
-    {  
-        colorAdjustments.saturation.value = inSimulation? -100:0;
+    {
+        DOTween.To(() => colorAdjustments.saturation.value, x => colorAdjustments.saturation.value = x, inSimulation ? -100 : 0, 0f);
     }
 }
