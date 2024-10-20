@@ -6,14 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="14d34322-fb5c-456d-baed-061be64639fd" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Project-HL/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Project-HL/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Managers/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Managers/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Units/Component/SkillCastingViewer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Units/Component/SkillCastingViewer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Units/Component/SkillHolder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Units/Component/SkillHolder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Controller/ElixirPanelController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Controller/ElixirPanelController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/Units/Enemy.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/Units/Enemy.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/Units/Unit.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/Units/Unit.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Level/Scenes/Design.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scenes/Design.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/SkillData/skill.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/SkillData/skill.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TimeManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TimeManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +41,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;haon&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
@@ -137,7 +131,8 @@
       <workItem from="1729213371021" duration="3626000" />
       <workItem from="1729220384074" duration="3745000" />
       <workItem from="1729253625051" duration="3847000" />
-      <workItem from="1729346281720" duration="702000" />
+      <workItem from="1729346281720" duration="1304000" />
+      <workItem from="1729405977135" duration="1688000" />
     </task>
     <servers />
   </component>
