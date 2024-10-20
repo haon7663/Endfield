@@ -3,7 +3,6 @@ using UnityEngine;
 public class AttackComponent : SkillComponent
 {
     public int damage;
-    public int distance;
     
     public override void Execute(Unit user)
     {

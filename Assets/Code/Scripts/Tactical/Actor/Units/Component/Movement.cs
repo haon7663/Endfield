@@ -66,7 +66,7 @@ public class Movement : MonoBehaviour
             });
     }
 
-    public void OnFlip(bool isFlip)  //SpriteBillboard 때문에 FlipX 안되서 로컬 스케일로 구현함
+    public void OnFlip(bool isFlip) 
     {
         if (_isMove)
         {
