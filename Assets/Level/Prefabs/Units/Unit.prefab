@@ -205,6 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62527cadeda32d24d8a5aee5f5b01414, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <SpriteTransform>k__BackingField: {fileID: 7670090231099053250}
 --- !u!114 &4259411703502830580
 MonoBehaviour:
   m_ObjectHideFlags: 0

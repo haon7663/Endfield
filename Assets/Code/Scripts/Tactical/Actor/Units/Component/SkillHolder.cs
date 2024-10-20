@@ -7,6 +7,7 @@ using UnityEngine;
 public class SkillHolder : MonoBehaviour
 {
     private Unit _unit;
+    private Animator _animator;
     
     public List<SkillCastingViewer> castingViewers;
     public SkillCastingViewer castingViewerPrefab;
@@ -14,10 +15,13 @@ public class SkillHolder : MonoBehaviour
 
     private const float InitialYPosition = 150f; // ��� ���� ��ġ
     private const float YOffset = 70f; // ���Ĥ��� �����Ǵ� ���� ���� ����
+    
+    private static readonly int Attack = Animator.StringToHash("attack");
 
     private void Start()
     {
         _unit = GetComponent<Unit>();
+        _animator = _unit.SpriteTransform.GetComponent<Animator>();
     }
 
     private void Update()
@@ -42,6 +46,7 @@ public class SkillHolder : MonoBehaviour
         {
             yield return StartCoroutine(castingViewer.Cast());
             castingViewer.Data?.Use(_unit);
+            _animator.SetTrigger(Attack);
             RemoveCastingViewer(castingViewer);
         }
     }

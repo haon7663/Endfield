@@ -6,9 +6,8 @@ public class AttackComponent : SkillComponent
     
     public override void Execute(Unit user)
     {
-        var targetUnit = GridManager.Inst.GetTile(user.Tile.Key + distance).content;
-        if (targetUnit == null) return;
-        if (targetUnit.TryGetComponent(out Health health))
+        var targetUnit = GridManager.Inst.GetTile(user.Tile.Key + distance)?.content;
+        if (targetUnit && targetUnit.TryGetComponent(out Health health))
         {
             health.OnDamage(damage);
         }

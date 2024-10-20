@@ -28,7 +28,7 @@ public class AIController : MonoBehaviour
 
     private void Update()
     {
-        if(skillExecute && _skillHolder.castingViewers.Count==0 ) skillExecute= false;
+        if (skillExecute && _skillHolder.castingViewers.Count == 0) skillExecute= false;
 
         if (!skillExecute)
         {
@@ -76,7 +76,6 @@ public class AIController : MonoBehaviour
             {
                 return;
             }
-           
         }
 
         List<Tile> areaTile = target.Tile.GetAreaInRange(_skillHolder.castingViewers[0].Data.SkillComponents[0].distance);// 한 곳만 때리는거, 전체 때리는거 구분 해야함
@@ -95,7 +94,6 @@ public class AIController : MonoBehaviour
         var distance = tileDir.x>0?1:-1;
         if (GridManager.Inst.GetTile(_unit.Tile.Key + distance).content) return;   //앞에 무언가가 있는가
          _movement.OnMove(distance);
-
     }
 
     bool MoveFarAI(bool targetIsRight,int min,int max)
