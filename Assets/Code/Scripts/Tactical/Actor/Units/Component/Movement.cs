@@ -14,6 +14,9 @@ public class Movement : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Animator animator;
     [SerializeField] private float moveSpeed;
+
+    [SerializeField] private Color _color;
+
     
     public Vector2 Dir => _dir;
     public int DirX => (int)_dir.x;
@@ -28,6 +31,9 @@ public class Movement : MonoBehaviour
     private void Start()
     {
         _unit = GetComponent<Unit>();
+        spriteRenderer.material = Instantiate(spriteRenderer.material);
+        spriteRenderer.material.color = _color;
+       
     }
 
     public void OnMove(int key)
