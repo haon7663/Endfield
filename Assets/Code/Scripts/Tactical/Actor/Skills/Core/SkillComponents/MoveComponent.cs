@@ -9,4 +9,9 @@ public class MoveComponent : SkillComponent
             movement.OnMove(distance * movement.DirX);
         }
     }
+
+    public override void Print(Unit user)
+    {
+        throw new System.NotImplementedException();
+    }
 }

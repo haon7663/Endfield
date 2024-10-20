@@ -1,16 +1,21 @@
 using System;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    private Unit _unit;
+    private SpriteRenderer _spriteRenderer;
     
     public int curHp;
     public int maxHp;
 
     private void Start()
     {
+        _unit = GetComponent<Unit>();
+        _spriteRenderer = _unit.SpriteTransform.GetComponent<SpriteRenderer>();
+        
         curHp = maxHp;
     }
 
@@ -21,14 +26,14 @@ public class Health : MonoBehaviour
         var sequence = DOTween.Sequence();
         sequence.AppendCallback(() =>
             {
-                spriteRenderer.color = new Color(1, 0.25f, 0.25f);
-                spriteRenderer.material = Sprite2DMaterial.GetWhiteMaterial();
+                _spriteRenderer.color = new Color(1, 0.25f, 0.25f);
+                _spriteRenderer.material = Sprite2DMaterial.GetWhiteMaterial();
             })
             .AppendInterval(0.1f)
             .OnComplete(() =>
             {
-                spriteRenderer.color = Color.white;
-                spriteRenderer.material = Sprite2DMaterial.GetDefaultMaterial();
+                _spriteRenderer.color = Color.white;
+                _spriteRenderer.material = Sprite2DMaterial.GetDefaultMaterial();
             });
     }
 }

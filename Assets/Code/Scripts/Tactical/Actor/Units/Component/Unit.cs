@@ -5,6 +5,9 @@ using UnityEngine;
 public class Unit : MonoBehaviour
 {
     public Tile Tile { get; private set; }
+    
+    [field:SerializeField]
+    public Transform SpriteTransform { get; private set; }
 
     private void Start()
     {

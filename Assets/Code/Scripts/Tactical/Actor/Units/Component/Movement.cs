@@ -11,12 +11,10 @@ public class Movement : MonoBehaviour
     
     private readonly Queue<Action> _inputBuffer = new Queue<Action>();
     
-    [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private Animator animator;
+    private SpriteRenderer _spriteRenderer;
+    private Animator _animator;
+    
     [SerializeField] private float moveSpeed;
-
-    [SerializeField] private Color _color;
-
     
     public Vector2 Dir => _dir;
     public int DirX => (int)_dir.x;
@@ -31,9 +29,8 @@ public class Movement : MonoBehaviour
     private void Start()
     {
         _unit = GetComponent<Unit>();
-        spriteRenderer.material = Instantiate(spriteRenderer.material);
-        spriteRenderer.material.color = _color;
-       
+        _spriteRenderer = _unit.SpriteTransform.GetComponent<SpriteRenderer>();
+        _animator = _unit.SpriteTransform.GetComponent<Animator>();
     }
 
     public void OnMove(int key)
@@ -59,15 +56,15 @@ public class Movement : MonoBehaviour
         var anim = dir == _dir ? IsFrontDash : IsBackDash;
         
         _isMove = true;
-        animator.SetBool(anim, true);
+        _animator.SetBool(anim, true);
         _unit.Place(tile);
         
         var sequence = DOTween.Sequence();
         sequence.Append(transform.DOMove(tile.transform.position + Vector3.up * 0.5f, moveSpeed).SetEase(Ease.OutCirc))
-            .Join(spriteRenderer.transform.DOLocalJump(Vector3.zero, 0.1f, 1, moveSpeed).SetEase(Ease.OutCirc))
+            .Join(_spriteRenderer.transform.DOLocalJump(Vector3.zero, 0.1f, 1, moveSpeed).SetEase(Ease.OutCirc))
             .OnComplete(() =>
             {
-                animator.SetBool(anim, false);
+                _animator.SetBool(anim, false);
                 OnMoveEnd();
             });
     }
@@ -82,9 +79,9 @@ public class Movement : MonoBehaviour
         }
         
         _isMove = true;
-        animator.SetBool(IsFlip, true);
+        _animator.SetBool(IsFlip, true);
         var sequence = DOTween.Sequence();
-        sequence.Append(spriteRenderer.transform.DOLocalJump(Vector3.zero, 0.2f, 1, moveSpeed).SetEase(Ease.Linear))
+        sequence.Append(_spriteRenderer.transform.DOLocalJump(Vector3.zero, 0.2f, 1, moveSpeed).SetEase(Ease.Linear))
             .InsertCallback(moveSpeed * 0.5f, () =>
             {
                 _dir = isFlip ? Vector2.left : Vector2.right;
@@ -92,7 +89,7 @@ public class Movement : MonoBehaviour
             })
             .OnComplete(() =>
             {
-                animator.SetBool(IsFlip, false);
+                _animator.SetBool(IsFlip, false);
                 OnMoveEnd();
             });
     }

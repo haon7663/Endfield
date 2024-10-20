@@ -11,4 +11,9 @@ public class DashComponent : SkillComponent
             movement.OnMove(distance);
         }
     }
+
+    public override void Print(Unit user)
+    {
+        throw new System.NotImplementedException();
+    }
 }
