@@ -28106,6 +28106,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3069635981706411156, guid: 20061a7b23eefd84a819df5d0ea0e73b, type: 3}
+      propertyPath: moveCool
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3069635981706411156, guid: 20061a7b23eefd84a819df5d0ea0e73b, type: 3}
+      propertyPath: maxSkillCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3069635981706411156, guid: 20061a7b23eefd84a819df5d0ea0e73b, type: 3}
+      propertyPath: skillCoolTime
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5670976567639077475, guid: 20061a7b23eefd84a819df5d0ea0e73b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -53250,6 +53262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0371f27c4db377a4497cfb42dde38fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fill: {fileID: 0}
 --- !u!1 &1477014270
 GameObject:
   m_ObjectHideFlags: 0
