@@ -14,4 +14,9 @@ public class AttackComponent : SkillComponent
             health.OnDamage(damage);
         }
     }
+
+    public override void Print(Unit user)
+    {
+        throw new System.NotImplementedException();
+    }
 }

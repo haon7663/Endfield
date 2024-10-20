@@ -25,7 +25,10 @@ public class PlayerController : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.U))
+        {
             _skillHolder.AddCastingViewer(SkillManager.Inst.GetSkillAtIndex(0));
+            TimeCaster.SetTimeScale(0.02f);
+        }
         if (Input.GetKeyDown(KeyCode.I))
             _skillHolder.AddCastingViewer(SkillManager.Inst.GetSkillAtIndex(1));
         if (Input.GetKeyDown(KeyCode.J))
