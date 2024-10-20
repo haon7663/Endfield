@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="14d34322-fb5c-456d-baed-061be64639fd" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Project-HL/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Project-HL/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Cards/Card.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Cards/Card.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Level/Scenes/Design.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scenes/Design.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +28,9 @@
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Utilities/Sprites/Sprite2DMaterial.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Extension/SufflingExtension.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem/InputSystem/Actions/InputActionState.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="PerforceDirect.Settings">
+    <option name="CHARSET" value="없음" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -134,7 +137,7 @@
       <workItem from="1729346281720" duration="1304000" />
       <workItem from="1729405977135" duration="1688000" />
       <workItem from="1729420148738" duration="1458000" />
-      <workItem from="1729429279319" duration="3490000" />
+      <workItem from="1729429279319" duration="5517000" />
     </task>
     <servers />
   </component>
