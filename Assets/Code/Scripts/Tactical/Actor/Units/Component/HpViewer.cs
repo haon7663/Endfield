@@ -4,16 +4,29 @@ using TMPro;
 
 public class HpViewer : MonoBehaviour
 {
+    
+    [SerializeField] private TextMeshProUGUI healthTextPrefab;
+   
+    private HpBarController hpBarController;
     private Health health;
-    [SerializeField] private TextMeshProUGUI healthText;
 
     private float displayedHp;
 
+    private Transform healthTextInstance;
+    public Transform canvas;
+
     private void Start()
     {
+        hpBarController = GameObject.Find("HpBar Controller").GetComponent<HpBarController>();
         health = GetComponent<Health>();
+        canvas = GameObject.Find("HpCanvas").GetComponent<Transform>();
+        healthTextInstance = Instantiate(healthTextPrefab, canvas).transform;
+        healthTextInstance.GetComponent<TextMeshProUGUI>().text = displayedHp.ToString();
+        
+        
+        hpBarController.AddHpBar(transform, healthTextInstance);      
         displayedHp = health.curHp;
-        healthText.text = displayedHp.ToString();
+        
     }
 
     private void Update()
@@ -27,6 +40,6 @@ public class HpViewer : MonoBehaviour
     private void UpdateHealthUI(int newHp)
     {
         DOTween.To(() => displayedHp, x => displayedHp = x, newHp, 0.5f)
-            .OnUpdate(() => healthText.text = Mathf.RoundToInt(displayedHp).ToString());
+            .OnUpdate(() => healthTextInstance.GetComponent<TextMeshProUGUI>().text = Mathf.RoundToInt(displayedHp).ToString());
     }
 }
