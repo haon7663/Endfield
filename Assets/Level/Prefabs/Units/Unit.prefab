@@ -169,6 +169,7 @@ GameObject:
   - component: {fileID: 4259411703502830580}
   - component: {fileID: 5977858935807170850}
   - component: {fileID: 3419554101399461406}
+  - component: {fileID: 911527452982774341}
   m_Layer: 0
   m_Name: Unit
   m_TagString: Untagged
@@ -218,8 +219,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9a01cf7f338c86469ba1479b0c61be0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 2818163891923244700}
-  animator: {fileID: 8626060178849061626}
   moveSpeed: 0.1
 --- !u!114 &5977858935807170850
 MonoBehaviour:
@@ -233,7 +232,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55bee0c77962afa48bb5ef3c5705dacb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 2818163891923244700}
   curHp: 15
   maxHp: 15
 --- !u!114 &3419554101399461406
@@ -251,6 +249,20 @@ MonoBehaviour:
   castingViewers: []
   castingViewerPrefab: {fileID: 7637699245588232346, guid: e0ff67c338c32c042adba86596ca20fd, type: 3}
   skillCanvas: {fileID: 7426415124253376672}
+--- !u!114 &911527452982774341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4976203370979620335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44a26e56f1eac3745a38af890c685517, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthTextPrefab: {fileID: 203851309687527777, guid: 9695f9b41f3a79b429edade768b67d54, type: 3}
+  canvas: {fileID: 0}
 --- !u!1 &7084206839719189076
 GameObject:
   m_ObjectHideFlags: 0
