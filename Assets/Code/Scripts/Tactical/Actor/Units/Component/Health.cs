@@ -5,6 +5,8 @@ using UnityEngine.Serialization;
 
 public class Health : MonoBehaviour
 {
+    public Action damaged;
+    
     private Unit _unit;
     private SpriteRenderer _spriteRenderer;
     
@@ -35,5 +37,7 @@ public class Health : MonoBehaviour
                 _spriteRenderer.color = Color.white;
                 _spriteRenderer.material = Sprite2DMaterial.GetDefaultMaterial();
             });
+        
+        damaged?.Invoke();
     }
 }

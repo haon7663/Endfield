@@ -1505,7 +1505,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 100}
+  m_AnchoredPosition: {x: 0, y: 145}
   m_SizeDelta: {x: 1920, y: 290}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &67965478
@@ -12250,7 +12250,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.031759687, y: 0, z: 0, w: 0.99949557}
-  m_LocalPosition: {x: 0, y: 4.98, z: -40}
+  m_LocalPosition: {x: 0, y: 5, z: -40}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -24908,7 +24908,7 @@ GameObject:
   - component: {fileID: 612100234}
   - component: {fileID: 612100233}
   m_Layer: 5
-  m_Name: HpCanvas
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67273,7 +67273,7 @@ GameObject:
   - component: {fileID: 2132905571}
   - component: {fileID: 2132905570}
   m_Layer: 0
-  m_Name: HpBar Controller
+  m_Name: Health Text Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67291,9 +67291,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e29d84942d2a5034da0e0c25baba697e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 330585545}
-  targetObjects: []
-  healthTexts: []
+  healthTextPrefab: {fileID: 203851309687527777, guid: 9695f9b41f3a79b429edade768b67d54, type: 3}
+  canvas: {fileID: 612100232}
 --- !u!4 &2132905571
 Transform:
   m_ObjectHideFlags: 0

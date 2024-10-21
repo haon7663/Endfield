@@ -4,42 +4,24 @@ using TMPro;
 
 public class HpViewer : MonoBehaviour
 {
-
     [SerializeField] private TextMeshProUGUI healthTextPrefab;
-
-    private HpBarController hpBarController;
+    
     private Health health;
-
-    private float displayedHp;
-
-    private Transform healthTextInstance;
-    public Transform canvas;
+    private int _prevHp;
 
     private void Start()
     {
-        hpBarController = GameObject.Find("HpBar Controller").GetComponent<HpBarController>();
         health = GetComponent<Health>();
-        canvas = GameObject.Find("HpCanvas").GetComponent<Transform>();
-        healthTextInstance = Instantiate(healthTextPrefab, canvas).transform;
-        healthTextInstance.GetComponent<TextMeshProUGUI>().text = displayedHp.ToString();
-
-
-        hpBarController.AddHpBar(transform, healthTextInstance);
-        displayedHp = health.curHp;
-
+        HealthTextController.Inst.Connect(health);
+        HealthTextController.Inst.UpdateUI(health, health.maxHp);
+        health.damaged += UpdateHealthUI;
+        _prevHp = health.maxHp;
     }
 
-    private void Update()
+    private void UpdateHealthUI()
     {
-        if (Mathf.RoundToInt(displayedHp) != health.curHp)
-        {
-            UpdateHealthUI(health.curHp);
-        }
-    }
-
-    private void UpdateHealthUI(int newHp)
-    {
-        DOTween.To(() => displayedHp, x => displayedHp = x, newHp, 0.5f)
-            .OnUpdate(() => healthTextInstance.GetComponent<TextMeshProUGUI>().text = Mathf.RoundToInt(displayedHp).ToString());
+        DOVirtual.Int(_prevHp, health.curHp, 0.3f, value => HealthTextController.Inst.UpdateUI(health, value))
+            .SetEase(Ease.InOutQuad);
+        _prevHp = health.curHp;
     }
 }

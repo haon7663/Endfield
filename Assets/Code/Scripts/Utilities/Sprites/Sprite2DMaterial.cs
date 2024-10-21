@@ -4,7 +4,7 @@ public static class Sprite2DMaterial
 {
     public static Material GetDefaultMaterial()
     {
-        var material = Resources.Load<Material>("Sprite-Lit-Shadow");
+        var material = Resources.Load<Material>("Sprite-Shadow");
         return material;
     }
     public static Material GetWhiteMaterial()
