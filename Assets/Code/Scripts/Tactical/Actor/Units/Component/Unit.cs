@@ -8,6 +8,12 @@ public class Unit : MonoBehaviour
     
     [field:SerializeField]
     public Transform SpriteTransform { get; private set; }
+    public Renderer Renderer { get; private set; }
+
+    private void Awake()
+    {
+        Renderer = SpriteTransform.GetComponent<Renderer>();
+    }
 
     private void Start()
     {
