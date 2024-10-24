@@ -1,9 +1,14 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    private Task _currentTask;
+    private readonly Queue<Action> _inputBuffer = new Queue<Action>();
+    
     private Movement _movement;
     private Unit _unit;
     private SkillHolder _skillHolder;
@@ -15,40 +20,112 @@ public class PlayerController : MonoBehaviour
         _skillHolder = GetComponent<SkillHolder>();
     }
 
+    private void Start()
+    {
+    }
+
     private void Update()
     { 
-        MoveInput();
-        
         if (Input.GetKeyDown(KeyCode.Space))
         {
             StartCoroutine(_skillHolder.Execute());
         }
-
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            _skillHolder.AddCastingViewer(SkillManager.Inst.GetSkillAtIndex(0));
-            
-            if (ArtDirectionManager.Inst.onBulletTime)
-                ArtDirectionManager.Inst.EndBulletTime();
-            else
-                ArtDirectionManager.Inst.StartBulletTime(new List<Unit> { _unit });
-        }
-        if (Input.GetKeyDown(KeyCode.I))
-            _skillHolder.AddCastingViewer(SkillManager.Inst.GetSkillAtIndex(1));
-        if (Input.GetKeyDown(KeyCode.J))
-            _skillHolder.AddCastingViewer(SkillManager.Inst.GetSkillAtIndex(2));
-        if (Input.GetKeyDown(KeyCode.K))
-            _skillHolder.AddCastingViewer(SkillManager.Inst.GetSkillAtIndex(3));
     }
 
-    private void MoveInput()
+    private void BufferedInput(IEnumerator c)
     {
-        if (Input.GetKeyDown(KeyCode.A))
-            _movement.OnMove(-1);
-        if (Input.GetKeyDown(KeyCode.D))
-            _movement.OnMove(1);
+        Action action = () =>
+        {
+            _currentTask = new Task(c);
+            _currentTask.Finished += manual =>
+            {
+                if (_inputBuffer.Count > 0)
+                    _inputBuffer.Dequeue()?.Invoke();
+            };
+        };
         
-        if (Input.GetKeyDown(KeyCode.S))
-            _movement.OnFlip(Mathf.Approximately(transform.localScale.x, 1));
+        if (_currentTask is { Running: true })
+        {
+            if (_inputBuffer.Count < 1)
+                _inputBuffer.Enqueue(action);
+            return;
+        }
+        action.Invoke();
+    }
+    
+    private void MoveInput(int key)
+    {
+        BufferedInput(_movement.OnMove(key));
+    }
+
+    public void OnMoveLeft(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            if (ArtDirectionManager.Inst.onBulletTime)
+                return;
+            
+            MoveInput(-1);
+        }
+    }
+    
+    public void OnMoveRight(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            if (ArtDirectionManager.Inst.onBulletTime)
+                return;
+            
+            MoveInput(1);
+        }
+    }
+    
+    public void OnFlip(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            if (ArtDirectionManager.Inst.onBulletTime)
+                return;
+            
+            BufferedInput(_movement.OnFlip(Mathf.Approximately(transform.localScale.x, 1)));
+        }
+    }
+
+    public void OnSkillUsed(InputAction.CallbackContext context)
+    {
+        var key = context.control.name;
+
+        if (context.started)
+        {
+            ArtDirectionManager.Inst.StartBulletTime(new List<Unit> { _unit });
+        }
+
+        if (context.canceled)
+        {
+            switch (key)
+            {
+                case "u":
+                    BufferedInput(UseSkill(0));
+                    break;
+                case "i":
+                    BufferedInput(UseSkill(1));
+                    break;
+                case "j":
+                    BufferedInput(UseSkill(2));
+                    break;
+                case "k":
+                    BufferedInput(UseSkill(3));
+                    break;
+            }
+            ArtDirectionManager.Inst.EndBulletTime();
+        }
+    }
+
+    private IEnumerator UseSkill(int skillNum)
+    {
+        Debug.Log("attack");
+        
+        SkillManager.Inst.GetSkillAtIndex(skillNum)?.Use(_unit);
+        yield return new WaitForSeconds(0.2f);
     }
 }
