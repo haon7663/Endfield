@@ -38,6 +38,8 @@ public class Movement : MonoBehaviour
     
     public IEnumerator MoveTo(Tile tile)
     {
+        if (tile.IsOccupied) yield break;
+        
         DOTween.Kill(this);
         
         var prevTile = _unit.Tile;
