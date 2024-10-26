@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -21,7 +22,19 @@ public class InventoryController : MonoBehaviour
 
     public void AddInventorySkill()
     {
-        Instantiate(skillPrefab, inventoryContent);
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject); // 자식 오브젝트 제거
+        }
+        
+        List<Skill> skills = DataManager.Inst.Data.skills;
+        foreach (var skill in skills)
+        {
+            GameObject inven = Instantiate(skillPrefab, inventoryContent);
+            if(inven.TryGetComponent(out InventorySkillInfor inventorySkillInfor))
+                inventorySkillInfor.SetInfor(skill);
+        }
+      
     }
 
     public void AddRelic()
@@ -32,6 +45,7 @@ public class InventoryController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         
         if (Input.GetKeyDown(KeyCode.P))
         {
