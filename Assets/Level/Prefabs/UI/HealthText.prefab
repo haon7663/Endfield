@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6528186760706559760}
   - component: {fileID: 203851309687527777}
   m_Layer: 5
-  m_Name: HpText
+  m_Name: HealthText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b65c4e34e0bf85a4993c23ed1e2b10e3, type: 2}
+  m_sharedMaterial: {fileID: 8525605778059104737, guid: b65c4e34e0bf85a4993c23ed1e2b10e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
