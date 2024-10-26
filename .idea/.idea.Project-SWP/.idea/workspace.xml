@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="4c132301-f753-4c46-b924-9c0be65c0c66" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/Units/Enemy.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/Units/Enemy.prefab" afterDir="false" />
@@ -15,10 +18,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 2
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2nw7NTlWTRqWZmqyRzQhn8EA1vz" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -28,6 +31,10 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "jaewan",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   },
@@ -86,6 +93,7 @@
       <option name="presentableId" value="Default" />
       <updated>1729872256228</updated>
       <workItem from="1729872260239" duration="178000" />
+      <workItem from="1729872475429" duration="634000" />
     </task>
     <servers />
   </component>
