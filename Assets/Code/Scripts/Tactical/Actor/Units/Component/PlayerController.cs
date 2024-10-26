@@ -124,8 +124,13 @@ public class PlayerController : MonoBehaviour
     private IEnumerator UseSkill(int skillNum)
     {
         Debug.Log("attack");
+
+        var skill = SkillManager.Inst.GetSkillAtIndex(skillNum);
         
+        if (skill == null || GameManager.Inst.curElixir < skill.elixir) yield break;
         SkillManager.Inst.GetSkillAtIndex(skillNum)?.Use(_unit);
+        GameManager.Inst.curElixir -= skill.elixir;
+        
         yield return new WaitForSeconds(0.2f);
     }
 }

@@ -262,7 +262,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthTextPrefab: {fileID: 203851309687527777, guid: 9695f9b41f3a79b429edade768b67d54, type: 3}
-  canvas: {fileID: 0}
 --- !u!1 &7084206839719189076
 GameObject:
   m_ObjectHideFlags: 0
