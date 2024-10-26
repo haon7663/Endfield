@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 2380306528787068295}
   - component: {fileID: 1490752061959342352}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: ElixirLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -458,8 +458,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 895281a05d697b0449777e990e6805df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rectTransform: {fileID: 2049692397689271300}
-  backGround: {fileID: 2617772989813277808}
+  icon: {fileID: 5600116876059188215}
+  nameLabel: {fileID: 5601054873273594467}
+  description: {fileID: 2900511996286931006}
+  elixirLabel: {fileID: 1490752061959342352}
 --- !u!1 &4451033896602494923
 GameObject:
   m_ObjectHideFlags: 0
@@ -880,7 +882,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -4.14476}
+  m_AnchoredPosition: {x: 0, y: -10}
   m_SizeDelta: {x: 0, y: 113.617}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4160039618831411098
@@ -915,8 +917,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 364eac8b2abbdde4c9f2eac360924c4a, type: 2}
-  m_sharedMaterial: {fileID: 7327042368907308145, guid: 364eac8b2abbdde4c9f2eac360924c4a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b65c4e34e0bf85a4993c23ed1e2b10e3, type: 2}
+  m_sharedMaterial: {fileID: 8525605778059104737, guid: b65c4e34e0bf85a4993c23ed1e2b10e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -940,8 +942,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
