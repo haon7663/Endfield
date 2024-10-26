@@ -5,9 +5,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     public Skill SkillData { get; private set; }
+    public Action onClick;
     
     [SerializeField] private Image icon;
     [SerializeField] private TMP_Text nameLabel;
@@ -20,8 +21,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private void Awake()
     {
         _rectTransform = GetComponent<RectTransform>();
-
-        Init(SkillLoader.GetSkills("skill").Random());
     }
 
     public void Init(Skill skillData)
@@ -53,5 +52,10 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             var rotation = Quaternion.AngleAxis(value, axis);
             transform.rotation = rotation;
         }).SetEase(Ease.OutBack);
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        onClick?.Invoke();
     }
 }
