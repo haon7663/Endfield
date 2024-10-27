@@ -9928,6 +9928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileCount: 9
+  tileInterval: 1.2
   gridParent: {fileID: 1332315017}
   tilePrefab: {fileID: -8621221922590820186, guid: 66f7e1ec405887646b15d0aa757fec1a, type: 3}
 --- !u!4 &214208013
@@ -14106,7 +14107,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &369749478
 Transform:
   m_ObjectHideFlags: 0
