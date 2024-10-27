@@ -12,17 +12,21 @@ PrefabInstance:
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 2712006975971924655, guid: 621ea78252239a3418d94c0d027a8d00, type: 3}
+      propertyPath: unitType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4976203370979620335, guid: 621ea78252239a3418d94c0d027a8d00, type: 3}
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 8629023373233753514, guid: 621ea78252239a3418d94c0d027a8d00, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.08
       objectReference: {fileID: 0}
     - target: {fileID: 8629023373233753514, guid: 621ea78252239a3418d94c0d027a8d00, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.53
       objectReference: {fileID: 0}
     - target: {fileID: 8629023373233753514, guid: 621ea78252239a3418d94c0d027a8d00, type: 3}
       propertyPath: m_LocalPosition.z

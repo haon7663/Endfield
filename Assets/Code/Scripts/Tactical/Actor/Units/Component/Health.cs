@@ -24,6 +24,8 @@ public class Health : MonoBehaviour
     public void OnDamage(int damage)
     {
         curHp -= damage;
+        
+        CameraShake.Inst.Shake();
 
         var sequence = DOTween.Sequence();
         sequence.AppendCallback(() =>

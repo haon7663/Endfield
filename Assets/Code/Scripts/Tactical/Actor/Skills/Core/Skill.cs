@@ -19,6 +19,14 @@ public class Skill
             component.Execute(user);  // 각 컴포넌트의 동작 실행
         }
     }
+
+    public void Print(Unit user)
+    {
+        foreach (var component in SkillComponents)
+        {
+            component.Print(user);
+        }
+    }
     
     public Skill(string name)
     {

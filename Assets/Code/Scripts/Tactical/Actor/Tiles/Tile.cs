@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Tile : MonoBehaviour
@@ -7,8 +8,20 @@ public class Tile : MonoBehaviour
 
     public Unit content;
 
+    [SerializeField] private List<SpriteRenderer> lineRenderers;
+    [SerializeField] private SpriteRenderer backGroundRenderer;
+
     public void Init(int key)
     {
         Key = key;
+    }
+
+    public void SetColor(Color color)
+    {
+        foreach (var lineRenderer in lineRenderers)
+        {
+            lineRenderer.color = color;
+        }
+        backGroundRenderer.color = new Color(color.r, color.g, color.b, 0.25f);
     }
 }

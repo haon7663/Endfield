@@ -9,10 +9,14 @@ public class Unit : MonoBehaviour
     [field:SerializeField]
     public Transform SpriteTransform { get; private set; }
     public Renderer Renderer { get; private set; }
+    public Movement Movement { get; private set; }
+
+    public UnitType unitType;
 
     private void Awake()
     {
         Renderer = SpriteTransform.GetComponent<Renderer>();
+        Movement = GetComponent<Movement>();
     }
 
     private void Start()

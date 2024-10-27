@@ -17,14 +17,18 @@ public class SkillManager : Singleton<SkillManager>
 
     public Skill GetSkillAtIndex(int index)
     {
+        var skill = _skills[index];
+        return skill;
+    }
+
+    public void ConsumeSkill(int index)
+    {
         index = Mathf.Clamp(index, 0, 3);
         var skill = _skills[index];
         _skillBuffer.Add(skill);
         
         _skills[index] = null;
         ArrangeSkills();
-        
-        return skill;
     }
     
     public void ArrangeSkills()

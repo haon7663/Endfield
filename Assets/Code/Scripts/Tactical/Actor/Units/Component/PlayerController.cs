@@ -98,6 +98,21 @@ public class PlayerController : MonoBehaviour
         if (context.started)
         {
             ArtDirectionManager.Inst.StartBulletTime(new List<Unit> { _unit });
+            switch (key)
+            {
+                case "u":
+                    PrintSkill(0);
+                    break;
+                case "i":
+                    PrintSkill(1);
+                    break;
+                case "j":
+                    PrintSkill(2);
+                    break;
+                case "k":
+                    PrintSkill(3);
+                    break;
+            }
         }
 
         if (context.canceled)
@@ -121,6 +136,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void PrintSkill(int skillNum)
+    {
+        var skill = SkillManager.Inst.GetSkillAtIndex(skillNum);
+        
+        if (skill == null || GameManager.Inst.curElixir < skill.elixir) return;
+        skill.Print(_unit);
+    }
+    
     private IEnumerator UseSkill(int skillNum)
     {
         Debug.Log("attack");
@@ -128,8 +151,10 @@ public class PlayerController : MonoBehaviour
         var skill = SkillManager.Inst.GetSkillAtIndex(skillNum);
         
         if (skill == null || GameManager.Inst.curElixir < skill.elixir) yield break;
-        SkillManager.Inst.GetSkillAtIndex(skillNum)?.Use(_unit);
+        skill.Use(_unit);
+        SkillManager.Inst.ConsumeSkill(skillNum);
         GameManager.Inst.curElixir -= skill.elixir;
+        GridManager.Inst.RevertGrid(_unit);
         
         yield return new WaitForSeconds(0.2f);
     }

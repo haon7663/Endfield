@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackComponent : SkillComponent
@@ -6,15 +7,24 @@ public class AttackComponent : SkillComponent
     
     public override void Execute(Unit user)
     {
-        var targetUnit = GridManager.Inst.GetTile(user.Tile.Key + distance)?.content;
-        if (targetUnit && targetUnit.TryGetComponent(out Health health))
+        for (var i = 1; i <= distance; i++)
         {
-            health.OnDamage(damage);
+            var targetUnit = GridManager.Inst.GetTile(user.Tile.Key + i * user.Movement.DirX)?.content;
+            if (targetUnit && targetUnit.TryGetComponent(out Health health))
+            {
+                health.OnDamage(damage);
+            }
         }
     }
 
     public override void Print(Unit user)
     {
-        throw new System.NotImplementedException();
+        var tiles = new List<Tile>();
+        for (var i = 1; i <= distance; i++)
+        {
+            var tile = GridManager.Inst.GetTile(user.Tile.Key + i * user.Movement.DirX);
+            tiles.Add(tile);
+        }
+        GridManager.Inst.DisplayGrid(user, tiles);
     }
 }
