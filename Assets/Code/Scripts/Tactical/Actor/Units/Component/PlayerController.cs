@@ -22,10 +22,6 @@ public class PlayerController : MonoBehaviour
         _skillHolder = GetComponent<SkillHolder>();
     }
 
-    private void Start()
-    {
-    }
-
     private void Update()
     { 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -127,7 +123,7 @@ public class PlayerController : MonoBehaviour
         if (skill == null) return;
         if (GameManager.Inst.curElixir < skill.elixir)
         {
-            TextHudController.Inst.Show(_unit.transform.position + Vector3.up * 1.5f,$"엘릭서가 부족합니다. ({skill.elixir - GameManager.Inst.curElixir:N1})");
+            TextHudController.Inst.ShowElixirConsume(_unit.transform.position + Vector3.up * 1.5f, skill.elixir);
             return;
         }
         

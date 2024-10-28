@@ -15,7 +15,7 @@ public class LinearProjectile : Projectile
     private void Update()
     {
         _currentLocalKey = Mathf.FloorToInt(_timer * projectileSpeed) + 1;
-        if (_currentLocalKey > distance)
+        if (_currentLocalKey >= distance)
             Destroy(gameObject);
 
         var prevPos = (base.tile.transform.position + dir * _currentLocalKey) + Vector3.up * 1.2f;

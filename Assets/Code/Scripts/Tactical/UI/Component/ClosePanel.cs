@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class ClosePanel : MonoBehaviour
 {
     public Action onClose;
-    
+
+    [SerializeField] private KeyCode keyCode;
     [SerializeField] private Image fillImage;
     [SerializeField] private float fillSpeed = 2f;
     [SerializeField] private float releaseSpeed = 20f;
@@ -18,7 +19,7 @@ public class ClosePanel : MonoBehaviour
     {
         if (!_canHold) return;
         
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(keyCode))
         {
             _fillAmount += Time.deltaTime * fillSpeed;
         }
@@ -29,6 +30,7 @@ public class ClosePanel : MonoBehaviour
 
         _fillAmount = Mathf.Clamp01(_fillAmount);
         fillImage.fillAmount = _fillAmount;
+        
         if (_fillAmount < 1) return;
         onClose?.Invoke();
         _canHold = false;

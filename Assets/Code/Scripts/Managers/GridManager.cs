@@ -50,7 +50,7 @@ public class GridManager : Singleton<GridManager>
     {
         foreach (var tile in _tiles)
         {
-            tile.SetColor(Color.white);
+            tile.SetDefaultColor();
         }
     }
     

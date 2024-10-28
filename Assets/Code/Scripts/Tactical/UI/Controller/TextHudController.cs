@@ -1,9 +1,12 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class TextHudController : Singleton<TextHudController>
 {
-    [SerializeField] private TextHud textHudPrefab;
+    [SerializeField] private TextHud damageHudPrefab;
+    [SerializeField] private TextHud recoveryHudPrefab;
+    [SerializeField] private TextHud elixirConsumeHudPrefab;
     [SerializeField] private Transform canvas;
 
     private Camera _mainCamera;
@@ -13,10 +16,24 @@ public class TextHudController : Singleton<TextHudController>
         _mainCamera = Camera.main;
     }
 
-    public void Show(Vector3 pos, string text)
+    public void ShowElixirConsume(Vector3 pos, int skillElixir)
     {
-        var textHud = Instantiate(textHudPrefab, canvas);
+        var textHud = Instantiate(elixirConsumeHudPrefab, canvas);
         textHud.transform.position = _mainCamera.WorldToScreenPoint(pos);
-        textHud.Init(text);
+        textHud.Init($"엘릭서가 부족합니다. ({skillElixir - GameManager.Inst.curElixir:N1})");
+    }
+    
+    public void ShowDamage(Vector3 pos, int value)
+    {
+        var textHud = Instantiate(damageHudPrefab, canvas);
+        textHud.transform.position = _mainCamera.WorldToScreenPoint(pos);
+        textHud.Init(value.ToString());
+    }
+    
+    public void ShowRecovery(Vector3 pos, int value)
+    {
+        var textHud = Instantiate(recoveryHudPrefab, canvas);
+        textHud.transform.position = _mainCamera.WorldToScreenPoint(pos);
+        textHud.Init(value.ToString());
     }
 }

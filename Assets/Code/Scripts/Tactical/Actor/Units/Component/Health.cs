@@ -1,7 +1,6 @@
 using System;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Health : MonoBehaviour
 {
@@ -25,6 +24,7 @@ public class Health : MonoBehaviour
     {
         curHp -= damage;
         
+        TextHudController.Inst.ShowDamage(transform.position + Vector3.up * 0.5f, damage);
         CameraShake.Inst.Shake();
 
         var sequence = DOTween.Sequence();

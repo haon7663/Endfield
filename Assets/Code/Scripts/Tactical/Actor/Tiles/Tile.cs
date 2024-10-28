@@ -15,6 +15,15 @@ public class Tile : MonoBehaviour
     {
         Key = key;
     }
+    
+    public void SetDefaultColor()
+    {
+        foreach (var lineRenderer in lineRenderers)
+        {
+            lineRenderer.color = Color.white;
+        }
+        backGroundRenderer.color = new Color(0, 0, 0, 0.25f);
+    }
 
     public void SetColor(Color color)
     {

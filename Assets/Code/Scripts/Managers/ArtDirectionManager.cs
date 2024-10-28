@@ -10,6 +10,8 @@ public class ArtDirectionManager : Singleton<ArtDirectionManager>
     public bool onBulletTime;
     
     [SerializeField] private Volume globalVolume;
+    [SerializeField] private Volume bulletTimeVolume;
+    
     private ColorAdjustments _colorAdjustments;
     private ChromaticAberration _chromaticAberration;
 
@@ -63,14 +65,18 @@ public class ArtDirectionManager : Singleton<ArtDirectionManager>
     private void SetVolume(bool inSimulation)
     {
         DOTween.Kill(this);
-        DOVirtual.Float(TimeCaster.TimeScale, inSimulation ? 0.02f : 1, 0.1f,
-            value => TimeCaster.TimeScale = value);
-        DOVirtual.Float(_colorAdjustments.postExposure.value, inSimulation ? -1.35f : -1.25f, 0.1f,
+        TimeCaster.TimeScale = inSimulation ? 0.05f : 1;
+        /*DOVirtual.Float(TimeCaster.TimeScale, inSimulation ? 0.02f : 1, 0.1f,
+            value => TimeCaster.TimeScale = value);*/
+
+        
+        DOVirtual.Float(bulletTimeVolume.weight, inSimulation ? 1 : 0, 0.1f, value => bulletTimeVolume.weight = value).SetUpdate(true);
+        /*DOVirtual.Float(_colorAdjustments.postExposure.value, inSimulation ? -1.35f : -1.25f, 0.1f,
             value => _colorAdjustments.postExposure.value = value);
         DOVirtual.Float(_colorAdjustments.saturation.value, inSimulation ? -50 : 0, 0.1f,
             value => _colorAdjustments.saturation.value = value);
         DOVirtual.Float(_chromaticAberration.intensity.value, inSimulation ?  0.15f : 0.05f, 0.1f,
-            value => _chromaticAberration.intensity.value = value).SetEase(Ease.OutCirc);
+            value => _chromaticAberration.intensity.value = value).SetEase(Ease.OutCirc);*/
         //추가적인 연출
     }
 }
