@@ -155,7 +155,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db21e35abb3b403419a19d93098dc73e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  freezeXZAxis: 0
 --- !u!1 &4976203370979620335
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,6 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SpriteTransform>k__BackingField: {fileID: 7670090231099053250}
+  unitType: 0
 --- !u!114 &4259411703502830580
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,9 +11,6 @@ public class ArtDirectionManager : Singleton<ArtDirectionManager>
     
     [SerializeField] private Volume globalVolume;
     [SerializeField] private Volume bulletTimeVolume;
-    
-    private ColorAdjustments _colorAdjustments;
-    private ChromaticAberration _chromaticAberration;
 
     [SerializeField] private int highlightLayerNumber;
     [SerializeField] private Material highlightMaterial;
@@ -21,13 +18,7 @@ public class ArtDirectionManager : Singleton<ArtDirectionManager>
     private List<Unit> _prevUnits;
     private Dictionary<Unit, int> _prevLayerNumbers;
     private Dictionary<Unit, Material> _prevMaterials;
-
-    private void Awake()
-    {
-        globalVolume.profile.TryGet(out _colorAdjustments);
-        globalVolume.profile.TryGet(out _chromaticAberration);
-    }
-
+    
     public void StartBulletTime(List<Unit> targetUnits = null)
     {
         onBulletTime = true;
@@ -68,7 +59,6 @@ public class ArtDirectionManager : Singleton<ArtDirectionManager>
         TimeCaster.TimeScale = inSimulation ? 0.05f : 1;
         /*DOVirtual.Float(TimeCaster.TimeScale, inSimulation ? 0.02f : 1, 0.1f,
             value => TimeCaster.TimeScale = value);*/
-
         
         DOVirtual.Float(bulletTimeVolume.weight, inSimulation ? 1 : 0, 0.1f, value => bulletTimeVolume.weight = value).SetUpdate(true);
         /*DOVirtual.Float(_colorAdjustments.postExposure.value, inSimulation ? -1.35f : -1.25f, 0.1f,

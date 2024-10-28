@@ -11,6 +11,8 @@ public class AIController : MonoBehaviour
     [SerializeField] private float skillCoolTime, moveCool, maxSkillCount;
     private float _curSkillCool, _curMoveCool;
 
+    [SerializeField] private List<Skill> skills;
+
     bool skillExecute;
 
     private void Awake()
@@ -76,18 +78,21 @@ public class AIController : MonoBehaviour
         List<Tile> areaTile = target.Tile.GetAreaInRange(_skillHolder.castingViewers[0].Data.SkillComponents[0].distance);// 한 곳만 때리는거, 전체 때리는거 구분 해야함
 
         foreach (Tile tile in areaTile)
+        {
             if (tile.Key == _unit.Tile.Key)
             {
                 StartCoroutine(_skillHolder.Execute());
                 skillExecute = true;
                 return;
-            } //이미 범위 안에 플레이어가 있다면 스킬 시전
-              //앞에 적이 있는지 없는지 감지해야 하는데 플레이어와 적을 구분하는게 없어 보임
+            }
+        }
+        //이미 범위 안에 플레이어가 있다면 스킬 시전
+        //앞에 적이 있는지 없는지 감지해야 하는데 플레이어와 적을 구분하는게 없어 보임
 
         for(var i = 0; i < areaTile.Count; i++)  //가장 높은 값과 가장 낮은 값을 찾아냄
         {
-            if (areaTile[i].Key>max) max = areaTile[i].Key;
-            else if (areaTile[i].Key<min) min = areaTile[i].Key;
+            if (areaTile[i].Key > max) max = areaTile[i].Key;
+            else if (areaTile[i].Key < min) min = areaTile[i].Key;
         }
 
         Vector2 tileDir = dir;

@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
 
         if (context.started)
         {
-            PrintSkill(skillNum);
+            BufferedInput(PrintSkill(skillNum));
         }
 
         if (context.canceled)
@@ -116,15 +116,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void PrintSkill(int skillNum)
+    private IEnumerator PrintSkill(int skillNum)
     {
         var skill = SkillManager.Inst.GetSkillAtIndex(skillNum);
 
-        if (skill == null) return;
+        if (skill == null) yield break;
         if (GameManager.Inst.curElixir < skill.elixir)
         {
             TextHudController.Inst.ShowElixirConsume(_unit.transform.position + Vector3.up * 1.5f, skill.elixir);
-            return;
+            yield break;
         }
         
         ArtDirectionManager.Inst.StartBulletTime(new List<Unit> { _unit });

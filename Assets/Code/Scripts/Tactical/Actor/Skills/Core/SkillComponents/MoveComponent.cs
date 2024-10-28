@@ -1,17 +1,30 @@
+using System.Linq;
 using UnityEngine;
 
 public class MoveComponent : SkillComponent
 {
     public override void Execute(Unit user)
     {
-        if (user.TryGetComponent(out Movement movement))
-        { 
-            movement.OnMove(distance * movement.DirX);
-        }
+        var movement = user.Movement;
+        var task = new Task(movement.OnMove(CalculateDistance(user) * movement.DirX));
+        task.Start();
     }
 
     public override void Print(Unit user)
     {
-        throw new System.NotImplementedException();
+        
+    }
+
+    private int CalculateDistance(Unit user)
+    {
+        var ableDistance = 0;
+        for (var i = 1; i <= distance; i++)
+        {
+            if (GridManager.Inst.GetTile(user.Tile.Key + i * user.Movement.DirX).IsOccupied)
+                break;
+                
+            ableDistance = i;
+        }
+        return ableDistance;
     }
 }
