@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     private Unit _unit;
     private SkillHolder _skillHolder;
 
+    private bool _isPressed;
+
     private void Awake()
     {
         _movement = GetComponent<Movement>();
@@ -95,53 +97,43 @@ public class PlayerController : MonoBehaviour
     {
         var key = context.control.name;
 
+        var skillNum = key switch
+        {
+            "u" => 0,
+            "i" => 1,
+            "j" => 2,
+            "k" => 3,
+            _ => -1
+        };
+
         if (context.started)
         {
-            ArtDirectionManager.Inst.StartBulletTime(new List<Unit> { _unit });
-            switch (key)
-            {
-                case "u":
-                    PrintSkill(0);
-                    break;
-                case "i":
-                    PrintSkill(1);
-                    break;
-                case "j":
-                    PrintSkill(2);
-                    break;
-                case "k":
-                    PrintSkill(3);
-                    break;
-            }
+            PrintSkill(skillNum);
         }
 
         if (context.canceled)
         {
-            switch (key)
-            {
-                case "u":
-                    BufferedInput(UseSkill(0));
-                    break;
-                case "i":
-                    BufferedInput(UseSkill(1));
-                    break;
-                case "j":
-                    BufferedInput(UseSkill(2));
-                    break;
-                case "k":
-                    BufferedInput(UseSkill(3));
-                    break;
-            }
             ArtDirectionManager.Inst.EndBulletTime();
+            if (!_isPressed) return;
+            BufferedInput(UseSkill(skillNum));
+            _isPressed = false;
         }
     }
 
     private void PrintSkill(int skillNum)
     {
         var skill = SkillManager.Inst.GetSkillAtIndex(skillNum);
+
+        if (skill == null) return;
+        if (GameManager.Inst.curElixir < skill.elixir)
+        {
+            TextHudController.Inst.Show(_unit.transform.position + Vector3.up * 1.5f,$"엘릭서가 부족합니다. ({skill.elixir - GameManager.Inst.curElixir:N1})");
+            return;
+        }
         
-        if (skill == null || GameManager.Inst.curElixir < skill.elixir) return;
+        ArtDirectionManager.Inst.StartBulletTime(new List<Unit> { _unit });
         skill.Print(_unit);
+        _isPressed = true;
     }
     
     private IEnumerator UseSkill(int skillNum)
