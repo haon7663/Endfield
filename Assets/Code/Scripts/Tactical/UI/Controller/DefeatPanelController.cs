@@ -6,6 +6,7 @@ public class DefeatPanelController : MonoBehaviour
 {
     [SerializeField] private Panel panel;
     [SerializeField] private ClosePanel closePanel;
+    [SerializeField] private InventoryController inventoryController;
 
     private void Update()
     {
