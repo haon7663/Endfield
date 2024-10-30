@@ -26,18 +26,6 @@ public class SkillHolder : MonoBehaviour
         _animator = _unit.SpriteTransform.GetComponent<Animator>();
     }
 
-    private void Update()
-    {
-        // W Ű�� ������ �� ����Ʈ�� 0�� �ε��� ����
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            if (castingViewers.Count > 0)
-            {
-                RemoveCastingViewer(castingViewers[0]); // 0�� �ε����� ��� ����
-            }
-        }
-    }
-
     //모든 스킬 방출
     public IEnumerator Execute()
     {

@@ -8,6 +8,10 @@ using UnityEngine;
 public class PlayerData
 {
     public List<Skill> skills = new List<Skill>();
+    public int eliteKillCount = 1;
+    public int plantKillCount = 2;
+    public int gainedArtifactCount = 3;
+    public int gainedSkillCount = 4;
 }
 
 public class DataManager : SingletonDontDestroyOnLoad<DataManager>
