@@ -13,15 +13,8 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-        var playerData = UnitLoader.GetUnitData("Player");
-        var player = Instantiate(playerPrefab);
-        player.Init(playerData, GridManager.Inst.GetRandomTile());
-
-        Player = player;
-        
-        var enemyData = UnitLoader.GetUnitData("Spider");
-        var enemy = Instantiate(enemyPrefab);
-        enemy.Init(enemyData, GridManager.Inst.GetRandomTile());
+        Player = SpawnManager.Inst.Get("Player", true);
+        SpawnManager.Inst.Get("Spider", false);
     }
 
     private void Update()
