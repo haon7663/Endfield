@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using DG.Tweening;
+using Random = UnityEngine.Random;
 
 public class AIController : MonoBehaviour
 {
@@ -9,54 +11,61 @@ public class AIController : MonoBehaviour
     private Unit _unit;
     private SkillHolder _skillHolder;
 
-    [SerializeField] private float skillCoolTime, moveCool, maxSkillCount;
-    private float _curSkillCool, _curMoveCool;
+    [SerializeField] private float moveCool;
+    private float _curMoveCool;
 
-    [SerializeField] private List<Skill> skills;
-    [SerializeField] private List<float> skillCools = new List<float>();
+    [Serializable]
+    private class SkillAndCool
+    {
+        public Skill skill;
+        public float coolTime;
 
-    bool skillExecute;
+        public SkillAndCool(Skill skill, float coolTime)
+        {
+            this.skill = skill;
+            this.coolTime = coolTime;
+        }
+    }
+    private List<SkillAndCool> _skillAndCools;
+    private bool _skillExecute;
 
     private void Awake()
     {
         _movement = GetComponent<Movement>();
         _unit = GetComponent<Unit>();
         _skillHolder = GetComponent<SkillHolder>();
-        _curSkillCool = skillCoolTime;
+    }
+
+    private void Start()
+    {
         _curMoveCool = moveCool;
-        
-        for (int i = 0; i < skills.Count;i++)
-        {
-            skillCools.Add(1);
-        }
-        SkillCoolTime();
+        SetSkillStartCool();
     }
 
     private void Update()
     {
-        if (!skillExecute)
+        UpdateSkillCoolDown();
+        if (!_skillExecute)
         {
             UpdateCoolDown(ref _curMoveCool, moveCool, EnemyMove);
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
-            SkillExcute();
+            SkillExecute();
         }
         
-        if (Input.GetKeyDown(KeyCode.N))TryAddSkill();
+        if (Input.GetKeyDown(KeyCode.N))
+            TryAddSkill();
     }
     
-    private void SkillCoolTime()
+    private void SetSkillStartCool()
     {
-        for (int i = 0; i < skillCools.Count; i++)
+        _skillAndCools = new List<SkillAndCool>();
+        foreach (var skill in _skillHolder.skills)
         {
-            int index = i;  
-            DOVirtual.Float(1, 0, skills[index].castingTime, value =>
-            {
-                skillCools[index] = value; 
-            });
+            _skillAndCools.Add(new SkillAndCool(skill, Random.Range(0f, skill.elixir * 1.5f)));
+            //랜덤으로 시작 쿨타임 잡음 0 ~ 엘릭서 * 1.5f
         }
-       
     }
 
     private void UpdateCoolDown(ref float currentCool, float maxCool, Action onCooldownComplete)
@@ -69,37 +78,36 @@ public class AIController : MonoBehaviour
             currentCool = maxCool;
         }
     }
-    
-    private void SkillExcute() //스킬 방출 실행
+
+    private void UpdateSkillCoolDown()
     {
-        float excuteTime = 0;
-        foreach (var skill in _skillHolder.castingViewers)
+        foreach (var skillAndCool in _skillAndCools)
         {
-            excuteTime +=skill.Data.castingTime;
+            skillAndCool.coolTime -= Time.deltaTime;
+        }
+    }
+    
+    private void SkillExecute() //스킬 방출 실행
+    {
+        float executeTime = 0;
+        foreach (var skillCastingViewer in _skillHolder.castingViewers)
+        {
+            executeTime += skillCastingViewer.Data.castingTime;
+            _skillAndCools.FirstOrDefault(sc => sc.skill == skillCastingViewer.Data)!.coolTime =
+                skillCastingViewer.Data.elixir * 1.5f;
         }
         StartCoroutine(_skillHolder.Execute());
-        skillExecute = true;
-       
-        DOVirtual.DelayedCall(2f+excuteTime, () =>  
-        {
-            skillExecute = false;
-            TryAddSkill();
-        });
+        _skillExecute = true;
+
+        DOVirtual.DelayedCall(2f + executeTime, () => { _skillExecute = false; });
     }
 
     private void TryAddSkill() //머리 위에 스킬 보이기
     {
-        for (int i = 0; i < skills.Count; i++)
+        foreach (var skillAndCool in _skillAndCools.Where(skillAndCool => skillAndCool.coolTime <= 0))
         {
-            if (skillCools[i] <= 0)
-            {
-                _skillHolder.AddCastingViewer(skills[i]);
-                //SkillManager.Inst.ConsumeSkill(i);
-                //skills[i] = SkillManager.Inst.GetSkillAtIndex(i);
-                skillCools[i] = 1;
-            }
+            _skillHolder.AddCastingViewer(skillAndCool.skill);
         }
-
     }
     
     private void EnemyMove() // 적 -> 플레이어쪽으로 이동
@@ -127,7 +135,7 @@ public class AIController : MonoBehaviour
         {
             if (tile.Key == _unit.Tile.Key)
             {
-                SkillExcute();
+                SkillExecute();
                 return;
             }
         }
@@ -161,7 +169,7 @@ public class AIController : MonoBehaviour
 
     private Vector2 SetDirection(Unit target)
     {
-        float direction = target.transform.position.x - transform.position.x;
+        var direction = target.transform.position.x - transform.position.x;
         return direction > 0 ? Vector2.right:Vector2.left;
     }
 }

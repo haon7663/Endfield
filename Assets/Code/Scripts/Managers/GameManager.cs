@@ -13,7 +13,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-        var playerData = UnitLoader.GetUnitData("Spider");
+        var playerData = UnitLoader.GetUnitData("Player");
         var player = Instantiate(playerPrefab);
         player.Init(playerData, GridManager.Inst.GetRandomTile());
 

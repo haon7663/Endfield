@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEditor.Animations;
 using UnityEngine;
 
@@ -14,10 +15,13 @@ public static class UnitLoader
         var list = CSVReader.Read(csv);
 
         var dict = list.Find(item => item["name"].ToString() == unitName);
-        var animatorController = Resources.Load<AnimatorOverrideController>("Units/" + dict["name"]);
-        var skills = SkillLoader.GetSkillsFromUnitName(dict["name"].ToString());
+        
+        var animatorController = Resources.Load<AnimatorOverrideController>(Path.Combine("Units/", unitName, unitName));
+        var skills = SkillLoader.GetSkillsFromUnitName(dict["skillName"].ToString());
         var data = new UnitData(dict["name"].ToString(), animatorController, (int)dict["health"], (float)dict["actionTime"], skills);
 
         return data;
     }
+    
+    
 }

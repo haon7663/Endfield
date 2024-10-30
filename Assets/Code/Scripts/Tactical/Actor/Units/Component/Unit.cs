@@ -25,11 +25,11 @@ public class Unit : MonoBehaviour
 
     public void Init(UnitData data, Tile tile)
     {
-        name = data.Name;
-        Debug.Log(data.AnimatorController);
-        SpriteTransform.GetComponent<Animator>().runtimeAnimatorController = data.AnimatorController;
-        Health.maxHp = Health.curHp = data.Health;
-        SkillHolder.skills = data.Skills;
+        name = data.name;
+        Debug.Log(data.animatorController);
+        SpriteTransform.GetComponent<Animator>().runtimeAnimatorController = data.animatorController;
+        Health.maxHp = Health.curHp = data.health;
+        SkillHolder.skills = data.skills;
         
         Place(tile);
         transform.position = Tile.transform.position + Vector3.up * 0.5f;
