@@ -18,7 +18,7 @@ public class SkillSelectionPanelController : MonoBehaviour
 
     public void Show()
     {
-        var skills = SkillLoader.GetSkills("skill");
+        var skills = SkillLoader.GetAllSkills("skill");
         var haveSkills = new List<Skill>();
         haveSkills.AddRange(DataManager.Inst.Data.skills);
         for (var i = 0; i < 3; i++)

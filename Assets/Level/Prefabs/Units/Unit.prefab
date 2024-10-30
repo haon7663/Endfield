@@ -249,6 +249,7 @@ MonoBehaviour:
   castingViewers: []
   castingViewerPrefab: {fileID: 7637699245588232346, guid: e0ff67c338c32c042adba86596ca20fd, type: 3}
   skillCanvas: {fileID: 7426415124253376672}
+  skills: []
 --- !u!114 &911527452982774341
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ public class AIController : MonoBehaviour
     private float _curSkillCool, _curMoveCool;
 
     [SerializeField] private List<Skill> skills;
-    [SerializeField]private List<float> skillCools = new List<float>();
+    [SerializeField] private List<float> skillCools = new List<float>();
 
     bool skillExecute;
 
@@ -27,7 +27,6 @@ public class AIController : MonoBehaviour
         
         for (int i = 0; i < skills.Count;i++)
         {
-            
             skillCools.Add(1);
         }
         SkillCoolTime();
@@ -35,7 +34,6 @@ public class AIController : MonoBehaviour
 
     private void Update()
     {
-
         if (!skillExecute)
         {
             UpdateCoolDown(ref _curMoveCool, moveCool, EnemyMove);
@@ -46,8 +44,6 @@ public class AIController : MonoBehaviour
         }
         
         if (Input.GetKeyDown(KeyCode.N))TryAddSkill();
-
-
     }
     
     private void SkillCoolTime()
@@ -110,7 +106,7 @@ public class AIController : MonoBehaviour
     {
         if (_skillHolder.castingViewers.Count == 0) return;
         Debug.Log(_skillHolder.castingViewers[0].Data.SkillComponents);
-        var target = GameManager.Inst.player;
+        var target = GameManager.Inst.Player;
         Vector2 dir = SetDirection(target); //타겟이 오른쪽에 있는지
         if (dir.x != transform.localScale.x) _movement.OnFlip(Mathf.Approximately(transform.localScale.x, 1));
         

@@ -13,6 +13,8 @@ public class SkillHolder : MonoBehaviour
     public SkillCastingViewer castingViewerPrefab;
     public Transform skillCanvas;
 
+    public List<Skill> skills;
+
     private const float InitialYPosition = 150f; // ��� ���� ��ġ
     private const float YOffset = 70f; // ���Ĥ��� �����Ǵ� ���� ���� ����
     

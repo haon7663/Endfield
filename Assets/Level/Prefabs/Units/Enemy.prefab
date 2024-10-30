@@ -88,3 +88,5 @@ MonoBehaviour:
   skillCoolTime: 0
   moveCool: 0
   maxSkillCount: 0
+  skills: []
+  skillCools: []

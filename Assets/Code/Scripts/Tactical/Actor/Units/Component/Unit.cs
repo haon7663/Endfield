@@ -10,6 +10,8 @@ public class Unit : MonoBehaviour
     public Transform SpriteTransform { get; private set; }
     public Renderer Renderer { get; private set; }
     public Movement Movement { get; private set; }
+    public Health Health { get; private set; }
+    public SkillHolder SkillHolder { get; private set; }
 
     public UnitType unitType;
 
@@ -17,11 +19,19 @@ public class Unit : MonoBehaviour
     {
         Renderer = SpriteTransform.GetComponent<Renderer>();
         Movement = GetComponent<Movement>();
+        Health = GetComponent<Health>();
+        SkillHolder = GetComponent<SkillHolder>();
     }
 
-    private void Start()
+    public void Init(UnitData data, Tile tile)
     {
-        Place(GridManager.Inst.GetRandomTile());
+        name = data.Name;
+        Debug.Log(data.AnimatorController);
+        SpriteTransform.GetComponent<Animator>().runtimeAnimatorController = data.AnimatorController;
+        Health.maxHp = Health.curHp = data.Health;
+        SkillHolder.skills = data.Skills;
+        
+        Place(tile);
         transform.position = Tile.transform.position + Vector3.up * 0.5f;
     }
 

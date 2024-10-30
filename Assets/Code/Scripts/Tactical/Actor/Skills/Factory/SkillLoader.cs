@@ -5,16 +5,22 @@ using UnityEngine;
 
 public static class SkillLoader
 {
-    public static List<Skill> GetSkills(string path)
+    public static List<Skill> GetSkillsFromUnitName(string unitName)
+    {
+        var skills = GetAllSkills("skill");
+        return skills.Where(s => s.name.StartsWith("unitName")).ToList();
+    }
+    
+    public static List<Skill> GetAllSkills(string path)
     {
         if (!path.StartsWith("SkillData/"))
             path = "SkillData/" + path;
         
         var skillCSV = Resources.Load<TextAsset>(path);
-        return GetSkills(skillCSV);
+        return GetAllSkills(skillCSV);
     }
     
-    private static List<Skill> GetSkills(TextAsset skillCSV)
+    private static List<Skill> GetAllSkills(TextAsset skillCSV)
     {
         var settings = new JsonSerializerSettings
         {
