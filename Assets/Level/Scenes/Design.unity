@@ -10628,6 +10628,7 @@ MonoBehaviour:
   tilePrefab: {fileID: -8621221922590820186, guid: 66f7e1ec405887646b15d0aa757fec1a, type: 3}
   playerColor: {r: 1, g: 0, b: 0, a: 1}
   enemyColor: {r: 0, g: 0, b: 1, a: 1}
+  previewSpritePrefab: {fileID: 8750811480220516264, guid: 422022e5ab592684592e453bc8aeb258, type: 3}
 --- !u!4 &214208013
 Transform:
   m_ObjectHideFlags: 0
@@ -46415,6 +46416,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 7514459473015801077, guid: b83855a79dcabc1428c0bd692aae99fe, type: 3}
   enemyPrefab: {fileID: 2076673826596644198, guid: 20061a7b23eefd84a819df5d0ea0e73b, type: 3}
+  maxEnemyCount: 3
+  spawnEffect: {fileID: 7617858731804521023, guid: b09ab6505d7e27144b1d9857dd59fa00, type: 3}
 --- !u!4 &912202173 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 504d0b698377f114098bef76f833c5a6, type: 3}
