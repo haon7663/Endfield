@@ -217,6 +217,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 45472eb6-66a2-43c7-9bad-1e49c2492444
     m_ActionName: 'Player/Filp[/Keyboard/s]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5f16a018-dda0-416b-8ef9-1ddb60833063
+    m_ActionName: 'UI/Close[/Keyboard/space]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player

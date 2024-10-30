@@ -30,6 +30,7 @@ public static class SkillLoader
         };
 
         var skillJson = skillCSV.ConvertCSVToSkillJson();
+        Debug.Log(skillJson);
         var skillData = JsonConvert.DeserializeObject<List<Skill>>(skillJson, settings);
         var skillComponentsJson = skillCSV.ConvertCSVToJson();
         var skillComponentsData = JsonConvert.DeserializeObject<List<SkillComponent>>(skillComponentsJson, settings);
@@ -41,13 +42,13 @@ public static class SkillLoader
 
             if (skill != null)
             {
-                skill.SkillComponents.Add(skillComponent);
+                skill.skillComponents.Add(skillComponent);
             }
             else
             {
                 var newSkill = skillData.FirstOrDefault(s => s.name == skillComponent.saveName);
                 if (newSkill == null) continue;
-                newSkill.SkillComponents.Add(skillComponent);
+                newSkill.skillComponents.Add(skillComponent);
                 skills.Add(newSkill);
             }
         }

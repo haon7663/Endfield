@@ -20,7 +20,6 @@ public static class UnitLoader
         var skills = new List<Skill>();
         var index = list.FindIndex(d => d == dict);
         
-        Debug.Log(index);
         while (index < list.Count - 1 && !string.IsNullOrEmpty(list[index]["skillName"].ToString()))
         {
             var skillName = list[index]["skillName"].ToString();

@@ -71,8 +71,10 @@ public static class CSVToJsonConverter
         
         for (int i = 1; i < lines.Length; i++)
         {
-            if (string.IsNullOrWhiteSpace(lines[i])) continue;
-
+            Debug.Log(lines[i]);
+            if (string.IsNullOrEmpty(lines[i])) continue;
+            Debug.Log(lines[i]);
+            
             string[] values = lines[i].Split(',');
             Dictionary<string, string> data = new Dictionary<string, string>();
             
@@ -84,7 +86,9 @@ public static class CSVToJsonConverter
                 if (headers[j].Trim() == "$type")
                     data[headers[j].Trim()] += ", Assembly-Csharp";
             }
-            
+
+            if (string.IsNullOrEmpty(data["name"]))
+                continue;
             dataList.Add(data);
         }
         

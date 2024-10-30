@@ -18,8 +18,8 @@ public class LinearProjectile : Projectile
         if (_currentLocalKey >= distance)
             Destroy(gameObject);
 
-        var prevPos = (base.tile.transform.position + dir * _currentLocalKey) + Vector3.up * 1.2f;
-        var curPos = (base.tile.transform.position + dir * (_currentLocalKey + 1))  + Vector3.up * 1.2f;
+        var prevPos = tile.transform.position + dir * _currentLocalKey + Vector3.up * 1.2f;
+        var curPos = tile.transform.position + dir * (_currentLocalKey + 1)  + Vector3.up * 1.2f;
         
         transform.position = Vector3.Lerp(prevPos, curPos, _timer * projectileSpeed - Mathf.FloorToInt(_timer * projectileSpeed));
         _timer += Time.deltaTime;

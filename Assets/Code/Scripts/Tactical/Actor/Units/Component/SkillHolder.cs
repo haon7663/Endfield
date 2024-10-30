@@ -47,7 +47,7 @@ public class SkillHolder : MonoBehaviour
         foreach (var castingViewer in saveCastingViewers)
         {
             yield return StartCoroutine(castingViewer.Cast());
-            castingViewer.Data?.Use(_unit);
+            StartCoroutine(castingViewer.Data?.Use(_unit));
             _animator.SetTrigger(Attack);
             RemoveCastingViewer(castingViewer);
         }

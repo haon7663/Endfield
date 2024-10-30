@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Serialization;
 
@@ -10,21 +11,31 @@ public class Skill
     public string description;
     public int elixir;
     public float castingTime;
-    public List<SkillComponent> SkillComponents = new();  // 스킬을 구성하는 컴포넌트 리스트
+    public List<SkillComponent> skillComponents = new();  // 스킬을 구성하는 컴포넌트 리스트
 
-    public void Use(Unit user)
+    public IEnumerator Use(Unit user)
     {
-        foreach (var component in SkillComponents) 
+        foreach (var component in skillComponents) 
         {
-            component.Execute(user);  // 각 컴포넌트의 동작 실행
+            component.Execute(user);  // 각 컴포넌트의 동작 실
+            yield return null;
         }
+        Cancel(user);
     }
 
     public void Print(Unit user)
     {
-        foreach (var component in SkillComponents)
+        foreach (var component in skillComponents)
         {
             component.Print(user);
+        }
+    }
+
+    public void Cancel(Unit user)
+    {
+        foreach (var component in skillComponents)
+        {
+            component.Cancel(user);
         }
     }
     

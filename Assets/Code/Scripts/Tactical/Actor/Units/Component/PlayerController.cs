@@ -22,10 +22,6 @@ public class PlayerController : MonoBehaviour
         _skillHolder = GetComponent<SkillHolder>();
     }
 
-    private void Start()
-    {
-    }
-
     private void Update()
     { 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -108,7 +104,7 @@ public class PlayerController : MonoBehaviour
 
         if (context.started)
         {
-            PrintSkill(skillNum);
+            BufferedInput(PrintSkill(skillNum));
         }
 
         if (context.canceled)
@@ -120,15 +116,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void PrintSkill(int skillNum)
+    private IEnumerator PrintSkill(int skillNum)
     {
         var skill = SkillManager.Inst.GetSkillAtIndex(skillNum);
 
-        if (skill == null) return;
+        if (skill == null) yield break;
         if (GameManager.Inst.curElixir < skill.elixir)
         {
             TextHudController.Inst.ShowElixirConsume(_unit.transform.position + Vector3.up * 1.5f, skill.elixir);
-            return;
+            yield break;
         }
         
         ArtDirectionManager.Inst.StartBulletTime(new List<Unit> { _unit });
@@ -138,12 +134,10 @@ public class PlayerController : MonoBehaviour
     
     private IEnumerator UseSkill(int skillNum)
     {
-        Debug.Log("attack");
-
         var skill = SkillManager.Inst.GetSkillAtIndex(skillNum);
         
         if (skill == null || GameManager.Inst.curElixir < skill.elixir) yield break;
-        skill.Use(_unit);
+        StartCoroutine(skill.Use(_unit));
         SkillManager.Inst.ConsumeSkill(skillNum);
         GameManager.Inst.curElixir -= skill.elixir;
         GridManager.Inst.RevertGrid(_unit);

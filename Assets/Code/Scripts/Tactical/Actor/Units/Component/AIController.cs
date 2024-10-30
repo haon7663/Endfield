@@ -137,7 +137,7 @@ public class AIController : MonoBehaviour
         }
         
         int max = -100, min = 100;
-        for(int i = 1; i < _skillHolder.castingViewers[0].Data.SkillComponents[0].distance; i++) //앞에 적이 있다면
+        for(int i = 1; i < _skillHolder.castingViewers[0].Data.skillComponents[0].distance; i++) //앞에 적이 있다면
         {
             var tileKey = _unit.Tile.Key + (i * _movement.DirX);
             Unit entity =  GridManager.Inst.GetTile(tileKey)?.content;
@@ -147,7 +147,7 @@ public class AIController : MonoBehaviour
             }
         }
 
-        List<Tile> areaTile = target.Tile.GetAreaInRange(_skillHolder.castingViewers[0].Data.SkillComponents[0].distance);// 한 곳만 때리는거, 전체 때리는거 구분 해야함
+        List<Tile> areaTile = target.Tile.GetAreaInRange(_skillHolder.castingViewers[0].Data.skillComponents[0].distance);// 한 곳만 때리는거, 전체 때리는거 구분 해야함
 
         foreach (Tile tile in areaTile)
         {

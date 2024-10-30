@@ -19,25 +19,22 @@ public class SpawnManager : Singleton<SpawnManager>
 
     public Unit Spawn(string unitName, bool isPlayer = false)
     {
-        float _delay = 0;
         var unitData = UnitLoader.GetUnitData(unitName);
-        Tile _randomTile = GridManager.Inst.GetRandomTile();
+        var randomTile = GridManager.Inst.GetRandomTile();
         var unit = Instantiate(isPlayer ? playerPrefab : enemyPrefab);
-        unit.Init(unitData, _randomTile);
+        unit.Init(unitData, randomTile);
         
         if (!isPlayer)
         {
             unit.gameObject.SetActive(false);
-            _delay = 1;
-            GameObject effect =  Instantiate(spawnEffect, _randomTile.transform.position + Vector3.up * 2f, quaternion.identity);
-            DOVirtual.DelayedCall(_delay,()=>
+            var effect =  Instantiate(spawnEffect, randomTile.transform.position + Vector3.up * 1f, quaternion.identity);
+            DOVirtual.DelayedCall(1, ()=>
             {
                 Destroy(effect);
                 unit.gameObject.SetActive(true);
             });
         }
         
-       
         return unit;
     }
 
@@ -46,7 +43,8 @@ public class SpawnManager : Singleton<SpawnManager>
     public void EnemyDead()
     {
         --_surviveEnemyCount;
-        if(_surviveEnemyCount <=0)SpawnEnemy();
+        if(_surviveEnemyCount <= 0)
+            SpawnEnemy();
     }
     
     private void SpawnEnemy()
@@ -56,8 +54,5 @@ public class SpawnManager : Singleton<SpawnManager>
             SpawnManager.Inst.Spawn("Spider", false);
             _surviveEnemyCount = maxEnemyCount;
         }
-           
     }
-    
-    
 }

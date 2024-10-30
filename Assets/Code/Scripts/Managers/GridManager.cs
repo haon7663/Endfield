@@ -17,6 +17,8 @@ public class GridManager : Singleton<GridManager>
     [SerializeField] private Color enemyColor;
     private Dictionary<Unit, List<Tile>> _displayedTiles = new Dictionary<Unit, List<Tile>>();
 
+    [SerializeField] private PreviewSprite previewSpritePrefab;
+
     private void Awake()
     {
         GenerateTiles();
@@ -52,6 +54,15 @@ public class GridManager : Singleton<GridManager>
         {
             tile.SetDefaultColor();
         }
+    }
+
+    public PreviewSprite DisplayPreview(Unit user, int key)
+    {
+        var tile = GetTile(key);
+        var previewSprite = Instantiate(previewSpritePrefab, tile.transform.position, Quaternion.identity);
+        previewSprite.Init(tile.Key, user.Renderer.sprite);
+
+        return previewSprite;
     }
     
     public void DisplayGrid(Unit user, List<Tile> tiles)

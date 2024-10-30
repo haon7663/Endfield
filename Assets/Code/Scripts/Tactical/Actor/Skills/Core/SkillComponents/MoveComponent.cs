@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class MoveComponent : SkillComponent
 {
+    private PreviewSprite _previewSprite;
+    
     public override void Execute(Unit user)
     {
         var movement = user.Movement;
@@ -12,7 +14,16 @@ public class MoveComponent : SkillComponent
 
     public override void Print(Unit user)
     {
-        
+        var additionalDistance = CalculateDistance(user) * user.Movement.DirX;
+        _previewSprite = GridManager.Inst.DisplayPreview(user, user.Tile.Key + additionalDistance);
+        user.additionalKey = additionalDistance;
+    }
+
+    public override void Cancel(Unit user)
+    {
+        _previewSprite.Cancel();
+        _previewSprite = null;
+        user.additionalKey = 0;
     }
 
     private int CalculateDistance(Unit user)

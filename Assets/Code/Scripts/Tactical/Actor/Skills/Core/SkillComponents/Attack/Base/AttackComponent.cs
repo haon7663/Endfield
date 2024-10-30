@@ -22,7 +22,7 @@ public class AttackComponent : SkillComponent
         var tiles = new List<Tile>();
         for (var i = 1; i <= distance; i++)
         {
-            var tile = GridManager.Inst.GetTile(user.Tile.Key + i * user.Movement.DirX);
+            var tile = GridManager.Inst.GetTile(user.Tile.Key + i * user.Movement.DirX + user.additionalKey);
             tiles.Add(tile);
         }
         GridManager.Inst.DisplayGrid(user, tiles);

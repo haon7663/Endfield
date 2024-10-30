@@ -1,14 +1,17 @@
 using System;
 using System.Linq;
+using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Unit : MonoBehaviour
 {
     public Tile Tile { get; private set; }
-    
+    [HideInInspector] public int additionalKey;
+
     [field:SerializeField]
     public Transform SpriteTransform { get; private set; }
-    public Renderer Renderer { get; private set; }
+    public SpriteRenderer Renderer { get; private set; }
     public Movement Movement { get; private set; }
     public Health Health { get; private set; }
     public SkillHolder SkillHolder { get; private set; }
@@ -17,7 +20,7 @@ public class Unit : MonoBehaviour
 
     private void Awake()
     {
-        Renderer = SpriteTransform.GetComponent<Renderer>();
+        Renderer = SpriteTransform.GetComponent<SpriteRenderer>();
         Movement = GetComponent<Movement>();
         Health = GetComponent<Health>();
         SkillHolder = GetComponent<SkillHolder>();
