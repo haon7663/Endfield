@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -56,7 +57,7 @@ public class AIController : MonoBehaviour
         }
         
         if (Input.GetKeyDown(KeyCode.N))
-            TryAddSkill();
+            StartCoroutine(TryAddSkill());
     }
     
     private void SetSkillStartCool()
@@ -93,9 +94,10 @@ public class AIController : MonoBehaviour
         float executeTime = 0;
         foreach (var skillCastingViewer in _skillHolder.castingViewers)
         {
-            executeTime += skillCastingViewer.Data.castingTime;
+           
             _skillAndCools.FirstOrDefault(sc => sc.skill == skillCastingViewer.Data)!.coolTime =
                 skillCastingViewer.Data.elixir * 1.5f;
+            executeTime += skillCastingViewer.Data.elixir*1.5f;
         }
         StartCoroutine(_skillHolder.Execute());
         _skillExecute = true;
@@ -103,19 +105,21 @@ public class AIController : MonoBehaviour
         DOVirtual.DelayedCall(2f + executeTime, () => { _skillExecute = false; });
     }
 
-    private void TryAddSkill() //머리 위에 스킬 보이기
+    private IEnumerator TryAddSkill() //머리 위에 스킬 보이기
     {
         foreach (var skillAndCool in _skillAndCools.Where(skillAndCool => skillAndCool.coolTime <= 0))
         {
             _skillHolder.AddCastingViewer(skillAndCool.skill);
+            yield return new WaitForSeconds(0.4f);
         }
     }
-    
+
+
     private void EnemyActing() // 적 -> 플레이어쪽으로 이동
     {
         if (_skillHolder.castingViewers.Count == 0)
         {
-            TryAddSkill();
+            StartCoroutine(TryAddSkill());
             return;
         }
         
