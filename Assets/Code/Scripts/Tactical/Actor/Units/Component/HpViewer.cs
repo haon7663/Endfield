@@ -6,22 +6,22 @@ public class HpViewer : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI healthTextPrefab;
     
-    private Health health;
+    private Health _health;
     private int _prevHp;
 
     private void Start()
     {
-        health = GetComponent<Health>();
-        HealthTextController.Inst.Connect(health);
-        HealthTextController.Inst.UpdateUI(health, health.maxHp);
-        health.damaged += UpdateHealthUI;
-        _prevHp = health.maxHp;
+        _health = GetComponent<Health>();
+        HealthTextController.Inst.Connect(_health);
+        HealthTextController.Inst.UpdateUI(_health, _health.maxHp);
+        _health.damaged += UpdateHealthUI;
+        _health.onDeath += () => HealthTextController.Inst.DestroyUI(_health);
+        _prevHp = _health.maxHp;
     }
 
     private void UpdateHealthUI()
     {
-        DOVirtual.Int(_prevHp, health.curHp, 0.3f, value => HealthTextController.Inst.UpdateUI(health, value))
-            .SetEase(Ease.InOutQuad);
-        _prevHp = health.curHp;
+        DOVirtual.Int(_prevHp, _health.curHp, 0.3f, value => HealthTextController.Inst.UpdateUI(_health, value)).SetEase(Ease.InOutQuad);
+        _prevHp = _health.curHp;
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 
 public class HealthTextController : Singleton<HealthTextController>
@@ -34,5 +35,12 @@ public class HealthTextController : Singleton<HealthTextController>
     public void UpdateUI(Health targetHealth, int hp)
     {
         _healthTexts[targetHealth].text = hp.ToString();
+    }
+
+    public void DestroyUI(Health targetHealth)
+    {
+        _healthTexts[targetHealth].DOKill();
+        Destroy(_healthTexts[targetHealth].gameObject);
+        _healthTexts.Remove(targetHealth);
     }
 }

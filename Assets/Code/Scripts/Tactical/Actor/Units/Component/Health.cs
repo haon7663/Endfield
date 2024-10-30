@@ -5,6 +5,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public Action damaged;
+    public Action onDeath;
     
     private Unit _unit;
     private SpriteRenderer _spriteRenderer;
@@ -41,5 +42,11 @@ public class Health : MonoBehaviour
             });
         
         damaged?.Invoke();
+
+        if (curHp <= 0)
+        {
+            onDeath?.Invoke();
+            Destroy(gameObject);
+        }
     }
 }
