@@ -45,6 +45,7 @@ public class Health : MonoBehaviour
 
         if (curHp <= 0)
         {
+            if(_unit.unitType == UnitType.Enemy) SpawnManager.Inst.EnemyDead();
             onDeath?.Invoke();
             Destroy(gameObject);
         }

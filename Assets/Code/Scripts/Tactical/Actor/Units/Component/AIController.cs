@@ -29,7 +29,7 @@ public class AIController : MonoBehaviour
         }
     }
     private List<SkillAndCool> _skillAndCools;
-    private bool _skillExecute;
+    private bool _isActing;
 
     private void Awake()
     {
@@ -47,7 +47,7 @@ public class AIController : MonoBehaviour
     private void Update()
     {
         UpdateSkillCoolDown();
-        if (!_skillExecute)
+        if (!_isActing)
         {
             UpdateCoolDown(ref _curActionCool, actionCool, EnemyActing);
         }
@@ -87,6 +87,7 @@ public class AIController : MonoBehaviour
         {
             skillAndCool.coolTime -= Time.deltaTime;
         }
+       
     }
     
     private void SkillExecute() //스킬 방출 실행
@@ -100,18 +101,21 @@ public class AIController : MonoBehaviour
             executeTime += skillCastingViewer.Data.elixir*1.5f;
         }
         StartCoroutine(_skillHolder.Execute());
-        _skillExecute = true;
+        _isActing = true;
 
-        DOVirtual.DelayedCall(2f + executeTime, () => { _skillExecute = false; });
+        DOVirtual.DelayedCall(executeTime, () => { _isActing = false; });
     }
 
     private IEnumerator TryAddSkill() //머리 위에 스킬 보이기
     {
+        _isActing = true;
         foreach (var skillAndCool in _skillAndCools.Where(skillAndCool => skillAndCool.coolTime <= 0))
         {
             _skillHolder.AddCastingViewer(skillAndCool.skill);
             yield return new WaitForSeconds(0.4f);
         }
+
+        _isActing = false;
     }
 
 

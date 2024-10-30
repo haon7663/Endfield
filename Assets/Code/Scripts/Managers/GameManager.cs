@@ -13,8 +13,8 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-        Player = SpawnManager.Inst.Get("Player", true);
-        SpawnManager.Inst.Get("Spider", false);
+        Player = SpawnManager.Inst.Spawn("Player", true);
+        SpawnManager.Inst.Spawn("Spider", false);
     }
 
     private void Update()
