@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class AIController : MonoBehaviour
@@ -11,8 +12,8 @@ public class AIController : MonoBehaviour
     private Unit _unit;
     private SkillHolder _skillHolder;
 
-    [SerializeField] private float moveCool;
-    private float _curMoveCool;
+    public float actionCool;
+    private float _curActionCool;
 
     [Serializable]
     private class SkillAndCool
@@ -38,7 +39,7 @@ public class AIController : MonoBehaviour
 
     private void Start()
     {
-        _curMoveCool = moveCool;
+        _curActionCool = actionCool;
         SetSkillStartCool();
     }
 
@@ -47,7 +48,7 @@ public class AIController : MonoBehaviour
         UpdateSkillCoolDown();
         if (!_skillExecute)
         {
-            UpdateCoolDown(ref _curMoveCool, moveCool, EnemyMove);
+            UpdateCoolDown(ref _curActionCool, actionCool, EnemyActing);
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
@@ -110,13 +111,22 @@ public class AIController : MonoBehaviour
         }
     }
     
-    private void EnemyMove() // 적 -> 플레이어쪽으로 이동
+    private void EnemyActing() // 적 -> 플레이어쪽으로 이동
     {
-        if (_skillHolder.castingViewers.Count == 0) return;
-        Debug.Log(_skillHolder.castingViewers[0].Data.SkillComponents);
+        if (_skillHolder.castingViewers.Count == 0)
+        {
+            TryAddSkill();
+            return;
+        }
+        
         var target = GameManager.Inst.Player;
-        Vector2 dir = SetDirection(target); //타겟이 오른쪽에 있는지
-        if (dir.x != transform.localScale.x) _movement.OnFlip(Mathf.Approximately(transform.localScale.x, 1));
+        var dirX = Mathf.Clamp(target.Tile.Key - _unit.Tile.Key, -1, 1);
+
+        if (dirX != _movement.DirX)
+        {
+            StartCoroutine(_movement.OnFlip(Mathf.Approximately(transform.localScale.x, 1)));
+            return;
+        }
         
         int max = -100, min = 100;
         for(int i = 1; i < _skillHolder.castingViewers[0].Data.SkillComponents[0].distance; i++) //앞에 적이 있다면
@@ -147,12 +157,9 @@ public class AIController : MonoBehaviour
             if (areaTile[i].Key > max) max = areaTile[i].Key;
             else if (areaTile[i].Key < min) min = areaTile[i].Key;
         }
-
-        Vector2 tileDir = dir;
-
-        var distance = tileDir.x>0?1:-1;
-        if (GridManager.Inst.GetTile(_unit.Tile.Key + distance).content) return;   //앞에 무언가가 있는가
-        StartCoroutine(_movement.OnMove(distance));
+        
+        if (GridManager.Inst.GetTile(_unit.Tile.Key + dirX).content) return;   //앞에 무언가가 있는가
+        StartCoroutine(_movement.OnMove(dirX));
     }
 
     private bool MoveFarAI(bool targetIsRight, int min, int max)
@@ -165,11 +172,5 @@ public class AIController : MonoBehaviour
         {
             return max > _unit.Tile.Key;
         }
-    }
-
-    private Vector2 SetDirection(Unit target)
-    {
-        var direction = target.transform.position.x - transform.position.x;
-        return direction > 0 ? Vector2.right:Vector2.left;
     }
 }

@@ -30,6 +30,9 @@ public class Unit : MonoBehaviour
         SpriteTransform.GetComponent<Animator>().runtimeAnimatorController = data.animatorController;
         Health.maxHp = Health.curHp = data.health;
         SkillHolder.skills = data.skills;
+
+        if (TryGetComponent(out AIController aiController))
+            aiController.actionCool = data.actionTime;
         
         Place(tile);
         transform.position = Tile.transform.position + Vector3.up * 0.5f;
