@@ -5,10 +5,10 @@ using UnityEngine;
 
 public static class SkillLoader
 {
-    public static List<Skill> GetSkillsFromUnitName(string unitName)
+    public static Skill GetSkillFromUnitName(string unitName)
     {
         var skills = GetAllSkills("skill");
-        return skills.Where(s => s.name.StartsWith(unitName)).ToList();
+        return skills.FirstOrDefault(s => s.name.StartsWith(unitName));
     }
     
     public static List<Skill> GetAllSkills(string path)
