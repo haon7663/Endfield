@@ -13,8 +13,11 @@ public class PlayerController : MonoBehaviour
     private Unit _unit;
     private SkillHolder _skillHolder;
 
-    private bool _isPressed;
-
+    private int _skillNum;
+    private float _skillHoldTime;
+    private bool _isSkillHolding;
+    private bool _isPrinted;
+    
     private void Awake()
     {
         _movement = GetComponent<Movement>();
@@ -23,11 +26,13 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Update()
-    { 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StartCoroutine(_skillHolder.Execute());
-        }
+    {
+        if (!_isSkillHolding || _isPrinted) return;
+        _skillHoldTime += Time.deltaTime;
+        
+        if (!(_skillHoldTime > 0.2f)) return;
+        BufferedInput(PrintSkill(_skillNum));
+        _isPrinted = true;
     }
 
     private void BufferedInput(IEnumerator c)
@@ -93,26 +98,35 @@ public class PlayerController : MonoBehaviour
     {
         var key = context.control.name;
 
-        var skillNum = key switch
-        {
-            "u" => 0,
-            "i" => 1,
-            "j" => 2,
-            "k" => 3,
-            _ => -1
-        };
-
         if (context.started)
         {
-            BufferedInput(PrintSkill(skillNum));
+            if (!_isSkillHolding)
+            {
+                _skillNum = key switch
+                {
+                    "u" => 0,
+                    "i" => 1,
+                    "j" => 2,
+                    "k" => 3,
+                    _ => -1
+                };
+            
+                var skill = SkillManager.Inst.GetSkillAtIndex(_skillNum);
+                if (GameManager.Inst.curElixir >= skill.elixir)
+                {
+                    _skillHoldTime = 0;
+                    _isSkillHolding = true;
+                }
+            }
         }
 
         if (context.canceled)
         {
             ArtDirectionManager.Inst.EndBulletTime();
-            if (!_isPressed) return;
-            BufferedInput(UseSkill(skillNum));
-            _isPressed = false;
+            if (!_isSkillHolding)
+                return;
+            
+            BufferedInput(UseSkill(_skillNum));
         }
     }
 
@@ -129,7 +143,6 @@ public class PlayerController : MonoBehaviour
         
         ArtDirectionManager.Inst.StartBulletTime(new List<Unit> { _unit });
         skill.Print(_unit);
-        _isPressed = true;
     }
     
     private IEnumerator UseSkill(int skillNum)
@@ -141,6 +154,10 @@ public class PlayerController : MonoBehaviour
         SkillManager.Inst.ConsumeSkill(skillNum);
         GameManager.Inst.curElixir -= skill.elixir;
         GridManager.Inst.RevertGrid(_unit);
+        
+        _isSkillHolding = false;
+        _skillHoldTime = 0;
+        _isPrinted = false;
         
         yield return new WaitForSeconds(0.2f);
     }
