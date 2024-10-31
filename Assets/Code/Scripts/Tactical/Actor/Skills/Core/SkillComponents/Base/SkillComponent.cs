@@ -8,6 +8,5 @@ public abstract class SkillComponent
     public int distance;
     public abstract void Execute(Unit user);
     public abstract void Print(Unit user);
-
     public virtual void Cancel(Unit user) { }
 }

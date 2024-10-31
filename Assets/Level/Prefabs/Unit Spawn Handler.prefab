@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1192707382743053750}
   - component: {fileID: 3810789754948970686}
+  - component: {fileID: 2864323765572722555}
   m_Layer: 0
   m_Name: Unit Spawn Handler
   m_TagString: Untagged
@@ -87,3 +88,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2864323765572722555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7617858731804521023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b93e5737f2408a498ad264aed159d2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: {x: 0, y: 1, z: 0}

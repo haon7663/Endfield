@@ -45,10 +45,20 @@ public class GridManager : Singleton<GridManager>
     {
         return _tiles[Mathf.Clamp(index, 0, tileCount - 1)];
     }
-    
-    public Tile GetRandomTile()
+
+    public Tile GetRandomTile(List<Tile> exceptionTiles = null)
     {
-        return _tiles.Where(t => !t.IsOccupied).ToList().Random();
+        var tiles = _tiles;
+        if (exceptionTiles != null)
+            tiles = _tiles.Where(t => !exceptionTiles.Contains(t)).ToList();
+        return tiles.Where(t => !t.IsOccupied).ToList().Random();
+    }
+
+    public Tile FindNearestTile(int index)
+    {
+        var moveAbleTiles = _tiles.Where(t => !t.IsOccupied).ToList();
+        var nearestKey = moveAbleTiles.Min(t => Mathf.Abs(t.Key - index));
+        return moveAbleTiles.Where(t => Mathf.Abs(t.Key - index) == nearestKey).ToList().Random();
     }
 
     public void RevertAllGrid()

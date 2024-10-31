@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class DashComponent : SkillComponent
 {
-    public int damage;
+    public int value;
     
     private PreviewSprite _previewSprite;
     

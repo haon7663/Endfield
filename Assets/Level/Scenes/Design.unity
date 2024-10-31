@@ -45943,7 +45943,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 7514459473015801077, guid: b83855a79dcabc1428c0bd692aae99fe, type: 3}
   enemyPrefab: {fileID: 2076673826596644198, guid: 20061a7b23eefd84a819df5d0ea0e73b, type: 3}
   maxEnemyCount: 3
-  spawnEffect: {fileID: 7617858731804521023, guid: b09ab6505d7e27144b1d9857dd59fa00, type: 3}
+  spawnHandlerPrefab: {fileID: 2864323765572722555, guid: b09ab6505d7e27144b1d9857dd59fa00, type: 3}
 --- !u!4 &912202173 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 504d0b698377f114098bef76f833c5a6, type: 3}
@@ -62918,8 +62918,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxElixir: 10
   curElixir: 4
-  playerPrefab: {fileID: 7514459473015801077, guid: b83855a79dcabc1428c0bd692aae99fe, type: 3}
-  enemyPrefab: {fileID: 2076673826596644198, guid: 20061a7b23eefd84a819df5d0ea0e73b, type: 3}
 --- !u!4 &1548630245
 Transform:
   m_ObjectHideFlags: 0
@@ -65966,7 +65964,7 @@ MonoBehaviour:
   globalVolume: {fileID: 1717597374}
   bulletTimeVolume: {fileID: 1685226957}
   highlightLayerNumber: 6
-  highlightMaterial: {fileID: 2100000, guid: 15d4b7549dd194b4bb68d4ce772e929e, type: 2}
+  highlightMaterial: {fileID: 2100000, guid: 05385950a55810149a4e636223a6b758, type: 2}
 --- !u!1 &1653526454
 GameObject:
   m_ObjectHideFlags: 0

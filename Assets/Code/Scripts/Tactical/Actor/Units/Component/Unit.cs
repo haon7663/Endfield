@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using DG.Tweening;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -34,8 +35,9 @@ public class Unit : MonoBehaviour
         if (TryGetComponent(out AIController aiController))
             aiController.actionCool = data.actionTime;
         
-        Place(tile);
-        transform.position = Tile.transform.position + Vector3.up * 0.5f;
+        transform.position = tile.transform.position + Vector3.up * 0.5f;
+        Place(tile.IsOccupied ? GridManager.Inst.FindNearestTile(tile.Key) : tile);
+        transform.DOMoveX(Tile.transform.position.x, 0.25f);
     }
 
     public void Place(Tile tile)
