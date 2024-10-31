@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShopController : MonoBehaviour
 {
     [SerializeField] private Transform sellCards;
-    private List<ShopCard> _cards = new List<ShopCard>();
+    [SerializeField]private List<ShopCard> _cards = new List<ShopCard>();
 
     private void Start()
     {
@@ -20,7 +20,7 @@ public class ShopController : MonoBehaviour
     {
         foreach (ShopCard card in _cards)
         {
-            //Ä«µå ·£´ý ³Ö±â
+            //Ä«ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½
             card.RandomCardInput();
            
         }

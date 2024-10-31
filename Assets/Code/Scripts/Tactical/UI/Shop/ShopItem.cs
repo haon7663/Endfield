@@ -1,33 +1,27 @@
+using TMPro;
 using UnityEngine;
 
 public class ShopItem : MonoBehaviour
 {
-    private int itemPrice;
-    private bool isSelling;
+    [SerializeField] private int maxPrice, minPrice;
+    private int _itemPrice;
+    private bool _isSelling;
+    [SerializeField] private TextMeshProUGUI itemPrice_Txt;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected virtual void Start()
     {
-        itemPrice = Random.Range(200, 250);
+        if (maxPrice < minPrice)(maxPrice, minPrice) = (minPrice, maxPrice); //ë§Œì•½ ìµœì†Ÿê°’, ìµœëŒ“ê°’ ë°˜ëŒ€ë¡œ ìž…ë ¥í–ˆìœ¼ë©´ ì •ìƒí™”
+        _itemPrice = Random.Range(minPrice, maxPrice);
+        itemPrice_Txt.text = _itemPrice.ToString();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-   
-
     public void BuyItem()
     {
-        if (!isSelling) return;
-        isSelling = false;
-        //ÇÃ·¹ÀÌ¾îÇÑÅ×¼­ ÀçÈ­ »¯¾î°¡´Â ÄÚµå µé¾î°¥ ÀÚ¸®
-
+        if (!_isSelling) return;
+        _isSelling = false;
+        //í”Œë ˆì´ì–´ ëˆ ëºê¸°
+        BuyAction();
     }
 
-    public virtual void BuyAction()
-    {
-
-    }
+    public virtual void BuyAction(){}
 }
