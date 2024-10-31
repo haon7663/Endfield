@@ -45,8 +45,8 @@ public class Movement : MonoBehaviour
         
         _unit.Swap(other);
 
-        StartCoroutine(MoveTo(targetTile));
-        yield return StartCoroutine(other.Movement.MoveTo(prevTile));
+        StartCoroutine(other.Movement.MoveTo(prevTile));
+        yield return StartCoroutine(MoveTo(targetTile));
     }
     
     public IEnumerator MoveTo(Tile tile)

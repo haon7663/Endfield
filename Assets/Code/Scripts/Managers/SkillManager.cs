@@ -65,14 +65,15 @@ public class SkillManager : Singleton<SkillManager>
         _previewSkills[user] = skill;
         skill.Print(user);
     }
+    
     public void RevertSkillArea(Unit user)
     {
         if (_previewSkills.ContainsKey(user))
             _previewSkills.Remove(user);
     }
+    
     public void UpdateSkillArea()
     {
-        Debug.Log("UpdateSkillArea");
         foreach (var previewSkill in _previewSkills)
         {
             previewSkill.Value.Cancel(previewSkill.Key);

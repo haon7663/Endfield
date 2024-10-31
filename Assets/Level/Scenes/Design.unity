@@ -19897,7 +19897,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.03271905, y: 0, z: 0, w: 0.9994646}
-  m_LocalPosition: {x: 28, y: 5, z: -40}
+  m_LocalPosition: {x: 0, y: 5, z: -40}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -35441,7 +35441,7 @@ Transform:
   m_GameObject: {fileID: 543363254}
   serializedVersion: 2
   m_LocalRotation: {x: 0.03271905, y: 0, z: 0, w: 0.9994646}
-  m_LocalPosition: {x: 28, y: 5, z: -40}
+  m_LocalPosition: {x: 0, y: 5, z: -40}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -60743,7 +60743,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 7514459473015801077, guid: b83855a79dcabc1428c0bd692aae99fe, type: 3}
   enemyPrefab: {fileID: 2076673826596644198, guid: 20061a7b23eefd84a819df5d0ea0e73b, type: 3}
-  maxEnemyCount: 3
+  maxEnemyCount: 1
   spawnHandlerPrefab: {fileID: 2864323765572722555, guid: b09ab6505d7e27144b1d9857dd59fa00, type: 3}
 --- !u!4 &912202173 stripped
 Transform:
@@ -113326,6 +113326,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 1413426171575423001}
+  skillPrefab: {fileID: 0}
+  inventoryContent: {fileID: 0}
   closePanel: {fileID: 5505802015592158881}
   plantKill: {fileID: 6520943336735349867}
   elitePlantKill: {fileID: 4709762898333354663}
