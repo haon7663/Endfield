@@ -73,6 +73,7 @@ public class SkillManager : Singleton<SkillManager>
     }
     public void UpdateSkillArea()
     {
+        Debug.Log("UpdateSkillArea");
         foreach (var previewSkill in _previewSkills)
         {
             previewSkill.Value.Cancel(previewSkill.Key);

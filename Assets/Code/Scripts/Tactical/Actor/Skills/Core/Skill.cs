@@ -26,6 +26,7 @@ public class Skill
 
     public void Print(Unit user)
     {
+        user.additionalKey = 0;
         foreach (var component in skillComponents)
         {
             component.Print(user);

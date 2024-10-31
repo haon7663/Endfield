@@ -60545,7 +60545,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 7514459473015801077, guid: b83855a79dcabc1428c0bd692aae99fe, type: 3}
   enemyPrefab: {fileID: 2076673826596644198, guid: 20061a7b23eefd84a819df5d0ea0e73b, type: 3}
   maxEnemyCount: 3
-  spawnHandlerPrefab: {fileID: 0}
+  spawnHandlerPrefab: {fileID: 2864323765572722555, guid: b09ab6505d7e27144b1d9857dd59fa00, type: 3}
 --- !u!4 &912202173 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 504d0b698377f114098bef76f833c5a6, type: 3}
@@ -79426,7 +79426,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1358136147
 Transform:
   m_ObjectHideFlags: 0

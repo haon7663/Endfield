@@ -8,7 +8,7 @@ using UnityEngine.Serialization;
 public class Unit : MonoBehaviour
 {
     public Tile Tile { get; private set; }
-    [HideInInspector] public int additionalKey;
+    public int additionalKey;
 
     [field:SerializeField]
     public Transform SpriteTransform { get; private set; }

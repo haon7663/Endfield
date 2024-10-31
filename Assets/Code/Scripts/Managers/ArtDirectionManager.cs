@@ -58,7 +58,7 @@ public class ArtDirectionManager : Singleton<ArtDirectionManager>
     private void SetVolume(bool inSimulation)
     {
         DOTween.Kill(this);
-        TimeCaster.TimeScale = inSimulation ? 0.1f : 1;
+        TimeCaster.TimeScale = inSimulation ? 0.25f : 1;
         /*DOVirtual.Float(TimeCaster.TimeScale, inSimulation ? 0.02f : 1, 0.1f,
             value => TimeCaster.TimeScale = value);*/
         

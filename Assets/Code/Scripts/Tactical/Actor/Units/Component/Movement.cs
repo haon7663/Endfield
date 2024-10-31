@@ -1,11 +1,7 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
-using UnityEditor.Build.Content;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 public class Movement : MonoBehaviour
 {
@@ -58,7 +54,6 @@ public class Movement : MonoBehaviour
     
     public IEnumerator MoveTo(Tile tile)
     {
-        onMoved?.Invoke();
         DOTween.Kill(this);
         
         var distance = tile.Key - _prevTile.Key;
@@ -72,6 +67,8 @@ public class Movement : MonoBehaviour
         sequence.Append(transform.DOMove(tile.transform.position + Vector3.up * 0.5f, moveSpeed).SetEase(Ease.OutCirc))
             .Join(_spriteRenderer.transform.DOLocalJump(Vector3.zero, 0.1f, 1, moveSpeed).SetEase(Ease.OutCirc))
             .OnComplete(() => _animator.SetBool(anim, false));
+        
+        onMoved?.Invoke();
         
         yield return sequence.WaitForCompletion();
     }

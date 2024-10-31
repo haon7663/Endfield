@@ -17,7 +17,7 @@ public class MoveComponent : SkillComponent
     {
         var additionalDistance = CalculateDistance(user) * user.Movement.DirX;
         _previewSprite = GridManager.Inst.DisplayPreview(user, user.Tile.Key + additionalDistance);
-        user.additionalKey = additionalDistance;
+        user.additionalKey += additionalDistance;
     }
 
     public override void Cancel(Unit user)
