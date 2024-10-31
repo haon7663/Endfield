@@ -155,7 +155,7 @@ public class PlayerController : MonoBehaviour
         }
         
         ArtDirectionManager.Inst.StartBulletTime(new List<Unit> { _unit });
-        skill.Print(_unit);
+        SkillManager.Inst.ApplySkillArea(_unit, skill);
     }
     
     private IEnumerator UseSkill(int skillNum)

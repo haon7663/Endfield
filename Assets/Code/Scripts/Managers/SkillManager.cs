@@ -10,6 +10,8 @@ public class SkillManager : Singleton<SkillManager>
     private List<Skill> _skillBuffer;
     private Skill[] _skills = new Skill[4];
     
+    private Dictionary<Unit, Skill> _previewSkills = new Dictionary<Unit, Skill>();
+    
     private void Start()
     {
         SetupSkillBuffer();
@@ -56,5 +58,25 @@ public class SkillManager : Singleton<SkillManager>
     {
         _skillBuffer = SkillLoader.GetAllSkills("skill");
         _skillBuffer.Shuffle();
+    }
+    
+    public void ApplySkillArea(Unit user, Skill skill)
+    {
+        _previewSkills[user] = skill;
+        skill.Print(user);
+    }
+    public void RevertSkillArea(Unit user, Skill skill)
+    {
+        if (_previewSkills.ContainsKey(user))
+            _previewSkills.Remove(user);
+        skill.Cancel(user);
+    }
+    public void UpdateSkillArea()
+    {
+        foreach (var previewSkill in _previewSkills)
+        {
+            previewSkill.Value.Cancel(previewSkill.Key);
+            previewSkill.Value.Print(previewSkill.Key);
+        }
     }
 }

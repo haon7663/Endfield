@@ -5,42 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="14d34322-fb5c-456d-baed-061be64639fd" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Project-HL/.idea/projectSettingsUpdater.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Project-HL/.idea/projectSettingsUpdater.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Project-HL/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Project-HL/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Units/Players.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Units/Players/1.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Units/Players/1/BackDash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Units/Players/1/BackDash.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Units/Players/1/Base 1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Units/Players/1/Base 1.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Units/Players/1/Base.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Units/Players/1/Base.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Units/Players/1/Idle.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Units/Players/1/Idle.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Units/Players/1/Player01_FrontDash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Units/Players/1/Player01_FrontDash.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/image.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/image.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Managers/GridManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Managers/GridManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Managers/SkillManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Managers/SkillManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/Skill.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/Skill.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/SkillComponents/Attack/ProjectileAttackComponent.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/SkillComponents/Attack/ProjectileAttackComponent.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/SkillComponents/Base/SkillComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/SkillComponents/Base/SkillComponent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/SkillComponents/Attack/Base/AttackComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/SkillComponents/Attack/Base/AttackComponent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/SkillComponents/Attack/Projectile/LinearProjectileAttackComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/SkillComponents/Attack/Projectile/LinearProjectileAttackComponent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/SkillComponents/Attack/Projectile/ThrowerProjectileAttackComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/SkillComponents/Attack/Projectile/ThrowerProjectileAttackComponent.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/SkillComponents/DashComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/SkillComponents/DashComponent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/SkillComponents/MoveComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/SkillComponents/MoveComponent.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/SkillComponents/Recovery/Base/RecoveryComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/SkillComponents/Recovery/Base/RecoveryComponent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Units/Component/Health.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Units/Component/Health.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Units/Component/HpViewer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Units/Component/HpViewer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/Units/Enemy.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/Units/Enemy.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/Units/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/Units/Player.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Scenes/Design.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scenes/Design.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Scenes/Design/BulletTime Profile.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scenes/Design/BulletTime Profile.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/SkillData/skill.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/SkillData/skill.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Units/Spider/Attack.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Units/Spider/Attack.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Units/Spider/BackDash.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Units/Spider/BackDash.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Units/Spider/Dash.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Units/Spider/Dash.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Units/Spider/Flip.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Units/Spider/Flip.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Units/Spider/Spider.overrideController" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Units/Spider/Spider.overrideController" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Units/Component/Movement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Units/Component/Movement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Units/Component/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Units/Component/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Units/Component/SkillHolder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Units/Component/SkillHolder.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +62,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;haon&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
@@ -212,6 +188,8 @@
       <workItem from="1730338027368" duration="9746000" />
       <workItem from="1730370425095" duration="3416000" />
       <workItem from="1730374125727" duration="3157000" />
+      <workItem from="1730378659477" duration="3049000" />
+      <workItem from="1730382588011" duration="766000" />
     </task>
     <servers />
   </component>

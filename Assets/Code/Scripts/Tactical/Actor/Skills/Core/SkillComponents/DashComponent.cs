@@ -21,7 +21,7 @@ public class DashComponent : SkillComponent
         _previewSprite = GridManager.Inst.DisplayPreview(user, user.Tile.Key + additionalDistance);
         user.additionalKey = additionalDistance;
         
-        GridManager.Inst.DisplayGrid(user, tileAndDist.Item1);
+        GridManager.Inst.ApplyGrid(user, tileAndDist.Item1);
     }
 
     public override void Cancel(Unit user)

@@ -9,8 +9,9 @@ using UnityEngine.Serialization;
 
 public class Movement : MonoBehaviour
 {
-    private Unit _unit;
+    public Action onMoved;
     
+    private Unit _unit;
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;
     
@@ -33,6 +34,7 @@ public class Movement : MonoBehaviour
         _animator = _unit.SpriteTransform.GetComponent<Animator>();
         
         _prevTile = _unit.Tile;
+        onMoved += SkillManager.Inst.UpdateSkillArea;
     }
 
     public IEnumerator OnMove(int key)
@@ -56,6 +58,7 @@ public class Movement : MonoBehaviour
     
     public IEnumerator MoveTo(Tile tile)
     {
+        onMoved?.Invoke();
         DOTween.Kill(this);
         
         var distance = tile.Key - _prevTile.Key;

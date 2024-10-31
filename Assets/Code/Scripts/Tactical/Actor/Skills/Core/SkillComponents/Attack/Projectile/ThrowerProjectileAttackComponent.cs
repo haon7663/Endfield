@@ -5,7 +5,7 @@ public class ThrowerProjectileAttackComponent : ProjectileAttackComponent
 {
     public override void Print(Unit user)
     {
-        GridManager.Inst.DisplayGrid(user, new List<Tile> { GetStartingTile(user, distance) });
+        GridManager.Inst.ApplyGrid(user, new List<Tile> { GetStartingTile(user, distance) });
     }
     public override void Cancel(Unit user)
     {

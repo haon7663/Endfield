@@ -48,6 +48,6 @@ public class RecoveryComponent : SkillComponent
             }
         }
         
-        GridManager.Inst.DisplayGrid(user, tiles);
+        GridManager.Inst.ApplyGrid(user, tiles);
     }
 }
