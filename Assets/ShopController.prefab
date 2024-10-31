@@ -4476,6 +4476,7 @@ GameObject:
   - component: {fileID: 4981341306225482820}
   - component: {fileID: 4603944361955389784}
   - component: {fileID: 7732996298740039931}
+  - component: {fileID: 2210891717899511091}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -4562,6 +4563,24 @@ MonoBehaviour:
   nameLabel: {fileID: 3240826800198449947}
   description: {fileID: 2523350498853782459}
   elixirLabel: {fileID: 1358526806108930030}
+--- !u!114 &2210891717899511091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7607869846848714123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65ab82bfc0fb4e04cbe1507946280f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillData:
+    name: 111
+    label: 222
+    description: 333
+    elixir: 1
+    castingTime: 1
 --- !u!1 &7700771066883964118
 GameObject:
   m_ObjectHideFlags: 0
@@ -5118,6 +5137,7 @@ GameObject:
   - component: {fileID: 2108237436462943982}
   - component: {fileID: 1331568249657317122}
   - component: {fileID: 3559667155760592919}
+  - component: {fileID: 7478979064178355681}
   m_Layer: 5
   m_Name: ShopController
   m_TagString: Untagged
@@ -5208,6 +5228,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &7478979064178355681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8915738604911369397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 913ba24fb0418c940aca631d459bdb5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sellCards: {fileID: 0}
 --- !u!1 &9182787114619016699
 GameObject:
   m_ObjectHideFlags: 0
