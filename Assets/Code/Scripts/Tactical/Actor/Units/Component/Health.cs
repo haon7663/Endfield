@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public Action damaged;
+    public Action onHpChanged;
     public Action onDeath;
     
     private Unit _unit;
@@ -42,7 +42,7 @@ public class Health : MonoBehaviour
                 _spriteRenderer.material = Sprite2DMaterial.GetDefaultMaterial();
             });
         
-        damaged?.Invoke();
+        onHpChanged?.Invoke();
 
         if (curHp <= 0)
         {
@@ -58,5 +58,7 @@ public class Health : MonoBehaviour
         curHp = Mathf.Clamp(curHp, 0, maxHp);
         
         TextHudController.Inst.ShowRecovery(transform.position + Vector3.up * 0.5f, value);
+        
+        onHpChanged?.Invoke();
     }
 }

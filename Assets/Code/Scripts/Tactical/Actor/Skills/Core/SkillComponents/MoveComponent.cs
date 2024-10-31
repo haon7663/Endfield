@@ -7,8 +7,9 @@ public class MoveComponent : SkillComponent
     
     public override void Execute(Unit user)
     {
+        user.additionalKey = 0;
         var movement = user.Movement;
-        var task = new Task(movement.OnMove(CalculateDistance(user) * movement.DirX));
+        var task = new Task(movement.OnMove(CalculateDistance(user) * user.Movement.DirX));
         task.Start();
     }
 
@@ -23,19 +24,17 @@ public class MoveComponent : SkillComponent
     {
         _previewSprite?.Cancel();
         _previewSprite = null;
-        user.additionalKey = 0;
     }
 
     private int CalculateDistance(Unit user)
     {
-        var ableDistance = 0;
+        var index = 0;
         for (var i = 1; i <= distance; i++)
         {
-            if (GridManager.Inst.GetTile(user.Tile.Key + i * user.Movement.DirX).IsOccupied)
+            if (GetStartingTile(user, i).IsOccupied)
                 break;
-                
-            ableDistance = i;
+            index = i;
         }
-        return ableDistance;
+        return index;
     }
 }

@@ -39,7 +39,7 @@ public class DashComponent : SkillComponent
         var tiles = new List<Tile>();
         for (var i = 1; i <= distance; i++)
         {
-            var tile = GridManager.Inst.GetTile(user.Tile.Key + i * user.Movement.DirX);
+            var tile = GetStartingTile(user, i);
             tiles.Add(tile);
             if (tile.IsOccupied)
                 break;

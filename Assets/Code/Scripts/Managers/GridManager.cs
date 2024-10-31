@@ -69,6 +69,11 @@ public class GridManager : Singleton<GridManager>
         }
     }
 
+    public void UpdateContentOnGrid()
+    {
+        
+    }
+
     public PreviewSprite DisplayPreview(Unit user, int key)
     {
         var tile = GetTile(key);

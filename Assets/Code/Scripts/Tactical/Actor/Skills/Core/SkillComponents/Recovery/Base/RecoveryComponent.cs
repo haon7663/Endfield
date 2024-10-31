@@ -18,7 +18,7 @@ public class RecoveryComponent : SkillComponent
         {
             for (var i = 1; i <= distance; i++)
             {
-                var targetUnit = GridManager.Inst.GetTile(user.Tile.Key + i * user.Movement.DirX)?.content;
+                var targetUnit = GetStartingTile(user, i)?.content;
                 if (targetUnit && targetUnit.TryGetComponent(out Health health))
                 {
                     health.OnRecovery(value);
@@ -43,7 +43,7 @@ public class RecoveryComponent : SkillComponent
         {
             for (var i = 1; i <= distance; i++)
             {
-                var tile = GridManager.Inst.GetTile(user.Tile.Key + i * user.Movement.DirX + user.additionalKey);
+                var tile = GetStartingTile(user, i);
                 tiles.Add(tile);
             }
         }
