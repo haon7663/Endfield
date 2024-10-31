@@ -15,8 +15,8 @@ public class SkillHolder : MonoBehaviour
     public List<Skill> skills;
     public List<SkillCastingViewer> castingViewers;
 
-    private const float InitialYPosition = 150f; // ��� ���� ��ġ
-    private const float YOffset = 70f; // ���Ĥ��� �����Ǵ� ���� ���� ����
+    private const float InitialYPosition = 150f;
+    private const float YOffset = 70f;
     
     private static readonly int Attack = Animator.StringToHash("attack");
 
@@ -34,9 +34,13 @@ public class SkillHolder : MonoBehaviour
         
         foreach (var castingViewer in saveCastingViewers)
         {
-            castingViewer.Data?.Print(_unit);
+            if (castingViewer.Data == null) continue;
+            
+            SkillManager.Inst.ApplySkillArea(_unit, castingViewer.Data);
+            
             yield return StartCoroutine(castingViewer.Cast());
-            yield return StartCoroutine(castingViewer.Data?.Use(_unit));
+            yield return StartCoroutine(castingViewer.Data.Use(_unit));
+            
             _animator.SetTrigger(Attack);
             RemoveCastingViewer(castingViewer);
         }
@@ -51,23 +55,21 @@ public class SkillHolder : MonoBehaviour
 
         castingViewers.Add(newViewer);
     }
-
-    // �ε����� ���� ��ġ ���
+    
     private Vector3 GetNextSpawnPosition(int index)
     {
         Vector3 spawnPosition = new Vector3(0, InitialYPosition + (index * YOffset), 0);
         return spawnPosition;
     }
-
-    // ����Ʈ���� �� ���ŵ� �� ȣ���� �Լ�(��ų ����)
+    
     public void RemoveCastingViewer(SkillCastingViewer viewer)
     {
         castingViewers.Remove(viewer);
-        Destroy(viewer.gameObject);
+        if (viewer)
+            Destroy(viewer.gameObject);
         RepositionCastingViewers(); 
     }
-
-    // ���� ��ġ ������ ������
+    
     private void RepositionCastingViewers()
     {
         for (int i = 0; i < castingViewers.Count; i++)

@@ -30,6 +30,6 @@ public class AttackComponent : SkillComponent
             var tile = GridManager.Inst.GetTile(user.Tile.Key + i * user.Movement.DirX + user.additionalKey);
             tiles.Add(tile);
         }
-        GridManager.Inst.DisplayGrid(user, tiles);
+        GridManager.Inst.ApplyGrid(user, tiles);
     }
 }

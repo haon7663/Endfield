@@ -11,7 +11,7 @@ public class LinearProjectileAttackComponent : ProjectileAttackComponent
             var tile = GetStartingTile(user, i);
             tiles.Add(tile);
         }
-        GridManager.Inst.DisplayGrid(user, tiles);
+        GridManager.Inst.ApplyGrid(user, tiles);
     }
     
     public override void Cancel(Unit user)

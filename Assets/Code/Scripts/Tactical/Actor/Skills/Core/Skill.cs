@@ -21,7 +21,7 @@ public class Skill
             component.Execute(user);  // 각 컴포넌트의 동작 실
             yield return null;
         }
-        Cancel(user);
+        SkillManager.Inst.RevertSkillArea(user, this);
     }
 
     public void Print(Unit user)

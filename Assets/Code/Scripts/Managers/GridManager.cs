@@ -83,32 +83,24 @@ public class GridManager : Singleton<GridManager>
         return previewSprite;
     }
     
-    public void DisplayGrid(Unit user, List<Tile> tiles)
+    public void ApplyGrid(Unit user, List<Tile> tiles)
     {
-        _previewTiles.Add(user, tiles);
-        ResetTilesColor();
+        _previewTiles[user] = tiles;
+        UpdateGrid();
     }
-
     public void RevertGrid(Unit user)
     {
         if (_previewTiles.ContainsKey(user))
             _previewTiles.Remove(user);
-
-        ResetTilesColor();
+        UpdateGrid();
     }
-
-    private void ResetTilesColor()
+    private void UpdateGrid()
     {
         RevertAllGrid();
         foreach (var displayedTile in _previewTiles)
         {
             var color = displayedTile.Key.unitType == UnitType.Player ? playerColor : enemyColor;
-            displayedTile.Value.ForEach(t =>
-            {
-                /*if (t.IsOccupied)
-                    t.content*/
-                t.SetColor(color);
-            });
+            displayedTile.Value.ForEach(t => t.SetColor(color));
         }
     }
     
