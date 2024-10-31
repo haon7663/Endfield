@@ -14,7 +14,6 @@ public class DefeatPanelController : MonoBehaviour
     [SerializeField] private TMP_Text elitePlantKill;
     [SerializeField] private TMP_Text gainedSkill;
     [SerializeField] private TMP_Text gainedArtifact;
-    [SerializeField] private InventoryController inventoryController;
 
 
     private void Update()
