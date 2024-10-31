@@ -16,16 +16,18 @@ public class ShopItem : MonoBehaviour
         
     }
 
-    public void RandomCardInput()
-    {
-        //카드 랜덤으로 들어가는 코드
-    }
+   
 
     public void BuyItem()
     {
         if (!isSelling) return;
         isSelling = false;
         //플레이어한테서 재화 뺏어가는 코드 들어갈 자리
+
+    }
+
+    public virtual void BuyAction()
+    {
 
     }
 }
