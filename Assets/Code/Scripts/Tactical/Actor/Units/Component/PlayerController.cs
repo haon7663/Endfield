@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
         if (!_isSkillHolding || _isPrinted) return;
         _skillHoldTime += Time.deltaTime;
         
-        if (!(_skillHoldTime > 0.2f)) return;
+        if (!(_skillHoldTime > 0f)) return;
         BufferedInput(PrintSkill(_skillNum));
         _isPrinted = true;
     }
@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour
             yield break;
         }
         
-        ArtDirectionManager.Inst.StartBulletTime(new List<Unit> { _unit });
+        //ArtDirectionManager.Inst.StartBulletTime(new List<Unit> { _unit });
         SkillManager.Inst.ApplySkillArea(_unit, skill);
     }
     
