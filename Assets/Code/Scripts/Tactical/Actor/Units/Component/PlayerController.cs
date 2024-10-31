@@ -61,14 +61,23 @@ public class PlayerController : MonoBehaviour
         BufferedInput(_movement.OnMove(key));
     }
 
+    private void SwapInput(Unit other)
+    {
+        BufferedInput(_movement.OnSwap(other));
+    }
+
     public void OnMoveLeft(InputAction.CallbackContext context)
     {
         if (context.started)
         {
             if (ArtDirectionManager.Inst.onBulletTime)
                 return;
-            
-            MoveInput(-1);
+
+            var targetTile = GridManager.Inst.GetTile(_unit.Tile.Key - 1);
+            if (targetTile.IsOccupied)
+                SwapInput(targetTile.content);
+            else
+                MoveInput(-1);
         }
     }
     
@@ -79,7 +88,11 @@ public class PlayerController : MonoBehaviour
             if (ArtDirectionManager.Inst.onBulletTime)
                 return;
             
-            MoveInput(1);
+            var targetTile = GridManager.Inst.GetTile(_unit.Tile.Key + 1);
+            if (targetTile.IsOccupied)
+                SwapInput(targetTile.content);
+            else
+                MoveInput(1);
         }
     }
     
@@ -153,7 +166,6 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(skill.Use(_unit));
         SkillManager.Inst.ConsumeSkill(skillNum);
         GameManager.Inst.curElixir -= skill.elixir;
-        GridManager.Inst.RevertGrid(_unit);
         
         _isSkillHolding = false;
         _skillHoldTime = 0;

@@ -17,6 +17,11 @@ public class AttackComponent : SkillComponent
         }
     }
 
+    public override void Cancel(Unit user)
+    {
+        GridManager.Inst.RevertGrid(user);
+    }
+
     public override void Print(Unit user)
     {
         var tiles = new List<Tile>();

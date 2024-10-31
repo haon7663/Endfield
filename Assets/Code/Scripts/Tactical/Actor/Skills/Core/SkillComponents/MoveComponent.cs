@@ -21,7 +21,7 @@ public class MoveComponent : SkillComponent
 
     public override void Cancel(Unit user)
     {
-        _previewSprite.Cancel();
+        _previewSprite?.Cancel();
         _previewSprite = null;
         user.additionalKey = 0;
     }

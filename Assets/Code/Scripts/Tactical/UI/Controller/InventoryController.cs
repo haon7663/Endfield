@@ -38,15 +38,15 @@ public class InventoryController : MonoBehaviour
 
     public void AddInventorySkill()
     {
-        foreach(var inventorySkill in inventoryContent.GetComponentsInChildren<InventorySkillInfor>())
+        foreach(var inventorySkill in inventoryContent.GetComponentsInChildren<InventorySkillInfo>())
             Destroy(inventorySkill.gameObject);
         
         List<Skill> skills = DataManager.Inst.Data.skills;
         foreach (var skill in skills)
         {
             GameObject inventory = Instantiate(skillPrefab, inventoryContent);
-            if(inventory.TryGetComponent(out InventorySkillInfor inventorySkillInfor))
-                inventorySkillInfor.SetInfor(skill);
+            if(inventory.TryGetComponent(out InventorySkillInfo inventorySkillInfo))
+                inventorySkillInfo.SetInfo(skill);
         }
     }
 

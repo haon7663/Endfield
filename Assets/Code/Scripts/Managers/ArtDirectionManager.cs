@@ -45,7 +45,9 @@ public class ArtDirectionManager : Singleton<ArtDirectionManager>
         onBulletTime = false;
         
         SetVolume(false);
-        
+
+        if (_prevUnits == null)
+            return;
         foreach (var unit in _prevUnits)
         {
             unit.Renderer.gameObject.layer = _prevLayerNumbers[unit];
@@ -56,7 +58,7 @@ public class ArtDirectionManager : Singleton<ArtDirectionManager>
     private void SetVolume(bool inSimulation)
     {
         DOTween.Kill(this);
-        TimeCaster.TimeScale = inSimulation ? 0.05f : 1;
+        TimeCaster.TimeScale = inSimulation ? 0.1f : 1;
         /*DOVirtual.Float(TimeCaster.TimeScale, inSimulation ? 0.02f : 1, 0.1f,
             value => TimeCaster.TimeScale = value);*/
         

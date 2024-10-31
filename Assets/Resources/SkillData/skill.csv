@@ -1,5 +1,5 @@
 $type,name,label,description,elixir,castingTime,$type,executeType,damage,distance,projectileSpeed,prefabName,,saveName
-Skill,Slash,����,?�면???�을 베어?�니??,1,0.4,Attack,,5,1,,,,
+Skill,Slash,베기,전방 한 칸의 적에게 피해를 줍니다.,1,0.4,Attack,,5,1,,,,
 Skill,TestProjectile,,,1,2,ProjectileAttack,,5,4,24,LinearProjectile,,
 Skill,Throw,,,1,1,ProjectileAttack,,5,3,9,ThrowerProjectile,,
 Skill,MoveAttack,,,1,0.4,Move,,,2,,,,
@@ -7,3 +7,5 @@ Skill,MoveAttack,,,1,0.4,Move,,,2,,,,
 Skill,Spear,,,2,1,Attack,,8,2,,,,
 Skill,FireBall,,,1,0.5,ProjectileAttack,,4,3,15,LinearProjectile,,
 Skill,Sting,,,1,0.5,Attack,,5,3,,,,
+Skill,Dash,,,1,0.5,Attack,,6,5,,,,
+,,,,,,Move,,,4,,,,

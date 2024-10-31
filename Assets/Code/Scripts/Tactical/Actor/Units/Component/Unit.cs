@@ -14,7 +14,6 @@ public class Unit : MonoBehaviour
     public SpriteRenderer Renderer { get; private set; }
     public Movement Movement { get; private set; }
     public Health Health { get; private set; }
-    public SkillHolder SkillHolder { get; private set; }
 
     public UnitType unitType;
 
@@ -23,17 +22,15 @@ public class Unit : MonoBehaviour
         Renderer = SpriteTransform.GetComponent<SpriteRenderer>();
         Movement = GetComponent<Movement>();
         Health = GetComponent<Health>();
-        SkillHolder = GetComponent<SkillHolder>();
     }
 
     public void Init(UnitData data, Tile tile)
     {
         name = data.name;
-        Debug.Log(data.animatorController);
         SpriteTransform.GetComponent<Animator>().runtimeAnimatorController = data.animatorController;
         Health.maxHp = Health.curHp = data.health;
-        SkillHolder.skills = data.skills;
-
+        if (TryGetComponent(out SkillHolder skillHolder))
+            skillHolder.skills = data.skills;
         if (TryGetComponent(out AIController aiController))
             aiController.actionCool = data.actionTime;
         
@@ -48,5 +45,11 @@ public class Unit : MonoBehaviour
         
         Tile = tile;
         Tile.content = this;
+    }
+    
+    public void Swap(Unit other)
+    {
+        (other.Tile, Tile) = (Tile, other.Tile);
+        (other.Tile.content, Tile.content) = (Tile.content, other.Tile.content);
     }
 }

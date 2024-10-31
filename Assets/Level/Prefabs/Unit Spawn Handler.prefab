@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1192707382743053750}
   - component: {fileID: 3810789754948970686}
   m_Layer: 0
-  m_Name: UnitSpawnEffect
+  m_Name: Unit Spawn Handler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
