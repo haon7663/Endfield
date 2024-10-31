@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.Rendering;
@@ -36,7 +37,7 @@ namespace CatDarkGame.Rendering
         public PostBlurRenderPass(Shader shader, string renderTag, RenderPassEvent passEvent = RenderPassEvent.BeforeRenderingPostProcessing, FilterMode filterMode = FilterMode.Bilinear, int blurIteration = 2)
         {
             if (!shader) return;
-            if(!_material) _material = CoreUtils.CreateEngineMaterial(shader);
+            _material = CoreUtils.CreateEngineMaterial(shader);
             
             RenderTag = renderTag;
             renderPassEvent = passEvent;
@@ -58,15 +59,16 @@ namespace CatDarkGame.Rendering
         {
             if (_downSampleTextures != null)
             {
-                for (int i = 0; i < _downSampleTextures.Length; i++)
+                foreach (var t in _downSampleTextures)
                 {
-                    _downSampleTextures[i]?.Release();
+                    t?.Release();
                 }
             }
             _destTexture?.Release();
             _sourceTexture?.Release();
         }
 
+        [Obsolete("This rendering path is for compatibility mode only (when Render Graph is disabled). Use Render Graph API instead.", false)]
         public override void OnCameraSetup(CommandBuffer cmd, ref RenderingData renderingData)
         {
             SetupVolumeComponent();
@@ -75,7 +77,6 @@ namespace CatDarkGame.Rendering
                 DisposeRT();
                 return;
             }
-            ResetTarget();
        
             int screenWidth = renderingData.cameraData.cameraTargetDescriptor.width;
             int screenHeight = renderingData.cameraData.cameraTargetDescriptor.height;
@@ -86,23 +87,32 @@ namespace CatDarkGame.Rendering
             
             for (int i = 0; i < stepCount; i++)
             {
-                int downsampleIndex = SimplePingPong(i, iteration - 1);
-                screenWidth_Down = screenWidth >> downsampleIndex + 1;
-                screenWidth_Height = screenHeight >> downsampleIndex + 1;
-                    
+                int downSampleIndex = SimplePingPong(i, iteration - 1);
+                screenWidth_Down = screenWidth >> (downSampleIndex + 1);
+                screenWidth_Height = screenHeight >> (downSampleIndex + 1);
+                
                 RenderTextureDescriptor descriptor = GetCompatibleDescriptor(screenWidth_Down, screenWidth_Height, true);
                 descriptor.graphicsFormat = renderingData.cameraData.cameraTargetDescriptor.graphicsFormat;
-                RenderingUtils.ReAllocateIfNeeded(ref _downSampleTextures[i], descriptor, _filterMode, TextureWrapMode.Clamp);
+
+                // 새로운 API를 사용하여 핸들 할당
+                _downSampleTextures[i]?.Release();
+                _downSampleTextures[i] = RTHandles.Alloc(descriptor, _filterMode, TextureWrapMode.Clamp);
             }
-            
+
             RenderTextureDescriptor descriptor_Source = GetCompatibleDescriptor(screenWidth, screenHeight, true);
             descriptor_Source.graphicsFormat = renderingData.cameraData.cameraTargetDescriptor.graphicsFormat;
-            RenderingUtils.ReAllocateIfNeeded(ref _downSampleTextures[GetLastDownSampleRT()], descriptor_Source, _filterMode, TextureWrapMode.Clamp);
-            RenderingUtils.ReAllocateIfNeeded(ref _sourceTexture, descriptor_Source, FilterMode.Bilinear, TextureWrapMode.Clamp);
-            RenderingUtils.ReAllocateIfNeeded(ref _destTexture, descriptor_Source, FilterMode.Bilinear, TextureWrapMode.Clamp);
-           
+            
+            _downSampleTextures[GetLastDownSampleRT()]?.Release();
+            _downSampleTextures[GetLastDownSampleRT()] = RTHandles.Alloc(descriptor_Source, _filterMode, TextureWrapMode.Clamp);
+            
+            _sourceTexture?.Release();
+            _sourceTexture = RTHandles.Alloc(descriptor_Source, FilterMode.Bilinear, TextureWrapMode.Clamp);
+            
+            _destTexture?.Release();
+            _destTexture = RTHandles.Alloc(descriptor_Source, FilterMode.Bilinear, TextureWrapMode.Clamp);
         }
 
+        [Obsolete("This rendering path is for compatibility mode only (when Render Graph is disabled). Use Render Graph API instead.", false)]
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
         {
             if (!CheckRenderingState(ref renderingData)) return;
@@ -119,6 +129,7 @@ namespace CatDarkGame.Rendering
             CommandBufferPool.Release(cmd);
         }
 
+        [Obsolete("Obsolete")]
         private void Render(CommandBuffer cmd, ref CameraData cameraData)
         {
             RTHandle sourceHandle = cameraData.renderer.cameraColorTargetHandle;

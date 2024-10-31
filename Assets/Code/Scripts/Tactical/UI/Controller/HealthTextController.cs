@@ -32,7 +32,7 @@ public class HealthTextController : Singleton<HealthTextController>
         _healthTexts.Add(targetHealth, healthText);
     }
 
-    public void UpdateUI(Health targetHealth, int hp)
+    public void UpdateUI(Health targetHealth, int hp, bool useDotween = false)
     {
         _healthTexts[targetHealth].text = hp.ToString();
     }

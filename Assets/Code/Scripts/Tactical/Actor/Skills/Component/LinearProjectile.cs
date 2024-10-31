@@ -29,7 +29,6 @@ public class LinearProjectile : Projectile
         {
             if (currentTile.content.TryGetComponent(out Health health))
             {
-                print(damage);
                 health.OnDamage(damage);
                 Destroy(gameObject);
             }

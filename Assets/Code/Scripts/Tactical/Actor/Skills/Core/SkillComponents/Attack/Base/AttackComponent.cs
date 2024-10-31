@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class AttackComponent : SkillComponent
 {
-    public int damage;
+    public int value;
     
     public override void Execute(Unit user)
     {
@@ -12,9 +12,14 @@ public class AttackComponent : SkillComponent
             var targetUnit = GridManager.Inst.GetTile(user.Tile.Key + i * user.Movement.DirX)?.content;
             if (targetUnit && targetUnit.TryGetComponent(out Health health))
             {
-                health.OnDamage(damage);
+                health.OnDamage(value);
             }
         }
+    }
+
+    public override void Cancel(Unit user)
+    {
+        GridManager.Inst.RevertGrid(user);
     }
 
     public override void Print(Unit user)

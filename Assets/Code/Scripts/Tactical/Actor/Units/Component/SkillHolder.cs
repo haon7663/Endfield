@@ -9,11 +9,11 @@ public class SkillHolder : MonoBehaviour
     private Unit _unit;
     private Animator _animator;
     
-    public List<SkillCastingViewer> castingViewers;
     public SkillCastingViewer castingViewerPrefab;
     public Transform skillCanvas;
 
     public List<Skill> skills;
+    public List<SkillCastingViewer> castingViewers;
 
     private const float InitialYPosition = 150f; // ��� ���� ��ġ
     private const float YOffset = 70f; // ���Ĥ��� �����Ǵ� ���� ���� ����
@@ -34,8 +34,9 @@ public class SkillHolder : MonoBehaviour
         
         foreach (var castingViewer in saveCastingViewers)
         {
+            castingViewer.Data?.Print(_unit);
             yield return StartCoroutine(castingViewer.Cast());
-            StartCoroutine(castingViewer.Data?.Use(_unit));
+            yield return StartCoroutine(castingViewer.Data?.Use(_unit));
             _animator.SetTrigger(Attack);
             RemoveCastingViewer(castingViewer);
         }
@@ -43,16 +44,12 @@ public class SkillHolder : MonoBehaviour
 
     public void AddCastingViewer(Skill skill)
     {
-        if (GameManager.Inst.curElixir < skill.elixir) return;
-        
         var spawnPosition = GetNextSpawnPosition(castingViewers.Count); 
 
         var newViewer = Instantiate(castingViewerPrefab, skillCanvas);
         newViewer.Init(skill, spawnPosition);
 
         castingViewers.Add(newViewer);
-
-        GameManager.Inst.curElixir -= skill.elixir;
     }
 
     // �ε����� ���� ��ġ ���

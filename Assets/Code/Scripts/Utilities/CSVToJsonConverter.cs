@@ -71,9 +71,7 @@ public static class CSVToJsonConverter
         
         for (int i = 1; i < lines.Length; i++)
         {
-            Debug.Log(lines[i]);
             if (string.IsNullOrEmpty(lines[i])) continue;
-            Debug.Log(lines[i]);
             
             string[] values = lines[i].Split(',');
             Dictionary<string, string> data = new Dictionary<string, string>();

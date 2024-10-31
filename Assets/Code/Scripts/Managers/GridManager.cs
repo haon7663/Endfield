@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class GridManager : Singleton<GridManager>
@@ -13,11 +14,13 @@ public class GridManager : Singleton<GridManager>
     [SerializeField] private Transform gridParent;
     [SerializeField] private Tile tilePrefab;
 
+    [SerializeField] private PreviewSprite previewSpritePrefab;
+    [SerializeField] private TMP_Text previewTextPrefab;
+    
     [SerializeField] private Color playerColor;
     [SerializeField] private Color enemyColor;
-    private Dictionary<Unit, List<Tile>> _displayedTiles = new Dictionary<Unit, List<Tile>>();
-
-    [SerializeField] private PreviewSprite previewSpritePrefab;
+    
+    private Dictionary<Unit, List<Tile>> _previewTiles = new Dictionary<Unit, List<Tile>>();
 
     private void Awake()
     {
@@ -42,10 +45,20 @@ public class GridManager : Singleton<GridManager>
     {
         return _tiles[Mathf.Clamp(index, 0, tileCount - 1)];
     }
-    
-    public Tile GetRandomTile()
+
+    public Tile GetRandomTile(List<Tile> exceptionTiles = null)
     {
-        return _tiles.Where(t => !t.IsOccupied).ToList().Random();
+        var tiles = _tiles;
+        if (exceptionTiles != null)
+            tiles = _tiles.Where(t => !exceptionTiles.Contains(t)).ToList();
+        return tiles.Where(t => !t.IsOccupied).ToList().Random();
+    }
+
+    public Tile FindNearestTile(int index)
+    {
+        var moveAbleTiles = _tiles.Where(t => !t.IsOccupied).ToList();
+        var nearestKey = moveAbleTiles.Min(t => Mathf.Abs(t.Key - index));
+        return moveAbleTiles.Where(t => Mathf.Abs(t.Key - index) == nearestKey).ToList().Random();
     }
 
     public void RevertAllGrid()
@@ -54,6 +67,11 @@ public class GridManager : Singleton<GridManager>
         {
             tile.SetDefaultColor();
         }
+    }
+
+    public void UpdateContentOnGrid()
+    {
+        
     }
 
     public PreviewSprite DisplayPreview(Unit user, int key)
@@ -67,14 +85,14 @@ public class GridManager : Singleton<GridManager>
     
     public void DisplayGrid(Unit user, List<Tile> tiles)
     {
-        _displayedTiles.Add(user, tiles);
+        _previewTiles.Add(user, tiles);
         ResetTilesColor();
     }
 
     public void RevertGrid(Unit user)
     {
-        if (_displayedTiles.ContainsKey(user))
-            _displayedTiles.Remove(user);
+        if (_previewTiles.ContainsKey(user))
+            _previewTiles.Remove(user);
 
         ResetTilesColor();
     }
@@ -82,10 +100,15 @@ public class GridManager : Singleton<GridManager>
     private void ResetTilesColor()
     {
         RevertAllGrid();
-        foreach (var displayedTile in _displayedTiles)
+        foreach (var displayedTile in _previewTiles)
         {
             var color = displayedTile.Key.unitType == UnitType.Player ? playerColor : enemyColor;
-            displayedTile.Value.ForEach(t => t.SetColor(color));
+            displayedTile.Value.ForEach(t =>
+            {
+                /*if (t.IsOccupied)
+                    t.content*/
+                t.SetColor(color);
+            });
         }
     }
     

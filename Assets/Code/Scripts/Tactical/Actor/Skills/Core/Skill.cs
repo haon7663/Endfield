@@ -15,6 +15,7 @@ public class Skill
 
     public IEnumerator Use(Unit user)
     {
+        user.additionalKey = 0;
         foreach (var component in skillComponents) 
         {
             component.Execute(user);  // 각 컴포넌트의 동작 실

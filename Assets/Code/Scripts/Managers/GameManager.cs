@@ -8,13 +8,9 @@ public class GameManager : Singleton<GameManager>
     public int maxElixir;
     public float curElixir;
 
-    [SerializeField] private Unit playerPrefab;
-    [SerializeField] private Unit enemyPrefab;
-
     private void Start()
     {
-        Player = SpawnManager.Inst.Spawn("Player", true);
-        SpawnManager.Inst.Spawn("Spider", false);
+        Player = SpawnManager.Inst.Summon("Player", GridManager.Inst.GetTile(4), true);
     }
 
     private void Update()

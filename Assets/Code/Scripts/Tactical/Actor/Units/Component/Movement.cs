@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -19,6 +20,7 @@ public class Movement : MonoBehaviour
     public int DirX => (int)_dir.x;
     
     private Vector2 _dir = Vector2.right;
+    private Tile _prevTile;
     
     private static readonly int IsFrontDash = Animator.StringToHash("isFrontDash");
     private static readonly int IsBackDash = Animator.StringToHash("isBackDash");
@@ -29,26 +31,39 @@ public class Movement : MonoBehaviour
         _unit = GetComponent<Unit>();
         _spriteRenderer = _unit.SpriteTransform.GetComponent<SpriteRenderer>();
         _animator = _unit.SpriteTransform.GetComponent<Animator>();
+        
+        _prevTile = _unit.Tile;
     }
 
     public IEnumerator OnMove(int key)
     {
-        yield return StartCoroutine(MoveTo(GridManager.Inst.GetTile(_unit.Tile.Key + key)));
+        var tile = GridManager.Inst.GetTile(_unit.Tile.Key + key);
+        if (tile.IsOccupied) yield break;
+        _unit.Place(tile);
+        yield return StartCoroutine(MoveTo(tile));
+    }
+
+    public IEnumerator OnSwap(Unit other)
+    {
+        var prevTile = _unit.Tile;
+        var targetTile = other.Tile;
+        
+        _unit.Swap(other);
+
+        StartCoroutine(MoveTo(targetTile));
+        yield return StartCoroutine(other.Movement.MoveTo(prevTile));
     }
     
     public IEnumerator MoveTo(Tile tile)
     {
-        if (tile.IsOccupied) yield break;
-        
         DOTween.Kill(this);
         
-        var prevTile = _unit.Tile;
-        var distance = tile.Key - prevTile.Key;
+        var distance = tile.Key - _prevTile.Key;
         var dir = distance > 0 ? Vector2.right : Vector2.left;
         var anim = dir == _dir ? IsFrontDash : IsBackDash;
+        _prevTile = tile;
         
         _animator.SetBool(anim, true);
-        _unit.Place(tile);
         
         var sequence = DOTween.Sequence();
         sequence.Append(transform.DOMove(tile.transform.position + Vector3.up * 0.5f, moveSpeed).SetEase(Ease.OutCirc))

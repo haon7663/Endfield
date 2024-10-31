@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public Action damaged;
+    public Action onHpChanged;
     public Action onDeath;
     
     private Unit _unit;
@@ -21,11 +21,12 @@ public class Health : MonoBehaviour
         curHp = maxHp;
     }
 
-    public void OnDamage(int damage)
+    public void OnDamage(int value)
     {
-        curHp -= damage;
+        curHp -= value;
+        curHp = Mathf.Clamp(curHp, 0, maxHp);
         
-        TextHudController.Inst.ShowDamage(transform.position + Vector3.up * 0.5f, damage);
+        TextHudController.Inst.ShowDamage(transform.position + Vector3.up * 0.5f, value);
         CameraShake.Inst.Shake();
 
         var sequence = DOTween.Sequence();
@@ -41,7 +42,7 @@ public class Health : MonoBehaviour
                 _spriteRenderer.material = Sprite2DMaterial.GetDefaultMaterial();
             });
         
-        damaged?.Invoke();
+        onHpChanged?.Invoke();
 
         if (curHp <= 0)
         {
@@ -49,5 +50,15 @@ public class Health : MonoBehaviour
             onDeath?.Invoke();
             Destroy(gameObject);
         }
+    }
+
+    public void OnRecovery(int value)
+    {
+        curHp += value;
+        curHp = Mathf.Clamp(curHp, 0, maxHp);
+        
+        TextHudController.Inst.ShowRecovery(transform.position + Vector3.up * 0.5f, value);
+        
+        onHpChanged?.Invoke();
     }
 }

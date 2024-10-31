@@ -30,7 +30,6 @@ public static class SkillLoader
         };
 
         var skillJson = skillCSV.ConvertCSVToSkillJson();
-        Debug.Log(skillJson);
         var skillData = JsonConvert.DeserializeObject<List<Skill>>(skillJson, settings);
         var skillComponentsJson = skillCSV.ConvertCSVToJson();
         var skillComponentsData = JsonConvert.DeserializeObject<List<SkillComponent>>(skillComponentsJson, settings);

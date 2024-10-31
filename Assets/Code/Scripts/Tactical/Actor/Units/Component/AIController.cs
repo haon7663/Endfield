@@ -51,13 +51,6 @@ public class AIController : MonoBehaviour
         {
             UpdateCoolDown(ref _curActionCool, actionCool, EnemyActing);
         }
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            SkillExecute();
-        }
-        
-        if (Input.GetKeyDown(KeyCode.N))
-            StartCoroutine(TryAddSkill());
     }
     
     private void SetSkillStartCool()
@@ -87,7 +80,6 @@ public class AIController : MonoBehaviour
         {
             skillAndCool.coolTime -= Time.deltaTime;
         }
-       
     }
     
     private void SkillExecute() //스킬 방출 실행
@@ -95,10 +87,9 @@ public class AIController : MonoBehaviour
         float executeTime = 0;
         foreach (var skillCastingViewer in _skillHolder.castingViewers)
         {
-           
             _skillAndCools.FirstOrDefault(sc => sc.skill == skillCastingViewer.Data)!.coolTime =
                 skillCastingViewer.Data.elixir * 1.5f;
-            executeTime += skillCastingViewer.Data.elixir*1.5f;
+            executeTime += skillCastingViewer.Data.elixir * 1.5f;
         }
         StartCoroutine(_skillHolder.Execute());
         _isActing = true;
@@ -114,7 +105,6 @@ public class AIController : MonoBehaviour
             _skillHolder.AddCastingViewer(skillAndCool.skill);
             yield return new WaitForSeconds(0.4f);
         }
-
         _isActing = false;
     }
 

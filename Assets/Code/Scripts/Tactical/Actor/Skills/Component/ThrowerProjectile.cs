@@ -27,7 +27,6 @@ public class ThrowerProjectile : Projectile
             {
                 if (currentTile.content.TryGetComponent(out Health health))
                 {
-                    print(damage);
                     health.OnDamage(damage);
                 }
             }

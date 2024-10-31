@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
 using Unity.Mathematics;
 using UnityEngine;
@@ -9,50 +10,47 @@ public class SpawnManager : Singleton<SpawnManager>
     [SerializeField] private Unit playerPrefab;
     [SerializeField] private Unit enemyPrefab;
     [SerializeField] private int maxEnemyCount;
-    [SerializeField] private GameObject spawnEffect;
+    [SerializeField] private UnitSpawnHandler spawnHandlerPrefab;
     private int _surviveEnemyCount;
 
     private void Start()
     {
-        _surviveEnemyCount = 1;
+        _surviveEnemyCount = 0;
+        SpawnEnemy();
     }
 
-    public Unit Spawn(string unitName, bool isPlayer = false)
+    public Unit Summon(string unitName, Tile tile, bool isPlayer = false)
     {
         var unitData = UnitLoader.GetUnitData(unitName);
-        var randomTile = GridManager.Inst.GetRandomTile();
         var unit = Instantiate(isPlayer ? playerPrefab : enemyPrefab);
-        unit.Init(unitData, randomTile);
-        
-        if (!isPlayer)
-        {
-            unit.gameObject.SetActive(false);
-            var effect =  Instantiate(spawnEffect, randomTile.transform.position + Vector3.up * 1f, quaternion.identity);
-            DOVirtual.DelayedCall(1, ()=>
-            {
-                Destroy(effect);
-                unit.gameObject.SetActive(true);
-            });
-        }
-        
+        unit.Init(unitData, tile);
+
         return unit;
     }
 
-
+    public void SpawnEnemy(string unitName, Tile tile = null)
+    {
+        var targetTile = tile ? tile : GridManager.Inst.GetRandomTile();
+        
+        var spawnHandler = Instantiate(spawnHandlerPrefab);
+        spawnHandler.Init(unitName, targetTile);
+    }
 
     public void EnemyDead()
     {
-        --_surviveEnemyCount;
-        if(_surviveEnemyCount <= 0)
+        if(--_surviveEnemyCount <= 0)
             SpawnEnemy();
     }
     
     private void SpawnEnemy()
     {
-        for (int i = 0; i < maxEnemyCount; i++)
+        var tiles = new List<Tile>();
+        for (var i = 0; i < maxEnemyCount; i++)
         {
-            SpawnManager.Inst.Spawn("Spider", false);
-            _surviveEnemyCount = maxEnemyCount;
+            var tile = GridManager.Inst.GetRandomTile(tiles);
+            SpawnEnemy("Spider", tile);
+            tiles.Add(tile);
+            _surviveEnemyCount++;
         }
     }
 }
