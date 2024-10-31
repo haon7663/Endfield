@@ -5,20 +5,21 @@ public class ShopCard : ShopItem
     Card card;
     [SerializeField] private Skill skillData;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         card = GetComponent<Card>();
     }
     public void RandomCardInput()
     {
-        //Ä«µå ·£´ıÀ¸·Î µé¾î°¡´Â ÄÚµå
+        skillData = new Skill("Slash");
         card.Init(skillData);
        
     }
 
     public override void BuyAction()
     {
-        //ÀÎº¥Åä¸®¿¡ ½ºÅ³ ÀÌµ¿
+        //ì¸ë²¤í† ë¦¬ì— ìŠ¤í‚¬ ë„£ê¸°
     }
 
 }
