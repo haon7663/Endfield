@@ -15,6 +15,8 @@ public class Unit : MonoBehaviour
     public SpriteRenderer Renderer { get; private set; }
     public Movement Movement { get; private set; }
     public Health Health { get; private set; }
+    
+    public Action onPlaced;
 
     public UnitType unitType;
 
@@ -38,6 +40,8 @@ public class Unit : MonoBehaviour
         transform.position = tile.transform.position + Vector3.up * 0.5f;
         Place(tile.IsOccupied ? GridManager.Inst.FindNearestTile(tile.Key) : tile);
         transform.DOMoveX(Tile.transform.position.x, 0.25f);
+        
+        onPlaced += SkillManager.Inst.UpdateSkillArea;
     }
 
     public void Place(Tile tile)
@@ -47,6 +51,8 @@ public class Unit : MonoBehaviour
         
         Tile = tile;
         Tile.content = this;
+        
+        onPlaced?.Invoke();
     }
     
     public void Swap(Unit other)

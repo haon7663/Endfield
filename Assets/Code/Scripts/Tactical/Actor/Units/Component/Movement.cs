@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public Action onMoved;
-    
     private Unit _unit;
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;
@@ -30,7 +28,6 @@ public class Movement : MonoBehaviour
         _animator = _unit.SpriteTransform.GetComponent<Animator>();
         
         _prevTile = _unit.Tile;
-        onMoved += SkillManager.Inst.UpdateSkillArea;
     }
 
     public IEnumerator OnMove(int key)
@@ -67,8 +64,6 @@ public class Movement : MonoBehaviour
         sequence.Append(transform.DOMove(tile.transform.position + Vector3.up * 0.5f, moveSpeed).SetEase(Ease.OutCirc))
             .Join(_spriteRenderer.transform.DOLocalJump(Vector3.zero, 0.1f, 1, moveSpeed).SetEase(Ease.OutCirc))
             .OnComplete(() => _animator.SetBool(anim, false));
-        
-        onMoved?.Invoke();
         
         yield return sequence.WaitForCompletion();
     }

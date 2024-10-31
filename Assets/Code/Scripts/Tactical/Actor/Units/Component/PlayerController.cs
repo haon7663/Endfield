@@ -27,12 +27,18 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (!_isSkillHolding || _isPrinted) return;
-        _skillHoldTime += Time.deltaTime;
+        if (!_isSkillHolding) return;
         
-        if (!(_skillHoldTime > 0f)) return;
-        BufferedInput(PrintSkill(_skillNum));
-        _isPrinted = true;
+        _skillHoldTime += Time.deltaTime;
+
+        if (!_isPrinted)
+        {
+            BufferedInput(PrintSkill(_skillNum));
+            _isPrinted = true;
+        }
+        
+        if (!(_skillHoldTime > 0.2f) || ArtDirectionManager.Inst.onBulletTime) return;
+        ArtDirectionManager.Inst.StartBulletTime(new List<Unit> { _unit });
     }
 
     private void BufferedInput(IEnumerator c)
@@ -130,15 +136,17 @@ public class PlayerController : MonoBehaviour
                     _skillHoldTime = 0;
                     _isSkillHolding = true;
                 }
+                else
+                {
+                    TextHudController.Inst.ShowElixirConsume(_unit.transform.position + Vector3.up * 1.5f, skill.elixir);
+                }
             }
         }
 
         if (context.canceled)
         {
-            ArtDirectionManager.Inst.EndBulletTime();
             if (!_isSkillHolding)
                 return;
-            
             BufferedInput(UseSkill(_skillNum));
         }
     }
@@ -154,7 +162,6 @@ public class PlayerController : MonoBehaviour
             yield break;
         }
         
-        //ArtDirectionManager.Inst.StartBulletTime(new List<Unit> { _unit });
         SkillManager.Inst.ApplySkillArea(_unit, skill);
     }
     
@@ -170,6 +177,8 @@ public class PlayerController : MonoBehaviour
         _isSkillHolding = false;
         _skillHoldTime = 0;
         _isPrinted = false;
+        
+        ArtDirectionManager.Inst.EndBulletTime();
         
         yield return new WaitForSeconds(0.2f);
     }

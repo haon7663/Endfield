@@ -23,6 +23,7 @@ public class HpViewer : MonoBehaviour
             transform.DOKill(this);
             HealthTextController.Inst.DestroyUI(_health);
             GridManager.Inst.RevertGrid(_unit);
+            SkillManager.Inst.RevertSkillArea(_unit);
         };
     }
 
