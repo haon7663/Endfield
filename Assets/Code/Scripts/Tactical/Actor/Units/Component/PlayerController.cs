@@ -125,43 +125,58 @@ public class PlayerController : MonoBehaviour
     public void OnFirstSkill(InputAction.CallbackContext context)
     {
         if (context.started)
-            OnSkillStarted(0);
+            BufferedInput(OnSkillStarted(0));
 
         if (context.canceled)
-            OnSkillCanceled(0);
+            BufferedInput(OnSkillCanceled(0));
     }
     public void OnSecondSkill(InputAction.CallbackContext context)
     {
         if (context.started)
-            OnSkillStarted(1);
+            BufferedInput(OnSkillStarted(1));
         
         if (context.canceled)
-            OnSkillCanceled(1);
+            BufferedInput(OnSkillCanceled(1));
     }
     public void OnThirdSkill(InputAction.CallbackContext context)
     {
         if (context.started)
-            OnSkillStarted(2);
+            BufferedInput(OnSkillStarted(2));
         
         if (context.canceled)
-            OnSkillCanceled(2);
+            BufferedInput(OnSkillCanceled(2));
     }
     public void OnFourthSkill(InputAction.CallbackContext context)
     {
         if (context.started)
-            OnSkillStarted(3);
+            BufferedInput(OnSkillStarted(3));
         
         if (context.canceled)
-            OnSkillCanceled(3);
+            BufferedInput(OnSkillCanceled(3));
+    }
+
+    public void OnCancelSkill(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            if (!ArtDirectionManager.Inst.onBulletTime)
+                return;
+            
+            SkillManager.Inst.RevertSkillArea(_unit);
+            _prevSkill.Cancel(_unit);
+            _prevSkill = null;
+            _skillNum = -1;
+            ArtDirectionManager.Inst.EndBulletTime();
+        }
     }
     #endregion
 
-    private void OnSkillStarted(int skillNum)
+    private IEnumerator OnSkillStarted(int skillNum)
     {
-        if (skillNum == _skillNum) return;
+        if (skillNum == _skillNum) yield break;
         _skillNum = skillNum;
             
-        var skill = SkillManager.Inst.GetSkillAtIndex(_skillNum);
+        var skill = SkillManager.Inst.GetSkillAtIndex(skillNum);
         if (GameManager.Inst.curElixir >= skill.elixir)
         {
             if (!ArtDirectionManager.Inst.onBulletTime)
@@ -175,21 +190,18 @@ public class PlayerController : MonoBehaviour
         else
         {
             TextHudController.Inst.ShowElixirConsume(_unit.transform.position + Vector3.up * 1.5f, skill.elixir);
+            _skillNum = -1;
         }
     }
     
-    private void OnSkillCanceled(int skillNum)
+    private IEnumerator OnSkillCanceled(int skillNum)
     {
-        if (skillNum != _skillNum) return;
+        if (skillNum != _skillNum) yield break;
         
-        BufferedInput(UseSkill(skillNum));
-        _skillNum = -1;
-    }
-    
-    private IEnumerator UseSkill(int skillNum)
-    {
         var skill = SkillManager.Inst.GetSkillAtIndex(skillNum);
-        if (skill == null || GameManager.Inst.curElixir < skill.elixir) yield break;
+        
+        _prevSkill = null;
+        _skillNum = -1;
         
         _animator.SetTrigger(Attack);
         
