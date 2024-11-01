@@ -1,9 +1,15 @@
 ﻿name,health,actionTime,skillName
 Player,25,0.2,Slash
-,,,Throw
+,,,Shoot
 ,,,
-Spider,12,0.6,Slash
-,,,FireBall
+Spider,15,0.5,Slash
+,,,Shoot
 ,,,
-Double Flower,25,0.5,Slash
-,,,FireBall
+Double Flower,25,1,Slash
+,,,Shoot
+,,,
+Plant Dog,19,0.25,Slash
+,,,Shoot
+,,,
+Explosion Spider,10,0.4,Slash
+,,,Shoot

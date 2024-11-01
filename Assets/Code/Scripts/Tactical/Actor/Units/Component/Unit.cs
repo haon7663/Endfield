@@ -59,5 +59,7 @@ public class Unit : MonoBehaviour
     {
         (other.Tile, Tile) = (Tile, other.Tile);
         (other.Tile.content, Tile.content) = (Tile.content, other.Tile.content);
+        
+        OnAction?.Invoke();
     }
 }

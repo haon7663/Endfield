@@ -20,7 +20,7 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         _surviveEnemyCount = 0;
         _curWaveCount = 1;
-        SpawnEnemy();
+        SpawnEnemies();
         WaveController.Inst.UpdateWaveText(_curWaveCount);
     }
 
@@ -29,7 +29,6 @@ public class SpawnManager : Singleton<SpawnManager>
         var unitData = UnitLoader.GetUnitData(unitName);
         var unit = Instantiate(isPlayer ? playerPrefab : enemyPrefab);
         unit.Init(unitData, tile);
-
         return unit;
     }
 
@@ -46,20 +45,17 @@ public class SpawnManager : Singleton<SpawnManager>
         if(--_surviveEnemyCount <= 0)
         {
             if (_curWaveCount >= maxWaveCount) return;
-            SpawnEnemy();
+            SpawnEnemies();
             WaveController.Inst.UpdateWaveText(++_curWaveCount);
         }
-           
-      
     }
-    
-    private void SpawnEnemy()
+    private void SpawnEnemies()
     {
         var tiles = new List<Tile>();
         for (var i = 0; i < maxEnemyCount; i++)
         {
             var tile = GridManager.Inst.GetRandomTile(tiles);
-            SpawnEnemy("Spider", tile);
+            SpawnEnemy(UnitLoader.GetAllUnitData().Random().name, tile);
             tiles.Add(tile);
             _surviveEnemyCount++;
         }

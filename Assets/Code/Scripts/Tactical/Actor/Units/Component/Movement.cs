@@ -44,7 +44,6 @@ public class Movement : MonoBehaviour
         var targetTile = other.Tile;
         
         _unit.Swap(other);
-
         StartCoroutine(other.Movement.MoveTo(prevTile));
         yield return StartCoroutine(MoveTo(targetTile));
     }
