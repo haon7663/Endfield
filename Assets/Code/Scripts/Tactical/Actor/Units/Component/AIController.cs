@@ -29,7 +29,23 @@ public class AIController : MonoBehaviour
         }
     }
     private List<SkillAndCool> _skillAndCools;
-    private bool _isActing;
+
+    private bool isActing;
+    private bool _isActing 
+    {
+        get => isActing;
+        set
+        {
+            isActing = value;
+            if (!isActing)
+            {
+                _curActionCool = actionCool;
+            }
+        }
+    }
+
+   
+   
 
     private void Awake()
     {
