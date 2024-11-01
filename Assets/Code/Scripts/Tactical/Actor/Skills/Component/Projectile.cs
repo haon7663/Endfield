@@ -1,7 +1,8 @@
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public abstract class Projectile : MonoBehaviour
+public abstract class Projectile : MonoBehaviour, IExecuteAble
 {
     protected Tile tile;
     protected Vector3 dir;
@@ -17,4 +18,7 @@ public abstract class Projectile : MonoBehaviour
         this.distance = distance;
         this.projectileSpeed = projectileSpeed;
     }
+
+    public Action OnHit { get; set; }
+    public Action OnEnd { get; set; }
 }

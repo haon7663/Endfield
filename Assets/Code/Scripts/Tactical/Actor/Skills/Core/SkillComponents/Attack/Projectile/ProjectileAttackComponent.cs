@@ -7,8 +7,8 @@ public class ProjectileAttackComponent : AttackComponent
     
     public override void Execute(Unit user)
     {
-        var prefab = Resources.Load<GameObject>("Skills/" + prefabName);
         var projectile = SkillFactory.Create(prefabName).GetComponent<Projectile>();
         projectile.Init(user.Tile, user.GetComponent<Movement>().Dir, value, distance, projectileSpeed);
+        ExecuteObjects.Add(projectile.GetComponent<IExecuteAble>());
     } 
 }

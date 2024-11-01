@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Serialization;
 
 [Serializable]
@@ -16,10 +17,26 @@ public class Skill
     public IEnumerator Use(Unit user)
     {
         user.additionalKey = 0;
+        SkillComponent defaultComponent = null;
         foreach (var component in skillComponents) 
         {
-            component.Execute(user);  // 각 컴포넌트의 동작 실
-            yield return null;
+            Debug.Log(component.saveName + "/ " + component.ExecuteType);
+            switch (component.ExecuteType)
+            {
+                case SkillExecuteType.Default:
+                    component.Execute(user);
+                    defaultComponent = component;
+                    yield return null;
+                    break;
+                case SkillExecuteType.OnHit:
+                    defaultComponent?.AddOnHit(() => component.Execute(user));
+                    break;
+                case SkillExecuteType.OnEnd:
+                    defaultComponent?.AddOnEnd(() => component.Execute(user));
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
         SkillManager.Inst.RevertSkillArea(user);
         Cancel(user);

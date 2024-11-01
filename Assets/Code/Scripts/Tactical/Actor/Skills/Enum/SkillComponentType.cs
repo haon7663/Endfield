@@ -1,6 +1,6 @@
-public enum SkillComponentType
+public enum SkillExecuteType
 {
-    Attack, //Damage
-    Move, //Move
-    Dash, //Move And Damage
+    Default,
+    OnHit,
+    OnEnd
 }

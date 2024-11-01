@@ -16,7 +16,10 @@ public class LinearProjectile : Projectile
     {
         _currentLocalKey = Mathf.FloorToInt(_timer * projectileSpeed) + 1;
         if (_currentLocalKey >= distance)
+        {
+            OnEnd?.Invoke();
             Destroy(gameObject);
+        }
 
         var prevPos = tile.transform.position + dir * _currentLocalKey + Vector3.up * 1.2f;
         var curPos = tile.transform.position + dir * (_currentLocalKey + 1)  + Vector3.up * 1.2f;
@@ -30,6 +33,8 @@ public class LinearProjectile : Projectile
             if (currentTile.content.TryGetComponent(out Health health))
             {
                 health.OnDamage(damage);
+                OnHit?.Invoke();
+                OnEnd?.Invoke();
                 Destroy(gameObject);
             }
         }

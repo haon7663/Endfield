@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Double Flower
+  m_Controller: {fileID: 9100000, guid: 1e4ca50310f70ee46827a9072dd4a391, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 1200a182c5458d741863736d16a0b16a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 7660b5299c7f47e429d41462770da987, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: aa0137f164efb4c4c9f2dc4e9d7175c5, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 5c26186be2584b44d80ea62ea5de36e9, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 0b9c48c49f5462044a348863d85b0182, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 7365036d3767e924cae1593c0dd0ab71, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 762d907b8c9f30544bd883f2ce0322d6, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 719f91e63af49b04d9fa989d427c4b4e, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 22991f3bf81ca924a8fb799c5ef57388, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: bd762e5416c842549a523fc18c2f196e, type: 2}

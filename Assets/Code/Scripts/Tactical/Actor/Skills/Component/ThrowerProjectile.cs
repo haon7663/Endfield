@@ -28,8 +28,10 @@ public class ThrowerProjectile : Projectile
                 if (currentTile.content.TryGetComponent(out Health health))
                 {
                     health.OnDamage(damage);
+                    OnHit?.Invoke();
                 }
             }
+            OnEnd?.Invoke();
             Destroy(gameObject);
         }
 

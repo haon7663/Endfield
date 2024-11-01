@@ -226,7 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b2e94f874d2fc74bbce4a60692e3960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 6491653386987817169}
+  image: {fileID: 3999154980173137461}
   data:
     name: 
     label: 

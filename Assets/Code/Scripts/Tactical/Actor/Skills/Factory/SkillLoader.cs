@@ -5,6 +5,15 @@ using UnityEngine;
 
 public static class SkillLoader
 {
+    public static Sprite GetSkillSprite(string path)
+    {
+        if (!path.StartsWith("Card_Icon/"))
+            path = "Card_Icon/" + path;
+        
+        var sprite = Resources.Load<Sprite>(path);
+        return sprite;
+    }
+    
     public static Skill GetSkillFromUnitName(string unitName)
     {
         var skills = GetAllSkills("skill");
