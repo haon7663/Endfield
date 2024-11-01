@@ -17,8 +17,10 @@ public class SkillCastingViewer : MonoBehaviour
     public void Init(Skill skill, Vector3 pos)
     {
         Data = skill;
-        rectTransform.anchoredPosition = pos;
-        //selectSkill.sprite = skillSO.skillImage;
+        //rectTransform.anchoredPosition = pos;
+        rectTransform.anchoredPosition = new Vector2(0,90);
+        rectTransform.DOAnchorPos(pos, 0.15f).SetEase(Ease.InOutCubic);
+        selectSkill.sprite = SkillLoader.GetSkillSprite(skill.name);
         
         castLabel.text = skill.castingTime.ToString("F1");
     }
