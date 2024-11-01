@@ -16,7 +16,7 @@ public class Unit : MonoBehaviour
     public Movement Movement { get; private set; }
     public Health Health { get; private set; }
     
-    public Action onPlaced;
+    public Action OnAction;
 
     public UnitType unitType;
 
@@ -37,11 +37,11 @@ public class Unit : MonoBehaviour
         if (TryGetComponent(out AIController aiController))
             aiController.actionCool = data.actionTime;
         
-        transform.position = tile.transform.position + Vector3.up * 0.5f;
+        transform.position = tile.transform.position;
         Place(tile.IsOccupied ? GridManager.Inst.FindNearestTile(tile.Key) : tile);
-        transform.DOMoveX(Tile.transform.position.x, 0.25f);
+        transform.DOMove(Tile.transform.position + Vector3.up * 0.5f, 0.25f);
         
-        onPlaced += SkillManager.Inst.UpdateSkillArea;
+        OnAction += SkillManager.Inst.UpdateSkillArea;
     }
 
     public void Place(Tile tile)
@@ -52,12 +52,14 @@ public class Unit : MonoBehaviour
         Tile = tile;
         Tile.content = this;
         
-        onPlaced?.Invoke();
+        OnAction?.Invoke();
     }
     
     public void Swap(Unit other)
     {
         (other.Tile, Tile) = (Tile, other.Tile);
         (other.Tile.content, Tile.content) = (Tile.content, other.Tile.content);
+        
+        OnAction?.Invoke();
     }
 }

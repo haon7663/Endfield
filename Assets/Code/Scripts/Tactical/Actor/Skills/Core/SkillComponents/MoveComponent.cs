@@ -5,33 +5,31 @@ public class MoveComponent : SkillComponent
 {
     private PreviewSprite _previewSprite;
     
-    public override void Execute(Unit user)
+    public override void Execute(SkillComponentInfo info)
     {
-        user.additionalKey = 0;
-        var movement = user.Movement;
-        var task = new Task(movement.OnMove(CalculateDistance(user) * user.Movement.DirX));
+        var movement = info.user.Movement;
+        var task = new Task(movement.OnMove(CalculateDistance(info) * info.dirX));
         task.Start();
     }
 
-    public override void Print(Unit user)
+    public override void Print(SkillComponentInfo info)
     {
-        var additionalDistance = CalculateDistance(user) * user.Movement.DirX;
-        _previewSprite = GridManager.Inst.DisplayPreview(user, user.Tile.Key + additionalDistance);
-        user.additionalKey += additionalDistance;
+        var additionalDistance = CalculateDistance(info) * info.dirX;
+        _previewSprite = GridManager.Inst.DisplayPreview(info.user, info.tile.Key + additionalDistance);
     }
 
-    public override void Cancel(Unit user)
+    public override void Cancel(SkillComponentInfo info)
     {
         _previewSprite?.Cancel();
         _previewSprite = null;
     }
 
-    private int CalculateDistance(Unit user)
+    private int CalculateDistance(SkillComponentInfo info)
     {
         var index = 0;
         for (var i = 1; i <= distance; i++)
         {
-            if (GetStartingTile(user, i).IsOccupied)
+            if (GetStartingTile(info, i).IsOccupied)
                 break;
             index = i;
         }

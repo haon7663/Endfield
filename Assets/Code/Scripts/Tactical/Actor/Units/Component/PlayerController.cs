@@ -77,7 +77,11 @@ public class PlayerController : MonoBehaviour
         if (context.started)
         {
             if (ArtDirectionManager.Inst.onBulletTime)
+            {
+                if (_movement.DirX != -1)
+                    BufferedInput(_movement.OnFlip(true));
                 return;
+            }
 
             var targetTile = GridManager.Inst.GetTile(_unit.Tile.Key - 1);
             if (targetTile.IsOccupied)
@@ -92,7 +96,11 @@ public class PlayerController : MonoBehaviour
         if (context.started)
         {
             if (ArtDirectionManager.Inst.onBulletTime)
+            {
+                if (_movement.DirX != 1)
+                    BufferedInput(_movement.OnFlip(false));
                 return;
+            }
             
             var targetTile = GridManager.Inst.GetTile(_unit.Tile.Key + 1);
             if (targetTile.IsOccupied)

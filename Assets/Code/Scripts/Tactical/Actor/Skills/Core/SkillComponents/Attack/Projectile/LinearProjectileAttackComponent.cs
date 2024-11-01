@@ -3,29 +3,29 @@ using UnityEngine;
 
 public class LinearProjectileAttackComponent : ProjectileAttackComponent
 {
-    public override void Print(Unit user)
+    public override void Print(SkillComponentInfo info)
     {
         var tiles = new List<Tile>();
-        for (var i = 1; i <= CalculateDistance(user); i++)
+        for (var i = 1; i <= CalculateDistance(info); i++)
         {
-            var tile = GetStartingTile(user, i);
+            var tile = GetStartingTile(info, i);
             tiles.Add(tile);
         }
-        GridManager.Inst.ApplyGrid(user, tiles);
+        GridManager.Inst.ApplyGrid(info.user, tiles);
     }
     
-    public override void Cancel(Unit user)
+    public override void Cancel(SkillComponentInfo info)
     {
-        GridManager.Inst.RevertGrid(user);
+        GridManager.Inst.RevertGrid(info.user);
     }
     
-    private int CalculateDistance(Unit user)
+    private int CalculateDistance(SkillComponentInfo info)
     {
         var index = 0;
         for (var i = 1; i <= distance; i++)
         {
             index = i;
-            if (GetStartingTile(user, i).IsOccupied)
+            if (GetStartingTile(info, i).IsOccupied)
                 break;
         }
         return index;

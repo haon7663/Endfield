@@ -85,7 +85,8 @@ public class GridManager : Singleton<GridManager>
     
     public void ApplyGrid(Unit user, List<Tile> tiles)
     {
-        _previewTiles[user] = tiles;
+        if (!_previewTiles.TryAdd(user, tiles))
+            _previewTiles[user].AddRange(tiles);
         UpdateGrid();
     }
     public void RevertGrid(Unit user)

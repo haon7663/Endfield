@@ -11,11 +11,6 @@ public class SkillSelectionPanelController : MonoBehaviour
     [SerializeField] private Transform cardGroup;
     [SerializeField] private ClosePanel closePanel;
 
-    private void Start()
-    {
-        Show();
-    }
-
     public void Show()
     {
         var skills = SkillLoader.GetAllSkills("skill");

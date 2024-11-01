@@ -12,19 +12,17 @@ public class StartEffectController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        backGround.rectTransform.DOSizeDelta(new Vector2(backGround.rectTransform.sizeDelta.x, 180), 0.8f)
+        backGround.rectTransform.DOSizeDelta(new Vector2(backGround.rectTransform.sizeDelta.x, 180), 0.4f)
             .OnComplete(() =>
             {
-                startText.DOFade(1, 0.9f);
-                underBar.DOFade(1, 0.9f);
-                DOVirtual.DelayedCall(1.7f, () =>
+                startText.DOFade(1, 0.45f);
+                underBar.DOFade(1, 0.45f);
+                DOVirtual.DelayedCall(1f, () =>
                 {
-                    underBar.rectTransform.DOMoveX(-1200, 1.5f).SetEase(Ease.InCubic);
-                    startText.rectTransform.DOMoveX(-1200, 1.5f).SetEase(Ease.InCubic)
-                        .OnComplete(() => backGround.DOFade(0, 0.5f));
+                    underBar.rectTransform.DOMoveX(-1200, 1f).SetEase(Ease.InCubic);
+                    startText.rectTransform.DOMoveX(-1200, 1f).SetEase(Ease.InCubic)
+                        .OnComplete(() => backGround.DOFade(0, 0.25f));
                 });
             });
-        
-            
     }
 }

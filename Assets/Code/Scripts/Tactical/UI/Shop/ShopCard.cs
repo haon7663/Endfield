@@ -14,7 +14,6 @@ public class ShopCard : ShopItem
     {
         skillData = new Skill("Slash");
         card.Init(skillData);
-       
     }
 
     public override void BuyAction()

@@ -44,9 +44,8 @@ public class Movement : MonoBehaviour
         var targetTile = other.Tile;
         
         _unit.Swap(other);
-
-        StartCoroutine(MoveTo(targetTile));
-        yield return StartCoroutine(other.Movement.MoveTo(prevTile));
+        StartCoroutine(other.Movement.MoveTo(prevTile));
+        yield return StartCoroutine(MoveTo(targetTile));
     }
     
     public IEnumerator MoveTo(Tile tile)
@@ -70,7 +69,7 @@ public class Movement : MonoBehaviour
 
     public IEnumerator OnFlip(bool isFlip) 
     {
-        _animator.SetBool(IsFlip, true);
+        /*_animator.SetBool(IsFlip, true);
         var sequence = DOTween.Sequence();
         sequence.Append(_spriteRenderer.transform.DOLocalJump(Vector3.zero, 0.2f, 1, moveSpeed).SetEase(Ease.Linear))
             .InsertCallback(moveSpeed * 0.5f, () =>
@@ -80,6 +79,11 @@ public class Movement : MonoBehaviour
             })
             .OnComplete(() => _animator.SetBool(IsFlip, false) );
 
-        yield return sequence.WaitForCompletion();
+        yield return sequence.WaitForCompletion();*/
+        
+        _dir = isFlip ? Vector2.left : Vector2.right;
+        transform.localScale = new Vector3(isFlip ? -1 : 1, 1, 1);
+        _unit.OnAction?.Invoke();
+        yield break;
     }
 }

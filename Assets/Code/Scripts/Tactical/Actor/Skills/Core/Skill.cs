@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Serialization;
 
 [Serializable]
@@ -16,29 +17,49 @@ public class Skill
     public IEnumerator Use(Unit user)
     {
         user.additionalKey = 0;
+        SkillComponent defaultComponent = null;
+        var skillComponentInfo = new SkillComponentInfo(user, user.Tile, user.Movement.DirX);
         foreach (var component in skillComponents) 
         {
-            component.Execute(user);  // 각 컴포넌트의 동작 실
-            yield return null;
+            Debug.Log(component.saveName + "/ " + component.ExecuteType);
+            switch (component.ExecuteType)
+            {
+                case SkillExecuteType.Default:
+                    component.Execute(skillComponentInfo);
+                    defaultComponent = component;
+                    break;
+                case SkillExecuteType.OnHit:
+                    defaultComponent?.AddOnHit(component.Execute);
+                    break;
+                case SkillExecuteType.OnEnd:
+                    defaultComponent?.AddOnEnd(component.Execute);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
         SkillManager.Inst.RevertSkillArea(user);
         Cancel(user);
+
+        yield return new WaitForSeconds(0.2f);
     }
 
     public void Print(Unit user)
     {
         user.additionalKey = 0;
+        var skillComponentInfo = new SkillComponentInfo(user, user.Tile, user.Movement.DirX);
         foreach (var component in skillComponents)
         {
-            component.Print(user);
+            component.Print(skillComponentInfo);
         }
     }
 
     public void Cancel(Unit user)
     {
+        var skillComponentInfo = new SkillComponentInfo(user, user.Tile, user.Movement.DirX);
         foreach (var component in skillComponents)
         {
-            component.Cancel(user);
+            component.Cancel(skillComponentInfo);
         }
     }
     

@@ -5,10 +5,10 @@ public class ProjectileAttackComponent : AttackComponent
     public string prefabName;
     public int projectileSpeed;
     
-    public override void Execute(Unit user)
+    public override void Execute(SkillComponentInfo info)
     {
-        var prefab = Resources.Load<GameObject>("Skills/" + prefabName);
         var projectile = SkillFactory.Create(prefabName).GetComponent<Projectile>();
-        projectile.Init(user.Tile, user.GetComponent<Movement>().Dir, value, distance, projectileSpeed);
+        projectile.Init(info, value, distance, projectileSpeed);
+        ExecuteObjects.Add(projectile.GetComponent<ISkillExecuter>());
     } 
 }

@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class ThrowerProjectile : Projectile
 {
-    public override void Init(Tile tile, Vector3 dir, int damage, int distance, int projectileSpeed)
+    public override void Init(SkillComponentInfo info, int damage, int distance, int projectileSpeed)
     {
-        base.Init(tile, dir, damage, distance, projectileSpeed);
+        base.Init(info, damage, distance, projectileSpeed);
         transform.position = tile.transform.position + Vector3.up * 1.2f;
         _startPosition = tile.transform.position + Vector3.up * 1.2f;
-        _targetPosition = tile.transform.position + dir * distance + Vector3.up * 1.2f;
+        _targetPosition = tile.transform.position + Vector3.right * (dirX * distance) + Vector3.up * 1.2f;
     }
 
     private float _timer;
@@ -22,23 +22,26 @@ public class ThrowerProjectile : Projectile
         _currentLocalKey = Mathf.FloorToInt(_timer * projectileSpeed) + 1;
         if (_currentLocalKey > distance)
         {
-            var currentTile = GridManager.Inst.GetTile(tile.Key + (int)dir.x * distance);
+            var currentTile = GridManager.Inst.GetTile(tile.Key + dirX * distance);
+            var newInfo = new SkillComponentInfo(info, currentTile);
             if (currentTile && currentTile.content)
             {
                 if (currentTile.content.TryGetComponent(out Health health))
                 {
                     health.OnDamage(damage);
+                    OnHit?.Invoke(newInfo);
                 }
             }
+            OnEnd?.Invoke(newInfo);
             Destroy(gameObject);
         }
 
         var startX = _startPosition.x;
         var targetX = _targetPosition.x;
-        float nextX = Mathf.MoveTowards(transform.position.x, targetX, projectileSpeed * Time.deltaTime);
-        float baseY = Mathf.Lerp(_startPosition.y, _targetPosition.y, (nextX - startX) / distance);
-        float arc = 2 * (nextX - startX) * (nextX - targetX) / (-0.25f * distance * distance);
-        Vector3 nextPosition = new Vector3(nextX, baseY + arc, transform.position.z);
+        var nextX = Mathf.MoveTowards(transform.position.x, targetX, projectileSpeed * Time.deltaTime);
+        var baseY = Mathf.Lerp(_startPosition.y, _targetPosition.y, (nextX - startX) / distance);
+        var arc = 2 * (nextX - startX) * (nextX - targetX) / (-0.25f * distance * distance);
+        var nextPosition = new Vector3(nextX, baseY + arc, transform.position.z);
         transform.rotation = LookAt2D(nextPosition - transform.position);
         transform.position = nextPosition;
         
