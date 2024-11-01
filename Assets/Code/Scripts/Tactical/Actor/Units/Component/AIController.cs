@@ -14,7 +14,7 @@ public class AIController : MonoBehaviour
     private SkillHolder _skillHolder;
 
     public float actionCool;
-    private float _curActionCool;
+    [SerializeField]private float _curActionCool;
 
     [Serializable]
     private class SkillAndCool
@@ -65,7 +65,7 @@ public class AIController : MonoBehaviour
         UpdateSkillCoolDown();
         if (!_isActing)
         {
-            UpdateCoolDown(ref _curActionCool, actionCool, EnemyActing);
+            UpdateCoolDown(  actionCool, EnemyActing);
         }
     }
     
@@ -79,14 +79,14 @@ public class AIController : MonoBehaviour
         }
     }
 
-    private void UpdateCoolDown(ref float currentCool, float maxCool, Action onCooldownComplete)
+    private void UpdateCoolDown( float maxCool, Action onCooldownComplete)
     {
-        if (currentCool > 0)
-            currentCool -= Time.deltaTime;
+        if (_curActionCool > 0)
+            _curActionCool -= Time.deltaTime;
         else
         {
             onCooldownComplete?.Invoke();
-            currentCool = maxCool;
+            _curActionCool = maxCool;
         }
     }
 
@@ -105,12 +105,12 @@ public class AIController : MonoBehaviour
         {
             _skillAndCools.FirstOrDefault(sc => sc.skill == skillCastingViewer.Data)!.coolTime =
                 skillCastingViewer.Data.elixir * 1.5f;
-            executeTime += skillCastingViewer.Data.elixir * 1.5f;
+            executeTime += skillCastingViewer.Data.castingTime + 0.3f;
         }
         StartCoroutine(_skillHolder.Execute());
         _isActing = true;
 
-        DOVirtual.DelayedCall(executeTime, () => { _isActing = false; });
+        DOVirtual.DelayedCall(executeTime , () => {  _isActing = false; }).SetUpdate(false);
     }
 
     private IEnumerator TryAddSkill() //머리 위에 스킬 보이기
@@ -127,6 +127,7 @@ public class AIController : MonoBehaviour
 
     private void EnemyActing() // 적 -> 플레이어쪽으로 이동
     {
+        if(_isActing)Debug.Log("버그");
         if (_skillHolder.castingViewers.Count == 0)
         {
             StartCoroutine(TryAddSkill());
