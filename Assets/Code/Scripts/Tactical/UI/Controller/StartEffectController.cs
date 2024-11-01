@@ -24,7 +24,5 @@ public class StartEffectController : MonoBehaviour
                         .OnComplete(() => backGround.DOFade(0, 0.25f));
                 });
             });
-        
-            
     }
 }

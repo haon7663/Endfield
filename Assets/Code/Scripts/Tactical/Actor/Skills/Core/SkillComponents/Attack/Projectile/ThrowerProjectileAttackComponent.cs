@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class ThrowerProjectileAttackComponent : ProjectileAttackComponent
 {
-    public override void Print(Unit user)
+    public override void Print(SkillComponentInfo info)
     {
-        GridManager.Inst.ApplyGrid(user, new List<Tile> { GetStartingTile(user, distance) });
+        GridManager.Inst.ApplyGrid(info.user, new List<Tile> { GetStartingTile(info, distance) });
     }
-    public override void Cancel(Unit user)
+    public override void Cancel(SkillComponentInfo info)
     {
-        GridManager.Inst.RevertGrid(user);
+        GridManager.Inst.RevertGrid(info.user);
     }
 }

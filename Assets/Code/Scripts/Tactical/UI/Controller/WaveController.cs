@@ -15,6 +15,4 @@ public class WaveController : Singleton<WaveController>
     {
         WaveText.text = waveCount.ToString()+ " / 3";
     }
-
- 
 }
