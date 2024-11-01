@@ -6,9 +6,36 @@
             "id": "df70fa95-8a34-4494-b137-73ab6b9c7d37",
             "actions": [
                 {
-                    "name": "Skill",
+                    "name": "FirstSkill",
                     "type": "Button",
                     "id": "6c2ab1b8-8984-453a-af3d-a3c78ae1679a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SecondSkill",
+                    "type": "Button",
+                    "id": "dfbc2c93-67dd-411f-a1fa-6e15c00b8d61",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ThirdSkill",
+                    "type": "Button",
+                    "id": "c2be3b04-306e-431d-9b51-17bf9f9cab2d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "FourthSkill",
+                    "type": "Button",
+                    "id": "6e3b1ddc-c2ce-4980-8a0b-b032bdb2d027",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -50,40 +77,40 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Skill",
+                    "action": "FirstSkill",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "94258f6b-e408-4166-8c9c-0af11ba0a29f",
+                    "id": "59e744f5-0bfc-464a-9278-b6efb60cdd0d",
                     "path": "<Keyboard>/i",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Skill",
+                    "action": "SecondSkill",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "0e6a8844-21f5-4933-90ea-35afa9155a98",
+                    "id": "01836b4a-6981-4079-92f7-b1ad78d57408",
                     "path": "<Keyboard>/j",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Skill",
+                    "action": "ThirdSkill",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "b36a83f5-196e-4ae6-8322-2d35ad237592",
+                    "id": "0a3ae07b-024a-478f-9817-9a1566d72d0e",
                     "path": "<Keyboard>/k",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Skill",
+                    "action": "FourthSkill",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

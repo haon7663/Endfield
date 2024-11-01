@@ -13,10 +13,8 @@ public class PlayerController : MonoBehaviour
     private Unit _unit;
     private Animator _animator;
 
-    private int _skillNum;
-    private float _skillHoldTime;
-    private bool _isSkillHolding;
-    private bool _isPrinted;
+    private Skill _prevSkill;
+    private int _skillNum = -1;
     
     private static readonly int Attack = Animator.StringToHash("attack");
 
@@ -29,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (!_isSkillHolding) return;
+        /*if (!_isSkillHolding) return;
         
         _skillHoldTime += Time.deltaTime;
 
@@ -40,7 +38,7 @@ public class PlayerController : MonoBehaviour
         }
         
         if (!(_skillHoldTime > 0.2f) || ArtDirectionManager.Inst.onBulletTime) return;
-        ArtDirectionManager.Inst.StartBulletTime(new List<Unit> { _unit });
+        ArtDirectionManager.Inst.StartBulletTime(new List<Unit> { _unit });*/
     }
 
     private void BufferedInput(IEnumerator c)
@@ -123,75 +121,82 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnSkillUsed(InputAction.CallbackContext context)
+    #region SkillInput
+    public void OnFirstSkill(InputAction.CallbackContext context)
     {
-        var key = context.control.name;
-
         if (context.started)
-        {
-            if (!_isSkillHolding)
-            {
-                _skillNum = key switch
-                {
-                    "u" => 0,
-                    "i" => 1,
-                    "j" => 2,
-                    "k" => 3,
-                    _ => -1
-                };
-            
-                var skill = SkillManager.Inst.GetSkillAtIndex(_skillNum);
-                if (GameManager.Inst.curElixir >= skill.elixir)
-                {
-                    _skillHoldTime = 0;
-                    _isSkillHolding = true;
-                }
-                else
-                {
-                    TextHudController.Inst.ShowElixirConsume(_unit.transform.position + Vector3.up * 1.5f, skill.elixir);
-                }
-            }
-        }
+            OnSkillStarted(0);
 
         if (context.canceled)
-        {
-            if (!_isSkillHolding)
-                return;
-            BufferedInput(UseSkill(_skillNum));
-        }
+            OnSkillCanceled(0);
     }
-
-    private IEnumerator PrintSkill(int skillNum)
+    public void OnSecondSkill(InputAction.CallbackContext context)
     {
-        var skill = SkillManager.Inst.GetSkillAtIndex(skillNum);
+        if (context.started)
+            OnSkillStarted(1);
+        
+        if (context.canceled)
+            OnSkillCanceled(1);
+    }
+    public void OnThirdSkill(InputAction.CallbackContext context)
+    {
+        if (context.started)
+            OnSkillStarted(2);
+        
+        if (context.canceled)
+            OnSkillCanceled(2);
+    }
+    public void OnFourthSkill(InputAction.CallbackContext context)
+    {
+        if (context.started)
+            OnSkillStarted(3);
+        
+        if (context.canceled)
+            OnSkillCanceled(3);
+    }
+    #endregion
 
-        if (skill == null) yield break;
-        if (GameManager.Inst.curElixir < skill.elixir)
+    private void OnSkillStarted(int skillNum)
+    {
+        if (skillNum == _skillNum) return;
+        _skillNum = skillNum;
+            
+        var skill = SkillManager.Inst.GetSkillAtIndex(_skillNum);
+        if (GameManager.Inst.curElixir >= skill.elixir)
+        {
+            if (!ArtDirectionManager.Inst.onBulletTime)
+                ArtDirectionManager.Inst.StartBulletTime(new List<Unit> { _unit });
+            
+            SkillManager.Inst.RevertSkillArea(_unit);
+            _prevSkill?.Cancel(_unit);
+            _prevSkill = skill;
+            SkillManager.Inst.ApplySkillArea(_unit, skill);
+        }
+        else
         {
             TextHudController.Inst.ShowElixirConsume(_unit.transform.position + Vector3.up * 1.5f, skill.elixir);
-            yield break;
         }
+    }
+    
+    private void OnSkillCanceled(int skillNum)
+    {
+        if (skillNum != _skillNum) return;
         
-        SkillManager.Inst.ApplySkillArea(_unit, skill);
+        BufferedInput(UseSkill(skillNum));
+        _skillNum = -1;
     }
     
     private IEnumerator UseSkill(int skillNum)
     {
         var skill = SkillManager.Inst.GetSkillAtIndex(skillNum);
-        
         if (skill == null || GameManager.Inst.curElixir < skill.elixir) yield break;
         
         _animator.SetTrigger(Attack);
-        StartCoroutine(skill.Use(_unit));
+        
         SkillManager.Inst.ConsumeSkill(skillNum);
         GameManager.Inst.curElixir -= skill.elixir;
-        
-        _isSkillHolding = false;
-        _skillHoldTime = 0;
-        _isPrinted = false;
-        
         ArtDirectionManager.Inst.EndBulletTime();
         
-        yield return new WaitForSeconds(0.2f);
+        yield return StartCoroutine(skill.Use(_unit));
     }
 }
