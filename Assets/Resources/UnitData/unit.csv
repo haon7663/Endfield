@@ -2,14 +2,13 @@
 Player,25,0.2,Slash
 ,,,Shoot
 ,,,
-Spider,35,0.5,Slash
+Spider,15,0.5,Slash
 ,,,Shoot
 ,,,
-Double Flower,55,0.9,Slash
+Double Flower,20,0.9,Slash
 ,,,Shoot
 ,,,
 Plant Dog,42,0.25,Slash
 ,,,Shoot
 ,,,
-Explosion Spider,21,0.4,Slash
-,,,Shoot
+Explosion Spider,12,0.4,SelfExplosion
