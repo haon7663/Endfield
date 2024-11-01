@@ -10,13 +10,18 @@ public class SpawnManager : Singleton<SpawnManager>
     [SerializeField] private Unit playerPrefab;
     [SerializeField] private Unit enemyPrefab;
     [SerializeField] private int maxEnemyCount;
+    [SerializeField] private int maxWaveCount;
+
     [SerializeField] private UnitSpawnHandler spawnHandlerPrefab;
     private int _surviveEnemyCount;
+    private int _curWaveCount;
 
     private void Start()
     {
         _surviveEnemyCount = 0;
+        _curWaveCount = 1;
         SpawnEnemy();
+        WaveController.Inst.UpdateWaveText(_curWaveCount);
     }
 
     public Unit Summon(string unitName, Tile tile, bool isPlayer = false)
@@ -39,7 +44,13 @@ public class SpawnManager : Singleton<SpawnManager>
     public void EnemyDead()
     {
         if(--_surviveEnemyCount <= 0)
+        {
+            if (_curWaveCount >= maxWaveCount) return;
             SpawnEnemy();
+            WaveController.Inst.UpdateWaveText(++_curWaveCount);
+        }
+           
+      
     }
     
     private void SpawnEnemy()
