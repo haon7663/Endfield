@@ -11,18 +11,20 @@ public class PlayerController : MonoBehaviour
     
     private Movement _movement;
     private Unit _unit;
-    private SkillHolder _skillHolder;
+    private Animator _animator;
 
     private int _skillNum;
     private float _skillHoldTime;
     private bool _isSkillHolding;
     private bool _isPrinted;
     
+    private static readonly int Attack = Animator.StringToHash("attack");
+
     private void Awake()
     {
         _movement = GetComponent<Movement>();
         _unit = GetComponent<Unit>();
-        _skillHolder = GetComponent<SkillHolder>();
+        _animator = _unit.SpriteTransform.GetComponent<Animator>();
     }
 
     private void Update()
@@ -178,6 +180,8 @@ public class PlayerController : MonoBehaviour
         var skill = SkillManager.Inst.GetSkillAtIndex(skillNum);
         
         if (skill == null || GameManager.Inst.curElixir < skill.elixir) yield break;
+        
+        _animator.SetTrigger(Attack);
         StartCoroutine(skill.Use(_unit));
         SkillManager.Inst.ConsumeSkill(skillNum);
         GameManager.Inst.curElixir -= skill.elixir;

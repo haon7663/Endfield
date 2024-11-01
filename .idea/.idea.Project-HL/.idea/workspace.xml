@@ -5,22 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="14d34322-fb5c-456d-baed-061be64639fd" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Project-HL/.idea/projectSettingsUpdater.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Project-HL/.idea/projectSettingsUpdater.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Project-HL/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Project-HL/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Battle/Enemy_Warning.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Battle/Enemy_Warning.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Card/Resources/Card_Icon/Slash.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Card/Resources/Card_Icon/Slash.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Card/Resources/Card_Icon/Slash.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Card/Resources/Card_Icon/Slash.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Card/Resources/Card_Icon/Throw.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Card/Resources/Card_Icon/Throw.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Card/Resources/Card_Icon/Throw.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Card/Resources/Card_Icon/Throw.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Animations/Units/Players/1/Attack.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Animations/Units/Players/1/Attack.anim" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Managers/SpawnManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Managers/SpawnManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Units/Component/Movement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Units/Component/Movement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Units/Component/Unit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Units/Component/Unit.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Units/Factory/UnitLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Units/Factory/UnitLoader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/UI/Skill Icon Panel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/UI/Skill Icon Panel.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/Units/Enemy.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/Units/Enemy.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Units/Component/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Units/Component/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Units/Factory/UnitSpawnHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Units/Factory/UnitSpawnHandler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Level/Scenes/Design.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scenes/Design.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/SkillData/skill.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/SkillData/skill.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/UnitData/unit.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/UnitData/unit.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Units/Double Flower/Idle.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Units/Double Flower/Idle.anim" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,6 +191,7 @@
       <workItem from="1730434847159" duration="4852000" />
       <workItem from="1730449845821" duration="2243000" />
       <workItem from="1730452394916" duration="1365000" />
+      <workItem from="1730453966669" duration="2078000" />
     </task>
     <servers />
   </component>

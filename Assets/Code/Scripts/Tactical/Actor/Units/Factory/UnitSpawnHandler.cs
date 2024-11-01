@@ -17,10 +17,13 @@ public class UnitSpawnHandler : MonoBehaviour
     {
         transform.position = tile.transform.position + offset;
 
+        Debug.Log($"{unitName} is ready to spawn");
         _spriteRenderer.DOFade(1, 0.5f).From(0).SetLoops(4, LoopType.Yoyo)
             .OnComplete(() => {
+            Debug.Log($"{unitName} is spawned");
             SpawnManager.Inst.Summon(unitName, tile);
-            Destroy(gameObject);
+            Debug.Log($"{unitName} is summoned");
+            Destroy(gameObject, 0.01f);
         });
     }
 }

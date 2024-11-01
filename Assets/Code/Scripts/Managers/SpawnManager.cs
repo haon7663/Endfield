@@ -27,6 +27,9 @@ public class SpawnManager : Singleton<SpawnManager>
     public Unit Summon(string unitName, Tile tile, bool isPlayer = false)
     {
         var unitData = UnitLoader.GetUnitData(unitName);
+        if (unitData == null)
+            return null;
+        
         var unit = Instantiate(isPlayer ? playerPrefab : enemyPrefab);
         unit.Init(unitData, tile);
         return unit;
