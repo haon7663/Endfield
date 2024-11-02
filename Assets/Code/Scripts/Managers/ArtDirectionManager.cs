@@ -33,7 +33,7 @@ public class ArtDirectionManager : Singleton<ArtDirectionManager>
         {
             _prevUnits.Add(unit);
             _prevLayerNumbers.Add(unit, unit.Renderer.gameObject.layer);
-            _prevMaterials.Add(unit, unit.Renderer.material);
+            _prevMaterials.Add(unit, Sprite2DMaterial.GetDefaultMaterial());
             
             //unit.Renderer.gameObject.layer = highlightLayerNumber;
             unit.Renderer.material = highlightMaterial;

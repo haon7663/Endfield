@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StartEffectController : MonoBehaviour
+public class GameStartController : MonoBehaviour
 {
     [SerializeField] private Image backGround,underBar;
     [SerializeField] private TextMeshProUGUI startText;
