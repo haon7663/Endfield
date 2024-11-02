@@ -14,10 +14,10 @@ public static class SkillLoader
         return sprite;
     }
     
-    public static Skill GetSkillFromUnitName(string unitName)
+    public static Skill GetSkill(string skillName)
     {
         var skills = GetAllSkills("skill");
-        return skills.FirstOrDefault(s => s.name.StartsWith(unitName));
+        return skills.FirstOrDefault(s => s.name.StartsWith(skillName));
     }
     
     public static List<Skill> GetAllSkills(string path)

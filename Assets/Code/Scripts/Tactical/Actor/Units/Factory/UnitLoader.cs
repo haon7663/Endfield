@@ -24,7 +24,7 @@ public static class UnitLoader
         while (index < list.Count - 1 && !string.IsNullOrEmpty(list[index]["skillName"].ToString()))
         {
             var skillName = list[index]["skillName"].ToString();
-            skills.Add(SkillLoader.GetSkillFromUnitName(skillName));
+            skills.Add(SkillLoader.GetSkill(skillName));
 
             index++;
         }
@@ -53,7 +53,7 @@ public static class UnitLoader
             while (index < list.Count - 1 && !string.IsNullOrEmpty(list[index]["skillName"].ToString()))
             {
                 var skillName = list[index]["skillName"].ToString();
-                skills.Add(SkillLoader.GetSkillFromUnitName(skillName));
+                skills.Add(SkillLoader.GetSkill(skillName));
 
                 index++;
             }

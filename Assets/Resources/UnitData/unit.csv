@@ -1,6 +1,9 @@
 ﻿name,health,actionTime,skillName
 Player,25,0.2,Slash
 ,,,Shoot
+,,,SelfRecovery
+,,,Sting
+,,,MoveAttack
 ,,,
 Spider,15,0.5,Slash
 ,,,Shoot
