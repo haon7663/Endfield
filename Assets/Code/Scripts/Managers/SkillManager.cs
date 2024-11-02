@@ -47,8 +47,6 @@ public class SkillManager : Singleton<SkillManager>
     //어떻게 사용될지는 모르겠지만 필요하면 더 추가해서 활용하셈
     private Skill PopSkill() //스킬 사용 
     {
-        if (_skillBuffer.Count == 0) SetupSkillBuffer();
-
         var skill = _skillBuffer[0];
         _skillBuffer.RemoveAt(0);
         return skill;
@@ -56,7 +54,8 @@ public class SkillManager : Singleton<SkillManager>
 
     private void SetupSkillBuffer()  //스킬 랜덤 재배치
     {
-        _skillBuffer = DataManager.Inst.Data.skills;
+        _skillBuffer = new List<Skill>();
+        _skillBuffer.AddRange(DataManager.Inst.Data.skills);
         _skillBuffer.Shuffle();
     }
     
