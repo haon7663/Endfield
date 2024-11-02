@@ -6,21 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="14d34322-fb5c-456d-baed-061be64639fd" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Project-HL/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Project-HL/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Managers/GridManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Managers/GridManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Component/LinearProjectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Component/LinearProjectile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Component/ThrowerProjectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Component/ThrowerProjectile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/SkillComponents/Attack/Base/AttackComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/SkillComponents/Attack/Base/AttackComponent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/SkillComponents/Attack/Projectile/LinearProjectileAttackComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/SkillComponents/Attack/Projectile/LinearProjectileAttackComponent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/SkillComponents/Attack/Projectile/ThrowerProjectileAttackComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/SkillComponents/Attack/Projectile/ThrowerProjectileAttackComponent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/SkillComponents/Attack/SplashAttackComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/SkillComponents/Attack/SplashAttackComponent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/SkillComponents/Base/SkillComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/SkillComponents/Base/SkillComponent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/SkillComponents/MoveComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/SkillComponents/MoveComponent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/SkillComponents/Recovery/Base/RecoveryComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/SkillComponents/Recovery/Base/RecoveryComponent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Units/Factory/UnitSpawnHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Units/Factory/UnitSpawnHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Managers/SkillManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Managers/SkillManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Factory/SkillLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Factory/SkillLoader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Component/SkillUpgradeGroup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Component/SkillUpgradeGroup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Utilities/CSVToJsonConverter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Utilities/CSVToJsonConverter.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Level/Scenes/Design.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scenes/Design.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Borodar/RainbowHierarchy/Source/RainbowHierarchy.src.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Units/Double Flower/Flip.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Units/Double Flower/Flip.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Units/Double Flower/Idle.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Units/Double Flower/Idle.anim" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +31,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/SkillComponents/Recovery/Base/RecoveryComponent.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Units/Factory/UnitSpawnHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Component/SkillPanel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Component/SkillUpgradePanel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Component/TextHud.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Utilities/CSVReader.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Utilities/CSVToJsonConverter.cs" root0="FORCE_HIGHLIGHTING" />

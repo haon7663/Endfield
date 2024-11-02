@@ -40,7 +40,7 @@ public static class SkillLoader
 
         var skillJson = skillCSV.ConvertCSVToSkillJson();
         var skillData = JsonConvert.DeserializeObject<List<Skill>>(skillJson, settings);
-        var skillComponentsJson = skillCSV.ConvertCSVToJson();
+        var skillComponentsJson = skillCSV.ConvertCSVSkillComponentToJson();
         var skillComponentsData = JsonConvert.DeserializeObject<List<SkillComponent>>(skillComponentsJson, settings);
         
         var skills = new List<Skill>();
@@ -62,5 +62,29 @@ public static class SkillLoader
         }
 
         return skills;
+    }
+    
+    public static List<SkillComponent> GetAllSkillComponent(string path)
+    {
+        if (!path.StartsWith("SkillData/"))
+            path = "SkillData/" + path;
+        
+        var skillCSV = Resources.Load<TextAsset>(path);
+        return GetAllSkillComponent(skillCSV);
+    }
+
+    private static List<SkillComponent> GetAllSkillComponent(TextAsset skillCSV)
+    {
+        var settings = new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.Auto,
+            NullValueHandling = NullValueHandling.Ignore,
+            SerializationBinder = new SkillComponentSerializationBinder()
+        };
+        
+        var skillComponentsJson = skillCSV.ConvertCSVSkillComponentToJson();
+        var skillComponentsData = JsonConvert.DeserializeObject<List<SkillComponent>>(skillComponentsJson, settings);
+
+        return skillComponentsData;
     }
 }

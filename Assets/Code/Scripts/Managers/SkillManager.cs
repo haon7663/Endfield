@@ -54,8 +54,7 @@ public class SkillManager : Singleton<SkillManager>
 
     private void SetupSkillBuffer()  //스킬 랜덤 재배치
     {
-        _skillBuffer = new List<Skill>();
-        _skillBuffer.AddRange(DataManager.Inst.Data.skills);
+        _skillBuffer = DataManager.Inst.Data.skills.ToList();
         _skillBuffer.Shuffle();
     }
     
