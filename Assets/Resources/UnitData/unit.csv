@@ -1,6 +1,6 @@
 ﻿name,health,actionTime,skillName
 Player,25,0.2,Slash
-,,,Shoot
+,,,SwordThrow
 ,,,SelfRecovery
 ,,,Sting
 ,,,MoveAttack

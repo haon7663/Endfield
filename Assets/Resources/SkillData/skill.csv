@@ -1,7 +1,7 @@
 $type,name,label,description,elixir,castingTime,$type,executeType,value,distance,projectileSpeed,prefabName,,saveName
 Skill,Slash,베기,? �???칸의 ? ???? ???줍니??,1,0.4,Attack,Default,7,1,,,,
 Skill,Shoot,,,1,2,LinearProjectileAttack,Default,4,4,20,LinearProjectile,,
-Skill,Throw,,,1,1,ThrowerProjectileAttack,Default,6,3,9,ThrowerProjectile,,
+Skill,SwordThrow,,,1,1,LinearProjectileAttack,Default,6,5,12,Sword_LinearProjectile,,
 Skill,MoveAttack,,,1,0.4,Move,Default,,2,,,,
 ,,,,,,Attack,Default,4,2,,,,
 Skill,Sting,,,1,0.5,Attack,Default,5,2,,,,

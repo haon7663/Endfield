@@ -5,10 +5,13 @@ using UnityEngine.Serialization;
 
 public class InventoryController : MonoBehaviour
 {
+    [SerializeField] private SkillUpgradeGroup skillUpgradeGroup;
+    
     [SerializeField] private Panel panel;
     [SerializeField] private Canvas inventoryCanvas;
     [SerializeField] private Transform inventoryContent, relicContent;
-    [SerializeField] private GameObject skillPrefab, relicPrefab;
+    [SerializeField] private InventorySkillInfo skillPrefab;
+    [SerializeField] private GameObject relicPrefab;
     [SerializeField] private ClosePanel closePanel;
 
     private bool _isShown;
@@ -41,13 +44,11 @@ public class InventoryController : MonoBehaviour
         foreach(var inventorySkill in inventoryContent.GetComponentsInChildren<InventorySkillInfo>())
             Destroy(inventorySkill.gameObject);
         
-        List<Skill> skills = SkillLoader.GetAllSkills("skill");//DataManager.Inst.Data.skills;
-        Debug.Log(skills.Count);
-        foreach (var skill in skills)
+        foreach (var skill in DataManager.Inst.Data.skills)
         {
-            GameObject inventory = Instantiate(skillPrefab, inventoryContent);
-            if(inventory.TryGetComponent(out InventorySkillInfo inventorySkillInfo))
-                inventorySkillInfo.SetInfo(skill);
+            var inventory = Instantiate(skillPrefab, inventoryContent);
+            inventory.SetInfo(skill);
+            inventory.onClick += skillUpgradeGroup.SetSkill;
         }
     }
 
