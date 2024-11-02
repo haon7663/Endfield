@@ -18,11 +18,16 @@ public class ShopController : MonoBehaviour
 
     private void CardInfo()
     {
+        List<Skill> skills = SkillLoader.GetAllSkills("skill");
+        HashSet<int> _skillNum = new HashSet<int>();
+        int random = 0;
         foreach (ShopCard card in _cards)
         {
-            //ī�� ���� �ֱ�
-            card.RandomCardInput();
-           
+            do
+            {
+                random = Random.Range(0, skills.Count);
+            } while (!_skillNum.Add(random));
+            card.RandomCardInput(skills[random]);
         }
     }
 }

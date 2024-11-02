@@ -10,6 +10,6 @@ public class InventorySkillInfo : MonoBehaviour
     public void SetInfo(Skill skill)
     {
         nameLabel.text = skill.name;
-        //skillImage.sprite = skill. 이미지를 받는 변수가 없음
+        icon.sprite = SkillLoader.GetSkillSprite(skill.name);
     }
 }

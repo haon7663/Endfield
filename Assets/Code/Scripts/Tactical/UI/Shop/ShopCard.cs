@@ -1,19 +1,24 @@
+using System;
 using UnityEngine;
 
 public class ShopCard : ShopItem
 {
     Card card;
-    [SerializeField] private Skill skillData;
+
+    private void Awake()
+    {
+        card = GetComponent<Card>();
+    }
 
     protected override void Start()
     {
         base.Start();
-        card = GetComponent<Card>();
+        
     }
-    public void RandomCardInput()
+    public void RandomCardInput(Skill skill)
     {
-        skillData = new Skill("Slash");
-        card.Init(skillData);
+        Debug.Log(skill.name);
+        card.Init(skill);
     }
 
     public override void BuyAction()
