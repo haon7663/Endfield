@@ -2,8 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
-using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
 
 public class SpawnManager : Singleton<SpawnManager>
 {
@@ -13,11 +14,13 @@ public class SpawnManager : Singleton<SpawnManager>
     [SerializeField] private int maxWaveCount;
     [SerializeField] private UnitSpawnHandler spawnHandlerPrefab;
     [SerializeField] private int stageGold;
+    [SerializeField] private GoldController goldController;
     private int _surviveEnemyCount;
     private int _curWaveCount;
 
     private void Start()
     {
+        stageGold = Random.Range(150, 180);
         _surviveEnemyCount = 0;
         _curWaveCount = 1;
         SpawnEnemies();
@@ -47,7 +50,13 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         if(--_surviveEnemyCount <= 0)
         {
-            if (_curWaveCount >= maxWaveCount) return;
+            if (_curWaveCount >= maxWaveCount)
+            {
+                GameManager.Inst.StageEnd(true);
+                DataManager.Inst.Data.gold += stageGold;
+                goldController.ReCountGold();
+                return;
+            }
             SpawnEnemies();
             WaveController.Inst.UpdateWaveText(++_curWaveCount);
         }

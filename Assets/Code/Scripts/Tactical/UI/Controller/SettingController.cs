@@ -1,30 +1,60 @@
 using UnityEngine;
-
+using DG.Tweening;
 public class SettingController : MonoBehaviour
 {
-    [SerializeField] private Canvas settingCanvas,keyLayoutCanvas;
+    [SerializeField] private GameObject settingCanvas,keyLayoutCanvas;
+    [SerializeField] private Panel panel;
+    [SerializeField] private ClosePanel closePanel;
+    private bool _isShown;
 
-    private bool isKeyLayout => keyLayoutCanvas.gameObject.activeSelf;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+   
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !_isShown)
         {
-            if(isKeyLayout) ActiveKeyLayoutCanvas(!isKeyLayout);
-            else settingCanvas.gameObject.SetActive(!settingCanvas.gameObject.activeSelf);
+            
+            Show();
         }
     }
-
-    public void ActiveKeyLayoutCanvas(bool activeKeyCanvas)
+    
+    public void Show()
     {
-        settingCanvas.gameObject.SetActive(!activeKeyCanvas);
-        keyLayoutCanvas.gameObject.SetActive(activeKeyCanvas);
+        _isShown = true;
+        Debug.Log("쇼쇼");
+        panel.SetPosition(PanelStates.Show, true, 0.5f, Ease.OutBack);
+        closePanel.onClose += Hide;
+    }
+    public void Hide()
+    {
+        _isShown = false;
+        Debug.Log("나가기");
+        panel.SetPosition(PanelStates.Hide, true, 0.25f);
+    }
+
+    private void HideKeyLayout()
+    {
+        Debug.Log("키레이아웃");
+        closePanel.onClose =null;
+        keyLayoutCanvas.SetActive(false);
+        settingCanvas.SetActive(true);
+
+        DOVirtual.DelayedCall(0.5f, ()=>closePanel.onClose += Hide);
+    }
+    
+
+    public void ActiveKeyLayoutCanvas()
+    {
+        Debug.Log("키레이아웃인");
+        closePanel.onClose -= Hide;
+        closePanel.onClose += HideKeyLayout;
+        var delegates = closePanel.onClose.GetInvocationList();
+        foreach (var del in delegates)
+        {
+            Debug.Log(del.Method.Name);
+        }
+        settingCanvas.SetActive(false);
+        keyLayoutCanvas.SetActive(true);
     }
 
     public void ChangeKeyLayout()  //키 레이아웃 변경 할 때

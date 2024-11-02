@@ -2,7 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 
-public class MineralWaterController : MonoBehaviour
+public class GoldController : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI goldCountTxt;
 
