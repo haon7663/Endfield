@@ -29,7 +29,8 @@ public class MoveComponent : SkillComponent
         var index = 0;
         for (var i = 1; i <= distance; i++)
         {
-            if (GetStartingTile(info, i).IsOccupied)
+            var tile = GetStartingTile(info, i);
+            if (tile && tile.IsOccupied)
                 break;
             index = i;
         }

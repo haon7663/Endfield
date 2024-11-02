@@ -16,7 +16,7 @@ public abstract class SkillComponent
     
     protected Tile GetStartingTile(SkillComponentInfo info, int index = 0)
     {
-        return GridManager.Inst.GetTile(info.tile.Key + index * info.dirX);
+        return GridManager.Inst.TryGetTile(info.tile.Key + index * info.dirX, out var tile) ? tile : null;
     }
 
     protected List<ISkillExecuter> ExecuteObjects = new List<ISkillExecuter>();

@@ -44,7 +44,8 @@ public class RecoveryComponent : SkillComponent
             for (var i = 1; i <= distance; i++)
             {
                 var tile = GetStartingTile(info, i);
-                tiles.Add(tile);
+                if (tile)
+                    tiles.Add(tile);
             }
         }
         

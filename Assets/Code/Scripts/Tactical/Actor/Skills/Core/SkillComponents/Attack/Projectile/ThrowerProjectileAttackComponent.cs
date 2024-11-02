@@ -5,7 +5,9 @@ public class ThrowerProjectileAttackComponent : ProjectileAttackComponent
 {
     public override void Print(SkillComponentInfo info)
     {
-        GridManager.Inst.ApplyGrid(info.user, new List<Tile> { GetStartingTile(info, distance) });
+        var tile = GetStartingTile(info, distance);
+        if (tile)
+            GridManager.Inst.ApplyGrid(info.user, new List<Tile> { tile });
     }
     public override void Cancel(SkillComponentInfo info)
     {

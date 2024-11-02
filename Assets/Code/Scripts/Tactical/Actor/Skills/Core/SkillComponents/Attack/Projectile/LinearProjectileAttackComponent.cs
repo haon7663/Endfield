@@ -9,7 +9,8 @@ public class LinearProjectileAttackComponent : ProjectileAttackComponent
         for (var i = 1; i <= CalculateDistance(info); i++)
         {
             var tile = GetStartingTile(info, i);
-            tiles.Add(tile);
+            if (tile)
+                tiles.Add(tile);
         }
         GridManager.Inst.ApplyGrid(info.user, tiles);
     }
@@ -25,7 +26,8 @@ public class LinearProjectileAttackComponent : ProjectileAttackComponent
         for (var i = 1; i <= distance; i++)
         {
             index = i;
-            if (GetStartingTile(info, i).IsOccupied)
+            var tile = GetStartingTile(info, i);
+            if (tile && tile.IsOccupied)
                 break;
         }
         return index;

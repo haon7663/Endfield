@@ -22,11 +22,11 @@ public class ThrowerProjectile : Projectile
         _currentLocalKey = Mathf.FloorToInt(_timer * projectileSpeed) + 1;
         if (_currentLocalKey > distance)
         {
-            var currentTile = GridManager.Inst.GetTile(tile.Key + dirX * distance);
+            var existTile = GridManager.Inst.TryGetTile(tile.Key + dirX * distance, out var currentTile);
             var newInfo = new SkillComponentInfo(info, currentTile);
-            if (currentTile && currentTile.content)
+            if (existTile)
             {
-                if (currentTile.content.TryGetComponent(out Health health))
+                if (currentTile.content && currentTile.content.TryGetComponent(out Health health))
                 {
                     health.OnDamage(damage);
                     OnHit?.Invoke(newInfo);

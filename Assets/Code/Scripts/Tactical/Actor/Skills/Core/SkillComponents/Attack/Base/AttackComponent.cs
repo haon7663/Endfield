@@ -22,7 +22,9 @@ public class AttackComponent : SkillComponent
         var tiles = new List<Tile>();
         for (var i = 1; i <= distance; i++)
         {
-            tiles.Add(GetStartingTile(info, i));
+            var tile = GetStartingTile(info, i);
+            if (tile)
+                tiles.Add(tile);
         }
         GridManager.Inst.ApplyGrid(info.user, tiles);
     }
