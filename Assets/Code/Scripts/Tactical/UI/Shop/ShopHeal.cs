@@ -16,8 +16,10 @@ public class ShopHeal : ShopItem
         icon.sprite = itemIcon;
         name_Txt.text = name;
     }
-    public override void BuyAction()
+
+    protected override void BuyAction()
     {
         //플레이어 힐
+        Debug.Log("힐 받음");
     }
 }

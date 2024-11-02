@@ -41,7 +41,8 @@ public class InventoryController : MonoBehaviour
         foreach(var inventorySkill in inventoryContent.GetComponentsInChildren<InventorySkillInfo>())
             Destroy(inventorySkill.gameObject);
         
-        List<Skill> skills = DataManager.Inst.Data.skills;
+        List<Skill> skills = SkillLoader.GetAllSkills("skill");//DataManager.Inst.Data.skills;
+        Debug.Log(skills.Count);
         foreach (var skill in skills)
         {
             GameObject inventory = Instantiate(skillPrefab, inventoryContent);
