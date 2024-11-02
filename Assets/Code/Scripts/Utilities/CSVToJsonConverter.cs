@@ -5,7 +5,7 @@ using UnityEngine;
 
 public static class CSVToJsonConverter
 {
-    public static string ConvertCSVSkillComponentToJson(this TextAsset textAsset)
+    public static string ConvertCSVToJson(this TextAsset textAsset)
     {
         var csvText = textAsset.text;
         

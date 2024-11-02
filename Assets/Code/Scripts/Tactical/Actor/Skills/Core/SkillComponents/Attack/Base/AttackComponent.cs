@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class AttackComponent : SkillComponent, ISkillExecuter
+public class AttackComponent : SkillComponent
 {
     public int value;
     
@@ -11,12 +9,10 @@ public class AttackComponent : SkillComponent, ISkillExecuter
     {
         for (var i = 1; i <= distance; i++)
         {
-            var targetTile = GetStartingTile(info, i);
-            var targetUnit = targetTile?.content;
+            var targetUnit = GetStartingTile(info, i)?.content;
             if (targetUnit && targetUnit.TryGetComponent(out Health health))
             {
                 health.OnDamage(value);
-                OnHit?.Invoke(new SkillComponentInfo(info, targetTile));
             }
         }
     }
@@ -35,7 +31,4 @@ public class AttackComponent : SkillComponent, ISkillExecuter
     {
         GridManager.Inst.RevertGrid(info.user);
     }
-
-    public Action<SkillComponentInfo> OnHit { get; set; }
-    public Action<SkillComponentInfo> OnEnd { get; set; }
 }
