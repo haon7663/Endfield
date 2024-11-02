@@ -21,9 +21,10 @@ public class ShopCard : ShopItem
         card.Init(skill);
     }
 
-    public override void BuyAction()
+    protected override void BuyAction()
     {
         //인벤토리에 스킬 넣기
+        Debug.Log("스킬 삼");
     }
 
 }

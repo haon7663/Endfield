@@ -16,10 +16,10 @@ public class ShopUpgradeItem : ShopItem
         icon.sprite = itemIcon;
         name_Txt.text = name;
     }
-    
-    public override void BuyAction()
+
+    protected override void BuyAction()
     {
         //업그레이드 아이템 플레이어에게 주어짐
-        
+        Debug.Log("업그레이드");
     }
 }

@@ -11,8 +11,8 @@ public class SpawnManager : Singleton<SpawnManager>
     [SerializeField] private Unit enemyPrefab;
     [SerializeField] private int maxEnemyCount;
     [SerializeField] private int maxWaveCount;
-
     [SerializeField] private UnitSpawnHandler spawnHandlerPrefab;
+    [SerializeField] private int stageGold;
     private int _surviveEnemyCount;
     private int _curWaveCount;
 
