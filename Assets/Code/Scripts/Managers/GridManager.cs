@@ -45,6 +45,13 @@ public class GridManager : Singleton<GridManager>
     {
         return _tiles[Mathf.Clamp(index, 0, tileCount - 1)];
     }
+    
+    public bool TryGetTile(int index, out Tile tile)
+    {
+        var success = (uint)index < (uint)_tiles.Count;
+        tile = success ? _tiles[index] : null;
+        return success;
+    }
 
     public Tile GetRandomTile(List<Tile> exceptionTiles = null)
     {
