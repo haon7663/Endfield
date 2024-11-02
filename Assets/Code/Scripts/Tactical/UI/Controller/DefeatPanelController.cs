@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem.HID;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class DefeatPanelController : MonoBehaviour
 {
@@ -24,9 +25,9 @@ public class DefeatPanelController : MonoBehaviour
         }
     }
 
-    private void Show()
+    public void Show()
     {
-        AddInventorySkill();
+        //AddInventorySkill();
         panel.SetPosition(PanelStates.Show, true, 0.5f, Ease.OutBack);
         closePanel.onClose += Hide;
         ResetText();
@@ -34,6 +35,7 @@ public class DefeatPanelController : MonoBehaviour
     public void Hide()
     {
         panel.SetPosition(PanelStates.Hide, true, 0.25f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void ResetText()

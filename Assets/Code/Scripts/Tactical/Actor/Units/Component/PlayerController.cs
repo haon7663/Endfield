@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
         _movement = GetComponent<Movement>();
         _unit = GetComponent<Unit>();
         _animator = _unit.SpriteTransform.GetComponent<Animator>();
+        _unit.Health.onDeath += ()=>GameManager.Inst.StageEnd(false);
     }
 
     private void Update()

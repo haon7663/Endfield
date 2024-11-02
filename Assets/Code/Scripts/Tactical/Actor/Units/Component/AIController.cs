@@ -52,6 +52,7 @@ public class AIController : MonoBehaviour
         _movement = GetComponent<Movement>();
         _unit = GetComponent<Unit>();
         _skillHolder = GetComponent<SkillHolder>();
+        _unit.Health.onDeath+=()=> SpawnManager.Inst.EnemyDead();
     }
 
     private void Start()

@@ -7,6 +7,8 @@ public class GameManager : Singleton<GameManager>
 
     public int maxElixir;
     public float curElixir;
+    [SerializeField] private DefeatPanelController defeatController;
+    [SerializeField] private SkillSelectionPanelController skillSelectionController;
 
     private void Start()
     {
@@ -17,5 +19,12 @@ public class GameManager : Singleton<GameManager>
     {
         curElixir += Time.deltaTime;
         curElixir = Mathf.Clamp(curElixir, 0, maxElixir);
+    }
+    
+
+    public void StageEnd(bool isPlayerWin)
+    {
+        if (isPlayerWin) skillSelectionController.Show();
+        else defeatController.Show();
     }
 }

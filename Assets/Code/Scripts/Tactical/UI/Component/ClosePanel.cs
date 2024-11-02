@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -32,7 +33,10 @@ public class ClosePanel : MonoBehaviour
         fillImage.fillAmount = _fillAmount;
         
         if (_fillAmount < 1) return;
+        fillImage.fillAmount = 0;
+        _fillAmount = 0;
         onClose?.Invoke();
         _canHold = false;
+        DOVirtual.DelayedCall(0.3f,()=> _canHold = true);
     }
 }
