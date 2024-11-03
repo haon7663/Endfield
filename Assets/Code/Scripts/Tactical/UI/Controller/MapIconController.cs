@@ -66,14 +66,7 @@ public class MapIconController : MonoBehaviour
 
   
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.C)) Show();
-        if (Input.GetKeyDown(KeyCode.V)) Hide();
-        
-            
-        if(Input.GetKeyDown(KeyCode.B))MoveNextMap();
-    }
+
 
     public void MoveNextMap()
     {
