@@ -139,7 +139,7 @@ public class GridManager : Singleton<GridManager>
         {
             if (_transition.content != null && _isTransitioning)
             {
-                CameraTransition.Inst.RotateAndMoveCamera();
+                CameraTransition.Inst.CameraUp();
                 _isTransitioning = false;
             }
         }
