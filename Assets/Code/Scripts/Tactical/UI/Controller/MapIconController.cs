@@ -56,6 +56,7 @@ public class MapIconController : MonoBehaviour
     public void Show()
     {
         panel.SetPosition(PanelStates.Show, true);
+        MoveNextMap();
     }
     
     public void Hide()
@@ -76,19 +77,34 @@ public class MapIconController : MonoBehaviour
 
     public void MoveNextMap()
     {
-        _mapIcons[_curMapIndex].SetMapState(MapState.FinishMap);
-        ++_curMapIndex;
+        _curMapIndex = DataManager.Inst.Data.stageCount;
+        for (int i = 0; i < _curMapIndex; i++)
+        {
+            _mapIcons[i].SetMapState(MapState.FinishMap);
+        }
+       
+       
         _curMapIndex = Mathf.Clamp(_curMapIndex,0, mapSequence.Count-1);
        
         _mapIcons[_curMapIndex].SetMapState(MapState.PlayerMap);
+        if (_curMapIndex >= 3)
+        {
+            for (int i = 0; i < _curMapIndex - 2; i++)
+            {
+                if(i>=mapSequence.Count-1-4) return;
+                Destroy(_mapIcons[i].gameObject); 
+            }
+        }
         
+        
+        /*
         if(showLastMapIndex >= mapSequence.Count-1) return;
         if (showLastMapIndex - _curMapIndex <= 1)
         {
             ++showLastMapIndex;
             showLastMapIndex = Mathf.Clamp(showLastMapIndex,0, mapSequence.Count-1);
             Destroy(_mapIcons[_destoryIndex++].gameObject); 
-        }
+        }*/
            
         
     }

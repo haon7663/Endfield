@@ -144,6 +144,7 @@ public class GridManager : Singleton<GridManager>
             if (_transition.content != null && _isTransitioning)
             {
                 CameraTransition.Inst.CameraUp();
+                GameManager.Inst.MapIconShow(false);
                 _isTransitioning = false;
             }
         }

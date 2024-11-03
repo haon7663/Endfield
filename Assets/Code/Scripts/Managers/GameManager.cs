@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -9,6 +11,7 @@ public class GameManager : Singleton<GameManager>
     public float curElixir;
     [SerializeField] private DefeatPanelController defeatController;
     [SerializeField] private SkillSelectionPanelController skillSelectionController;
+    [SerializeField] private MapIconController mapIconController;
 
     private void Start()
     {
@@ -23,7 +26,14 @@ public class GameManager : Singleton<GameManager>
 
     public void StageEnd(bool isPlayerWin)
     {
-        if (isPlayerWin) skillSelectionController.Show();
+        if (isPlayerWin)
+        {
+            skillSelectionController.Show();
+            MapIconShow(true);
+        }
         else defeatController.Show();
     }
+
+    public void MapIconShow(bool show) => (show ? (Action)mapIconController.Show : mapIconController.Hide)();
+
 }
