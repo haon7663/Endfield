@@ -1,11 +1,14 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
 public class ShopItem : MonoBehaviour
 {
     [SerializeField] private int maxPrice, minPrice;
+    protected bool _multipleBuyable;
     private int _itemPrice;
     private bool _isSelling = true;
+    
     [SerializeField] private TextMeshProUGUI itemPrice_Txt;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -19,11 +22,24 @@ public class ShopItem : MonoBehaviour
     {
         Debug.Log("상점");
         if (!_isSelling || DataManager.Inst.Data.gold < _itemPrice) return;
-        
-        _isSelling = false;
-        itemPrice_Txt.text = "Sold";
-        DataManager.Inst.Data.gold -= _itemPrice;
+        GoldController.Inst.ReCountGold( DataManager.Inst.Data.gold, DataManager.Inst.Data.gold -= _itemPrice);
+       
         BuyAction();
+        _isSelling = false;
+        if (!_multipleBuyable) itemPrice_Txt.text = "Sold";
+        else
+        {
+            float value = 1.5f;
+            DOTween.To(() => value, x => value = x, 0, 1.5f).SetEase(Ease.Linear).OnUpdate(() =>
+            {
+                value = Mathf.Round(value * 10) / 10;
+                itemPrice_Txt.text = value.ToString();
+            }).OnComplete(()=>
+            {
+                _isSelling = true;
+                itemPrice_Txt.text = _itemPrice.ToString() + " ml";
+            });
+        }
     }
 
     protected virtual void BuyAction(){}

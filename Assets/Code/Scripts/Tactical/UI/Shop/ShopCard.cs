@@ -7,6 +7,7 @@ public class ShopCard : ShopItem
 
     private void Awake()
     {
+        _multipleBuyable = false;
         card = GetComponent<Card>();
     }
 

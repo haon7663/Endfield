@@ -14,7 +14,6 @@ public class SpawnManager : Singleton<SpawnManager>
     [SerializeField] private int maxWaveCount;
     [SerializeField] private UnitSpawnHandler spawnHandlerPrefab;
     [SerializeField] private int stageGold;
-    [SerializeField] private GoldController goldController;
     private int _surviveEnemyCount;
     private int _curWaveCount;
 
@@ -53,8 +52,8 @@ public class SpawnManager : Singleton<SpawnManager>
             if (_curWaveCount >= maxWaveCount)
             {
                 GameManager.Inst.StageEnd(true);
-                
-                goldController.ReCountGold(DataManager.Inst.Data.gold, DataManager.Inst.Data.gold+stageGold);
+                GoldController.Inst.ReCountGold( DataManager.Inst.Data.gold, DataManager.Inst.Data.gold += stageGold);
+               
                 DataManager.Inst.Data.gold += stageGold;
                 return;
             }

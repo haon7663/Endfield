@@ -13,7 +13,7 @@ public class PlayerData
     public int plantKillCount;
     public int gainedArtifactCount;
     public int gainedSkillCount;
-    public int gold;
+    public int gold = 1000;
 
     public PlayerData(List<Skill> skills)
     {
