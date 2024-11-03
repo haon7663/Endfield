@@ -12,24 +12,28 @@ public abstract class SkillComponent
 
     public abstract void Execute(SkillComponentInfo info);
     public abstract void Print(SkillComponentInfo info);
-    public virtual void Cancel(SkillComponentInfo info) { }
+
+    public virtual void Cancel(SkillComponentInfo info)
+    {
+        executeObjects.Clear();
+    }
     
     protected Tile GetStartingTile(SkillComponentInfo info, int index = 0)
     {
         return GridManager.Inst.TryGetTile(info.tile.Key + index * info.dirX, out var tile) ? tile : null;
     }
 
-    protected List<ISkillExecuter> ExecuteObjects = new List<ISkillExecuter>();
+    protected List<ISkillExecuter> executeObjects = new List<ISkillExecuter>();
     public void AddOnHit(Action<SkillComponentInfo> onHit)
     {
-        foreach (var executeObject in ExecuteObjects)
+        foreach (var executeObject in executeObjects)
         {
             executeObject.OnHit += onHit;
         }
     }
     public void AddOnEnd(Action<SkillComponentInfo> onEnd)
     {
-        foreach (var executeObject in ExecuteObjects)
+        foreach (var executeObject in executeObjects)
         {
             executeObject.OnEnd += onEnd;
         }

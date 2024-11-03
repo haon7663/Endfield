@@ -12,7 +12,7 @@ public abstract class ProjectileAttackComponent : AttackComponent
         var projectile = SkillFactory.Create(prefabName).GetComponent<Projectile>();
         projectile.Init(info, value, distance, projectileSpeed);
         
-        ExecuteObjects.Add(projectile.GetComponent<ISkillExecuter>());
+        executeObjects.Add(projectile.GetComponent<ISkillExecuter>());
         projectile.OnHit += HitParticle;
     } 
 }

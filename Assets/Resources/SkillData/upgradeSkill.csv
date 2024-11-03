@@ -1,4 +1,4 @@
 name,$type,executeType,value,distance,projectileSpeed,prefabName,,saveName
-attack.hi,Attack,OnHit,2,1,,,,
-hellow,Attack,OnHit,2,1,,,,
-world,Attack,OnHit,2,1,,,,
+attack.hi,SplashAttack,OnHit,2,1,,,,
+hellow,SplashAttack,OnHit,2,1,,,,
+world,SplashAttack,OnHit,2,1,,,,

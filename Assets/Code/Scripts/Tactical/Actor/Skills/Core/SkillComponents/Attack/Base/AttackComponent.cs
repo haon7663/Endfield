@@ -9,11 +9,19 @@ public abstract class AttackComponent : SkillComponent, ISkillExecuter
     
     public override void Execute(SkillComponentInfo info)
     {
+        executeObjects.Add(this);
         AddOnHit(HitParticle);
-        ExecuteObjects.Add(this);
     }
 
     public override void Print(SkillComponentInfo info) { }
+
+    public override void Cancel(SkillComponentInfo info)
+    {
+        base.Cancel(info);
+        
+        OnHit = null;
+        OnEnd = null;
+    }
 
     public Action<SkillComponentInfo> OnHit { get; set; }
     public Action<SkillComponentInfo> OnEnd { get; set; }
