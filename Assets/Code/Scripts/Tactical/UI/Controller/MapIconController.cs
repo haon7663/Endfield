@@ -53,11 +53,25 @@ public class MapIconController : MonoBehaviour
    
     }
 
+    public void Show()
+    {
+        panel.SetPosition(PanelStates.Show, true);
+    }
+    
+    public void Hide()
+    {
+        panel.SetPosition(PanelStates.Hide, true);
+    }
+
   
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.M))MoveNextMap();
+        if (Input.GetKeyDown(KeyCode.C)) Show();
+        if (Input.GetKeyDown(KeyCode.V)) Hide();
+        
+            
+        if(Input.GetKeyDown(KeyCode.B))MoveNextMap();
     }
 
     public void MoveNextMap()
