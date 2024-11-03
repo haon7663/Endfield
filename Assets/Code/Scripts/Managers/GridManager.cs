@@ -10,22 +10,31 @@ public class GridManager : Singleton<GridManager>
 
     [SerializeField] private int tileCount;
     [SerializeField] private float tileInterval;
-    
+
     [SerializeField] private Transform gridParent;
     [SerializeField] private Tile tilePrefab;
+    [SerializeField] private Tile transitionTilePrefab;
 
     [SerializeField] private PreviewSprite previewSpritePrefab;
     [SerializeField] private TMP_Text previewTextPrefab;
-    
+
     [SerializeField] private Color playerColor;
     [SerializeField] private Color enemyColor;
-    
+
+    private Tile _transition;
+
     private Dictionary<Unit, List<Tile>> _previewTiles = new Dictionary<Unit, List<Tile>>();
 
     private void Awake()
     {
         GenerateTiles();
     }
+
+    private void Update()
+    {
+        CheckingTransition();
+    }
+
 
     private void GenerateTiles()
     {
@@ -36,14 +45,24 @@ public class GridManager : Singleton<GridManager>
             var tile = Instantiate(tilePrefab, gridParent);
             tile.transform.position = new Vector3((i - Mathf.FloorToInt((float)tileCount / 2)) * tileInterval, 0);
             tile.Init(i);
-            
+
             _tiles.Add(tile);
         }
     }
 
+    public void GenerateTransitionTiles()
+    {
+        var tile = Instantiate(transitionTilePrefab, gridParent);
+        tile.transform.position = new Vector3((tileCount - Mathf.FloorToInt((float)tileCount / 2)) * tileInterval, 0);
+        tile.Init(tileCount);
+        _transition = tile;
+
+        _tiles.Add(tile);
+    }
+
     public Tile GetTile(int index)
     {
-        return _tiles[Mathf.Clamp(index, 0, tileCount - 1)];
+        return _tiles[Mathf.Clamp(index, 0, _tiles.Count - 1)];
     }
     
     public bool TryGetTile(int index, out Tile tile)
@@ -78,7 +97,7 @@ public class GridManager : Singleton<GridManager>
 
     public void UpdateContentOnGrid()
     {
-        
+
     }
 
     public PreviewSprite DisplayPreview(Unit user, int key)
@@ -89,7 +108,7 @@ public class GridManager : Singleton<GridManager>
 
         return previewSprite;
     }
-    
+
     public void ApplyGrid(Unit user, List<Tile> tiles)
     {
         if (!_previewTiles.TryAdd(user, tiles))
@@ -111,7 +130,20 @@ public class GridManager : Singleton<GridManager>
             displayedTile.Value.ForEach(t => t.SetColor(color));
         }
     }
-    
+
+    private void CheckingTransition()
+    {
+        if(_transition != null)
+        {
+            Debug.Log("飘坊瘤记鸥老 积己凳");
+            if (_transition.content != null)
+            {
+                CameraTransition.Inst.RotateAndMoveCamera();
+            }
+
+        }
+    }
+
     public void OnDrawGizmos()
     {
         /*foreach (var tile in _tiles)
