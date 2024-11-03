@@ -3,13 +3,13 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
-public class GoldController : MonoBehaviour
+public class GoldController : Singleton<GoldController>
 {
     [SerializeField] private TextMeshProUGUI goldCountTxt;
 
     private void Start()
     {
-        ReCountGold(0,0);
+        ReCountGold(0,DataManager.Inst.Data.gold);
     }
 
     public void ReCountGold(int startValue,int endValue)

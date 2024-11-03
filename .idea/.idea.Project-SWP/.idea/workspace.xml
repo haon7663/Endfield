@@ -5,8 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4c132301-f753-4c46-b924-9c0be65c0c66" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Fonts/TMP/NanumSquareB SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Fonts/TMP/NanumSquareB SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Controller/MapIconController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Controller/MapIconController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Project-SWP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Project-SWP/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Fonts/TMP/NanumSquareEB SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Fonts/TMP/NanumSquareEB SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/diamond.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/diamond.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/diamond.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/diamond.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Managers/DataManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Managers/DataManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Managers/SpawnManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Managers/SpawnManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Controller/GoldController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Controller/GoldController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Shop/ShopCard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Shop/ShopCard.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Shop/ShopHeal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Shop/ShopHeal.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Shop/ShopItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Shop/ShopItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Shop/ShopUpgradeItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Shop/ShopUpgradeItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Level/Scenes/Design.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scenes/Design.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +45,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "jaewan",
+    "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",

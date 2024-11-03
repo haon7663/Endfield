@@ -13,6 +13,7 @@ public class ShopHeal : ShopItem
     protected override void Start()
     {
         base.Start();
+        _multipleBuyable = true;
         icon.sprite = itemIcon;
         name_Txt.text = name;
     }
