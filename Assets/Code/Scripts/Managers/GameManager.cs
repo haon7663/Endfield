@@ -35,5 +35,4 @@ public class GameManager : Singleton<GameManager>
     }
 
     public void MapIconShow(bool show) => (show ? (Action)mapIconController.Show : mapIconController.Hide)();
-
 }
