@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 using UnityEngine.LightTransport;
 using UnityEngine.Rendering;
 
@@ -11,22 +12,28 @@ public class CameraTransition : Singleton<CameraTransition>
     [SerializeField] private Vector3 targetRotation;
     [SerializeField] private float rotationDuration;
 
-    [SerializeField] private Vector3 targetPosition;
-
     [SerializeField] private AnimationCurve animationCurve;
 
-    private void Update()
+
+    private void Awake()
     {
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            RotateAndMoveCamera();
-        }
+        CameraDown();
+    }
+
+    public void CameraUp()
+    {
+        transform.DORotate(targetRotation, rotationDuration)
+            .OnComplete(() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex));
+    }
+
+    public void CameraDown()
+    {
+        transform.rotation = Quaternion.Euler(targetRotation);
+        transform.DORotate(originalRotation, rotationDuration);
     }
 
 
-
-
-    public void RotateAndMoveCamera()
+    /*public void RotateAndMoveCamera()
     {
         Sequence sequence = DOTween.Sequence();
         sequence.Append(transform.DORotate(targetRotation, rotationDuration));
@@ -34,5 +41,5 @@ public class CameraTransition : Singleton<CameraTransition>
         sequence.Insert(1,transform.DORotate(originalRotation, rotationDuration));
         sequence.SetEase(animationCurve);
         sequence.Play();
-    }
+    }*/
 }
