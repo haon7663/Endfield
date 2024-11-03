@@ -34,7 +34,10 @@ public class HealthTextController : Singleton<HealthTextController>
 
     public void UpdateUI(Health targetHealth, int hp, bool useDotween = false)
     {
-        _healthTexts[targetHealth].text = hp.ToString();
+        if (_healthTexts.ContainsKey(targetHealth))
+        {
+            _healthTexts[targetHealth].text = hp.ToString();
+        }       
     }
 
     public void DestroyUI(Health targetHealth)
