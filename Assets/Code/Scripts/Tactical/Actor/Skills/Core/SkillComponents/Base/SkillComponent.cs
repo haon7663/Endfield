@@ -31,7 +31,6 @@ public abstract class SkillComponent
     {
         foreach (var executeObject in ExecuteObjects)
         {
-            Debug.Log("AddOnEnd");
             executeObject.OnEnd += onEnd;
         }
     }

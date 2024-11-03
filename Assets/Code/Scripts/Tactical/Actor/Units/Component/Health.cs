@@ -45,6 +45,7 @@ public class Health : MonoBehaviour
 
         if (curHp <= 0)
         {
+            ParticleLoader.Create("Destroy", transform.position + Vector3.up, Quaternion.identity);
             onDeath?.Invoke();
             Destroy(gameObject);
         }

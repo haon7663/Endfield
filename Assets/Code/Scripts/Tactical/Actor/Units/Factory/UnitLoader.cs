@@ -1,7 +1,5 @@
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public static class UnitLoader

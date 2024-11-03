@@ -1,36 +1,27 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class AttackComponent : SkillComponent
+public abstract class AttackComponent : SkillComponent, ISkillExecuter
 {
     public int value;
     
     public override void Execute(SkillComponentInfo info)
     {
-        for (var i = 1; i <= distance; i++)
-        {
-            var targetUnit = GetStartingTile(info, i)?.content;
-            if (targetUnit && targetUnit.TryGetComponent(out Health health))
-            {
-                health.OnDamage(value);
-            }
-        }
+        AddOnHit(HitParticle);
+        ExecuteObjects.Add(this);
     }
 
-    public override void Print(SkillComponentInfo info)
-    {
-        var tiles = new List<Tile>();
-        for (var i = 1; i <= distance; i++)
-        {
-            var tile = GetStartingTile(info, i);
-            if (tile)
-                tiles.Add(tile);
-        }
-        GridManager.Inst.ApplyGrid(info.user, tiles);
-    }
+    public override void Print(SkillComponentInfo info) { }
+
+    public Action<SkillComponentInfo> OnHit { get; set; }
+    public Action<SkillComponentInfo> OnEnd { get; set; }
     
-    public override void Cancel(SkillComponentInfo info)
+    protected void HitParticle(SkillComponentInfo info)
     {
-        GridManager.Inst.RevertGrid(info.user);
+        var pos = info.tile.transform.position + Vector3.up * 0.75f;
+        var rot = Quaternion.Euler(0, 0, info.tile.transform.position.x - info.user.transform.position.x > 0 ? 0 : 180);
+        ParticleLoader.Create("Hit", pos, rot);
     }
 }
