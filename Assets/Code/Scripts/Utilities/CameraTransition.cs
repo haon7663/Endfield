@@ -6,8 +6,6 @@ using UnityEngine.Rendering;
 
 public class CameraTransition : Singleton<CameraTransition>
 {
-    [SerializeField] private Transform _camera;
-
     [SerializeField] private Vector3 originalRotation;
     [SerializeField] private Vector3 targetRotation;
     [SerializeField] private float rotationDuration;
