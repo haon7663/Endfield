@@ -20,6 +20,7 @@ public class CameraTransition : Singleton<CameraTransition>
 
     public void CameraUp()
     {
+        DataManager.Inst.Data.stageCount++;
         transform.DORotate(targetRotation, rotationDuration)
             .OnComplete(() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex));
     }

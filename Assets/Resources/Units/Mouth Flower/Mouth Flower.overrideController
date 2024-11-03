@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Mouth Flower
+  m_Controller: {fileID: 9100000, guid: 1e4ca50310f70ee46827a9072dd4a391, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 1200a182c5458d741863736d16a0b16a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a54fd1ee2f4d7de43b0157320ae43248, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: aa0137f164efb4c4c9f2dc4e9d7175c5, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 94c5bf357f25ac041aefa0b3e1e7409a, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 0b9c48c49f5462044a348863d85b0182, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 2fa9929758dfe1c4e9890c7e140f5c0d, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 762d907b8c9f30544bd883f2ce0322d6, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: bf192b7e38dcc2f469043ec8b684a6cc, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 22991f3bf81ca924a8fb799c5ef57388, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d97e4afdf2e023f4e8804014425b5f13, type: 2}

@@ -36,7 +36,6 @@ public class GridManager : Singleton<GridManager>
         CheckingTransition();
     }
 
-
     private void GenerateTiles()
     {
         _tiles = new List<Tile>();
@@ -44,7 +43,7 @@ public class GridManager : Singleton<GridManager>
         for (var i = 0; i < tileCount; i++)
         {
             var tile = Instantiate(tilePrefab, gridParent);
-            tile.transform.position = new Vector3((i - Mathf.FloorToInt((float)tileCount / 2)) * tileInterval, 0);
+            tile.transform.position = GetTilePosition(i);
             tile.Init(i);
 
             _tiles.Add(tile);
@@ -54,12 +53,17 @@ public class GridManager : Singleton<GridManager>
     public void GenerateTransitionTiles()
     {
         var tile = Instantiate(transitionTilePrefab, gridParent);
-        tile.transform.position = new Vector3((tileCount - Mathf.FloorToInt((float)tileCount / 2)) * tileInterval, 0);
+        tile.transform.position = GetTilePosition(tileCount);
         tile.Init(tileCount);
         _transition = tile;
 
         _isTransitioning = true;
         _tiles.Add(tile);
+    }
+
+    private Vector3 GetTilePosition(int index)
+    {
+        return new Vector3((index - Mathf.FloorToInt((float)tileCount / 2)) * tileInterval, 0);
     }
 
     public Tile GetTile(int index)

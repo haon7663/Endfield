@@ -20,7 +20,6 @@ public class GameManager : Singleton<GameManager>
         curElixir += Time.deltaTime;
         curElixir = Mathf.Clamp(curElixir, 0, maxElixir);
     }
-    
 
     public void StageEnd(bool isPlayerWin)
     {

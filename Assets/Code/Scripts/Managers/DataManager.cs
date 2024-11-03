@@ -8,12 +8,15 @@ using UnityEngine;
 public class PlayerData
 {
     public List<Skill> skills;
+
+    public int stageCount;
+    
+    public int gold;
     
     public int eliteKillCount;
     public int plantKillCount;
     public int gainedArtifactCount;
     public int gainedSkillCount;
-    public int gold;
 
     public PlayerData(List<Skill> skills)
     {
