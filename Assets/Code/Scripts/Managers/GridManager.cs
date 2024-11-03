@@ -22,6 +22,7 @@ public class GridManager : Singleton<GridManager>
     [SerializeField] private Color enemyColor;
 
     private Tile _transition;
+    private bool _isTransitioning;
 
     private Dictionary<Unit, List<Tile>> _previewTiles = new Dictionary<Unit, List<Tile>>();
 
@@ -57,6 +58,7 @@ public class GridManager : Singleton<GridManager>
         tile.Init(tileCount);
         _transition = tile;
 
+        _isTransitioning = true;
         _tiles.Add(tile);
     }
 
@@ -135,12 +137,11 @@ public class GridManager : Singleton<GridManager>
     {
         if(_transition != null)
         {
-            Debug.Log("飘坊瘤记鸥老 积己凳");
-            if (_transition.content != null)
+            if (_transition.content != null && _isTransitioning)
             {
                 CameraTransition.Inst.RotateAndMoveCamera();
+                _isTransitioning = false;
             }
-
         }
     }
 
