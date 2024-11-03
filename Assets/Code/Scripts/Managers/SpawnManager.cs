@@ -53,8 +53,9 @@ public class SpawnManager : Singleton<SpawnManager>
             if (_curWaveCount >= maxWaveCount)
             {
                 GameManager.Inst.StageEnd(true);
+                
+                goldController.ReCountGold(DataManager.Inst.Data.gold, DataManager.Inst.Data.gold+stageGold);
                 DataManager.Inst.Data.gold += stageGold;
-                goldController.ReCountGold();
                 return;
             }
             SpawnEnemies();

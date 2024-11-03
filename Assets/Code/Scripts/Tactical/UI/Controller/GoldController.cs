@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
@@ -8,12 +9,17 @@ public class GoldController : MonoBehaviour
 
     private void Start()
     {
-        ReCountGold();
+        ReCountGold(0,0);
     }
 
-    public void ReCountGold()
+    public void ReCountGold(int startValue,int endValue)
     {
-        goldCountTxt.text = DataManager.Inst.Data.gold.ToString() + " ml";
+        goldCountTxt.text = startValue.ToString();
+        DOTween.To(() => startValue, x =>
+        {
+            startValue = x;
+            goldCountTxt.text = startValue.ToString()+ " ml";
+        }, endValue, 0.8f);
     }
 
 
