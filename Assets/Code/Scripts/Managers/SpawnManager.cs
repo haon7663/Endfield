@@ -19,9 +19,8 @@ public class SpawnManager : Singleton<SpawnManager>
 
     private void Start()
     {
-        stageGold = Random.Range(150, 180);
-        _surviveEnemyCount = 0;
-        _curWaveCount = 1;
+        Reset();
+        
         SpawnEnemies();
         WaveController.Inst.UpdateWaveText(_curWaveCount);
     }
@@ -53,14 +52,20 @@ public class SpawnManager : Singleton<SpawnManager>
             {
                 GameManager.Inst.StageEnd(true);
                 GoldController.Inst.ReCountGold( DataManager.Inst.Data.gold, DataManager.Inst.Data.gold += stageGold);
-               
-                DataManager.Inst.Data.gold += stageGold;
                 return;
             }
             SpawnEnemies();
             WaveController.Inst.UpdateWaveText(++_curWaveCount);
         }
     }
+
+    public void Reset()
+    {
+        stageGold = Random.Range(150, 180);
+        _surviveEnemyCount = 0;
+        _curWaveCount = 1;
+    }
+
     private void SpawnEnemies()
     {
         var tiles = new List<Tile>();
