@@ -168,6 +168,7 @@ GameObject:
   - component: {fileID: 4259411703502830580}
   - component: {fileID: 5977858935807170850}
   - component: {fileID: 911527452982774341}
+  - component: {fileID: 5803080579665628918}
   m_Layer: 0
   m_Name: Unit
   m_TagString: Untagged
@@ -246,3 +247,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthTextPrefab: {fileID: 203851309687527777, guid: 9695f9b41f3a79b429edade768b67d54, type: 3}
+--- !u!114 &5803080579665628918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4976203370979620335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f1ba05cf58b44b1984619272dfc0f6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statusEffectToApplyDict:
+    m_IsSerializable: 1
+    m_SerializedLength: 3
+    m_SerializedKeys: 000000000100000002000000
+    m_SerializedValues:
+    - {fileID: 0}
+    - {fileID: 11400000, guid: d0f9f76c767361541903022c7d3d192e, type: 2}
+    - {fileID: 0}
+  interval: 0.1
