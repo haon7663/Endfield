@@ -15,6 +15,7 @@ public class ArtDirectionManager : Singleton<ArtDirectionManager>
     
     [SerializeField] private Volume globalVolume;
     [SerializeField] private Volume bulletTimeVolume;
+    [SerializeField] private AnimationCurve bulletTimeVolumeCurve;
 
     [SerializeField] private int highlightLayerNumber;
     [SerializeField] private Material highlightMaterial;
@@ -70,6 +71,6 @@ public class ArtDirectionManager : Singleton<ArtDirectionManager>
         DOTween.Kill(this);
 
         DOVirtual.Float(TimeCaster.TimeScale, inSimulation ? 0.25f : 1, 0.1f, value => TimeCaster.TimeScale = value);
-        DOVirtual.Float(bulletTimeVolume.weight, inSimulation ? 1 : 0, 0.1f, value => bulletTimeVolume.weight = value);
+        DOVirtual.Float(bulletTimeVolume.weight, inSimulation ? 1 : 0, 0.1f, value => bulletTimeVolume.weight = value).SetEase(bulletTimeVolumeCurve);
     }
 }

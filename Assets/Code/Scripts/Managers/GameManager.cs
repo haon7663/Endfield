@@ -15,7 +15,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-        Player = SpawnManager.Inst.Summon("Player", GridManager.Inst.GetTile(4), true);
+        Player = SpawnManager.Inst.Summon("Player", GridManager.Inst.GetTile(0), true);
     }
 
     private void Update()
