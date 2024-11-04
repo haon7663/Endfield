@@ -25,7 +25,8 @@ public class ArtDirectionManager : Singleton<ArtDirectionManager>
 
     public void OnHit()
     {
-        DOVirtual.Float(1, 0, 0.5f, value => hitVolume.weight = value);
+        Debug.Log("Hit D");
+        DOVirtual.Float(1, 0, 0.6f, value => hitVolume.weight = value).SetEase(Ease.InCubic);
     }
     
     public void StartBulletTime(List<Unit> targetUnits = null)
