@@ -20,7 +20,7 @@ public class ShopHeal : ShopItem
 
     protected override void BuyAction()
     {
-        //플레이어 힐
+        GameManager.Inst.Player.Health.OnRecovery(1000);
         Debug.Log("힐 받음");
     }
 }

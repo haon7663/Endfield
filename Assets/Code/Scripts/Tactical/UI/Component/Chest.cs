@@ -8,9 +8,9 @@ using Random = UnityEngine.Random;
 
 public class Chest : MonoBehaviour
 {
+   private EventController _eventController;
    [SerializeField] private int chestPrice,victoryPercent;
    [SerializeField] private TextMeshProUGUI percentTxt, priceTxt;
-    [SerializeField] private EventNpc npc;
    [SerializeField] private Panel panel;
    [SerializeField] private List<int> interactTileIndex = new List<int>();
    [SerializeField] private KeyCode keyCode;
@@ -23,6 +23,11 @@ public class Chest : MonoBehaviour
 
    private void Awake()
    {
+         if (transform.parent.parent.TryGetComponent(out EventController eventController))
+         {
+            _eventController = transform.parent.GetComponentInParent<EventController>();
+         }
+        
         GetEvent();
         priceTxt.text = chestPrice.ToString() + " ml";
         percentTxt.text = "성공 확률 " + victoryPercent.ToString() + "%";
@@ -36,10 +41,10 @@ public class Chest : MonoBehaviour
     {
         var chestEvents = new List<ChestEvent>
         {
-            new GetGold_ChestEvent(),
+           // new GetGold_ChestEvent(),
             new GetSkill_ChestEvent(),
-            new GetSkillUpgrade_ChestEvent(),
-            new GetHp_ChestEvent(),
+          //  new GetSkillUpgrade_ChestEvent(),
+           // new GetHp_ChestEvent(),
         };
         events.AddRange(chestEvents);      
     }
@@ -92,7 +97,8 @@ public class Chest : MonoBehaviour
    public void Win()
    {
         int random = Random.Range(0, events.Count);
-        events[random].Excute();
+        Sprite spr = events[random].Excute();
+        _eventController.GambleResult(spr);
         Debug.Log("성공!");
    }
 

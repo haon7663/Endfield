@@ -7,11 +7,31 @@
     <list default="true" id="4c132301-f753-4c46-b924-9c0be65c0c66" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Project-SWP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Project-SWP/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Art/Fonts/TMP/NanumSquareEB SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Fonts/TMP/NanumSquareEB SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Managers/DataManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Managers/DataManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Managers/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Managers/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Units/Component/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Units/Component/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Card/Resources/Icon/a.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Card/Resources/Icon/a.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Gold.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Gold/goldIcon.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Gold/goldIcon.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Gold/goldIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Gold/goldIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Managers/SpawnManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Managers/SpawnManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/ChestEvent/ChestEvent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/ChestEvent/ChestEvent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/ChestEvent/GetGold_ChestEvent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/ChestEvent/GetGold_ChestEvent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/ChestEvent/GetHp_ChestEvent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/ChestEvent/GetHp_ChestEvent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/ChestEvent/GetSkillUpgrade_ChestEvent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/ChestEvent/GetSkillUpgrade_ChestEvent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/ChestEvent/GetSkill_ChestEvent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/ChestEvent/GetSkill_ChestEvent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Component/Chest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Component/Chest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Component/EventNpc.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Component/EventNpc.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Controller/EventController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Controller/EventController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Controller/MapIconController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Controller/MapIconController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Controller/ShopController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Controller/ShopController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Shop/ShopCard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Shop/ShopCard.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Shop/ShopHeal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Shop/ShopHeal.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/Units/Enemy.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/Units/Enemy.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/Units/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/Units/Player.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Level/Scenes/Design.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scenes/Design.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TimeManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TimeManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +42,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7d303c2bf72cd4cec95665b89c457d265d2b8ef3ed6da17cd4f85587c2f9de7/System.Linq.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d44b17e136d09081da1e8fd0e8c83fde60e11818b9f2442d7ed8cb733fae895e/System.Collections.Generic.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Component/MapIcon.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Shop/ShopUpgradeItem.cs" root0="FORCE_HIGHLIGHTING" />
@@ -115,6 +136,8 @@
       <workItem from="1730562275871" duration="2343000" />
       <workItem from="1730621000330" duration="7395000" />
       <workItem from="1730637607257" duration="1437000" />
+      <workItem from="1730708560070" duration="2753000" />
+      <workItem from="1730715013368" duration="4324000" />
     </task>
     <servers />
   </component>

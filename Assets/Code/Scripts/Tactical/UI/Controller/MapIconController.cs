@@ -59,9 +59,15 @@ public class MapIconController : MonoBehaviour
             _mapIcons.Add(child.GetComponent<MapIcon>());
         }
         _mapIcons[_curMapIndex].SetMapState(MapState.PlayerMap);
-        Instance();
+       
    
     }
+
+    private void Start()
+    {
+        Instance();
+    }
+
 
     public void Show()
     {
@@ -81,10 +87,10 @@ public class MapIconController : MonoBehaviour
         switch (mapSequence[_curMapIndex])
         {
             case MapProperty.EnemyMap:
-                Debug.Log("Àû µîÀå");
+                Debug.Log("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
                 break;
             case MapProperty.BossMap:
-                Debug.Log("º¸½º µîÀå");
+                Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
                 break;
             case MapProperty.EventMap:
                 GridManager.Inst.GenerateTransitionTiles();
@@ -99,7 +105,7 @@ public class MapIconController : MonoBehaviour
                 SpawnManager.Inst.DoNotSpawn();
                 break;
         }
-
+        SpawnManager.Inst.SpawnEnemies();
     }
 
 

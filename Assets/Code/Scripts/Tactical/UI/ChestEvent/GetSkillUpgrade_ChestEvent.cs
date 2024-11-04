@@ -1,10 +1,13 @@
+using System;
 using UnityEngine;
 
 public class GetSkillUpgrade_ChestEvent : ChestEvent
 {
-    public override void Excute()
+    public override Sprite Excute()
     {
-        Debug.Log("½ºÅ³ ¾÷±×·¹ÀÌµå È¹µæ");
+        iconName = "SkillUpgrade";
+        Debug.Log("ï¿½ï¿½Å³ ï¿½ï¿½ï¿½×·ï¿½ï¿½Ìµï¿½ È¹ï¿½ï¿½");
+        return base.Excute();
     }
     
 

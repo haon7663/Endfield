@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 public class GetHp_ChestEvent : ChestEvent
 {
-    public override void Excute()
+    public override Sprite Excute()
     {
-        Debug.Log("HP 전체 회복");
+        iconName = "Hp";
+        GameManager.Inst.Player.Health.OnRecovery(1000);
+        return base.Excute();
     }
 }

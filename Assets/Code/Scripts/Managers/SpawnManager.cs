@@ -24,7 +24,7 @@ public class SpawnManager : Singleton<SpawnManager>
 
     private void Start()
     {   
-        SpawnEnemies();
+        //SpawnEnemies();
         WaveController.Inst.UpdateWaveText(_curWaveCount);
     }
 
@@ -54,7 +54,7 @@ public class SpawnManager : Singleton<SpawnManager>
 
     public void EnemyDead()
     {
-        Debug.Log("╦С╫╨ем╟║ ав╬З╫ю╢о╢ы");
+        Debug.Log("О©╫О©╫О©╫м╟О©╫ О©╫в╬О©╫О©╫О©╫О©╫о╢О©╫");
         if(--_surviveEnemyCount <= 0)
         {
             if (_curWaveCount >= maxWaveCount)
@@ -77,7 +77,7 @@ public class SpawnManager : Singleton<SpawnManager>
         _curWaveCount = 1;
     }
 
-    private void SpawnEnemies()
+    public void SpawnEnemies()
     {
         var tiles = new List<Tile>();
         for (var i = 0; i < maxEnemyCount; i++)

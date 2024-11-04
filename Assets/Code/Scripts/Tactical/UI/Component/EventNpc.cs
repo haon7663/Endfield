@@ -6,22 +6,23 @@ using UnityEngine;
 
 using System.Linq;
 using Newtonsoft.Json;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class EventNpc : MonoBehaviour
 {
     [SerializeField] [TextArea] private string speakLine;
-    [SerializeField] private TextMeshProUGUI txt;
-    [SerializeField] private Panel panel;
-    public Image imagss;
+    [FormerlySerializedAs("txt")] [SerializeField] private TextMeshProUGUI speakLineTxt; 
+    [SerializeField] private Panel speakLinePanel;
+    [SerializeField] private Panel giveItemPanel;
+    [FormerlySerializedAs("imagss")] public Image icon;
     [SerializeField] private List<int> interactTileIndex = new List<int>();
 
     private bool _isActive = false;
 
     private void Start()
     {
-        txt.text = speakLine;
-        GetSkillSprite("a");
+        speakLineTxt.text = speakLine;
     }
     
     private void Update()
@@ -29,7 +30,7 @@ public class EventNpc : MonoBehaviour
         if(!_isActive)
             foreach (var index in interactTileIndex)
             {
-                if(GridManager.Inst.GetTile(index).content) Show();
+                if(GridManager.Inst.GetTile(index).content) Show(speakLinePanel);
             }
 
 
@@ -41,32 +42,27 @@ public class EventNpc : MonoBehaviour
                 if (GridManager.Inst.GetTile(index).content) _onPlayer = true;
             }
 
-            if (!_onPlayer) Hide();
+            if (!_onPlayer) Hide(speakLinePanel);
         }
       
     }
 
-    public void Sprite(Sprite spr)
+    public void ResultSprite(Sprite spr)
     {
-        imagss.sprite = spr;
+        Hide(speakLinePanel);
+        Show(giveItemPanel);
+        icon.sprite = spr;
     }
 
-    public void GetSkillSprite(string path)
-    {
-        if (!path.StartsWith("Icon/"))
-            path = "Icon/" + path;
 
-        var sprite = Resources.Load<Sprite>(path);
-        Sprite(sprite);
-    }
 
-    private void Show()
+    private void Show(Panel panel)
     {
         panel.SetPosition(PanelStates.Show, true, 0.5f, Ease.OutBack);
         _isActive = true;
     }
 
-    private void Hide()
+    private void Hide(Panel panel)
     {
         panel.SetPosition(PanelStates.Hide, true, 0.3f, Ease.OutBack);
         _isActive = false;

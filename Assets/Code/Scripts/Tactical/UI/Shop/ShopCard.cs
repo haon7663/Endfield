@@ -4,11 +4,13 @@ using UnityEngine;
 public class ShopCard : ShopItem
 {
     Card card;
+    private Skill _skill;
 
     private void Awake()
     {
-        _multipleBuyable = false;
         card = GetComponent<Card>();
+        _multipleBuyable = false;
+       
     }
 
     protected override void Start()
@@ -18,13 +20,14 @@ public class ShopCard : ShopItem
     }
     public void RandomCardInput(Skill skill)
     {
+        _skill = skill;
         Debug.Log(skill.name);
         card.Init(skill);
     }
 
     protected override void BuyAction()
     {
-        //인벤토리에 스킬 넣기
+        DataManager.Inst.Data.skills.Add(_skill);
         Debug.Log("스킬 삼");
     }
 
