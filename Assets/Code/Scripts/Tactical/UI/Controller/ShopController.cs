@@ -10,7 +10,9 @@ public class ShopController : MonoBehaviour
     [SerializeField] private Panel panel;
     [SerializeField] private ClosePanel closePanel;
     [SerializeField] private Transform sellCards;
+    [SerializeField] private Transform content;
     [SerializeField]private List<ShopCard> _cards = new List<ShopCard>();
+    private bool _isActive;
 
     private void Awake()
     {
@@ -20,17 +22,26 @@ public class ShopController : MonoBehaviour
         }
        
     }
+
+
+    public void Active()
+    {
+        content.gameObject.SetActive(true);
+        CardInfo();
+    }
     
     
     public void Show()
     {
-        CardInfo();
+       
+        _isActive = true;
         closePanel.onClose += Hide;
         panel.SetPosition(PanelStates.Show, true);
     }
 
     public void Hide()
     {
+        _isActive = false;
         panel.SetPosition(PanelStates.Hide, true);
         closePanel.onClose -= Hide;
     }
@@ -49,4 +60,6 @@ public class ShopController : MonoBehaviour
 
         }
     }
+
+    public bool IsShopActive() => _isActive;
 }

@@ -40,11 +40,11 @@ public class Chest : MonoBehaviour
     private void GetEvent()
     {
         var chestEvents = new List<ChestEvent>
-        {
-           // new GetGold_ChestEvent(),
+        { 
+            new GetGold_ChestEvent(),
             new GetSkill_ChestEvent(),
-          //  new GetSkillUpgrade_ChestEvent(),
-           // new GetHp_ChestEvent(),
+          // new GetSkillUpgrade_ChestEvent(),
+            new GetHp_ChestEvent(),
         };
         events.AddRange(chestEvents);      
     }
