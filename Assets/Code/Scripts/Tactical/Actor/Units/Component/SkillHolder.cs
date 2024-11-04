@@ -19,6 +19,7 @@ public class SkillHolder : MonoBehaviour
     private const float YOffset = 70f;
     
     private static readonly int Attack = Animator.StringToHash("attack");
+    private static readonly int IsReady = Animator.StringToHash("isReady");
 
     private void Start()
     {
@@ -37,11 +38,12 @@ public class SkillHolder : MonoBehaviour
             if (castingViewer.Data == null) continue;
             
             SkillManager.Inst.ApplySkillArea(_unit, castingViewer.Data);
-            
+
+            _animator.SetBool(IsReady, true);
             yield return StartCoroutine(castingViewer.Cast());
-            yield return StartCoroutine(castingViewer.Data.Use(_unit));
-            
+            _animator.SetBool(IsReady, false);
             _animator.SetTrigger(Attack);
+            yield return StartCoroutine(castingViewer.Data.Use(_unit));
             RemoveCastingViewer(castingViewer);
         }
     }

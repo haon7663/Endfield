@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -25,8 +26,8 @@ public class Skill
             switch (component.ExecuteType)
             {
                 case SkillExecuteType.Default:
-                    component.Execute(skillComponentInfo);
                     defaultComponent = component;
+                    component.Init(skillComponentInfo);
                     break;
                 case SkillExecuteType.OnHit:
                     defaultComponent?.AddOnHit(component.Execute);
@@ -38,6 +39,12 @@ public class Skill
                     throw new ArgumentOutOfRangeException();
             }
         }
+
+        foreach (var component in skillComponents.Where(s => s.ExecuteType == SkillExecuteType.Default))
+        {
+            component.Execute(skillComponentInfo);
+        }
+        
         SkillManager.Inst.RevertSkillArea(user);
         Cancel(user);
 

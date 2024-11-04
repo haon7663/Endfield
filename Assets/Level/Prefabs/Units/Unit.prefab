@@ -234,6 +234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curHp: 15
   maxHp: 15
+  takeDamageMultiplier: 1
 --- !u!114 &911527452982774341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,7 +265,7 @@ MonoBehaviour:
     m_SerializedLength: 3
     m_SerializedKeys: 000000000100000002000000
     m_SerializedValues:
-    - {fileID: 0}
+    - {fileID: 11400000, guid: dfee1cfb3d0d3114e8ff2296d7e9f234, type: 2}
     - {fileID: 11400000, guid: d0f9f76c767361541903022c7d3d192e, type: 2}
-    - {fileID: 0}
+    - {fileID: 11400000, guid: dfee1cfb3d0d3114e8ff2296d7e9f234, type: 2}
   interval: 0.1

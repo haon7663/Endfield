@@ -128,7 +128,7 @@ public class AIController : MonoBehaviour
 
     private void EnemyActing() // 적 -> 플레이어쪽으로 이동
     {
-        if(_isActing)Debug.Log("버그");
+        if(_isActing) Debug.Log("버그");
         if (_skillHolder.castingViewers.Count == 0)
         {
             StartCoroutine(TryAddSkill());

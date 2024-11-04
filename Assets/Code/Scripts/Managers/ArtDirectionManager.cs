@@ -7,6 +7,10 @@ using UnityEngine.Rendering.Universal;
 
 public class ArtDirectionManager : Singleton<ArtDirectionManager>
 {
+    [Header("Hit")]
+    [SerializeField] private Volume hitVolume;
+    
+    [Header("BulletTime")]
     public bool onBulletTime;
     
     [SerializeField] private Volume globalVolume;
@@ -18,6 +22,11 @@ public class ArtDirectionManager : Singleton<ArtDirectionManager>
     private List<Unit> _prevUnits;
     private Dictionary<Unit, int> _prevLayerNumbers;
     private Dictionary<Unit, Material> _prevMaterials;
+
+    public void OnHit()
+    {
+        DOVirtual.Float(1, 0, 0.5f, value => hitVolume.weight = value);
+    }
     
     public void StartBulletTime(List<Unit> targetUnits = null)
     {

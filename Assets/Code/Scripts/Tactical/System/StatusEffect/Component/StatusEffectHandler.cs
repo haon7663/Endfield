@@ -45,11 +45,11 @@ public class StatusEffectHandler : MonoBehaviour
         _currentInterval = 0;
     }
 
-    private StatusEffectSO CreateEffectObject(StatusEffectType statusEffectType, StatusEffectSO statueEffect)
+    private StatusEffectSO CreateEffectObject(StatusEffectType statusEffectType, StatusEffectSO statusEffect)
     {
         if (!_statusEffectCacheDict.ContainsKey(statusEffectType))
         {
-            _statusEffectCacheDict[statusEffectType] = Instantiate(statueEffect);
+            _statusEffectCacheDict[statusEffectType] = Instantiate(statusEffect);
         }
         return _statusEffectCacheDict[statusEffectType];
     }

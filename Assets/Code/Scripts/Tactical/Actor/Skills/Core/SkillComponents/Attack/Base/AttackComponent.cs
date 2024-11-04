@@ -7,7 +7,6 @@ public abstract class AttackComponent : SkillComponent, ISkillExecuter
     
     public override void Execute(SkillComponentInfo info)
     {
-        executeObjects.Add(this);
         AddOnHit(HitParticle);
     }
 

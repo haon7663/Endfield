@@ -10,6 +10,13 @@ public abstract class SkillComponent
     public int distance;
     public SkillExecuteType ExecuteType => Enum.TryParse(executeType, out SkillExecuteType result) ? result : SkillExecuteType.Default;
 
+    public virtual void Init(SkillComponentInfo info)
+    {
+        if (this is ISkillExecuter executer && !executeObjects.Contains(executer))
+        {
+            executeObjects.Add(executer);
+        }
+    }
     public abstract void Execute(SkillComponentInfo info);
     public abstract void Print(SkillComponentInfo info);
 
@@ -23,7 +30,7 @@ public abstract class SkillComponent
         return GridManager.Inst.TryGetTile(info.tile.Key + index * info.dirX, out var tile) ? tile : null;
     }
 
-    protected List<ISkillExecuter> executeObjects = new List<ISkillExecuter>();
+    public List<ISkillExecuter> executeObjects = new List<ISkillExecuter>();
     public void AddOnHit(Action<SkillComponentInfo> onHit)
     {
         foreach (var executeObject in executeObjects)

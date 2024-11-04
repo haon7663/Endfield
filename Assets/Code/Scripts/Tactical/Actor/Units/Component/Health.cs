@@ -12,16 +12,23 @@ public class Health : MonoBehaviour
     
     public int curHp;
     public int maxHp;
+    
+    public float takeDamageMultiplier = 1;
 
     private void Start()
     {
         _unit = GetComponent<Unit>();
         _spriteRenderer = _unit.SpriteTransform.GetComponent<SpriteRenderer>();
         curHp = maxHp;
+
+        if (_unit.unitType == UnitType.Player)
+            onHpChanged += ArtDirectionManager.Inst.OnHit;
     }
 
     public void OnDamage(int value)
     {
+        value = Mathf.RoundToInt(value * takeDamageMultiplier);
+        
         curHp -= value;
         curHp = Mathf.Clamp(curHp, 0, maxHp);
         
