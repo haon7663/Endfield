@@ -18,3 +18,4 @@ MonoBehaviour:
   tickInterval: 0.5
   isActive: 0
   tickDamage: 1
+  tickEffectPrefab: {fileID: 5749942479675490004, guid: eb9dece3ff6a8904fbb30001ad91190e, type: 3}

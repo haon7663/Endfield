@@ -4,6 +4,7 @@ using UnityEngine;
 public class BleedingStatusEffectSO : StatusEffectSO
 {
     public int tickDamage;
+    public GameObject tickEffectPrefab;
 
     protected override void UpdateEffect(GameObject target)
     {
@@ -14,6 +15,12 @@ public class BleedingStatusEffectSO : StatusEffectSO
             if (isActive)
             {
                 health.OnDamage(tickDamage);
+                
+                if (tickEffectPrefab)
+                {
+                    Debug.Log("Instantiate");
+                    Instantiate(tickEffectPrefab, target.transform.position + new Vector3(0, 0.75f), Quaternion.identity);
+                }
             }
         }
     }
