@@ -17,12 +17,20 @@ public class SpawnManager : Singleton<SpawnManager>
     private int _surviveEnemyCount;
     private int _curWaveCount;
 
-    private void Start()
+    private void Awake()
     {
         Reset();
-        
+    }
+
+    private void Start()
+    {   
         SpawnEnemies();
         WaveController.Inst.UpdateWaveText(_curWaveCount);
+    }
+
+    public void DoNotSpawn()
+    {
+        maxEnemyCount = 0;
     }
 
     public Unit Summon(string unitName, Tile tile, bool isPlayer = false)
@@ -46,6 +54,7 @@ public class SpawnManager : Singleton<SpawnManager>
 
     public void EnemyDead()
     {
+        Debug.Log("몬스터가 죽었습니다");
         if(--_surviveEnemyCount <= 0)
         {
             if (_curWaveCount >= maxWaveCount)
@@ -63,6 +72,8 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         _stageGold = Random.Range(150, 180);
         _surviveEnemyCount = 0;
+      //  maxEnemyCount = 3;
+       // maxWaveCount = 3;
         _curWaveCount = 1;
     }
 
