@@ -101,7 +101,7 @@ public class MapIconController : MonoBehaviour
             case MapProperty.ShopMap:
                 GridManager.Inst.GenerateTransitionTiles();
                 GameManager.Inst.MapIconShow(true);
-                shopController.Show();
+                shopController.Active();
                 SpawnManager.Inst.DoNotSpawn();
                 break;
         }
