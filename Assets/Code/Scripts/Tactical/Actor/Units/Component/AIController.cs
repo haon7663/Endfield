@@ -174,7 +174,9 @@ public class AIController : MonoBehaviour
             else if (areaTile[i].Key < min) min = areaTile[i].Key;
         }
         
-        if (GridManager.Inst.GetTile(_unit.Tile.Key + dirX).content) return;   //앞에 무언가가 있는가
+        if (_unit.Movement.isAnchored) return;
+        if (GridManager.Inst.GetTile(_unit.Tile.Key + dirX).content) return;
+        
         StartCoroutine(_movement.OnMove(dirX));
     }
 
