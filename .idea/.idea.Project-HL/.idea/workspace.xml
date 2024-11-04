@@ -5,27 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="14d34322-fb5c-456d-baed-061be64639fd" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Art/Animations/Units/Dust.anim" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/Animations/Units/Dust.anim.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/Animations/Units/SteamDashDegakDustEffect-S_0.controller" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/Animations/Units/SteamDashDegakDustEffect-S_0.controller.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/Timeline/BleedingHitParticle.playable" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/Timeline/BleedingHitParticle.playable.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/Particles/Resources/Bleeding Hit.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/Particles/Resources/Bleeding Hit.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Level/Scenes/Design/BulletTime Profile 1.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Level/Scenes/Design/BulletTime Profile 1.asset.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Project-HL/.idea/projectSettingsUpdater.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Project-HL/.idea/projectSettingsUpdater.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Project-HL/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Project-HL/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Timeline/DestroyParticle_Timeline.playable" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Timeline/DestroyParticle_Timeline.playable" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Managers/ArtDirectionManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Managers/ArtDirectionManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Units/Component/Health.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Units/Component/Health.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/System/StatusEffect/Core/BleedingStatusEffectSO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/System/StatusEffect/Core/BleedingStatusEffectSO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/System/StatusEffect/SO/Bleeding.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/System/StatusEffect/SO/Bleeding.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Utilities/CameraShake.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Utilities/CameraShake.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/Particles/Resources/Destroy.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/Particles/Resources/Destroy.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/Particles/Resources/Hit.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/Particles/Resources/Hit.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Level/Scenes/Design.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scenes/Design.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Units/Mouth Flower/Attack.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Units/Mouth Flower/Attack.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Units/Mouth Flower/Ready.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Units/Mouth Flower/Ready.anim" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +60,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main 병합 중",
+    "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -216,7 +201,7 @@
       <workItem from="1730684921495" duration="159000" />
       <workItem from="1730685088011" duration="3596000" />
       <workItem from="1730699986666" duration="354000" />
-      <workItem from="1730717501834" duration="4374000" />
+      <workItem from="1730717501834" duration="5188000" />
     </task>
     <servers />
   </component>

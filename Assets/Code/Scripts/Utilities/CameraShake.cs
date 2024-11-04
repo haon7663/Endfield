@@ -4,11 +4,13 @@ using UnityEngine;
 public class CameraShake : Singleton<CameraShake>
 {
     public CinemachineImpulseSource cinemachineImpulseSource;
+    public CinemachineImpulseSource cinemachinePlayerImpulseSource;
     [SerializeField] private float shakeAmount;
 
-    public void Shake(float shakeAmountMultiplier = 1)
+    public void Shake(bool isPlayer = false)
     {
-        cinemachineImpulseSource.m_DefaultVelocity = Random.insideUnitSphere.normalized * (shakeAmount * shakeAmountMultiplier);
-        cinemachineImpulseSource.GenerateImpulse();
+        var impulseSourceRef = isPlayer ? cinemachinePlayerImpulseSource : cinemachineImpulseSource;
+        impulseSourceRef.m_DefaultVelocity = Random.insideUnitSphere.normalized * (shakeAmount * (isPlayer ? 2 : 1));
+        impulseSourceRef.GenerateImpulse();
     }
 }

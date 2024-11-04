@@ -32,7 +32,7 @@ public class Health : MonoBehaviour
         if (_unit.unitType == UnitType.Player)
         {
             ArtDirectionManager.Inst.OnHit();
-            CameraShake.Inst.Shake(1.75f);
+            CameraShake.Inst.Shake(true);
         }
         else
         {
