@@ -1,8 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
-using UnityEngine.LightTransport;
-using UnityEngine.Rendering;
 
 public class CameraTransition : Singleton<CameraTransition>
 {
@@ -23,8 +21,10 @@ public class CameraTransition : Singleton<CameraTransition>
     public void CameraUp()
     {
         DataManager.Inst.Data.stageCount++;
-        transform.DORotate(targetRotation, rotationDuration)
-            .OnComplete(() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex));
+
+        var sequence = DOTween.Sequence();
+        sequence.Append(transform.DORotate(targetRotation, rotationDuration))
+            .InsertCallback(rotationDuration * 0.25f, () => Fade.Inst.FadeOut(SceneManager.GetActiveScene()));
     }
 
     public void CameraDown()
