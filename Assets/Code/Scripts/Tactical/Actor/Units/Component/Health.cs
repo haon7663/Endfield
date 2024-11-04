@@ -20,9 +20,6 @@ public class Health : MonoBehaviour
         _unit = GetComponent<Unit>();
         _spriteRenderer = _unit.SpriteTransform.GetComponent<SpriteRenderer>();
         curHp = maxHp;
-
-        if (_unit.unitType == UnitType.Player)
-            onHpChanged += ArtDirectionManager.Inst.OnHit;
     }
 
     public void OnDamage(int value)
@@ -31,9 +28,17 @@ public class Health : MonoBehaviour
         
         curHp -= value;
         curHp = Mathf.Clamp(curHp, 0, maxHp);
-        
+
+        if (_unit.unitType == UnitType.Player)
+        {
+            ArtDirectionManager.Inst.OnHit();
+            CameraShake.Inst.Shake(1.75f);
+        }
+        else
+        {
+            CameraShake.Inst.Shake();
+        }
         TextHudController.Inst.ShowDamage(transform.position + Vector3.up * 0.5f, value);
-        CameraShake.Inst.Shake();
 
         var sequence = DOTween.Sequence();
         sequence.AppendCallback(() =>
