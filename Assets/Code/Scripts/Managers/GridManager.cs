@@ -54,6 +54,7 @@ public class GridManager : Singleton<GridManager>
 
     public void GenerateTransitionTiles()
     {
+        DataManager.Inst.Data.curHp = GameManager.Inst.Player.Health.curHp;
         var tile = Instantiate(transitionTilePrefab, gridParent);
         tile.transform.position = GetTilePosition(tileCount);
         tile.Init(tileCount);
@@ -144,8 +145,7 @@ public class GridManager : Singleton<GridManager>
         if(_transition != null)
         {
             if (_transition.content != null && _isTransitioning)
-            {
-                DataManager.Inst.Data.curHp = Health.Inst.curHp;
+            {               
                 CameraTransition.Inst.CameraUp();
                 GameManager.Inst.MapIconShow(false);
                 _isTransitioning = false;
