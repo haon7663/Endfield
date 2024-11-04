@@ -8,7 +8,7 @@ public class SkillManager : Singleton<SkillManager>
     [SerializeField] private SkillPanelController skillPanelController;
     
     private List<Skill> _skillBuffer;
-    private Skill[] _skills = new Skill[4];
+    private Skill[] _skills = new Skill[3];
     
     private Dictionary<Unit, Skill> _previewSkills = new Dictionary<Unit, Skill>();
     
@@ -26,7 +26,7 @@ public class SkillManager : Singleton<SkillManager>
 
     public void ConsumeSkill(int index)
     {
-        index = Mathf.Clamp(index, 0, 3);
+        index = Mathf.Clamp(index, 0, _skills.Length - 1);
         var skill = _skills[index];
         _skillBuffer.Add(skill);
         

@@ -147,14 +147,6 @@ public class PlayerController : MonoBehaviour
         if (context.canceled)
             BufferedInput(OnSkillCanceled(2));
     }
-    public void OnFourthSkill(InputAction.CallbackContext context)
-    {
-        if (context.started)
-            BufferedInput(OnSkillStarted(3));
-        
-        if (context.canceled)
-            BufferedInput(OnSkillCanceled(3));
-    }
 
     public void OnCancelSkill(InputAction.CallbackContext context)
     {

@@ -33,15 +33,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Fourth Skill",
-                    "type": "Button",
-                    "id": "6e3b1ddc-c2ce-4980-8a0b-b032bdb2d027",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Cancel Skill",
                     "type": "Button",
                     "id": "e5e35c3c-fe50-4634-8bb4-b7fcfb73537f",
@@ -82,7 +73,7 @@
                 {
                     "name": "",
                     "id": "45f64a04-ccc6-4b51-aa3d-6f995e60158a",
-                    "path": "<Keyboard>/u",
+                    "path": "<Keyboard>/j",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -93,7 +84,7 @@
                 {
                     "name": "",
                     "id": "59e744f5-0bfc-464a-9278-b6efb60cdd0d",
-                    "path": "<Keyboard>/i",
+                    "path": "<Keyboard>/k",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -104,22 +95,11 @@
                 {
                     "name": "",
                     "id": "01836b4a-6981-4079-92f7-b1ad78d57408",
-                    "path": "<Keyboard>/j",
+                    "path": "<Keyboard>/l",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Third Skill",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0a3ae07b-024a-478f-9817-9a1566d72d0e",
-                    "path": "<Keyboard>/k",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Fourth Skill",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
