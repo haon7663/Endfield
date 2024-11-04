@@ -97,8 +97,8 @@ public class Chest : MonoBehaviour
    public void Win()
    {
         int random = Random.Range(0, events.Count);
-        Sprite spr = events[random].Excute();
-        _eventController.GambleResult(spr);
+        var (sprite,name) = events[random].Excute();
+        _eventController.GambleResult(sprite,name);
         Debug.Log("성공!");
    }
 

@@ -4,12 +4,12 @@ public class ChestEvent :MonoBehaviour
 {
     public string iconName;
 
-    public virtual Sprite Excute()
+    public virtual (Sprite,string) Excute()
     {
         if (!iconName.StartsWith("Icon/"))
             iconName = "Icon/" + iconName;
 
         var sprite = Resources.Load<Sprite>(iconName);
-        return sprite;
+        return (sprite,iconName);
     }
 }

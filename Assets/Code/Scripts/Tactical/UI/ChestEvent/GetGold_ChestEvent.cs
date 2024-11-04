@@ -6,9 +6,9 @@ public class GetGold_ChestEvent : ChestEvent
     public int givingGold;
     
 
-    public override Sprite Excute()
+    public override (Sprite,string) Excute()
     {
-        iconName = "gold";
+        iconName = "Gold";
         GoldController.Inst.ReCountGold(+givingGold);
         return base.Excute();
     }

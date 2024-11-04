@@ -26,7 +26,9 @@ public class ShopController : MonoBehaviour
 
     public void Active()
     {
+        content.transform.position = new Vector3(CameraTransition.Inst.gameObject.transform.position.x,transform.position.y,transform.position.z);
         content.gameObject.SetActive(true);
+        
         CardInfo();
     }
     

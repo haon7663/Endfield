@@ -16,6 +16,7 @@ public class EventNpc : MonoBehaviour
     [SerializeField] private Panel speakLinePanel;
     [SerializeField] private Panel giveItemPanel;
     [FormerlySerializedAs("imagss")] public Image icon;
+    [SerializeField] private TextMeshProUGUI giftNameTxt;
     [SerializeField] private List<int> interactTileIndex = new List<int>();
 
     private bool _isActive = false;
@@ -47,11 +48,12 @@ public class EventNpc : MonoBehaviour
       
     }
 
-    public void ResultSprite(Sprite spr)
+    public void ResultSprite(Sprite spr,string iconName)
     {
         Hide(speakLinePanel);
         Show(giveItemPanel);
         icon.sprite = spr;
+        giftNameTxt.text = iconName;
     }
 
 

@@ -6,13 +6,13 @@ public class GetSkill_ChestEvent : ChestEvent
 {
 
 
-    public override Sprite Excute()
+    public override (Sprite,string) Excute()
     {
         var skills = SkillLoader.GetAllSkills("skill");
         var skill = skills[Random.Range(0, skills.Count)];
         iconName = skill.name;
         DataManager.Inst.Data.skills.Add(skill);
-        return SkillLoader.GetSkillSprite(iconName);
+        return (SkillLoader.GetSkillSprite(iconName),iconName);
     }
     
     

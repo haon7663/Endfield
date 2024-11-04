@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class EventController : MonoBehaviour
@@ -6,6 +7,7 @@ public class EventController : MonoBehaviour
     public EventNpc npc;
     public void Show()
     {
+        content.transform.position = new Vector3(CameraTransition.Inst.gameObject.transform.position.x,transform.position.y,transform.position.z);
         content.SetActive(true);
     }
 
@@ -14,8 +16,8 @@ public class EventController : MonoBehaviour
         content.SetActive(false);
     }
 
-    public void GambleResult(Sprite spr)
+    public void GambleResult(Sprite spr,String iconName)
     {
-        npc.ResultSprite(spr);
+        npc.ResultSprite(spr,iconName);
     }
 }
