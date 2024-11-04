@@ -145,6 +145,7 @@ public class GridManager : Singleton<GridManager>
         {
             if (_transition.content != null && _isTransitioning)
             {
+                DataManager.Inst.Data.curHp = Health.Inst.curHp;
                 CameraTransition.Inst.CameraUp();
                 GameManager.Inst.MapIconShow(false);
                 _isTransitioning = false;

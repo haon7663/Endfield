@@ -15,6 +15,7 @@ public class PlayerData
     public int gainedSkillCount;
     public int stageCount;
     public int gold;
+    public int curHp;
 
     public PlayerData(List<Skill> skills)
     {
@@ -45,6 +46,7 @@ public class DataManager : SingletonDontDestroyOnLoad<DataManager>
             Generate("Player");
             //임시, 나중에 게임 처음 시작할 때 생성하면 된다.
         }
+        Data.curHp = Health.Inst.maxHp;
     }
     
     public void Generate(string unitName)
@@ -63,6 +65,20 @@ public class DataManager : SingletonDontDestroyOnLoad<DataManager>
         
         File.WriteAllText(_playerDataFilePath, json);
     }
+
+    public void ResetData()
+    {
+        if (Data != null)
+        {
+            Data.eliteKillCount = 0;
+            Data.plantKillCount = 0;
+            Data.gainedArtifactCount = 0;
+            Data.gainedSkillCount = 0;
+            Data.stageCount = 0;
+            Data.gold = 0;          
+        }
+    }
+
 
     public void Delete()
     {

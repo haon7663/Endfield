@@ -27,6 +27,11 @@ public class Unit : MonoBehaviour
         Health = GetComponent<Health>();
     }
 
+    private void OnDestroy()
+    {
+        CountEnemyKill();
+    }
+
     public void Init(UnitData data, Tile tile)
     {
         name = data.name;
@@ -62,5 +67,13 @@ public class Unit : MonoBehaviour
         (other.Tile.content, Tile.content) = (Tile.content, other.Tile.content);
         
         OnAction?.Invoke();
+    }
+
+    public void CountEnemyKill()
+    {
+        if(unitType == UnitType.Enemy)
+        {
+            DataManager.Inst.Data.plantKillCount++;
+        }
     }
 }
