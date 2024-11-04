@@ -2,7 +2,7 @@ using System;
 using DG.Tweening;
 using UnityEngine;
 
-public class Health : Singleton<Health>
+public class Health : MonoBehaviour
 {
     public Action onHpChanged;
     public Action onDeath;
@@ -19,7 +19,6 @@ public class Health : Singleton<Health>
     {
         _unit = GetComponent<Unit>();
         _spriteRenderer = _unit.SpriteTransform.GetComponent<SpriteRenderer>();
-        InitHp();
     }
 
     public void OnDamage(int value)
@@ -65,17 +64,5 @@ public class Health : Singleton<Health>
         TextHudController.Inst.ShowRecovery(transform.position + Vector3.up * 0.5f, value);
         
         onHpChanged?.Invoke();
-    }
-
-    public void InitHp()
-    {
-        if(_unit.unitType == UnitType.Enemy)
-        {
-            curHp = maxHp;
-        }
-        else if(_unit.unitType == UnitType.Player)
-        {
-            curHp = DataManager.Inst.Data.curHp;
-        }
-    }
+    }  
 }

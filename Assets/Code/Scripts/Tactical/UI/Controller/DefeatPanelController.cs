@@ -21,7 +21,8 @@ public class DefeatPanelController : MonoBehaviour
         //AddInventorySkill();
         panel.SetPosition(PanelStates.Show, true, 0.5f, Ease.OutBack);
         closePanel.onClose += Hide;
-        ResetText();       
+        ResetText();  
+        DataManager.Inst.ResetData();
     }
     public void Hide()
     {
