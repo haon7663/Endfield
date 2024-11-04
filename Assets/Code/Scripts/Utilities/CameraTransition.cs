@@ -11,10 +11,12 @@ public class CameraTransition : Singleton<CameraTransition>
     [SerializeField] private float rotationDuration;
 
     [SerializeField] private AnimationCurve animationCurve;
-
-
-    private void Awake()
+    
+    private Vector3 _originalPosition;
+    
+    private void Start()
     {
+        _originalPosition = transform.position;
         CameraDown();
     }
 
@@ -27,11 +29,12 @@ public class CameraTransition : Singleton<CameraTransition>
 
     public void CameraDown()
     {
+        transform.position = _originalPosition + Vector3.right * GameManager.Inst.startViewPoint;
+        
         transform.rotation = Quaternion.Euler(targetRotation);
         transform.DORotate(originalRotation, rotationDuration);
     }
-
-
+    
     /*public void RotateAndMoveCamera()
     {
         Sequence sequence = DOTween.Sequence();

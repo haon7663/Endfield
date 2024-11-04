@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -26,8 +27,9 @@ public class GridManager : Singleton<GridManager>
 
     private Dictionary<Unit, List<Tile>> _previewTiles = new Dictionary<Unit, List<Tile>>();
 
-    private void Awake()
+    private IEnumerator Start()
     {
+        yield return new WaitUntil(() => GameManager.Inst);
         GenerateTiles();
     }
 
@@ -63,7 +65,7 @@ public class GridManager : Singleton<GridManager>
 
     private Vector3 GetTilePosition(int index)
     {
-        return new Vector3((index - Mathf.FloorToInt((float)tileCount / 2)) * tileInterval, 0);
+        return new Vector3((index - Mathf.FloorToInt((float)tileCount / 2)) * tileInterval + GameManager.Inst.startViewPoint, 0);
     }
 
     public Tile GetTile(int index)

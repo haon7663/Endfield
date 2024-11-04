@@ -29,15 +29,9 @@ public class Health : MonoBehaviour
         curHp -= value;
         curHp = Mathf.Clamp(curHp, 0, maxHp);
 
-        if (_unit.unitType == UnitType.Player)
-        {
-            ArtDirectionManager.Inst.OnHit();
-            CameraShake.Inst.Shake(true);
-        }
-        else
-        {
-            CameraShake.Inst.Shake();
-        }
+        var isPlayer = _unit.unitType == UnitType.Player;
+        if (isPlayer) ArtDirectionManager.Inst.OnHit();
+        CameraShake.Inst.Shake(isPlayer);
         TextHudController.Inst.ShowDamage(transform.position + Vector3.up * 0.5f, value);
 
         var sequence = DOTween.Sequence();

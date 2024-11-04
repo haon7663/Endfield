@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
@@ -63,8 +64,9 @@ public class MapIconController : MonoBehaviour
    
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
+        yield return new WaitUntil(() => GridManager.Inst);
         Instance();
     }
 
@@ -107,10 +109,6 @@ public class MapIconController : MonoBehaviour
         }
         SpawnManager.Inst.SpawnEnemies();
     }
-
-
-
-
 
     public void MoveNextMap()
     {

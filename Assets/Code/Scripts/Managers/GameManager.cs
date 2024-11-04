@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -9,12 +10,21 @@ public class GameManager : Singleton<GameManager>
 
     public int maxElixir;
     public float curElixir;
+
+    public float startViewPoint;
+    
     [SerializeField] private DefeatPanelController defeatController;
     [SerializeField] private SkillSelectionPanelController skillSelectionController;
     [SerializeField] private MapIconController mapIconController;
 
-    private void Start()
+    private void Awake()
     {
+        startViewPoint = DataManager.Inst.Data.stageCount * 9.8f;
+    }
+
+    private IEnumerator Start()
+    {
+        yield return new WaitUntil(() => SpawnManager.Inst);
         Player = SpawnManager.Inst.Summon("Player", GridManager.Inst.GetTile(0), true);
     }
 
