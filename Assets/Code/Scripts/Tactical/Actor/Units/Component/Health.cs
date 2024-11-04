@@ -54,6 +54,7 @@ public class Health : MonoBehaviour
         {
             ParticleLoader.Create("Destroy", transform.position + Vector3.up, Quaternion.identity);
             onDeath?.Invoke();
+            onDeath = null;
             Destroy(gameObject);
         }
     }

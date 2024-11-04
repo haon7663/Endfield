@@ -9,17 +9,19 @@ public class GoldController : Singleton<GoldController>
 
     private void Start()
     {
-        ReCountGold(0,DataManager.Inst.Data.gold);
+        ReCountGold(0);
     }
 
-    public void ReCountGold(int startValue,int endValue)
+    public void ReCountGold(int value)
     {
+        int startValue = DataManager.Inst.Data.gold;
         goldCountTxt.text = startValue.ToString();
         DOTween.To(() => startValue, x =>
         {
             startValue = x;
             goldCountTxt.text = startValue.ToString()+ " ml";
-        }, endValue, 0.8f);
+        }, startValue + value, 0.8f);
+        DataManager.Inst.Data.gold+=value;
     }
 
 

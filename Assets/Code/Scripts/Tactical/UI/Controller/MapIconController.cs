@@ -10,7 +10,7 @@ public enum MapState
 
 public enum MapProperty
 {
-    EnemyMap,Eventmap
+    EnemyMap,EventMap,ShopMap,BossMap
 }
 
 public class MapIconController : MonoBehaviour
@@ -19,9 +19,12 @@ public class MapIconController : MonoBehaviour
 
     [SerializeField]  private GameObject mapIconPrefab;
     [SerializeField] private Panel panel;
-    [SerializeField] private Sprite enemyIcon, eventIcon;
+    [SerializeField] private Sprite enemyIcon, eventIcon,shopIcon,bossIcon;
     [SerializeField] private RectTransform icons;
-    [SerializeField]private int showLastMapIndex = 4;
+    [SerializeField] private EventController eventController;
+    [SerializeField] private ShopController shopController;
+    private int showLastMapIndex = 4;
+  
     
     private List<MapIcon> _mapIcons = new List<MapIcon>();
     private int _curMapIndex = 0;
@@ -38,8 +41,14 @@ public class MapIconController : MonoBehaviour
                 case MapProperty.EnemyMap:
                     mapIconCS.SetDefaultIcon(enemyIcon);
                     break;
-                case MapProperty.Eventmap:
+                case MapProperty.EventMap:
                     mapIconCS.SetDefaultIcon(eventIcon);
+                    break;
+                case MapProperty.ShopMap:
+                    mapIconCS.SetDefaultIcon(shopIcon);
+                    break;
+                case MapProperty.BossMap:
+                    mapIconCS.SetDefaultIcon(bossIcon);
                     break;
             }
             _mapIcons.Add(mapIconCS);
@@ -50,6 +59,7 @@ public class MapIconController : MonoBehaviour
             _mapIcons.Add(child.GetComponent<MapIcon>());
         }
         _mapIcons[_curMapIndex].SetMapState(MapState.PlayerMap);
+        Instance();
    
     }
 
@@ -64,7 +74,35 @@ public class MapIconController : MonoBehaviour
         panel.SetPosition(PanelStates.Hide, true);
     }
 
-  
+    public void Instance()
+    {
+        _curMapIndex = DataManager.Inst.Data.stageCount;
+
+        switch (mapSequence[_curMapIndex])
+        {
+            case MapProperty.EnemyMap:
+                Debug.Log("적 등장");
+                break;
+            case MapProperty.BossMap:
+                Debug.Log("보스 등장");
+                break;
+            case MapProperty.EventMap:
+                GridManager.Inst.GenerateTransitionTiles();
+                GameManager.Inst.MapIconShow(true);
+                eventController.Show();
+                SpawnManager.Inst.DoNotSpawn();              
+                break;
+            case MapProperty.ShopMap:
+                GridManager.Inst.GenerateTransitionTiles();
+                GameManager.Inst.MapIconShow(true);
+                shopController.Show();
+                SpawnManager.Inst.DoNotSpawn();
+                break;
+        }
+
+    }
+
+
 
 
 
@@ -88,8 +126,8 @@ public class MapIconController : MonoBehaviour
                 Destroy(_mapIcons[i].gameObject); 
             }
         }
-        
-        
+
+
         /*
         if(showLastMapIndex >= mapSequence.Count-1) return;
         if (showLastMapIndex - _curMapIndex <= 1)
@@ -98,8 +136,8 @@ public class MapIconController : MonoBehaviour
             showLastMapIndex = Mathf.Clamp(showLastMapIndex,0, mapSequence.Count-1);
             Destroy(_mapIcons[_destoryIndex++].gameObject); 
         }*/
-           
-        
+
+
     }
 
     
