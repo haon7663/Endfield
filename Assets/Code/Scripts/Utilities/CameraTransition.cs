@@ -27,6 +27,7 @@ public class CameraTransition : Singleton<CameraTransition>
 
     public void CameraDown()
     {
+        DataManager.Inst.ResetData();
         transform.rotation = Quaternion.Euler(targetRotation);
         transform.DORotate(originalRotation, rotationDuration);
     }
