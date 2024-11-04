@@ -10,6 +10,8 @@ public class Movement : MonoBehaviour
     private Animator _animator;
     
     [SerializeField] private float moveSpeed;
+
+    public bool isAnchored;
     
     public Vector2 Dir => _dir;
     public int DirX => (int)_dir.x;

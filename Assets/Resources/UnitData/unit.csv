@@ -1,23 +1,23 @@
-﻿name,health,actionTime,skillName
-Player,25,0.2,Slash
-,,,SwordThrow
-,,,SelfRecovery
-,,,Sting
-,,,MoveAttack
-,,,
-Spider,15,0.5,Slash
-,,,Shoot
-,,,
-Double Flower,20,0.9,Slash
-,,,Shoot
-,,,
-Plant Dog,14,0.25,Slash
-,,,Shoot
-,,,
-Explosion Spider,12,0.4,SelfExplosion
-,,,
-,,,
-Bush,40,0.7,Slash
-,,,
-,,,
-Mouth Flower,10,0.5,Shoot
+﻿name,health,actionTime,skillName,isAnchored
+Player,25,0.2,Slash,
+,,,SwordThrow,
+,,,SelfRecovery,
+,,,Sting,
+,,,MoveAttack,
+,,,,
+Spider,15,0.5,Slash,
+,,,Shoot,
+,,,,
+Double Flower,20,0.9,Slash,1
+,,,Shoot,
+,,,,
+Plant Dog,14,0.25,Slash,
+,,,Shoot,
+,,,,
+Explosion Spider,12,0.4,SelfExplosion,
+,,,,
+,,,,
+Bush,40,0.7,Slash,
+,,,,
+,,,,
+Mouth Flower,10,0.5,Shoot,

@@ -36,6 +36,7 @@ public class Unit : MonoBehaviour
             skillHolder.skills = data.skills;
         if (TryGetComponent(out AIController aiController))
             aiController.actionCool = data.actionTime;
+        Movement.isAnchored = data.isAnchored;
         
         transform.position = tile.transform.position;
         Place(tile.IsOccupied ? GridManager.Inst.FindNearestTile(tile.Key) : tile);
