@@ -397,6 +397,9 @@ MonoBehaviour:
   panel: {fileID: 2487344840558974118}
   interactTileIndex: 020000000300000004000000
   keyCode: 101
+  events:
+  - {fileID: 0}
+  eventsa: {fileID: 0}
 --- !u!1 &1534745157093684260
 GameObject:
   m_ObjectHideFlags: 0

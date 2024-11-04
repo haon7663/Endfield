@@ -10,9 +10,12 @@ public class Chest : MonoBehaviour
 {
    [SerializeField] private int chestPrice,victoryPercent;
    [SerializeField] private TextMeshProUGUI percentTxt, priceTxt;
+    [SerializeField] private EventNpc npc;
    [SerializeField] private Panel panel;
    [SerializeField] private List<int> interactTileIndex = new List<int>();
    [SerializeField] private KeyCode keyCode;
+
+    [SerializeField] private List<ChestEvent> events = new List<ChestEvent>();
    
    private List<int> _percentIndex = new List<int>();
  
@@ -20,16 +23,31 @@ public class Chest : MonoBehaviour
 
    private void Awake()
    {
-      priceTxt.text = chestPrice.ToString() + " ml";
-      percentTxt.text = "성공 확률 " + victoryPercent.ToString() + "%";
+        GetEvent();
+        priceTxt.text = chestPrice.ToString() + " ml";
+        percentTxt.text = "성공 확률 " + victoryPercent.ToString() + "%";
       
-      for (int i = 1; i < victoryPercent + 1; i++) _percentIndex.Add(i);
+        for (int i = 1; i < victoryPercent + 1; i++) _percentIndex.Add(i);
+
+
    }
+
+    private void GetEvent()
+    {
+        var chestEvents = new List<ChestEvent>
+        {
+            new GetGold_ChestEvent(),
+            new GetSkill_ChestEvent(),
+            new GetSkillUpgrade_ChestEvent(),
+            new GetHp_ChestEvent(),
+        };
+        events.AddRange(chestEvents);      
+    }
 
    public void Gamble()
    {
       if(DataManager.Inst.Data.gold - chestPrice<0) return;
-      GoldController.Inst.ReCountGold(DataManager.Inst.Data.gold,DataManager.Inst.Data.gold-=chestPrice);
+      GoldController.Inst.ReCountGold(-chestPrice);
       int random = Random.Range(1, 100 + 1);
       (_percentIndex.Contains(random) ?(Action) Win : Lose)();
 
@@ -73,11 +91,13 @@ public class Chest : MonoBehaviour
 
    public void Win()
    {
-      Debug.Log("성공!");
+        int random = Random.Range(0, events.Count);
+        events[random].Excute();
+        Debug.Log("성공!");
    }
 
    public void Lose()
    {
-      Debug.Log("실패!");
+        Debug.Log("실패!");
    }
 }

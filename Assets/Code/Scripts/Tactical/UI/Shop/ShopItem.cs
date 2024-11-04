@@ -22,7 +22,7 @@ public class ShopItem : MonoBehaviour
     {
         Debug.Log("상점");
         if (!_isSelling || DataManager.Inst.Data.gold < _itemPrice) return;
-        GoldController.Inst.ReCountGold( DataManager.Inst.Data.gold, DataManager.Inst.Data.gold -= _itemPrice);
+        GoldController.Inst.ReCountGold( - _itemPrice);
        
         BuyAction();
         _isSelling = false;
