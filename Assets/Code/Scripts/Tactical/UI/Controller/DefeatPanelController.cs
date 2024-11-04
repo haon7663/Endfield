@@ -16,21 +16,12 @@ public class DefeatPanelController : MonoBehaviour
     [SerializeField] private TMP_Text gainedSkill;
     [SerializeField] private TMP_Text gainedArtifact;
 
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.T))
-        {
-            Show();
-        }
-    }
-
     public void Show()
     {
         //AddInventorySkill();
         panel.SetPosition(PanelStates.Show, true, 0.5f, Ease.OutBack);
         closePanel.onClose += Hide;
-        ResetText();
+        ResetText();       
     }
     public void Hide()
     {
