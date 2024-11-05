@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GetGold_ChestEvent : ChestEvent
 {
-    public int givingGold;
+    public int givingGold = 300;
     
 
     public override (Sprite,string) Excute()
