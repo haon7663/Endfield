@@ -172,8 +172,8 @@ public class PlayerController : MonoBehaviour
         var skill = SkillManager.Inst.GetSkillAtIndex(skillNum);
         if (GameManager.Inst.curElixir >= skill.elixir)
         {
-            if (!ArtDirectionManager.Inst.onBulletTime)
-                ArtDirectionManager.Inst.StartBulletTime(new List<Unit> { _unit });
+            /*if (!ArtDirectionManager.Inst.onBulletTime)
+                ArtDirectionManager.Inst.StartBulletTime(new List<Unit> { _unit });*/
             
             SkillManager.Inst.RevertSkillArea(_unit);
             _prevSkill?.Cancel(_unit);
