@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DashComponent : SkillComponent
+public class RushComponent : SkillComponent
 {
     public int value;
     

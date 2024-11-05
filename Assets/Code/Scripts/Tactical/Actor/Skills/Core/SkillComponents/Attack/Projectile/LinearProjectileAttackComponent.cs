@@ -20,7 +20,6 @@ public class LinearProjectileAttackComponent : ProjectileAttackComponent
     public override void Cancel(SkillComponentInfo info)
     {
         base.Cancel(info);
-        
         GridManager.Inst.RevertGrid(info.user);
     }
     

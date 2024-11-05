@@ -8,6 +8,7 @@ public class GameManager : Singleton<GameManager>
 
     public int maxElixir;
     public float curElixir;
+    public float elixirRegenerationSpeed = 0.5f;
 
     public float startViewPoint;
     
@@ -28,7 +29,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Update()
     {
-        curElixir += Time.deltaTime;
+        curElixir += Time.deltaTime * elixirRegenerationSpeed;
         curElixir = Mathf.Clamp(curElixir, 0, maxElixir);
     }
 

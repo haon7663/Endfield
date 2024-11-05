@@ -20,6 +20,7 @@ public class MoveComponent : SkillComponent
 
     public override void Cancel(SkillComponentInfo info)
     {
+        base.Cancel(info);
         _previewSprite?.Cancel();
         _previewSprite = null;
     }

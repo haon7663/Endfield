@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RecoveryComponent : SkillComponent
+public class BerriorComponent : SkillComponent
 {
     public int value;
     
