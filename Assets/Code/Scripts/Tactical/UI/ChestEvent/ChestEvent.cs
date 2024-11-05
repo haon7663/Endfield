@@ -6,10 +6,11 @@ public class ChestEvent :MonoBehaviour
 
     public virtual (Sprite,string) Excute()
     {
+        string _iconName = "";
         if (!iconName.StartsWith("Icon/"))
-            iconName = "Icon/" + iconName;
+            _iconName = "Icon/" + iconName;
 
-        var sprite = Resources.Load<Sprite>(iconName);
+        var sprite = Resources.Load<Sprite>(_iconName);
         return (sprite,iconName);
     }
 }

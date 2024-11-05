@@ -13,11 +13,13 @@ public class EventNpc : MonoBehaviour
 {
     [SerializeField] [TextArea] private string speakLine,failLine;
     [FormerlySerializedAs("txt")] [SerializeField] private TextMeshProUGUI speakLineTxt;
+    [SerializeField] private TextMeshProUGUI giftNameTxt,failTxt;
     [SerializeField] private List<Panel> panels = new List<Panel>();
     [SerializeField] private Panel speakLinePanel;
     [SerializeField] private Panel giveItemPanel;
+    [SerializeField] private Panel failLinePanel;
     [FormerlySerializedAs("imagss")] public Image icon;
-    [SerializeField] private TextMeshProUGUI giftNameTxt;
+   
     [SerializeField] private List<int> interactTileIndex = new List<int>();
 
 
@@ -26,6 +28,7 @@ public class EventNpc : MonoBehaviour
     private void Start()
     {
         speakLineTxt.text = speakLine;
+        failTxt.text = failLine;
     }
     
     private void Update()
@@ -60,8 +63,7 @@ public class EventNpc : MonoBehaviour
 
     public void GambleFail()
     {
-        speakLineTxt.text = failLine;
-        Show(speakLinePanel);
+        Show(failLinePanel);
     }
 
 
@@ -75,13 +77,20 @@ public class EventNpc : MonoBehaviour
             else
                 Hide(_panel);
         }
-         _isActive = true;
+
+        if (panel == speakLinePanel)
+        {
+            _isActive = true;
+        }
     }
 
     private void Hide(Panel panel)
     {
         panel.SetPosition(PanelStates.Hide, true, 0.3f, Ease.OutBack);
-        _isActive = false;
+        if (panel == speakLinePanel)
+        {
+            _isActive = false;
+        }
     }
     
     

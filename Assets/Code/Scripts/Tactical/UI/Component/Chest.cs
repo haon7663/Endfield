@@ -111,6 +111,7 @@ public class Chest : MonoBehaviour
 
    public void Lose()
    {
+      Debug.Log("실패!");
         _eventController.GambleFail();
    }
 }
