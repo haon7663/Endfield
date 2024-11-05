@@ -24,6 +24,7 @@ public class MapIconController : MonoBehaviour
     [SerializeField] private RectTransform icons;
     [SerializeField] private EventController eventController;
     [SerializeField] private ShopController shopController;
+    [SerializeField] private EndingPanelController endingPanelController;
     private int showLastMapIndex = 4;
   
     
@@ -115,6 +116,7 @@ public class MapIconController : MonoBehaviour
         _curMapIndex = DataManager.Inst.Data.stageCount;
         if (_curMapIndex >= mapSequence.Count)
         {
+            endingPanelController.Show();
             Debug.Log("게임 끝");
             //게임끝 함수
         }
