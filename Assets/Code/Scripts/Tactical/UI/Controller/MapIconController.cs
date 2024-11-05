@@ -113,6 +113,12 @@ public class MapIconController : MonoBehaviour
     public void MoveNextMap()
     {
         _curMapIndex = DataManager.Inst.Data.stageCount;
+        if (_curMapIndex >= mapSequence.Count)
+        {
+            Debug.Log("게임 끝");
+            //게임끝 함수
+        }
+        
         for (int i = 0; i < _curMapIndex; i++)
         {
             _mapIcons[i].SetMapState(MapState.FinishMap);
