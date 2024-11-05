@@ -73,13 +73,13 @@ public class MapIconController : MonoBehaviour
 
     public void Show()
     {
-        panel.SetPosition(PanelStates.Show, true);
+        panel.SetPosition(PanelStates.Show, true,0.5f);
         MoveNextMap();
     }
     
     public void Hide()
     {
-        panel.SetPosition(PanelStates.Hide, true);
+        panel.SetPosition(PanelStates.Hide, true,0.5f);
     }
 
     public void Instance()
