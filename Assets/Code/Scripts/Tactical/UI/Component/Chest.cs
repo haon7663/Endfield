@@ -20,10 +20,13 @@ public class Chest : MonoBehaviour
    private List<int> _percentIndex = new List<int>();
  
    private bool _isActive = false;
+   [SerializeField] private bool _isOpen = false;
+    private Animator _animator;
 
-   private void Awake()
+    private void Awake()
    {
-         if (transform.parent.parent.TryGetComponent(out EventController eventController))
+        _animator = GetComponent<Animator>();
+        if (transform.parent.parent.TryGetComponent(out EventController eventController))
          {
             _eventController = transform.parent.GetComponentInParent<EventController>();
          }
@@ -51,7 +54,7 @@ public class Chest : MonoBehaviour
 
    public void Gamble()
    {
-      if(DataManager.Inst.Data.gold - chestPrice<0) return;
+      if(DataManager.Inst.Data.gold - chestPrice<0 && !_isOpen) return;
       GoldController.Inst.ReCountGold(-chestPrice);
       int random = Random.Range(1, 100 + 1);
       (_percentIndex.Contains(random) ?(Action) Win : Lose)();
@@ -60,7 +63,7 @@ public class Chest : MonoBehaviour
 
    private void Update()
    {
-      if(!_isActive)
+      if(!_isActive && !_isOpen)
          foreach (var index in interactTileIndex)
          {
             if(GridManager.Inst.GetTile(index).content) Show();
@@ -84,7 +87,8 @@ public class Chest : MonoBehaviour
 
    private void Show()
    {
-      panel.SetPosition(PanelStates.Show, true, 0.5f, Ease.OutBack);
+       panel.SetPosition(PanelStates.Show, true, 0.5f, Ease.OutBack);
+      
       _isActive = true;
    }
 
@@ -96,14 +100,17 @@ public class Chest : MonoBehaviour
 
    public void Win()
    {
+        _isOpen = true;
+        _animator.Play("Chest_Open");
+        Hide();
         int random = Random.Range(0, events.Count);
         var (sprite,name) = events[random].Excute();
-        _eventController.GambleResult(sprite,name);
+        _eventController.GambleWin(sprite,name);
         Debug.Log("성공!");
    }
 
    public void Lose()
    {
-        Debug.Log("실패!");
+        _eventController.GambleFail();
    }
 }

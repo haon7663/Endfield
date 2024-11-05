@@ -16,8 +16,13 @@ public class EventController : MonoBehaviour
         content.SetActive(false);
     }
 
-    public void GambleResult(Sprite spr,String iconName)
+    public void GambleWin(Sprite spr,String iconName)
     {
         npc.ResultSprite(spr,iconName);
+    }
+
+    public void GambleFail()
+    {
+        npc.GambleFail();
     }
 }

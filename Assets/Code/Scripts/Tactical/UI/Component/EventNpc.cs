@@ -11,13 +11,15 @@ using UnityEngine.UI;
 
 public class EventNpc : MonoBehaviour
 {
-    [SerializeField] [TextArea] private string speakLine;
-    [FormerlySerializedAs("txt")] [SerializeField] private TextMeshProUGUI speakLineTxt; 
+    [SerializeField] [TextArea] private string speakLine,failLine;
+    [FormerlySerializedAs("txt")] [SerializeField] private TextMeshProUGUI speakLineTxt;
+    [SerializeField] private List<Panel> panels = new List<Panel>();
     [SerializeField] private Panel speakLinePanel;
     [SerializeField] private Panel giveItemPanel;
     [FormerlySerializedAs("imagss")] public Image icon;
     [SerializeField] private TextMeshProUGUI giftNameTxt;
     [SerializeField] private List<int> interactTileIndex = new List<int>();
+
 
     private bool _isActive = false;
 
@@ -56,12 +58,24 @@ public class EventNpc : MonoBehaviour
         giftNameTxt.text = iconName;
     }
 
+    public void GambleFail()
+    {
+        speakLineTxt.text = failLine;
+        Show(speakLinePanel);
+    }
+
 
 
     private void Show(Panel panel)
     {
-        panel.SetPosition(PanelStates.Show, true, 0.5f, Ease.OutBack);
-        _isActive = true;
+        foreach(Panel _panel in panels)
+        {
+            if (panel == _panel)
+                panel.SetPosition(PanelStates.Show, true, 0.5f, Ease.OutBack);
+            else
+                Hide(_panel);
+        }
+         _isActive = true;
     }
 
     private void Hide(Panel panel)

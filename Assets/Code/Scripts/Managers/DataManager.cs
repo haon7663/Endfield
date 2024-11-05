@@ -14,7 +14,7 @@ public class PlayerData
     public int gainedArtifactCount;
     public int gainedSkillCount;
     public int stageCount;
-    public int gold;
+    public int gold = 1000;
     public int curHp;
 
     public PlayerData(List<Skill> skills)
