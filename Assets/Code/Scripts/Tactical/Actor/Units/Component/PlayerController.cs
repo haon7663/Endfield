@@ -84,11 +84,11 @@ public class PlayerController : MonoBehaviour
                 return;
             }
 
-            var targetTile = GridManager.Inst.GetTile(_unit.Tile.Key - 1);
+            /*var targetTile = GridManager.Inst.GetTile(_unit.Tile.Key - 1);
             if (targetTile.IsOccupied)
                 SwapInput(targetTile.content);
-            else
-                MoveInput(-1);
+            else*/
+            MoveInput(-1);
         }
     }
     
@@ -103,11 +103,11 @@ public class PlayerController : MonoBehaviour
                 return;
             }
             
-            var targetTile = GridManager.Inst.GetTile(_unit.Tile.Key + 1);
+            /*var targetTile = GridManager.Inst.GetTile(_unit.Tile.Key + 1);
             if (targetTile.IsOccupied)
                 SwapInput(targetTile.content);
-            else
-                MoveInput(1);
+            else*/
+            MoveInput(1);
         }
     }
     
@@ -172,8 +172,8 @@ public class PlayerController : MonoBehaviour
         var skill = SkillManager.Inst.GetSkillAtIndex(skillNum);
         if (GameManager.Inst.curElixir >= skill.elixir)
         {
-            if (!ArtDirectionManager.Inst.onBulletTime)
-                ArtDirectionManager.Inst.StartBulletTime(new List<Unit> { _unit });
+            /*if (!ArtDirectionManager.Inst.onBulletTime)
+                ArtDirectionManager.Inst.StartBulletTime(new List<Unit> { _unit });*/
             
             SkillManager.Inst.RevertSkillArea(_unit);
             _prevSkill?.Cancel(_unit);
