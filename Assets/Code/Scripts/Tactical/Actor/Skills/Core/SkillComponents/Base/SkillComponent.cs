@@ -8,6 +8,8 @@ public abstract class SkillComponent
     public string executeType;
     public string saveName;
     public int distance;
+    public string subDescription;
+    
     public SkillExecuteType ExecuteType => Enum.TryParse(executeType, out SkillExecuteType result) ? result : SkillExecuteType.Default;
 
     public virtual void Init(SkillComponentInfo info)

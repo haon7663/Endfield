@@ -18,7 +18,6 @@ public class BleedingStatusEffectSO : StatusEffectSO
                 
                 if (tickEffectPrefab)
                 {
-                    Debug.Log("Instantiate");
                     Instantiate(tickEffectPrefab, target.transform.position + new Vector3(0, 0.75f), Quaternion.identity);
                 }
             }

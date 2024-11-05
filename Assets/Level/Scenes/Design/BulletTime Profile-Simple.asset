@@ -152,7 +152,7 @@ MonoBehaviour:
   active: 1
   distance:
     m_OverrideState: 1
-    m_Value: 16
+    m_Value: 128
   baseHeight:
     m_OverrideState: 1
     m_Value: 0
@@ -253,7 +253,6 @@ MonoBehaviour:
   - {fileID: -7805838824181629648}
   - {fileID: 6148323525117706762}
   - {fileID: -952155398109133174}
-  - {fileID: 6768272525298140578}
   - {fileID: 5843955258675876647}
 --- !u!114 &5619546797453705542
 MonoBehaviour:
