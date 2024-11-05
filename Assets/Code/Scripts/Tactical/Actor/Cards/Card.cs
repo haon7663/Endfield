@@ -1,4 +1,6 @@
 using System;
+using System.Linq;
+using System.Text;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -30,7 +32,18 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         SkillData = skillData;
         icon.sprite = Resources.Load<Sprite>("Card_Icon/" + skillData.name);
         nameLabel.text = skillData.label;
-        description.text = skillData.description;
+
+        var descriptionStringBuilder = new StringBuilder();
+        descriptionStringBuilder.Append(skillData.description);
+        descriptionStringBuilder.Append("<color=#FFFF00>");
+        foreach (var subDescription in skillData.skillComponents.Select(s => s.subDescription))
+        {
+            descriptionStringBuilder.Append(" ");
+            descriptionStringBuilder.Append(subDescription);
+        }
+        descriptionStringBuilder.Append("</color>");
+        
+        description.text = descriptionStringBuilder.ToString();
         elixirLabel.text = skillData.elixir.ToString();
     }
 
@@ -46,7 +59,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                 transform.rotation = rotation;
             }).SetEase(Ease.OutBack);
         }
-     
     }
 
     public void OnPointerExit(PointerEventData eventData)

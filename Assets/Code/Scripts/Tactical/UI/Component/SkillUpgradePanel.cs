@@ -18,6 +18,8 @@ public class SkillUpgradePanel : MonoBehaviour
         {
             var skillComponent = skillComponents.Where(s => !haveComponents.Contains(s)).ToList().Random();
             haveComponents.Add(skillComponent);
+            
+            Debug.Log(skillComponent.subDescription);
 
             var newSkill = new Skill(skill.name)
             {

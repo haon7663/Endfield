@@ -1,4 +1,4 @@
-name,$type,executeType,value,distance,projectileSpeed,prefabName,,saveName
-attack.hi,SplashAttack,OnHit,2,1,,,,
-hellow,SplashAttack,OnHit,2,1,,,,
-world,SplashAttack,OnHit,2,1,,,,
+name,$type,executeType,value,distance,projectileSpeed,prefabName,subDescription,,saveName
+attack.hi,SplashAttack,OnHit,2,1,,,스플래시,,
+hellow,SplashAttack,OnHit,2,1,,,승호,,
+world,SplashAttack,OnHit,2,1,,,킴치훈,,

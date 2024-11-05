@@ -1,4 +1,4 @@
-using NUnit.Framework;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -12,10 +12,13 @@ public class SkillManager : Singleton<SkillManager>
     
     private Dictionary<Unit, Skill> _previewSkills = new Dictionary<Unit, Skill>();
     
-    private void Start()
+    private IEnumerator Start()
     {
+        yield return new WaitUntil(() => DataManager.Inst);
+        
         SetupSkillBuffer();
         ArrangeSkills();
+        skillPanelController.SetPanels(_skills, _skillBuffer[0]);
     }
 
     public Skill GetSkillAtIndex(int index)
@@ -39,9 +42,11 @@ public class SkillManager : Singleton<SkillManager>
         for (var i = 0; i < _skills.Length; i++)
         {
             if (_skills[i] == null || string.IsNullOrEmpty(_skills[i].name))
+            { 
                 _skills[i] = PopSkill();
+                skillPanelController.PopPanel(i, _skillBuffer[0]);
+            }
         }
-        skillPanelController.UpdatePanels(_skills, _skillBuffer[0]);
     }
     
     //어떻게 사용될지는 모르겠지만 필요하면 더 추가해서 활용하셈
