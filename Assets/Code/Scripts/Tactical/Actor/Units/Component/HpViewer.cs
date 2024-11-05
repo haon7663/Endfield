@@ -15,8 +15,16 @@ public class HpViewer : MonoBehaviour
         _health = GetComponent<Health>();
         
         HealthTextController.Inst.Connect(_health);
-        HealthTextController.Inst.UpdateUI(_health, _health.maxHp);
-        
+        if(_unit.unitType == UnitType.Enemy)
+        {
+            HealthTextController.Inst.UpdateUI(_health, _health.maxHp);
+        }
+        else if(_unit.unitType == UnitType.Player)
+        {
+            HealthTextController.Inst.UpdateUI(_health, DataManager.Inst.Data.curHp);
+        }
+
+
         _health.onHpChanged += UpdateHealthUI;
         _health.onDeath += () =>
         {
