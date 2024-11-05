@@ -220,6 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.15
+  isAnchored: 0
 --- !u!114 &5977858935807170850
 MonoBehaviour:
   m_ObjectHideFlags: 0

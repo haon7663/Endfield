@@ -1,14 +1,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LinearProjectileAttackComponent : ProjectileAttackComponent
+public class LinearProjectileAttackComponent : AttackComponent
 {
+    public string prefabName;
+    public int projectileSpeed;
+    public int isPenetrate;
+    
+    protected Projectile projectile;
+
+    public override void Init(SkillComponentInfo info)
+    {
+        base.Init(info);
+        
+        projectile = SkillFactory.Create(prefabName).GetComponent<Projectile>();
+        executeObjects.Add(projectile.GetComponent<ISkillExecuter>());
+        projectile.OnHit += HitParticle;
+    }
+    
+    public override void Execute(SkillComponentInfo info)
+    {
+        base.Execute(info);
+        
+        projectile?.Init(info, value, distance, projectileSpeed);
+        if (projectile is LinearProjectile linearProjectile)
+        {
+            linearProjectile.isPenetrate = isPenetrate == 1;
+        }
+    } 
+    
     public override void Print(SkillComponentInfo info)
     {
         base.Print(info);
         
         var tiles = new List<Tile>();
-        for (var i = 1; i <= CalculateDistance(info); i++)
+        for (var i = 1; i <= (isPenetrate == 1 ? distance : CalculateDistance(info)); i++)
         {
             var tile = GetStartingTile(info, i);
             if (tile)

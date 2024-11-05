@@ -1,15 +1,16 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using TMPro;
 
 public class HealthTextController : Singleton<HealthTextController>
 {
-    [SerializeField] private TMP_Text healthTextPrefab;
+    [SerializeField] private HealthText healthTextPrefab;
     [SerializeField] private Transform canvas;
     
-    private Dictionary<Health, TMP_Text> _healthTexts = new Dictionary<Health, TMP_Text>();
+    private Dictionary<Health, HealthText> _healthTexts = new Dictionary<Health, HealthText>();
 
     private Camera _mainCamera;
 
@@ -32,12 +33,12 @@ public class HealthTextController : Singleton<HealthTextController>
         _healthTexts.Add(targetHealth, healthText);
     }
 
-    public void UpdateUI(Health targetHealth, int hp, bool useDotween = false)
+    public void UpdateUI(Health targetHealth)
     {
-        if (_healthTexts.ContainsKey(targetHealth))
+        if (_healthTexts.TryGetValue(targetHealth, out var healthText))
         {
-            _healthTexts[targetHealth].text = hp.ToString();
-        }       
+            healthText.UpdateUI(targetHealth.curHp, targetHealth.barrierDurations.Sum(bd => bd.barrier));
+        }
     }
 
     public void DestroyUI(Health targetHealth)

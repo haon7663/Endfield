@@ -1,15 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BerriorComponent : SkillComponent
+public class BarrierComponent : SkillComponent
 {
     public int value;
+    public int duration;
     
     public override void Execute(SkillComponentInfo info)
     {
         if (info.user.TryGetComponent(out Health health))
         {
-            health.OnRecovery(value);
+            health.OnBarrier(value, duration);
         }
     }
 

@@ -8,7 +8,7 @@ public class GameManager : Singleton<GameManager>
 
     public int maxElixir;
     public float curElixir;
-    public float elixirRegenerationSpeed = 0.5f;
+    public float elixirRegenerationSpeed = 1f;
 
     public float startViewPoint;
     

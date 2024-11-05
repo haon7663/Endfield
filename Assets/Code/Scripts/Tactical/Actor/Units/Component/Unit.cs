@@ -27,7 +27,7 @@ public class Unit : MonoBehaviour
         Health = GetComponent<Health>();
         if(unitType == UnitType.Player)
         {
-            HealthTextController.Inst.UpdateUI(Health, DataManager.Inst.Data.curHp);
+            HealthTextController.Inst.UpdateUI(Health);
         }
     }
 
