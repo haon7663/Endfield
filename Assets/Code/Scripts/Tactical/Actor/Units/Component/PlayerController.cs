@@ -84,11 +84,11 @@ public class PlayerController : MonoBehaviour
                 return;
             }
 
-            var targetTile = GridManager.Inst.GetTile(_unit.Tile.Key - 1);
+            /*var targetTile = GridManager.Inst.GetTile(_unit.Tile.Key - 1);
             if (targetTile.IsOccupied)
                 SwapInput(targetTile.content);
-            else
-                MoveInput(-1);
+            else*/
+            MoveInput(-1);
         }
     }
     
@@ -103,11 +103,11 @@ public class PlayerController : MonoBehaviour
                 return;
             }
             
-            var targetTile = GridManager.Inst.GetTile(_unit.Tile.Key + 1);
+            /*var targetTile = GridManager.Inst.GetTile(_unit.Tile.Key + 1);
             if (targetTile.IsOccupied)
                 SwapInput(targetTile.content);
-            else
-                MoveInput(1);
+            else*/
+            MoveInput(1);
         }
     }
     
