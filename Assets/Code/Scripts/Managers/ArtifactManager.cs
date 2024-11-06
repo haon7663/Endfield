@@ -19,6 +19,9 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
     private int baseMaxElixir = 6;
     private int baseMaxHp = 25;
 
+     /* 체력 리젠, 보너스 골드, 강화권 유물은 변수값 올려주면 적용됨. 
+      * 최대 체력, 엘릭서 증가 유물은 밑에 함수 실행할 때 마다 적용됨*/
+
     public void ArtifactForStage() //스테이지 넘어갈 때 마다 자동 적용됨
     {
         HpRegen();
