@@ -19,6 +19,10 @@ public abstract class SkillComponent
             executeObjects.Add(executer);
         }
     }
+
+    public virtual void UpdateModify(SkillComponent targetComponent) { }
+    public virtual void ApplyModify(Skill targetSkill) { }
+    
     public abstract void Execute(SkillComponentInfo info);
     public abstract void Print(SkillComponentInfo info);
 

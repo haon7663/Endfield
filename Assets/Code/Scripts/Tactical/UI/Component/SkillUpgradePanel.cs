@@ -47,7 +47,7 @@ public class SkillUpgradePanel : MonoBehaviour
         var index = playerSkills.FindIndex(s => s == skill);
         playerSkills[index] = newSkill;
 
-        foreach (var skillComponent in playerSkills[index].skillComponents)
+        foreach (var skillComponent in DataManager.Inst.Data.skills[index].skillComponents)
         {
             Debug.Log(skillComponent.saveName);
         }

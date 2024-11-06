@@ -54,7 +54,6 @@ public class SpawnManager : Singleton<SpawnManager>
 
     public void EnemyDead()
     {
-        Debug.Log("���Ͱ� �׾����ϴ�");
         if(--_surviveEnemyCount <= 0)
         {
             if (_curWaveCount >= maxWaveCount)
