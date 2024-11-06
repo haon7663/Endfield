@@ -1,32 +1,34 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TitleController : MonoBehaviour
 {
     [SerializeField] private Panel panel;
+    [SerializeField] private ClosePanel closePanel;
     [SerializeField] private KeyCode keycode;
     private bool _isActive = false;
 
-    private void Update()
+  
+
+    private void Start()
     {
-        if (_isActive)
-        {
-            if (Input.GetKeyDown(keycode))
-            {
-                Hide();
-            }
-        }
+        Show();
+
     }
+
+
 
     public void Show()
     {
         panel.SetPosition(PanelStates.Show, true,0.5f);
         _isActive = true;
+        closePanel.onClose += ()=> Hide();
     }
 
     public void Hide()
     {
-        panel.SetPosition(PanelStates.Hide, true,0.5f);
+        SceneManager.LoadScene("Design");
         _isActive = false;
     }
 }

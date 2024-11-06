@@ -92,6 +92,11 @@ public class MapIconController : MonoBehaviour
     public void Instance()
     {
         _curMapIndex = DataManager.Inst.Data.stageCount;
+        if (_curMapIndex >= mapSequence.Count)
+        {
+            endingPanelController.Show();
+            return;
+        }
 
         switch (mapSequence[_curMapIndex])
         {
@@ -131,12 +136,7 @@ public class MapIconController : MonoBehaviour
     public void MoveNextMap()
     {
         _curMapIndex = DataManager.Inst.Data.stageCount;
-        if (_curMapIndex >= mapSequence.Count)
-        {
-            endingPanelController.Show();
-            Debug.Log("게임 끝");
-            //게임끝 함수
-        }
+       
         
         for (int i = 0; i < _curMapIndex; i++)
         {
