@@ -19,11 +19,27 @@ public class SkillManager : Singleton<SkillManager>
         SetupSkillBuffer();
         ArrangeSkills();
         skillPanelController.SetPanels(_skills, _skillBuffer[0]);
+        
+        foreach (var skill in _skills)
+        {
+            /*//Debug.Log(skill.skillComponents.Count);
+            foreach (var skillComponent in skill.skillComponents)
+            {
+                Debug.Log(skillComponent.saveName);
+                Debug.Log(skillComponent.ExecuteType.ToString());
+            }*/
+        }
     }
 
     public Skill GetSkillAtIndex(int index)
     {
         var skill = _skills[index];
+        /*//Debug.Log(skill.skillComponents.Count);
+        foreach (var skillComponent in skill.skillComponents)
+        {
+            Debug.Log(skillComponent.saveName);
+            Debug.Log(skillComponent.ExecuteType.ToString());
+        }*/
         return skill;
     }
 

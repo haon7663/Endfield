@@ -4,6 +4,7 @@ using UnityEngine;
 public abstract class AttackComponent : SkillComponent, ISkillExecuter
 {
     public int value;
+    public int addedValue;
     
     public override void Execute(SkillComponentInfo info)
     {

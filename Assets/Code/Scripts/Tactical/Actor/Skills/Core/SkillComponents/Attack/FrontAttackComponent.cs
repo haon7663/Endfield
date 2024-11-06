@@ -2,8 +2,6 @@ using System.Collections.Generic;
 
 public class FrontAttackComponent : AttackComponent
 {
-    public int value;
-    
     public override void Execute(SkillComponentInfo info)
     {
         base.Execute(info);
