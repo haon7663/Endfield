@@ -11,7 +11,6 @@ public class ShopRelic : ShopItem
     {
         base.Start();
         RandomRelicInput();
-
     }
 
     public void RandomRelicInput()
@@ -26,7 +25,7 @@ public class ShopRelic : ShopItem
     protected override void BuyAction()
     {
         Debug.Log("buy");
-        _relicSO.Excute();
+        _relicSO.Execute();
     }
   
 }
