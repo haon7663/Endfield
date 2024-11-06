@@ -19,7 +19,7 @@ public class GoldController : Singleton<GoldController>
         DOTween.To(() => startValue, x =>
         {
             startValue = x;
-            goldCountTxt.text = startValue.ToString()+ " ml";
+            goldCountTxt.text = $"{x}ml";
         }, startValue + value, 0.8f);
         DataManager.Inst.Data.gold+=value;
     }
