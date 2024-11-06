@@ -10,10 +10,13 @@ public class SkillUpgradePanel : MonoBehaviour
     [SerializeField] private Transform cardGroup;
     [SerializeField] private ClosePanel closePanel;
 
+    private List<Card> cards = new List<Card>();
+
     private int _saveIndex;
 
     public void Show(Skill skill)
     {
+        cards = new List<Card>();
         _saveIndex = DataManager.Inst.Data.skills.FindIndex(s => s == skill);
         
         var skillComponents = SkillLoader.GetAllSkillComponent("upgradeSkill");
@@ -29,9 +32,11 @@ public class SkillUpgradePanel : MonoBehaviour
             card.Init(newSkill);
             card.onClick += Hide;
             card.onClick += () => UpgradeSkill(newSkill, skillComponent);
+            
+            cards.Add(card);
         }
         
-        panel.SetPosition(PanelStates.Show, true, 0.5f, Ease.OutBack);
+        panel.SetPosition(PanelStates.Show, true, 0.3f, Ease.OutBack);
         closePanel.onClose += Hide;
     }
 
@@ -64,6 +69,10 @@ public class SkillUpgradePanel : MonoBehaviour
     
     public void Hide()
     {
+        foreach (var card in cards)
+            Destroy(card.gameObject);
+        
+        cards.Clear();
         panel.SetPosition(PanelStates.Hide, true, 0.25f);
     }
 }
