@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
     public int goldArtifact;
     public int maxHpArtifact;
     public int skillUpgradeArtifact;
+    public List<RelicSO> relics  = new List<RelicSO>();
 
     [SerializeField] private int reGenHp;
     [SerializeField] private int increaseElixir;
@@ -109,5 +111,10 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
         int allArtifact = hpRegenArtifact + maxElixirArtifact
             + goldArtifact + skillUpgradeArtifact + maxHpArtifact;
         return allArtifact;
+    }
+
+    public List<RelicSO> GetAllRelics()
+    {
+        return relics;
     }
 }

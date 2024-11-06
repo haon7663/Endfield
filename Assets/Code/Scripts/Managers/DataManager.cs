@@ -14,7 +14,7 @@ public class PlayerData
     public int artifactCount = ArtifactManager.Inst.ArtifactCount();
     public int skillCount;
     public int stageCount;
-    public int gold = 1000;
+    public int gold = 3000;
     public int curHp;
     public int skillUpgradeTickets; 
 

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using NUnit.Framework;
+using UnityEngine;
 
 public class GetRelic_ChestEvent : ChestEvent
 {
@@ -6,8 +7,10 @@ public class GetRelic_ChestEvent : ChestEvent
     {
 
         //유물 이름, 스프이트 가져오기
-        iconName = "";
+        var relics =  ArtifactManager.Inst.GetAllRelics();
+        var relic = relics[Random.Range(0,relics.Count)];
+        relic.Excute();
 
-        return (SkillLoader.GetSkillSprite(iconName), iconName);
+        return (relic.sprite, relic.name);
     }
 }
