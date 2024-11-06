@@ -11,11 +11,14 @@ public class PlayerData
 
     public int eliteKillCount;
     public int plantKillCount;
-    public int gainedArtifactCount;
-    public int gainedSkillCount;
+    public int artifactCount;
+    public int skillCount;
     public int stageCount;
     public int gold = 1000;
     public int curHp;
+    public int skillUpgradeTickets; 
+
+
 
     public PlayerData(List<Skill> skills)
     {
@@ -80,10 +83,11 @@ public class DataManager : SingletonDontDestroyOnLoad<DataManager>
     {
         Data.eliteKillCount = 0;
         Data.plantKillCount = 0;
-        Data.gainedArtifactCount = 0;
-        Data.gainedSkillCount = 0;
+        Data.artifactCount = 0;
+        Data.skillCount = 0;
         Data.stageCount = 0;
-        Data.gold = 0;      
+        Data.gold = 0;
+        Data.skillUpgradeTickets = 0;
     }
 
 
