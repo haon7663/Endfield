@@ -5,7 +5,7 @@ using UnityEngine;
 public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
 {
     public int hpRegenArtifact;
-    public int elixirArtifact;
+    public int maxElixirArtifact;
     public int goldArtifact;
     public int maxHpArtifact;
     public int skillUpgradeArtifact;
@@ -16,16 +16,17 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
     [SerializeField] private int increaseHp;
     [SerializeField] private float skillUpgradeTicketProb;
 
-    public void Artifact() //다음맵 넘어가면 실행됨
+    private int baseMaxElixir = 6;
+    private int baseMaxHp = 25;
+
+    public void ArtifactForStage() //스테이지 넘어갈 때 마다 자동 적용됨
     {
-        IncreaseHpMax();
         HpRegen();
-        IncreaseElixirMax();
         BonusGoldOnClear();
         GetSkillUpgradeTicket();
     }
 
-    private void HpRegen()
+    public void HpRegen()
     {
         if (hpRegenArtifact > 0)
         {
@@ -44,17 +45,19 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
         }
     }
 
-    private void IncreaseElixirMax()
+    public void IncreaseElixirMax() //따로 함수 호출해줘야함
     {
-        if (elixirArtifact > 0)
+        maxElixirArtifact++;
+        if (maxElixirArtifact > 0)
         {
-            int newElixir = GameManager.Inst.maxElixir + elixirArtifact * increaseElixir;
-            GameManager.Inst.maxElixir = newElixir;
-            Debug.Log("최대 엘릭서 증가" + elixirArtifact * increaseElixir);
+            int increaseAmount = maxElixirArtifact * increaseElixir;
+            GameManager.Inst.maxElixir = baseMaxElixir + increaseAmount;  
+            Debug.Log("최대 엘릭서 증가: " + increaseAmount);
         }
     }
 
-    private void BonusGoldOnClear()
+
+    public void BonusGoldOnClear()
     {
         if (goldArtifact > 0)
         {
@@ -64,17 +67,19 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
         }
     }
 
-    private void IncreaseHpMax()
+    public void IncreaseHpMax() //따로 함수 호출해줘야함
     {
+        maxHpArtifact++;
         if (maxHpArtifact > 0)
         {
-            int newHp = GameManager.Inst.Player.Health.maxHp + maxHpArtifact * increaseHp;
-            GameManager.Inst.Player.Health.maxHp = newHp;
-            Debug.Log("최대체력 증가" + maxHpArtifact * increaseHp);
+            int increaseAmount = maxHpArtifact * increaseHp;
+            GameManager.Inst.Player.Health.maxHp = baseMaxHp + increaseAmount;
+            Debug.Log("최대 체력 증가: " + increaseAmount);
         }
     }
 
-    private void GetSkillUpgradeTicket()
+
+    public void GetSkillUpgradeTicket()
     {
         if (skillUpgradeArtifact > 0)
         {
@@ -89,7 +94,7 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
     public void ResetArtifact()
     {
         hpRegenArtifact = 0;
-        elixirArtifact = 0;
+        maxElixirArtifact = 0;
         goldArtifact = 0;
         maxHpArtifact = 0;
         skillUpgradeArtifact = 0;

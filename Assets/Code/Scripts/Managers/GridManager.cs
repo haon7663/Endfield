@@ -146,7 +146,7 @@ public class GridManager : Singleton<GridManager>
         {
             if (_transition.content && _isTransitioning)
             {
-                ArtifactManager.Inst.Artifact();
+                ArtifactManager.Inst.ArtifactForStage();
                 CameraTransition.Inst.CameraUp();
                 GameManager.Inst.MapIconShow(false);
                 _isTransitioning = false;
