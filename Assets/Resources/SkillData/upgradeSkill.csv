@@ -1,9 +1,9 @@
 name,$type,executeType,value,distance,projectileSpeed,duration,prefabName,statusEffectType,subDescription,,saveName
-DownElixir,ElixirModifier,AddModifier,-1,,,,,,(소모 엘릭서 1 감소),,
-AddCount,ExecuteCountModifier,AddModifier,1,,,,,,(1회 추가 발동 소모 엘릭서 2 증가),,
+DownElixir,ElixirModifier,AddModifier,-1,,,,,,(엘릭서 소모량 1 감소),,
+AddCount,ExecuteCountModifier,AddModifier,1,,,,,,(1회 추가 발동 및 엘릭서 소모량 2 증가),,
 Shield,Barrier,Default,2,,,2,,,(사용 시 2초간 방어막 2 획득),,
 Shield,Barrier,Default,1,,,5,,,(사용 시 5초간 방어막 1 획득),,
-Atk.DoubleDamage,DamageModifier,MultiplyModifier,2.5,,,,,,(피해량 2배 증가 소모 엘릭서 1 증가),,
+Atk.DoubleDamage,DamageModifier,MultiplyModifier,2,,,,,,(피해량 2배 증가 및 엘릭서 소모량 1 증가),,
 Atk.AddDamage,DamageModifier,AddModifier,2,,,,,,(피해량 2 증가),,
 Atk.SplashDamage,FrontAttack,OnHit,4,1,,,,,(적중 시 후방에 4의 추가 피해),,
 Atk.Bleeding,StatusEffect,OnHit,2,,,,,Bleeding,(적중 시 2초간 출혈 부여),,

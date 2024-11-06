@@ -1,18 +1,13 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class WaveController : Singleton<WaveController>
 {
-
-    [SerializeField] private TextMeshProUGUI WaveText;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
+    [SerializeField] private TextMeshProUGUI waveLabel;
+    
     public void UpdateWaveText(int waveCount)
     {
-        WaveText.text = waveCount.ToString()+ " / 3";
+        waveLabel.text = $"{waveCount} / {SpawnManager.Inst.maxWaveCount}";
     }
 }

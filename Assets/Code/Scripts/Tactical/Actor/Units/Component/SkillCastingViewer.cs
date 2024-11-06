@@ -11,6 +11,7 @@ public class SkillCastingViewer : MonoBehaviour
     public Image selectSkill;
     public TMP_Text castLabel;
     public RectTransform rectTransform;
+    public Image waringImage;
 
     public Skill Data { get; private set; }
 
@@ -27,11 +28,13 @@ public class SkillCastingViewer : MonoBehaviour
     
     public IEnumerator Cast()
     {
-        var tween = DOVirtual.Float(1, 0, Data.castingTime, value =>
+        var sequence = DOTween.Sequence();
+        sequence.Append(DOVirtual.Float(1, 0, Data.castingTime, value =>
         {
             fillImage.fillAmount = value;
             castLabel.text = (value * Data.castingTime).ToString("F1");
-        }).SetEase(Ease.Linear);
-        yield return tween.WaitForCompletion();
+        }).SetEase(Ease.Linear));
+        sequence.Insert(Data.castingTime / 2, waringImage.DOFade(0.3f, Data.castingTime / 4));
+        yield return sequence.WaitForCompletion();
     }
 }
