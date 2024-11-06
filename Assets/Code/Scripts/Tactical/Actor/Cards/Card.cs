@@ -82,6 +82,5 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         {
             onClick?.Invoke();
         }
-       
     }
 }

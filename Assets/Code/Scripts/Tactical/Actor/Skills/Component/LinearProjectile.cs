@@ -31,10 +31,11 @@ public class LinearProjectile : Projectile
         transform.position = Vector3.Lerp(prevPos, curPos, _timer * projectileSpeed - Mathf.FloorToInt(_timer * projectileSpeed));
         _timer += Time.deltaTime;
         
-        if (_currentLocalKey >= distance)
+        if (_currentLocalKey > distance)
         {
             OnEnd?.Invoke(new SkillComponentInfo(info, GridManager.Inst.GetTile(tile.Key + _currentLocalKey * dirX)));
             Destroy(gameObject);
+            return;
         }
         
         if (GridManager.Inst.TryGetTile(tile.Key + _currentLocalKey * dirX, out var currentTile))

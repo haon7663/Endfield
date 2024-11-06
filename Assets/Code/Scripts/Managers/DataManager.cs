@@ -17,9 +17,7 @@ public class PlayerData
     public int gold = 3000;
     public int curHp;
     public int skillUpgradeTickets; 
-
-
-
+    
     public PlayerData(List<Skill> skills)
     {
         this.skills = skills;

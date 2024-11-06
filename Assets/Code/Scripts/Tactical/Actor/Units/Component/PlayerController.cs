@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private int _skillNum = -1;
     
     private static readonly int Attack = Animator.StringToHash("attack");
+    private static readonly int IsReady = Animator.StringToHash("isReady");
 
     private void Awake()
     {
@@ -166,6 +167,9 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator OnSkillStarted(int skillNum)
     {
+        if (!(Input.GetKey(KeyCode.J) || Input.GetKey(KeyCode.K) || Input.GetKey(KeyCode.L)))
+            yield break;
+        
         if (skillNum == _skillNum) yield break;
         _skillNum = skillNum;
             
@@ -179,12 +183,15 @@ public class PlayerController : MonoBehaviour
             _prevSkill?.Cancel(_unit);
             _prevSkill = skill;
             SkillManager.Inst.ApplySkillArea(_unit, skill);
+            _animator.SetBool(IsReady, true);
         }
         else
         {
             TextHudController.Inst.ShowElixirConsume(_unit.transform.position + Vector3.up * 1.5f, skill.elixir);
             _skillNum = -1;
+            _animator.SetBool(IsReady, false);
         }
+        yield return null;
     }
     
     private IEnumerator OnSkillCanceled(int skillNum)
@@ -196,6 +203,7 @@ public class PlayerController : MonoBehaviour
         _prevSkill = null;
         _skillNum = -1;
         
+        _animator.SetBool(IsReady, false);
         _animator.SetTrigger(Attack);
         
         SkillManager.Inst.ConsumeSkill(skillNum);
@@ -208,5 +216,6 @@ public class PlayerController : MonoBehaviour
             skill.Use(_unit);
             yield return new WaitForSeconds(0.2f / skill.executeCount);
         }
+        yield return null;
     }
 }

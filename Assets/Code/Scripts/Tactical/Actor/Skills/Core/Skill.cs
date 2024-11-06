@@ -20,11 +20,6 @@ public class Skill
         SkillComponent defaultComponent = null;
         var skillComponentInfo = new SkillComponentInfo(user, user.Tile, user.Movement.DirX);
         
-        foreach (var component in skillComponents)
-        {
-            Debug.Log(component.saveName + "/ " + component.ExecuteType);
-        }
-
         foreach (var component in skillComponents) 
         {
             switch (component.ExecuteType)
@@ -73,5 +68,20 @@ public class Skill
     public Skill(string name)
     {
         this.name = name;
+    }
+
+    public Skill DeepCopy()
+    {
+        var newSkill = new Skill(name)
+        {
+            label = label,
+            description = description,
+            elixir = elixir,
+            castingTime = castingTime,
+            executeCount = executeCount,
+            skillComponents = skillComponents.ToList()
+        };
+
+        return newSkill;
     }
 }
