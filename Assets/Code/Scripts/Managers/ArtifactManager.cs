@@ -18,13 +18,20 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
     [SerializeField] private int increaseHp;
     [SerializeField] private float skillUpgradeTicketProb;
 
-    private int baseMaxElixir = 6;
+    private int baseMaxElixir = 4;
     private int baseMaxHp = 25;
 
-     /* ü�� ����, ���ʽ� ���, ��ȭ�� ������ ������ �÷��ָ� �����. 
-      * �ִ� ü��, ������ ���� ������ �ؿ� �Լ� ������ �� ���� �����*/
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.C))
+        {
+            hpRegenArtifact++;
+            goldArtifact++;
+            skillUpgradeArtifact++;
+        }
+    }
 
-    public void ArtifactForStage() //�������� �Ѿ �� ���� �ڵ� �����
+    public void ArtifactForStage() 
     {
         HpRegen();
         BonusGoldOnClear();
@@ -40,24 +47,21 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
             if (newHp > GameManager.Inst.Player.Health.maxHp)
             {
                 DataManager.Inst.Data.curHp = GameManager.Inst.Player.Health.maxHp;
-                Debug.Log("Ǯ�Ƿ� ȸ����");
             }
             else
             {
                 DataManager.Inst.Data.curHp = newHp;
-                Debug.Log("ȸ����" + hpRegenArtifact * reGenHp);
             }
         }
     }
 
-    public void IncreaseElixirMax() //���� �Լ� ȣ���������
+    public void IncreaseElixirMax()
     {
         maxElixirArtifact++;
         if (maxElixirArtifact > 0)
         {
             int increaseAmount = maxElixirArtifact * increaseElixir;
-            GameManager.Inst.maxElixir = baseMaxElixir + increaseAmount;  
-            Debug.Log("�ִ� ������ ����: " + increaseAmount);
+            DataManager.Inst.Data.maxElixir = baseMaxElixir + increaseAmount;  
         }
     }
 
@@ -68,18 +72,19 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
         {
             int gold = DataManager.Inst.Data.gold + goldArtifact * bonusGold;
             DataManager.Inst.Data.gold = gold;
-            Debug.Log("��� ȹ��" + goldArtifact * bonusGold);
         }
     }
 
-    public void IncreaseHpMax() //���� �Լ� ȣ���������
+    public void IncreaseHpMax()
     {
         maxHpArtifact++;
         if (maxHpArtifact > 0)
         {
             int increaseAmount = maxHpArtifact * increaseHp;
             GameManager.Inst.Player.Health.maxHp = baseMaxHp + increaseAmount;
-            Debug.Log("�ִ� ü�� ����: " + increaseAmount);
+            DataManager.Inst.Data.curHp = baseMaxHp + increaseAmount;
+            GameManager.Inst.Player.Health.curHp = DataManager.Inst.Data.curHp;
+            HealthTextController.Inst.UpdateUI(GameManager.Inst.Player.Health);
         }
     }
 
@@ -91,7 +96,6 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
             if (Random.value <= skillUpgradeTicketProb * skillUpgradeArtifact)
             {
                 DataManager.Inst.Data.skillUpgradeTickets++;
-                Debug.Log("Ƽ�� ȹ��" + DataManager.Inst.Data.skillUpgradeTickets);
             }
         }
     }
