@@ -22,8 +22,9 @@ public class DefeatPanelController : MonoBehaviour
         panel.SetPosition(PanelStates.Show, true, 0.5f, Ease.OutBack);
         closePanel.onClose += Hide;
         ResetText();  
-        DataManager.Inst.ResetData();
-        ArtifactManager.Inst.ResetArtifact();
+        //DataManager.Inst.ResetData();
+        //ArtifactManager.Inst.ResetArtifact();
+        DataManager.Inst.Generate("Player");
     }
     public void Hide()
     {
