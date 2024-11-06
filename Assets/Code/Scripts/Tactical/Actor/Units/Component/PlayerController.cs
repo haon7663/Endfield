@@ -185,6 +185,7 @@ public class PlayerController : MonoBehaviour
             TextHudController.Inst.ShowElixirConsume(_unit.transform.position + Vector3.up * 1.5f, skill.elixir);
             _skillNum = -1;
         }
+        yield return null;
     }
     
     private IEnumerator OnSkillCanceled(int skillNum)
@@ -208,5 +209,6 @@ public class PlayerController : MonoBehaviour
             skill.Use(_unit);
             yield return new WaitForSeconds(0.2f / skill.executeCount);
         }
+        yield return null;
     }
 }

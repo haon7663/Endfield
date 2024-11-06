@@ -74,4 +74,19 @@ public class Skill
     {
         this.name = name;
     }
+
+    public Skill DeepCopy()
+    {
+        var newSkill = new Skill(name)
+        {
+            label = label,
+            description = description,
+            elixir = elixir,
+            castingTime = castingTime,
+            executeCount = executeCount,
+            skillComponents = skillComponents.ToList()
+        };
+
+        return newSkill;
+    }
 }

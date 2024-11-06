@@ -10,8 +10,12 @@ public class SkillUpgradePanel : MonoBehaviour
     [SerializeField] private Transform cardGroup;
     [SerializeField] private ClosePanel closePanel;
 
+    private int _saveIndex;
+
     public void Show(Skill skill)
     {
+        _saveIndex = DataManager.Inst.Data.skills.FindIndex(s => s == skill);
+        
         var skillComponents = SkillLoader.GetAllSkillComponent("upgradeSkill");
         var haveComponents = new List<SkillComponent>();
         for (var i = 0; i < 3; i++)
@@ -19,14 +23,12 @@ public class SkillUpgradePanel : MonoBehaviour
             var skillComponent = skillComponents.Where(s => !haveComponents.Contains(s)).ToList().Random();
             haveComponents.Add(skillComponent);
             
-            Debug.Log(skillComponent.subDescription);
-
             var newSkill = SkillUpgrader(skill, skillComponent);
             
             var card = Instantiate(cardPrefab, cardGroup);
             card.Init(newSkill);
             card.onClick += Hide;
-            card.onClick += () => UpgradeSkill(skill, skillComponent);
+            card.onClick += () => UpgradeSkill(newSkill, skillComponent);
         }
         
         panel.SetPosition(PanelStates.Show, true, 0.5f, Ease.OutBack);
@@ -35,8 +37,6 @@ public class SkillUpgradePanel : MonoBehaviour
 
     private void UpgradeSkill(Skill skill, SkillComponent skillComponent)
     {
-        var playerSkills = DataManager.Inst.Data.skills;
-        var index = playerSkills.FindIndex(s => s == skill);
         switch (skillComponent.ExecuteType)
         {
             case SkillExecuteType.AddModifier:
@@ -50,23 +50,16 @@ public class SkillUpgradePanel : MonoBehaviour
                     skillComponent.UpdateModify(component);
                 break;
         }
-        playerSkills[index] = SkillUpgrader(skill, skillComponent);
+        
+        DataManager.Inst.Data.skills[_saveIndex] = skill;
     }
 
     private Skill SkillUpgrader(Skill skill, SkillComponent skillComponent)
     {
-        var newSkill = new Skill(skill.name)
-        {
-            label = skill.label,
-            description = skill.description,
-            elixir = skill.elixir,
-            castingTime = skill.castingTime,
-            executeCount = skill.executeCount,
-            skillComponents = skill.skillComponents.ToList()
-        };
-        newSkill.skillComponents.Add(skillComponent);
+        var copySkill = skill.DeepCopy();
+        copySkill.skillComponents.Add(skillComponent);
 
-        return newSkill;
+        return copySkill;
     }
     
     public void Hide()
