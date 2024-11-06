@@ -15,7 +15,7 @@ public class SkillHolder : MonoBehaviour
     public List<Skill> skills;
     public List<SkillCastingViewer> castingViewers;
 
-    private const float InitialYPosition = 150f;
+    private const float InitialYPosition = 170f;
     private const float YOffset = 70f;
     
     private static readonly int Attack = Animator.StringToHash("attack");
@@ -72,8 +72,6 @@ public class SkillHolder : MonoBehaviour
     public void RemoveCastingViewer(SkillCastingViewer viewer)
     {
         castingViewers.Remove(viewer);
-        if (viewer)
-            Destroy(viewer.gameObject);
         RepositionCastingViewers(); 
     }
     

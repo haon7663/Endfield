@@ -7,11 +7,13 @@ using UnityEngine.UI;
 
 public class SkillCastingViewer : MonoBehaviour
 {
-    public Image fillImage;
+    public CanvasGroup canvasGroup;
     public Image selectSkill;
     public TMP_Text castLabel;
     public RectTransform rectTransform;
-    public Image waringImage;
+    public Image backGround;
+
+    [SerializeField] private Color targetColor;
 
     public Skill Data { get; private set; }
 
@@ -29,12 +31,16 @@ public class SkillCastingViewer : MonoBehaviour
     public IEnumerator Cast()
     {
         var sequence = DOTween.Sequence();
+        
         sequence.Append(DOVirtual.Float(1, 0, Data.castingTime, value =>
         {
-            fillImage.fillAmount = value;
             castLabel.text = (value * Data.castingTime).ToString("F1");
         }).SetEase(Ease.Linear));
-        sequence.Insert(Data.castingTime / 2, waringImage.DOFade(0.3f, Data.castingTime / 4));
+        backGround.DOColor(targetColor, Data.castingTime);
+        
         yield return sequence.WaitForCompletion();
+        
+        backGround.rectTransform.SetAsLastSibling();
+        canvasGroup.DOFade(0, 0.15f);
     }
 }
