@@ -34,10 +34,13 @@ public class SkillUpgradeGroup : MonoBehaviour
         descriptionStringBuilder.Append("<color=#FFFF00>");
         foreach (var subDescription in skill.skillComponents.Select(s => s.subDescription))
         {
-            descriptionStringBuilder.Append(" ");
+            if (string.IsNullOrEmpty(subDescription)) continue;
+            descriptionStringBuilder.Append("\n");
             descriptionStringBuilder.Append(subDescription);
         }
         descriptionStringBuilder.Append("</color>");
+
+        description.text = descriptionStringBuilder.ToString();
         
         disableButton.SetActive(false);
         
