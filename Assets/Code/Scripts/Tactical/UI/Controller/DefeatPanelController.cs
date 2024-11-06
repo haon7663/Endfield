@@ -23,6 +23,7 @@ public class DefeatPanelController : MonoBehaviour
         closePanel.onClose += Hide;
         ResetText();  
         DataManager.Inst.ResetData();
+        ArtifactManager.Inst.ResetArtifact();
     }
     public void Hide()
     {
@@ -32,8 +33,8 @@ public class DefeatPanelController : MonoBehaviour
 
     private void ResetText()
     {
-        gainedArtifact.text = DataManager.Inst.Data.gainedArtifactCount.ToString();
-        gainedSkill.text = DataManager.Inst.Data.gainedSkillCount.ToString();
+        gainedArtifact.text = DataManager.Inst.Data.artifactCount.ToString();
+        gainedSkill.text = DataManager.Inst.Data.skillCount.ToString();
         elitePlantKill.text = DataManager.Inst.Data.eliteKillCount.ToString();
         plantKill.text =  DataManager.Inst.Data.plantKillCount.ToString();
     }
