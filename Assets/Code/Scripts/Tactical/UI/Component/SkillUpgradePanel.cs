@@ -21,36 +21,52 @@ public class SkillUpgradePanel : MonoBehaviour
             
             Debug.Log(skillComponent.subDescription);
 
-            var newSkill = new Skill(skill.name)
-            {
-                label = skill.label,
-                description = skill.description,
-                elixir = skill.elixir,
-                castingTime = skill.castingTime,
-                skillComponents = skill.skillComponents.ToList()
-            };
-            newSkill.skillComponents.Add(skillComponent);
+            var newSkill = SkillUpgrader(skill, skillComponent);
             
             var card = Instantiate(cardPrefab, cardGroup);
             card.Init(newSkill);
             card.onClick += Hide;
-            card.onClick += () => UpgradeSkill(skill, newSkill);
+            card.onClick += () => UpgradeSkill(skill, skillComponent);
         }
         
         panel.SetPosition(PanelStates.Show, true, 0.5f, Ease.OutBack);
         closePanel.onClose += Hide;
     }
 
-    private void UpgradeSkill(Skill skill, Skill newSkill)
+    private void UpgradeSkill(Skill skill, SkillComponent skillComponent)
     {
         var playerSkills = DataManager.Inst.Data.skills;
         var index = playerSkills.FindIndex(s => s == skill);
-        playerSkills[index] = newSkill;
-
-        foreach (var skillComponent in DataManager.Inst.Data.skills[index].skillComponents)
+        switch (skillComponent.ExecuteType)
         {
-            Debug.Log(skillComponent.saveName);
+            case SkillExecuteType.AddModifier:
+                skillComponent.ApplyModify(skill);
+                foreach (var component in skill.skillComponents)
+                    skillComponent.UpdateModify(component);
+                break;
+            case SkillExecuteType.MultiplyModifier:
+                skillComponent.ApplyModify(skill);
+                foreach (var component in skill.skillComponents)
+                    skillComponent.UpdateModify(component);
+                break;
         }
+        playerSkills[index] = SkillUpgrader(skill, skillComponent);
+    }
+
+    private Skill SkillUpgrader(Skill skill, SkillComponent skillComponent)
+    {
+        var newSkill = new Skill(skill.name)
+        {
+            label = skill.label,
+            description = skill.description,
+            elixir = skill.elixir,
+            castingTime = skill.castingTime,
+            executeCount = skill.executeCount,
+            skillComponents = skill.skillComponents.ToList()
+        };
+        newSkill.skillComponents.Add(skillComponent);
+
+        return newSkill;
     }
     
     public void Hide()

@@ -18,7 +18,6 @@ public class SkillUpgradeGroup : MonoBehaviour
 
     public void ShowUpgradePanel()
     {
-        Debug.Log("업그레이드 패널");
         skillUpgradePanel.Show(_skill);
         inventoryController.Hide();
     }

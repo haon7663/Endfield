@@ -59,7 +59,6 @@ public static class UnitLoader
 
             var name = dict["name"].ToString();
             var isAnchored = !string.IsNullOrEmpty(dict["isAnchored"].ToString()) && (int)dict["isAnchored"] == 1;
-            Debug.Log(name + " / " + isAnchored);
             var animatorController = Resources.Load<AnimatorOverrideController>(Path.Combine("Units/", name, name));
             
             var data = new UnitData(name, animatorController, (int)dict["health"], float.Parse(dict["actionTime"].ToString()), skills, isAnchored);

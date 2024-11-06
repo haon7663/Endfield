@@ -39,26 +39,11 @@ public class Skill
                 case SkillExecuteType.OnEnd:
                     defaultComponent?.AddOnEnd(component.Execute);
                     break;
-                case SkillExecuteType.AddModifier:
-                    Debug.Log("AddModifier");
-                    component.ApplyModify(this);
-                    if (defaultComponent != null)
-                        component.UpdateModify(defaultComponent);
-                    break;
-                case SkillExecuteType.MultiplyModifier:
-                    Debug.Log("MultiplyModifier");
-                    component.ApplyModify(this);
-                    if (defaultComponent != null)
-                        component.UpdateModify(defaultComponent);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
             }
         }
 
         foreach (var component in skillComponents.Where(s => s.ExecuteType == SkillExecuteType.Default))
         {
-            Debug.Log(component.saveName + "/ " + component.ExecuteType + "EXECUTE");
             component.Execute(skillComponentInfo);
         }
         
