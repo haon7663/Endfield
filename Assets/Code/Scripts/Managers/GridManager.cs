@@ -136,15 +136,15 @@ public class GridManager : Singleton<GridManager>
         foreach (var displayedTile in _previewTiles)
         {
             var color = displayedTile.Key.unitType == UnitType.Player ? playerColor : enemyColor;
-            displayedTile.Value.ForEach(t => t.SetColor(color));
+            displayedTile.Value?.ForEach(t => t.SetColor(color));
         }
     }
 
     private void CheckingTransition()
     {
-        if(_transition != null)
+        if(_transition)
         {
-            if (_transition.content != null && _isTransitioning)
+            if (_transition.content && _isTransitioning)
             {               
                 CameraTransition.Inst.CameraUp();
                 GameManager.Inst.MapIconShow(false);

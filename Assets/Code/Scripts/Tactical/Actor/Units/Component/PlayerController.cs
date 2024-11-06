@@ -202,6 +202,11 @@ public class PlayerController : MonoBehaviour
         GameManager.Inst.curElixir -= skill.elixir;
         ArtDirectionManager.Inst.EndBulletTime();
         
-        yield return StartCoroutine(skill.Use(_unit));
+        for (var i = 0; i < skill.executeCount; i++)
+        {
+            _animator.SetTrigger(Attack);
+            skill.Use(_unit);
+            yield return new WaitForSeconds(0.2f / skill.executeCount);
+        }
     }
 }

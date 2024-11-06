@@ -13,9 +13,10 @@ public class Skill
     public string description;
     public int elixir;
     public float castingTime;
+    public int executeCount;
     public List<SkillComponent> skillComponents = new();  // 스킬을 구성하는 컴포넌트 리스트
 
-    public IEnumerator Use(Unit user)
+    public void Use(Unit user)
     {
         user.additionalKey = 0;
         SkillComponent defaultComponent = null;
@@ -47,8 +48,6 @@ public class Skill
         
         SkillManager.Inst.RevertSkillArea(user);
         Cancel(user);
-
-        yield return new WaitForSeconds(0.2f);
     }
 
     public void Print(Unit user)

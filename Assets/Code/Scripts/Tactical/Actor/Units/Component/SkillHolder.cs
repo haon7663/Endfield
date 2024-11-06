@@ -32,18 +32,23 @@ public class SkillHolder : MonoBehaviour
     {
         var saveCastingViewers = new List<SkillCastingViewer>();
         saveCastingViewers.AddRange(castingViewers);
-        
+
         foreach (var castingViewer in saveCastingViewers)
         {
             if (castingViewer.Data == null) continue;
-            
+
             SkillManager.Inst.ApplySkillArea(_unit, castingViewer.Data);
 
             _animator.SetBool(IsReady, true);
             yield return StartCoroutine(castingViewer.Cast());
             _animator.SetBool(IsReady, false);
-            _animator.SetTrigger(Attack);
-            yield return StartCoroutine(castingViewer.Data.Use(_unit));
+            
+            for (var i = 0; i < castingViewer.Data.executeCount; i++)
+            {
+                _animator.SetTrigger(Attack);
+                castingViewer.Data.Use(_unit);
+                yield return new WaitForSeconds(0.2f / castingViewer.Data.executeCount);
+            }
             RemoveCastingViewer(castingViewer);
         }
     }

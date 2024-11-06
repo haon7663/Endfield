@@ -17,11 +17,11 @@ public class HpViewer : MonoBehaviour
         HealthTextController.Inst.Connect(_health);
         if(_unit.unitType == UnitType.Enemy)
         {
-            HealthTextController.Inst.UpdateUI(_health, _health.maxHp);
+            HealthTextController.Inst.UpdateUI(_health);
         }
         else if(_unit.unitType == UnitType.Player)
         {
-            HealthTextController.Inst.UpdateUI(_health, DataManager.Inst.Data.curHp);
+            HealthTextController.Inst.UpdateUI(_health);
         }
 
 
@@ -38,6 +38,6 @@ public class HpViewer : MonoBehaviour
     private void UpdateHealthUI()
     {
         //DOVirtual.Int(_prevHp, _health.curHp, 0.3f, value => HealthTextController.Inst.UpdateUI(_health, value)).SetEase(Ease.InOutQuad);
-        HealthTextController.Inst.UpdateUI(_health, _health.curHp);
+        HealthTextController.Inst.UpdateUI(_health);
     }
 }
