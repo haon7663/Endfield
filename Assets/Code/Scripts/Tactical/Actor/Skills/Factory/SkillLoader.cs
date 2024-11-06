@@ -14,9 +14,9 @@ public static class SkillLoader
         return sprite;
     }
     
-    public static Skill GetSkill(string skillName)
+    public static Skill GetSkill(string skillName, bool isEnemy = false)
     {
-        var skills = GetAllSkills("skill");
+        var skills = GetAllSkills(isEnemy ? "enemySkill" : "skill");
         return skills.FirstOrDefault(s => s.name.StartsWith(skillName));
     }
     

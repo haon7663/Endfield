@@ -1,0 +1,12 @@
+$type,name,label,description,elixir,castingTime,executeCount,$type,executeType,value,distance,projectileSpeed,duration,isPenetrate,prefabName,statusEffectType,,saveName
+Skill,Bite,물기,,1,0.5,1,FrontAttack,Default,5,1,,,,,,,
+Skill,Dash Attack,돌진 공격,,3,1,1,Move,Default,,3,,,,,,,
+,,,,,,,FrontAttack,Default,6,3,,,,,,,
+Skill,Self Explosion,자폭,,0,0.5,1,SplashAttack,Default,12,1,,,,,,,
+Skill,Plant Shoot,식물포,,2,1.5,1,LinearProjectileAttack,Default,5,4,,,,LinearProjectile,,,
+Skill,Bleeding Slash,출혈,,5,1,1,FrontAttack,Default,4,1,,,,,,,
+,,,,,,,StatusEffect,OnHit,2,,,,,,Bleeding,,
+Skill,Tree Branch Attack,나뭇가지공격,,1,1,1,FrontAttack,Default,6,1,,,,,,,
+Skill,Defence,방어,,4,1,1,Barrier,Default,10,1,,3,,,,,
+Skill,Dash Attack,돌진 공격,,3,2,1,Move,Default,,3,,,,,,,
+,,,,,,,FrontAttack,Default,4,3,,,,,,,
