@@ -4,7 +4,7 @@ public class ChestEvent :MonoBehaviour
 {
     public string iconName;
 
-    public virtual (Sprite,string) Excute()
+    public virtual (Sprite,string) Execute()
     {
         string _iconName = "";
         if (!iconName.StartsWith("Icon/"))

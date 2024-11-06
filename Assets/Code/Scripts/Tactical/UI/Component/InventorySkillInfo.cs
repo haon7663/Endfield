@@ -13,7 +13,7 @@ public class InventorySkillInfo : MonoBehaviour
 
     public void SetInfo(Skill skill)
     {
-        nameLabel.text = skill.name;
+        nameLabel.text = skill.label;
         icon.sprite = SkillLoader.GetSkillSprite(skill.name);
 
         _skill = skill;

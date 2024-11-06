@@ -105,7 +105,7 @@ public class Chest : MonoBehaviour
         _animator.Play("Chest_Open");
         Hide();
         int random = Random.Range(0, events.Count);
-        var (sprite,name) = events[random].Excute();
+        var (sprite,name) = events[random].Execute();
         _eventController.GambleWin(sprite,name);
    }
 
