@@ -47,6 +47,16 @@ public class DataManager : SingletonDontDestroyOnLoad<DataManager>
             //임시, 나중에 게임 처음 시작할 때 생성하면 된다.
         }
         Data.curHp = UnitLoader.GetUnitData("Player").health;
+
+        foreach (var skill in Data.skills)
+        {
+            Debug.Log(skill.skillComponents.Count);
+            foreach (var skillComponent in skill.skillComponents)
+            {
+                Debug.Log(skillComponent.saveName);
+                Debug.Log(skillComponent.ExecuteType.ToString());
+            }
+        }
     }
 
     public void Generate(string unitName)

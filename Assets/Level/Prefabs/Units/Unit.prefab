@@ -235,6 +235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curHp: 15
   maxHp: 15
+  barrierDurations: []
   takeDamageMultiplier: 1
 --- !u!114 &911527452982774341
 MonoBehaviour:

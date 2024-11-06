@@ -1,4 +1,8 @@
-name,$type,executeType,value,distance,projectileSpeed,prefabName,subDescription,,saveName
-attack.hi,SplashAttack,OnHit,2,1,,,스플래시,,
-hellow,SplashAttack,OnHit,2,1,,,승호,,
-world,SplashAttack,OnHit,2,1,,,킴치훈,,
+name,$type,executeType,value,distance,projectileSpeed,duration,prefabName,statusEffectType,subDescription,,saveName
+DownElixir,ElixirModifier,AddModifier,-1,,,,,,(소모 엘릭서 1 감소),,
+AddCount,ExecuteCountModifier,AddModifier,1,,,,,,(1회 추가 발동 소모 엘릭서 1 증가),,
+Shield,Barrier,Default,2,,,2,,,(사용 시 방어막 2 획득),,
+Atk.DoubleDamage,DamageModifier,MultiplyModifier,2,,,,,,(피해량 2배 증가 소모 엘릭서 1 증가),,
+Atk.AddDamage,SplashAttack,AddModifier,3,,,,,,(3의 추가 피해),,
+Atk.SplashDamage,FrontAttack,OnHit,4,1,,,,,(적중 시 후방에 5의 추가 피해),,
+Atk.Bleeding,StatusEffect,OnHit,2,,,,,Bleeding,(적중 시 2초간 출혈 부여),,

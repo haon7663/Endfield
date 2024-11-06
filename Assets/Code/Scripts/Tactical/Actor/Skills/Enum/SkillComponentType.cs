@@ -2,5 +2,7 @@ public enum SkillExecuteType
 {
     Default,
     OnHit,
-    OnEnd
+    OnEnd,
+    AddModifier,
+    MultiplyModifier
 }

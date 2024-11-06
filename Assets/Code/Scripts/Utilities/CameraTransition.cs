@@ -16,6 +16,7 @@ public class CameraTransition : Singleton<CameraTransition>
     {
         _originalPosition = transform.position;
         CameraDown();
+       
     }
 
     public void CameraUp()
@@ -33,6 +34,13 @@ public class CameraTransition : Singleton<CameraTransition>
         
         transform.rotation = Quaternion.Euler(targetRotation);
         transform.DORotate(originalRotation, rotationDuration);
+       
+    }
+
+    public void EntireCameraMove()
+    {
+        transform.position = new Vector3(-11, transform.position.y, transform.position.z);
+        transform.DOMoveX(75,10f).SetEase(Ease.Linear);
     }
     
     /*public void RotateAndMoveCamera()
