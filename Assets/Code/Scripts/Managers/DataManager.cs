@@ -11,7 +11,7 @@ public class PlayerData
 
     public int eliteKillCount;
     public int plantKillCount;
-    public int artifactCount;
+    public int artifactCount = ArtifactManager.Inst.ArtifactCount();
     public int skillCount;
     public int stageCount;
     public int gold = 1000;

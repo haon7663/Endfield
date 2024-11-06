@@ -103,4 +103,11 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
         skillUpgradeArtifact = 0;
 
     }
+
+    public int ArtifactCount()
+    {
+        int allArtifact = hpRegenArtifact + maxElixirArtifact
+            + goldArtifact + skillUpgradeArtifact + maxHpArtifact;
+        return allArtifact;
+    }
 }
