@@ -11,7 +11,7 @@ public enum MapState
 
 public enum MapProperty
 {
-    EnemyMap,EventMap,ShopMap,BossMap
+    EnemyMap,EventMap,ShopMap,BossMap,MoveTuto,AttackTuto
 }
 
 public class MapIconController : MonoBehaviour
@@ -20,7 +20,7 @@ public class MapIconController : MonoBehaviour
 
     [SerializeField]  private GameObject mapIconPrefab;
     [SerializeField] private Panel panel;
-    [SerializeField] private Sprite enemyIcon, eventIcon,shopIcon,bossIcon;
+    [SerializeField] private Sprite enemyIcon, eventIcon,shopIcon,bossIcon,tutorialMapIcon;
     [SerializeField] private RectTransform icons;
     [SerializeField] private EventController eventController;
     [SerializeField] private ShopController shopController;
@@ -51,6 +51,12 @@ public class MapIconController : MonoBehaviour
                     break;
                 case MapProperty.BossMap:
                     mapIconCS.SetDefaultIcon(bossIcon);
+                    break;
+                case MapProperty.MoveTuto:
+                    mapIconCS.SetDefaultIcon(tutorialMapIcon);
+                    break;
+                case MapProperty.AttackTuto:
+                    mapIconCS.SetDefaultIcon(tutorialMapIcon);
                     break;
             }
             _mapIcons.Add(mapIconCS);
@@ -96,19 +102,30 @@ public class MapIconController : MonoBehaviour
                 Debug.Log("���� ����");
                 break;
             case MapProperty.EventMap:
-                GridManager.Inst.GenerateTransitionTiles();
-                GameManager.Inst.MapIconShow(true);
-                eventController.Show();
-                SpawnManager.Inst.DoNotSpawn();              
+                EnemyNoneSpawn();
+                eventController.Show();           
                 break;
             case MapProperty.ShopMap:
-                GridManager.Inst.GenerateTransitionTiles();
-                GameManager.Inst.MapIconShow(true);
+                EnemyNoneSpawn();
                 shopController.Active();
-                SpawnManager.Inst.DoNotSpawn();
                 break;
+            case MapProperty.MoveTuto:
+                EnemyNoneSpawn();
+                break;
+            case MapProperty.AttackTuto:
+                EnemyNoneSpawn();
+                //허수아비 소환
+                break;
+
         }
         SpawnManager.Inst.SpawnEnemies();
+    }
+
+    private void EnemyNoneSpawn()
+    {
+        GridManager.Inst.GenerateTransitionTiles();
+        GameManager.Inst.MapIconShow(true);
+        SpawnManager.Inst.DoNotSpawn();
     }
 
     public void MoveNextMap()
