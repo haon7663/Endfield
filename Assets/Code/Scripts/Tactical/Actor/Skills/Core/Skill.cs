@@ -20,11 +20,6 @@ public class Skill
         SkillComponent defaultComponent = null;
         var skillComponentInfo = new SkillComponentInfo(user, user.Tile, user.Movement.DirX);
         
-        foreach (var component in skillComponents)
-        {
-            Debug.Log(component.saveName + "/ " + component.ExecuteType);
-        }
-
         foreach (var component in skillComponents) 
         {
             switch (component.ExecuteType)

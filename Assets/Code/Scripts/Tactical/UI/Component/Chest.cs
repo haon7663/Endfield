@@ -107,12 +107,10 @@ public class Chest : MonoBehaviour
         int random = Random.Range(0, events.Count);
         var (sprite,name) = events[random].Excute();
         _eventController.GambleWin(sprite,name);
-        Debug.Log("성공!");
    }
 
    public void Lose()
-   {
-      Debug.Log("실패!");
-        _eventController.GambleFail();
+   { 
+      _eventController.GambleFail();
    }
 }
