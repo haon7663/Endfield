@@ -25,14 +25,21 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
     {
         if (Input.GetKeyUp(KeyCode.C))
         {
+            IncreaseHpMax();
+        }
+        else if (Input.GetKeyUp(KeyCode.X))
+        {
             hpRegenArtifact++;
-            goldArtifact++;
-            skillUpgradeArtifact++;
         }
     }
 
     public void ArtifactForStage() 
     {
+        int increaseAmount = maxHpArtifact * increaseHp;
+        GameManager.Inst.Player.Health.maxHp = baseMaxHp + increaseAmount;
+        DataManager.Inst.Data.curHp = baseMaxHp + increaseAmount;
+        GameManager.Inst.Player.Health.curHp = DataManager.Inst.Data.curHp;
+        HealthTextController.Inst.UpdateUI(GameManager.Inst.Player.Health);
         HpRegen();
         BonusGoldOnClear();
         GetSkillUpgradeTicket();
@@ -44,13 +51,13 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
         {
             int newHp = DataManager.Inst.Data.curHp + hpRegenArtifact * reGenHp;
 
-            if (newHp > GameManager.Inst.Player.Health.maxHp)
+            if (newHp >= GameManager.Inst.Player.Health.maxHp)
             {
                 DataManager.Inst.Data.curHp = GameManager.Inst.Player.Health.maxHp;
             }
             else
             {
-                DataManager.Inst.Data.curHp = newHp;
+                DataManager.Inst.Data.curHp += hpRegenArtifact * reGenHp;
             }
         }
     }
