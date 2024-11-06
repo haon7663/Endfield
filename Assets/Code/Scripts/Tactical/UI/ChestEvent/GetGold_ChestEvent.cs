@@ -6,11 +6,11 @@ public class GetGold_ChestEvent : ChestEvent
     public int givingGold = 300;
     
 
-    public override (Sprite,string) Excute()
+    public override (Sprite,string) Execute()
     {
-        iconName = "Gold";
+        iconName = $"{givingGold} 골드 획득";
         GoldController.Inst.ReCountGold(+givingGold);
-        return base.Excute();
+        return base.Execute();
     }
 
 }

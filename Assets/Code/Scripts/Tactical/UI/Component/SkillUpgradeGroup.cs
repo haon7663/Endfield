@@ -1,3 +1,5 @@
+using System.Linq;
+using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -25,8 +27,17 @@ public class SkillUpgradeGroup : MonoBehaviour
     public void SetSkill(Skill skill)
     {
         skillIcon.sprite = SkillLoader.GetSkillSprite(skill.name);
-        nameLabel.text = skill.name;
-        description.text = skill.description;
+        nameLabel.text = skill.label;
+        
+        var descriptionStringBuilder = new StringBuilder();
+        descriptionStringBuilder.Append(skill.description);
+        descriptionStringBuilder.Append("<color=#FFFF00>");
+        foreach (var subDescription in skill.skillComponents.Select(s => s.subDescription))
+        {
+            descriptionStringBuilder.Append(" ");
+            descriptionStringBuilder.Append(subDescription);
+        }
+        descriptionStringBuilder.Append("</color>");
         
         disableButton.SetActive(false);
         

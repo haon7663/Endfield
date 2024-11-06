@@ -3,12 +3,10 @@ using UnityEngine;
 
 public class GetSkillUpgrade_ChestEvent : ChestEvent
 {
-    public override (Sprite,string) Excute()
+    public override (Sprite,string) Execute()
     {
         iconName = "SkillUpgrade";
         Debug.Log("��ų ���׷��̵� ȹ��");
-        return base.Excute();
+        return base.Execute();
     }
-    
-
 }
