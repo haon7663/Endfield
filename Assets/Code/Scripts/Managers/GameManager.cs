@@ -29,6 +29,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Update()
     {
+        maxElixir = DataManager.Inst.Data.maxElixir;
         curElixir += Time.deltaTime * elixirRegenerationSpeed;
         curElixir = Mathf.Clamp(curElixir, 0, maxElixir);
     }
