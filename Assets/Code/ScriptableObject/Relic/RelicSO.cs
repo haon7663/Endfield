@@ -15,12 +15,27 @@ public class RelicSO : ScriptableObject
     public string description;
     Action action;
 
-    public void Excute()
+    public void IncreaseHpRegenArtifact()
+    {
+        ArtifactManager.Inst.hpRegenArtifact++;
+    }
+
+    public void IncreaseSkillUpgradeArtifact()
+    {
+        ArtifactManager.Inst.skillUpgradeArtifact++;
+    }
+
+    public void IncreaseGoldArtifact()
+    {
+        ArtifactManager.Inst.goldArtifact++;
+    }
+
+    public void Execute()
     {
         switch (relicType)
         {
             case RelicType.HpRegen:
-              action +=()=>  ArtifactManager.Inst.hpRegenArtifact++;
+                action += IncreaseHpRegenArtifact;
                 break;
             case RelicType.MaxElixier:
                 action += () => ArtifactManager.Inst.IncreaseElixirMax();
@@ -29,14 +44,15 @@ public class RelicSO : ScriptableObject
                 action += () => ArtifactManager.Inst.IncreaseHpMax();
                 break;
             case RelicType.GetSkillUpgrade:
-                action += () => ArtifactManager.Inst.skillUpgradeArtifact++;
+                action += IncreaseSkillUpgradeArtifact;
                 break;
             case RelicType.GetGold:
-                action += () => ArtifactManager.Inst.goldArtifact++;
+                action += IncreaseGoldArtifact;
                 break;
         }
 
         action?.Invoke();
+        action = null; 
     }
 
 }
