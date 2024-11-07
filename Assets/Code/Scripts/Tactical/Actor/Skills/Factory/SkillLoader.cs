@@ -5,13 +5,10 @@ using UnityEngine;
 
 public static class SkillLoader
 {
-    public static Sprite GetSkillSprite(string path)
+    public static Sprite GetSkillSprite(string name)
     {
-        if (!path.StartsWith("Card_Icon/"))
-            path = "Card_Icon/" + path;
-        
-        var sprite = Resources.Load<Sprite>(path);
-        return sprite;
+        var sprites = Resources.LoadAll<Sprite>("Card_Icons");
+        return sprites.FirstOrDefault(sprite => sprite.name == name);
     }
     
     public static Skill GetSkill(string skillName, bool isEnemy = false)
