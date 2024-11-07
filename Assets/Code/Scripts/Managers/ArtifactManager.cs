@@ -35,7 +35,6 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
 
     public void ArtifactForStage() 
     {
-        ResetMaxHp();
         HpRegen();
         BonusGoldOnClear();
         GetSkillUpgradeTicket();
