@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class SkillPanelController : MonoBehaviour
 {
-    [SerializeField] private Transform[] skillFrames;
-    [SerializeField] private Transform prevSkillFrame;
+    [SerializeField] private SkillFrame[] skillFrames;
+    [SerializeField] private SkillFrame prevSkillFrame;
 
     [SerializeField] private SkillPanel skillPanelPrefab;
     [SerializeField] private Transform skillPanelParent;
@@ -28,14 +28,16 @@ public class SkillPanelController : MonoBehaviour
         
         for (var i = 0; i < 3; i++)
         {
-            var skillPanel = Instantiate(skillPanelPrefab, skillFrames[i]);
+            var skillPanel = Instantiate(skillPanelPrefab, skillFrames[i].transform);
             skillPanel.Init(skills[i]);
+            skillFrames[i].Init(skills[i]);
             SetMainPanel(skillPanel, false);
             _skillPanels[i] = skillPanel;
         }
         
-        var prevSkillPanel = Instantiate(skillPanelPrefab, prevSkillFrame);
+        var prevSkillPanel = Instantiate(skillPanelPrefab, prevSkillFrame.transform);
         prevSkillPanel.Init(prevSkill);
+        prevSkillFrame.Init(prevSkill);
         prevSkillPanel.AddSkill();
         _prevSkillPanel = prevSkillPanel;
     }
@@ -46,12 +48,14 @@ public class SkillPanelController : MonoBehaviour
         
         _skillPanels[nullIndex].RemoveSkill();
         
-        _prevSkillPanel.transform.SetParent(skillFrames[nullIndex]);
+        _prevSkillPanel.transform.SetParent(skillFrames[nullIndex].transform);
+        skillFrames[nullIndex].Init(_prevSkillPanel.Data);
         SetMainPanel(_prevSkillPanel, true);
         _skillPanels[nullIndex] = _prevSkillPanel;
         
-        var prevSkillPanel = Instantiate(skillPanelPrefab, prevSkillFrame);
+        var prevSkillPanel = Instantiate(skillPanelPrefab, prevSkillFrame.transform);
         prevSkillPanel.Init(newSkill);
+        prevSkillFrame.Init(newSkill);
         prevSkillPanel.AddSkill();
         _prevSkillPanel = prevSkillPanel;
     }

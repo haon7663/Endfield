@@ -26,6 +26,7 @@ public class SkillPanel : MonoBehaviour
     {
         Data = skill;
         icon.sprite = SkillLoader.GetSkillSprite(skill.name);
+        _rectTransform.SetAsFirstSibling();
     }
 
     private void Update()
@@ -50,6 +51,7 @@ public class SkillPanel : MonoBehaviour
             _rectTransform.rotation = prs.Rot;
             _rectTransform.sizeDelta = prs.Scale;
         }
+        _rectTransform.SetAsFirstSibling();
     }
     
     public void AddSkill()
