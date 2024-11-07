@@ -204,7 +204,6 @@ public class PlayerController : MonoBehaviour
         _skillNum = -1;
         
         _animator.SetBool(IsReady, false);
-        _animator.SetTrigger(Attack);
         
         SkillManager.Inst.ConsumeSkill(skillNum);
         GameManager.Inst.curElixir -= skill.elixir;
@@ -212,7 +211,8 @@ public class PlayerController : MonoBehaviour
         
         for (var i = 0; i < skill.executeCount; i++)
         {
-            _animator.SetTrigger(Attack);
+            if (skill.isAnimation == 1)
+                _animator.SetTrigger(Attack);
             skill.Use(_unit);
             yield return new WaitForSeconds(0.2f / skill.executeCount);
         }

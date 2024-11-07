@@ -13,6 +13,7 @@ public class Skill
     public float castingTime;
     public int executeCount;
     public List<SkillComponent> skillComponents = new();  // 스킬을 구성하는 컴포넌트 리스트
+    public int isAnimation;
 
     public void Use(Unit user)
     {
@@ -50,6 +51,8 @@ public class Skill
     {
         user.additionalKey = 0;
         var skillComponentInfo = new SkillComponentInfo(user, user.Tile, user.Movement.DirX);
+        if (skillComponents == null) return;
+        
         foreach (var component in skillComponents)
         {
             component.Print(skillComponentInfo);

@@ -45,7 +45,8 @@ public class SkillHolder : MonoBehaviour
             
             for (var i = 0; i < castingViewer.Data.executeCount; i++)
             {
-                _animator.SetTrigger(Attack);
+                if (castingViewer.Data.isAnimation == 1)
+                    _animator.SetTrigger(Attack);
                 castingViewer.Data.Use(_unit);
                 yield return new WaitForSeconds(0.2f / castingViewer.Data.executeCount);
             }

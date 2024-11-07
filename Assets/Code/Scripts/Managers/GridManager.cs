@@ -113,7 +113,7 @@ public class GridManager : Singleton<GridManager>
     {
         var tile = GetTile(key);
         var previewSprite = Instantiate(previewSpritePrefab, tile.transform.position, Quaternion.identity);
-        previewSprite.Init(tile.Key, user.Renderer.sprite);
+        previewSprite.Init(tile.Key, user.Renderer.sprite, user.Movement.DirX);
 
         return previewSprite;
     }
@@ -136,7 +136,7 @@ public class GridManager : Singleton<GridManager>
         foreach (var displayedTile in _previewTiles)
         {
             var color = displayedTile.Key.unitType == UnitType.Player ? playerColor : enemyColor;
-            displayedTile.Value?.ForEach(t => t.SetColor(color));
+            displayedTile.Value?.ForEach(t => t?.SetColor(color));
         }
     }
 
