@@ -1,48 +1,48 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using static ArtifactManager;
 
-public class RelicSOHolder : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class RelicSOHolder : MonoBehaviour, IPointerEnterHandler, IPointerMoveHandler, IPointerExitHandler
 {
     [SerializeField] private RelicSO relicSO;
     [SerializeField] private InventoryRelicInfo relicInfo;
-    [SerializeField] private GameObject relicUIPrefab;
-    private GameObject instantiatedRelicUI;
+    
+    private RectTransform _relicInfoRect;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        relicInfo.InitRelicInfo(relicSO, ArtifactCalcul());
-
-        instantiatedRelicUI = Instantiate(relicUIPrefab, transform);
-        RectTransform uiRectTransform = instantiatedRelicUI.GetComponent<RectTransform>();
-
-        if (uiRectTransform != null)
+        relicInfo.gameObject.SetActive(true);
+        
+        relicInfo.Init(relicSO, ArtifactCalculate());
+        _relicInfoRect = relicInfo.GetComponent<RectTransform>();
+    }
+    
+    public void OnPointerMove(PointerEventData eventData)
+    {
+        if (_relicInfoRect != null)
         {
-            Vector3 mousePosition = Input.mousePosition;
-            Vector3 offsetPosition = new Vector3(0, uiRectTransform.rect.height / 2, 0);
-
-            uiRectTransform.position = mousePosition + offsetPosition;
-            uiRectTransform.pivot = new Vector2(0, 0); 
+            _relicInfoRect.transform.position = Input.mousePosition;
         }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (instantiatedRelicUI != null)
+        if (_relicInfoRect != null)
         {
-            Destroy(instantiatedRelicUI);
+            relicInfo.gameObject.SetActive(false);
         }
     }
 
-    private int ArtifactCalcul()
+    private int ArtifactCalculate()
     {
         return relicSO.relicType switch
         {
             RelicSO.RelicType.HpRegen => ArtifactManager.Inst.CalculateArtifactValue(ArtifactType.HpRegen),
-            RelicSO.RelicType.GetGold => ArtifactManager.Inst.CalculateArtifactValue(ArtifactType.MaxHp),
+            RelicSO.RelicType.GetGold => ArtifactManager.Inst.CalculateArtifactValue(ArtifactType.Gold),
             RelicSO.RelicType.MaxElixier => ArtifactManager.Inst.CalculateArtifactValue(ArtifactType.MaxElixir),
-            RelicSO.RelicType.GetSkillUpgrade => ArtifactManager.Inst.CalculateArtifactValue(ArtifactType.Gold),
-            RelicSO.RelicType.MaxHp => ArtifactManager.Inst.CalculateArtifactValue(ArtifactType.SkillUpgradeTicket),
+            RelicSO.RelicType.GetSkillUpgrade => ArtifactManager.Inst.CalculateArtifactValue(ArtifactType.SkillUpgradeTicket),
+            RelicSO.RelicType.MaxHp => ArtifactManager.Inst.CalculateArtifactValue(ArtifactType.MaxHp),
             _ => 0 
         };
     }

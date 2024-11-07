@@ -1,40 +1,32 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 
 public class InventoryRelicInfo : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI nameLabel;
-    [SerializeField] private TextMeshProUGUI explanText;
-    [SerializeField] private TextMeshProUGUI amountText;
+    [SerializeField] private TextMeshProUGUI explainText;
     [SerializeField] private Image icon;
-
-
-    public void InitRelicInfo(RelicSO relicSO, int amount)
+    
+    public void Init(RelicSO relic, int amount)
     {
-        nameLabel.text = relicSO.name;
-        icon.sprite = relicSO.sprite;
-        if(relicSO.relicType == RelicSO.RelicType.GetGold)
-        {
-            explanText.text = "½ºÅ×ÀÌÁö ½ÃÀÛ¸¶´Ù " + amount.ToString() + "ml¸¦ È¹µæÇÕ´Ï´Ù.";
-        }
-        else if (relicSO.relicType == RelicSO.RelicType.MaxElixier)
-        {
-            explanText.text = "¿¤¸¯¼­ ÃÖ´ë·®ÀÌ " + amount.ToString() + " Áõ°¡ÇÕ´Ï´Ù.";
-        }
-        else if (relicSO.relicType == RelicSO.RelicType.MaxHp)
-        {
-            explanText.text = "ÃÖ´ë Ã¼·ÂÀÌ " + amount.ToString() + " Áõ°¡ÇÕ´Ï´Ù.";
-        }
-        else if (relicSO.relicType == RelicSO.RelicType.GetSkillUpgrade)
-        {
-            explanText.text = "½ºÅ×ÀÌÁö Á¾·á ½Ã " + amount.ToString() + "% È®·ü·Î ½ºÅ³ °­È­±ÇÀ» 1°³ È¹µæÇÕ´Ï´Ù";
-        }
-        else if (relicSO.relicType == RelicSO.RelicType.HpRegen)
-        {
-            explanText.text = "½ºÅ×ÀÌÁö ½ÃÀÛ ½Ã Ã¼·ÂÀ» " + amount.ToString() + " È¸º¹ÇÕ´Ï´Ù.";
-        }
+        nameLabel.text = relic.name;
+        icon.sprite = relic.sprite;
+        explainText.text = GetExplainText(relic, amount);
+    }
 
+    private string GetExplainText(RelicSO relic, int amount)
+    {
+        return relic.relicType switch
+        {
+            RelicSO.RelicType.GetGold => $"ìŠ¤í…Œì´ì§€ ì‹œìž‘ë§ˆë‹¤ {amount}mlë¥¼ íšë“í•©ë‹ˆë‹¤.",
+            RelicSO.RelicType.MaxElixier => $"ì—˜ë¦­ì„œ ìµœëŒ€ëŸ‰ì´ {amount} ì¦ê°€í•©ë‹ˆë‹¤.",
+            RelicSO.RelicType.MaxHp => $"ìµœëŒ€ ì²´ë ¥ì´ {amount} ì¦ê°€í•©ë‹ˆë‹¤.",
+            RelicSO.RelicType.GetSkillUpgrade => $"ìŠ¤í…Œì´ì§€ ì¢…ë£Œ ì‹œ {amount}% í™•ë¥ ë¡œ ìŠ¤í‚¬ ê°•í™”ê¶Œì„ 1ê°œ íšë“í•©ë‹ˆë‹¤",
+            RelicSO.RelicType.HpRegen => $"ìŠ¤í…Œì´ì§€ ì‹œìž‘ ì‹œ ì²´ë ¥ì„ {amount} íšŒë³µí•©ë‹ˆë‹¤.",
+            _ => explainText.text
+        };
     }
 }

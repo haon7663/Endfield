@@ -2,5 +2,6 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Units/Component/SkillHolder.cs" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Component/InventoryRelicInfo.cs" charset="UTF-8" />
   </component>
 </project>
