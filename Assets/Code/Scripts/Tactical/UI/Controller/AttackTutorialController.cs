@@ -8,6 +8,7 @@ public class AttackTutorialController : MonoBehaviour
     [SerializeField] private Panel skillPanel,scarecrowPanel;
     [SerializeField] private TextMeshProUGUI descriptionTxt;
     [SerializeField] private GameObject[] keySolid;
+    [SerializeField] private GameObject scareCrowCheck;
     private int tutoIndex;
     bool keyJ, keyK, keyL;
 
@@ -71,13 +72,15 @@ public class AttackTutorialController : MonoBehaviour
             {
                 solid.SetActive(false);
             }
-            //허수아비 소환
+            Unit scareCrow =  SpawnManager.Inst.Summon("Double Flower", GridManager.Inst.GetTile(5));
+            scareCrow.Health.onDeath += ()=>ScarecrowDead();
         });
       
     }
 
     public void ScarecrowDead()
     {
+        scareCrowCheck.SetActive(true);
         GridManager.Inst.GenerateTransitionTiles();
     }
 }

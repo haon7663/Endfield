@@ -125,7 +125,7 @@ public class MapIconController : MonoBehaviour
             case MapProperty.AttackTuto:
                 EnemyNoneSpawn();
                 attackTutorialController.Show();
-                SpawnManager.Inst.Summon("Double Flower", GridManager.Inst.GetTile(5));
+                
                 break;
 
         }
