@@ -15,6 +15,8 @@ public class Skill
     public List<SkillComponent> skillComponents = new();  // 스킬을 구성하는 컴포넌트 리스트
     public int isAnimation;
 
+    public int upgradeCount;
+
     public void Use(Unit user)
     {
         user.additionalKey = 0;
@@ -82,6 +84,8 @@ public class Skill
             elixir = elixir,
             castingTime = castingTime,
             executeCount = executeCount,
+            isAnimation = isAnimation,
+            upgradeCount = upgradeCount,
             skillComponents = skillComponents.ToList()
         };
 

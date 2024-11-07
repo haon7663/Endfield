@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using DG.Tweening;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class SkillUpgradePanel : MonoBehaviour
     [SerializeField] private Card cardPrefab;
     [SerializeField] private Transform cardGroup;
     [SerializeField] private ClosePanel closePanel;
+    
+    [SerializeField] private SkillUpgradeGroup skillUpgradeGroup;
 
     private List<Card> cards = new List<Card>();
 
@@ -42,6 +45,8 @@ public class SkillUpgradePanel : MonoBehaviour
 
     private void UpgradeSkill(Skill skill, SkillComponent skillComponent)
     {
+        if (DataManager.Inst.Data.skillUpgradeTickets < skill.upgradeCount + 1) return;
+        
         switch (skillComponent.ExecuteType)
         {
             case SkillExecuteType.AddModifier:
@@ -56,7 +61,13 @@ public class SkillUpgradePanel : MonoBehaviour
                 break;
         }
         
+        Debug.Log(skill.upgradeCount);
+        
+        DataManager.Inst.Data.skillUpgradeTickets -= skill.upgradeCount + 1;
         DataManager.Inst.Data.skills[_saveIndex] = skill;
+        skillUpgradeGroup.UpdateTicketLabel();
+
+        skill.upgradeCount++;
     }
 
     private Skill SkillUpgrader(Skill skill, SkillComponent skillComponent)

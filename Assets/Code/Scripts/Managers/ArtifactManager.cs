@@ -120,7 +120,7 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
         return relics;
     }
 
-    public void ResetMaxHp()//ÀÓ½Ã ¼öÁ¤ÇØ¾ßÇÔ
+    public void ResetMaxHp()//ï¿½Ó½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½
     {
         int increaseAmount = maxHpArtifact * increaseHp;
         GameManager.Inst.Player.Health.maxHp = baseMaxHp + increaseAmount;

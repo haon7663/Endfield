@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public Skill SkillData { get; private set; }
     public Action onClick;
@@ -17,27 +17,49 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     [SerializeField] private TMP_Text nameLabel;
     [SerializeField] private TMP_Text description;
     [SerializeField] private TMP_Text elixirLabel;
-   
-
+    
     private RectTransform _rectTransform;
-    private float _rotateValue;
+    private Vector2 _originLocalScale;
 
     private void Awake()
     {
         _rectTransform = GetComponent<RectTransform>();
+        _originLocalScale = transform.localScale;
+    }
+
+    private void Start()
+    {
+        DOVirtual.Float(-45f, 0, 1f, value =>
+        {
+            var axis = _rectTransform.sizeDelta;
+            var rotation = Quaternion.AngleAxis(value, axis);
+            transform.rotation = rotation;
+        }).SetEase(Ease.OutBack);
     }
 
     public void Init(Skill skillData)
     {
         SkillData = skillData;
         icon.sprite = Resources.Load<Sprite>("Card_Icon/" + skillData.name);
-        nameLabel.text = skillData.label;
+        
+        var nameStringBuilder = new StringBuilder();
+        nameStringBuilder.Append(skillData.label);
+        nameStringBuilder.Append("<color=#FFFF00>");
+        foreach (var subName in skillData.skillComponents.Select(s => s.saveName).Where(s => s != skillData.name))
+        {
+            if (string.IsNullOrEmpty(subName)) continue;
+            nameStringBuilder.Append(" ");
+            nameStringBuilder.Append(subName);
+        }
+        nameStringBuilder.Append("</color>");
+        nameLabel.text = nameStringBuilder.ToString();
 
         var descriptionStringBuilder = new StringBuilder();
         descriptionStringBuilder.Append(skillData.description);
         descriptionStringBuilder.Append("<color=#FFFF00>");
         foreach (var subDescription in skillData.skillComponents.Select(s => s.subDescription))
         {
+            if (string.IsNullOrEmpty(subDescription)) continue;
             descriptionStringBuilder.Append(" ");
             descriptionStringBuilder.Append(subDescription);
         }
@@ -49,31 +71,12 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (isAnim)
-        {
-            DOVirtual.Float(_rotateValue, 0, 0.5f, value =>
-            {
-                _rotateValue = value;
-                var axis = _rectTransform.sizeDelta;
-                var rotation = Quaternion.AngleAxis(value, axis);
-                transform.rotation = rotation;
-            }).SetEase(Ease.OutBack);
-        }
+        transform.DOScale(_originLocalScale * 1.05f, 0.25f).SetEase(Ease.OutCirc);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (isAnim)
-        {
-            DOVirtual.Float(_rotateValue, -25f, 0.5f, value =>
-            {
-                _rotateValue = value;
-                var axis = _rectTransform.sizeDelta;
-                var rotation = Quaternion.AngleAxis(value, axis);
-                transform.rotation = rotation;
-            }).SetEase(Ease.OutBack);
-        }
-      
+        transform.DOScale(_originLocalScale, 0.25f).SetEase(Ease.OutCirc);
     }
 
     public void OnPointerClick(PointerEventData eventData)

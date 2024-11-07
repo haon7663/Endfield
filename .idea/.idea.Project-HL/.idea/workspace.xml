@@ -6,10 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="14d34322-fb5c-456d-baed-061be64639fd" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Project-HL/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Project-HL/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Component/SkillPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Component/SkillPanel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Controller/SkillPanelController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Controller/SkillPanelController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Managers/ArtifactManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Managers/ArtifactManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Cards/Card.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Cards/Card.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/Skill.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/Actor/Skills/Core/Skill.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Component/InventorySkillInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Component/InventorySkillInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Component/SkillUpgradeGroup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Component/SkillUpgradeGroup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Component/SkillUpgradePanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Tactical/UI/Component/SkillUpgradePanel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/Particles/Resources/Hit.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/Particles/Resources/Hit.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/UI/Card.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/UI/Card.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/UI/Skill Frame.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/UI/Skill Frame.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Level/Scenes/Design.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scenes/Design.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/SkillData/upgradeSkill.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/SkillData/upgradeSkill.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +72,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;haon&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
@@ -211,6 +218,8 @@
       <workItem from="1730937595097" duration="3744000" />
       <workItem from="1730943178102" duration="291000" />
       <workItem from="1730943480817" duration="2357000" />
+      <workItem from="1730947357152" duration="2260000" />
+      <workItem from="1730951642536" duration="251000" />
     </task>
     <servers />
   </component>
