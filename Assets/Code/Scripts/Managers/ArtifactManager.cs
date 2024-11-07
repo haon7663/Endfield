@@ -35,11 +35,7 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
 
     public void ArtifactForStage() 
     {
-        int increaseAmount = maxHpArtifact * increaseHp;
-        GameManager.Inst.Player.Health.maxHp = baseMaxHp + increaseAmount;
-        DataManager.Inst.Data.curHp = baseMaxHp + increaseAmount;
-        GameManager.Inst.Player.Health.curHp = DataManager.Inst.Data.curHp;
-        HealthTextController.Inst.UpdateUI(GameManager.Inst.Player.Health);
+        ResetMaxHp();
         HpRegen();
         BonusGoldOnClear();
         GetSkillUpgradeTicket();
@@ -87,11 +83,7 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
         maxHpArtifact++;
         if (maxHpArtifact > 0)
         {
-            int increaseAmount = maxHpArtifact * increaseHp;
-            GameManager.Inst.Player.Health.maxHp = baseMaxHp + increaseAmount;
-            DataManager.Inst.Data.curHp = baseMaxHp + increaseAmount;
-            GameManager.Inst.Player.Health.curHp = DataManager.Inst.Data.curHp;
-            HealthTextController.Inst.UpdateUI(GameManager.Inst.Player.Health);
+            ResetMaxHp();
         }
     }
 
@@ -127,5 +119,14 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
     public List<RelicSO> GetAllRelics()
     {
         return relics;
+    }
+
+    public void ResetMaxHp()//임시 수정해야함
+    {
+        int increaseAmount = maxHpArtifact * increaseHp;
+        GameManager.Inst.Player.Health.maxHp = baseMaxHp + increaseAmount;
+        DataManager.Inst.Data.curHp = baseMaxHp + increaseAmount;
+        GameManager.Inst.Player.Health.curHp = DataManager.Inst.Data.curHp;
+        HealthTextController.Inst.UpdateUI(GameManager.Inst.Player.Health);
     }
 }
