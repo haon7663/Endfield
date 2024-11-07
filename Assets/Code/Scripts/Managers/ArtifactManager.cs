@@ -35,6 +35,7 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
 
     public void ArtifactForStage() 
     {
+        ResetMaxHp();
         HpRegen();
         BonusGoldOnClear();
         GetSkillUpgradeTicket();
@@ -82,7 +83,11 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
         maxHpArtifact++;
         if (maxHpArtifact > 0)
         {
-            ResetMaxHp();
+            int increaseAmount = maxHpArtifact * increaseHp;
+            GameManager.Inst.Player.Health.maxHp = baseMaxHp + increaseAmount;
+            DataManager.Inst.Data.curHp = baseMaxHp + increaseAmount;
+            GameManager.Inst.Player.Health.curHp = DataManager.Inst.Data.curHp;
+            HealthTextController.Inst.UpdateUI(GameManager.Inst.Player.Health);
         }
     }
 
@@ -120,12 +125,10 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
         return relics;
     }
 
-    public void ResetMaxHp()//�ӽ� �����ؾ���
+    public void ResetMaxHp()
     {
         int increaseAmount = maxHpArtifact * increaseHp;
         GameManager.Inst.Player.Health.maxHp = baseMaxHp + increaseAmount;
-        DataManager.Inst.Data.curHp = baseMaxHp + increaseAmount;
-        GameManager.Inst.Player.Health.curHp = DataManager.Inst.Data.curHp;
         HealthTextController.Inst.UpdateUI(GameManager.Inst.Player.Health);
     }
 }
