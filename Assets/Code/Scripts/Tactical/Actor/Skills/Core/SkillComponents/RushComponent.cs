@@ -4,7 +4,6 @@ using UnityEngine;
 public class RushComponent : SkillComponent
 {
     public int value;
-    private PreviewSprite _previewSprite;
     
     public override void Execute(SkillComponentInfo info)
     {
@@ -29,7 +28,7 @@ public class RushComponent : SkillComponent
     public override void Print(SkillComponentInfo info)
     {
         var additionalDistance = CalculateDistance(info) * info.dirX;
-        _previewSprite = GridManager.Inst.DisplayPreview(info.user, info.tile.Key + additionalDistance);
+        GridManager.Inst.DisplayPreview(info.user, info.tile.Key + additionalDistance);
         
         for (var i = 1; i <= distance; i++)
         {
@@ -45,9 +44,8 @@ public class RushComponent : SkillComponent
     public override void Cancel(SkillComponentInfo info)
     {
         base.Cancel(info);
-        _previewSprite?.Cancel();
-        _previewSprite = null;
         GridManager.Inst.RevertGrid(info.user);
+        GridManager.Inst.RevertPreview(info.user);
     }
 
     private int CalculateDistance(SkillComponentInfo info)

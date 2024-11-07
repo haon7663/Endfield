@@ -28,7 +28,6 @@ public class Unit : MonoBehaviour
         if(unitType == UnitType.Player)
         {
             HealthTextController.Inst.UpdateUI(Health);
-
         }
     }
 

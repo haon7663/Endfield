@@ -32,11 +32,12 @@ public class Health : MonoBehaviour
 
     private void Start()
     {
-        onDeath += ()=>SoundManager.Inst.Play("Dead");
+        onDeath += () => SoundManager.Inst.Play("Dead");
+        onDeath += () => GridManager.Inst.RevertGrid(_unit);
+        onDeath += () => GridManager.Inst.RevertPreview(_unit);
               
         _unit = GetComponent<Unit>();
         _spriteRenderer = _unit.SpriteTransform.GetComponent<SpriteRenderer>();
-
     }
 
     private void Update()

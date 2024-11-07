@@ -20,7 +20,7 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
     [SerializeField] private float skillUpgradeTicketProb;
 
     private int baseMaxElixir = 4;
-    private int baseMaxHp = 25;
+    private int baseMaxHp = 60;
 
     public enum ArtifactType
     {

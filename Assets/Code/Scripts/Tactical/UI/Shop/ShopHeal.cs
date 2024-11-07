@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,6 +22,8 @@ public class ShopHeal : ShopItem
     protected override void BuyAction()
     {
         GameManager.Inst.Player.Health.OnRecovery(1000);
+        DataManager.Inst.Data.curHp += 1000;
+        DataManager.Inst.Data.curHp = Mathf.Clamp(DataManager.Inst.Data.curHp, 0, GameManager.Inst.Player.Health.maxHp);
         Debug.Log("힐 받음");
     }
 }

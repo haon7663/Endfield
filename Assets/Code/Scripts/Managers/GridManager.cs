@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GridManager : Singleton<GridManager>
@@ -27,10 +28,10 @@ public class GridManager : Singleton<GridManager>
     private bool _isTransitioning;
 
     private Dictionary<Unit, List<Tile>> _previewTiles = new Dictionary<Unit, List<Tile>>();
+    private Dictionary<Unit, PreviewSprite> _previewUnits = new Dictionary<Unit, PreviewSprite>();
 
-    private IEnumerator Start()
+    private void Start()
     {
-        yield return new WaitUntil(() => GameManager.Inst);
         GenerateTiles();
     }
 
@@ -110,13 +111,21 @@ public class GridManager : Singleton<GridManager>
 
     }
 
-    public PreviewSprite DisplayPreview(Unit user, int key)
+    public void DisplayPreview(Unit user, int key)
     {
         var tile = GetTile(key);
         var previewSprite = Instantiate(previewSpritePrefab, tile.transform.position, Quaternion.identity);
-        previewSprite.Init(user, tile.Key, user.Renderer.sprite, user.Movement.DirX);
+        previewSprite.Init(tile.Key, user.Renderer.sprite, user.Movement.DirX);
 
-        return previewSprite;
+        _previewUnits[user] = previewSprite;
+    }
+    public void RevertPreview(Unit user)
+    {
+        if (_previewUnits.ContainsKey(user))
+        {
+            Destroy(_previewUnits[user].gameObject);
+            _previewUnits.Remove(user);
+        }
     }
 
     public void ApplyGrid(Unit user, List<Tile> tiles)

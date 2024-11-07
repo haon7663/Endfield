@@ -16,7 +16,7 @@ public class PlayerData
     public int stageCount;
     public int gold = 150;
     public int curHp;
-    public int skillUpgradeTickets = 10;
+    public int skillUpgradeTickets;
     public int maxElixir = 4;
     
     public PlayerData(List<Skill> skills)

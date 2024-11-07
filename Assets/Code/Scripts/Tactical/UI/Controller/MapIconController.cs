@@ -75,6 +75,7 @@ public class MapIconController : MonoBehaviour
 
     private IEnumerator Start()
     {
+        yield return new WaitUntil(() => DataManager.Inst);
         yield return new WaitUntil(() => GridManager.Inst);
         Instance();
     }

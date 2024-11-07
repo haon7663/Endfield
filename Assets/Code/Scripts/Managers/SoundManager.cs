@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +15,12 @@ public class SoundManager : SingletonDontDestroyOnLoad<SoundManager>
     private Dictionary<string, AudioClip> _audioClips = new Dictionary<string, AudioClip>();
 
     private string _saveBGM;
-    
+
+    private void Start()
+    {
+        Play("BattleBGM", Sound.Bgm);
+    }
+
     public void Play(AudioClip audioClip, Sound type = Sound.Effect)
     {
         if (audioClip == null)
