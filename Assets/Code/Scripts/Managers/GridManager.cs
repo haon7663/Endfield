@@ -21,6 +21,7 @@ public class GridManager : Singleton<GridManager>
 
     [SerializeField] private Color playerColor;
     [SerializeField] private Color enemyColor;
+    [SerializeField] private Color bothColor;
 
     private Tile _transition;
     private bool _isTransitioning;
@@ -133,11 +134,26 @@ public class GridManager : Singleton<GridManager>
     private void UpdateGrid()
     {
         RevertAllGrid();
-        foreach (var displayedTile in _previewTiles)
+        
+        foreach (var previewTile in _previewTiles)
         {
-            var color = displayedTile.Key.unitType == UnitType.Player ? playerColor : enemyColor;
-            displayedTile.Value?.ForEach(t => t?.SetColor(color));
+            var color = previewTile.Key.unitType == UnitType.Player ? playerColor : enemyColor;
+            previewTile.Value?.ForEach(t => t?.SetColor(color));
         }
+        
+        var playerTiles = _previewTiles
+            .Where(previewTile => previewTile.Key.unitType == UnitType.Player)
+            .SelectMany(previewTile => previewTile.Value)
+            .ToList();
+        var enemyTiles = _previewTiles
+            .Where(previewTile => previewTile.Key.unitType == UnitType.Enemy)
+            .SelectMany(previewTile => previewTile.Value)
+            .ToList();
+        
+        var intersectTiles = playerTiles.Intersect(enemyTiles);
+        
+        foreach (var tile in intersectTiles)
+            tile.SetColor(bothColor);
     }
 
     private void CheckingTransition()

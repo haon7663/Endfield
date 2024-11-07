@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Text;
 using TMPro;
@@ -13,10 +14,27 @@ public class SkillUpgradeGroup : MonoBehaviour
     [SerializeField] private Image skillIcon;
     [SerializeField] private TMP_Text nameLabel;
     [SerializeField] private TMP_Text description;
+    [SerializeField] private TMP_Text remainUpgradeTicketLabel;
     
     [SerializeField] private GameObject disableButton;
     
     private Skill _skill;
+    private DataManager _dataManagerRef;
+
+    private void Start()
+    {
+        _dataManagerRef = DataManager.Inst;
+    }
+
+    private void Update()
+    {
+        UpdateTicketLabel();
+    }
+
+    public void UpdateTicketLabel()
+    {
+        remainUpgradeTicketLabel.text = $"남은 강화권 ({_dataManagerRef.Data.skillUpgradeTickets})";
+    }
 
     public void ShowUpgradePanel()
     {
@@ -42,8 +60,9 @@ public class SkillUpgradeGroup : MonoBehaviour
 
         description.text = descriptionStringBuilder.ToString();
         
-        disableButton.SetActive(false);
+        if (DataManager.Inst.Data.skillUpgradeTickets < skill.upgradeCount + 1) return;
         
+        disableButton.SetActive(false);
         _skill = skill;
     }
 }
