@@ -18,7 +18,7 @@ public class DefeatPanelController : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(inventoryContent.childCount);
+       
     }
 
     public void Show()

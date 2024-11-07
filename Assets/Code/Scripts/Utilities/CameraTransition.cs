@@ -20,7 +20,7 @@ public class CameraTransition : Singleton<CameraTransition>
 
     public void CameraUp()
     {
-        DataManager.Inst.Data.stageCount++;
+        ++DataManager.Inst.Data.stageCount;
 
         var sequence = DOTween.Sequence();
         sequence.Append(transform.DORotate(targetRotation, rotationDuration))
