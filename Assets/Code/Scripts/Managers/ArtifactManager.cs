@@ -131,4 +131,17 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
         GameManager.Inst.Player.Health.maxHp = baseMaxHp + increaseAmount;
         HealthTextController.Inst.UpdateUI(GameManager.Inst.Player.Health);
     }
+
+    private int ArtifactCalcul()
+    {
+        return relicSO.relicType switch
+        {
+            RelicSO.RelicType.HpRegen => ArtifactManager.Inst.hpRegenArtifact *,
+            RelicSO.RelicType.GetGold => ArtifactManager.Inst.goldArtifact,
+            RelicSO.RelicType.MaxElixier => ArtifactManager.Inst.maxElixirArtifact,
+            RelicSO.RelicType.GetSkillUpgrade => ArtifactManager.Inst.skillUpgradeArtifact,
+            RelicSO.RelicType.MaxHp => ArtifactManager.Inst.maxHpArtifact,
+            _ => 0
+        };
+    }
 }

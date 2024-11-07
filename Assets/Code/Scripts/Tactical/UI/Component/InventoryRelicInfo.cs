@@ -14,8 +14,27 @@ public class InventoryRelicInfo : MonoBehaviour
     public void InitRelicInfo(RelicSO relicSO, int amount)
     {
         nameLabel.text = relicSO.name;
-        explanText.text = relicSO.description;
         icon.sprite = relicSO.sprite;
-        amountText.text = amount.ToString() + "개";
+        if(relicSO.relicType == RelicSO.RelicType.GetGold)
+        {
+            explanText.text = "스테이지 시작마다 " + amount.ToString() + "ml를 획득합니다.";
+        }
+        else if (relicSO.relicType == RelicSO.RelicType.MaxElixier)
+        {
+            explanText.text = "엘릭서 최대량이 " + amount.ToString() + " 증가합니다.";
+        }
+        else if (relicSO.relicType == RelicSO.RelicType.MaxHp)
+        {
+            explanText.text = "최대 체력이 " + amount.ToString() + " 증가합니다.";
+        }
+        else if (relicSO.relicType == RelicSO.RelicType.GetSkillUpgrade)
+        {
+            explanText.text = "스테이지 종료 시 " + amount.ToString() + "% 확률로 스킬 강화권을 1개 획득합니다";
+        }
+        else if (relicSO.relicType == RelicSO.RelicType.HpRegen)
+        {
+            explanText.text = "스테이지 시작 시 체력을 " + amount.ToString() + " 회복합니다.";
+        }
+
     }
 }

@@ -10,7 +10,7 @@ public class RelicSOHolder : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        relicInfo.InitRelicInfo(relicSO, AmountCalcul());
+        relicInfo.InitRelicInfo(relicSO, ArtifactCalcul());
 
         instantiatedRelicUI = Instantiate(relicUIPrefab, transform);
         RectTransform uiRectTransform = instantiatedRelicUI.GetComponent<RectTransform>();
@@ -33,7 +33,7 @@ public class RelicSOHolder : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         }
     }
 
-    private int AmountCalcul()
+    private int ArtifactCalcul()
     {
         return relicSO.relicType switch
         {
