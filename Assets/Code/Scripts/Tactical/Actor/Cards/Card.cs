@@ -40,7 +40,7 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     public void Init(Skill skillData)
     {
         SkillData = skillData;
-        icon.sprite = Resources.Load<Sprite>("Card_Icon/" + skillData.name);
+        icon.sprite = SkillLoader.GetSkillSprite(skillData.name);
         
         var nameStringBuilder = new StringBuilder();
         nameStringBuilder.Append(skillData.label);

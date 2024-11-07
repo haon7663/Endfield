@@ -23,7 +23,7 @@ public class SkillCastingViewer : MonoBehaviour
         //rectTransform.anchoredPosition = pos;
         rectTransform.anchoredPosition = new Vector2(0,90);
         rectTransform.DOAnchorPos(pos, 0.15f).SetEase(Ease.InOutCubic);
-        selectSkill.sprite = SkillLoader.GetSkillSprite(skill.name);
+        selectSkill.sprite = SkillLoader.GetSkillSprite(skill.spriteName);
         
         castLabel.text = skill.castingTime.ToString("F1");
     }
@@ -40,7 +40,7 @@ public class SkillCastingViewer : MonoBehaviour
         
         yield return sequence.WaitForCompletion();
         
-        backGround.rectTransform.SetAsLastSibling();
+        backGround.rectTransform.SetAsFirstSibling();
         canvasGroup.DOFade(0, 0.15f);
     }
 }

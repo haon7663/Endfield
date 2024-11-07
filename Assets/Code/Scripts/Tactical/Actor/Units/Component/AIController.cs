@@ -14,7 +14,7 @@ public class AIController : MonoBehaviour
     private SkillHolder _skillHolder;
 
     public float actionCool;
-    [SerializeField]private float _curActionCool;
+    private float _curActionCool;
 
     [Serializable]
     private class SkillAndCool
@@ -43,10 +43,7 @@ public class AIController : MonoBehaviour
             }
         }
     }
-
-   
-   
-
+    
     private void Awake()
     {
         _movement = GetComponent<Movement>();
@@ -66,7 +63,7 @@ public class AIController : MonoBehaviour
         UpdateSkillCoolDown();
         if (!_isActing)
         {
-            UpdateCoolDown(  actionCool, EnemyActing);
+            UpdateCoolDown(actionCool, EnemyActing);
         }
     }
     

@@ -6,6 +6,7 @@ public class TextHudController : Singleton<TextHudController>
 {
     [SerializeField] private TextHud damageHudPrefab;
     [SerializeField] private TextHud recoveryHudPrefab;
+    [SerializeField] private TextHud barrierHudPrefab;
     [SerializeField] private TextHud elixirConsumeHudPrefab;
     [SerializeField] private Transform canvas;
 
@@ -33,6 +34,13 @@ public class TextHudController : Singleton<TextHudController>
     public void ShowRecovery(Vector3 pos, int value)
     {
         var textHud = Instantiate(recoveryHudPrefab, canvas);
+        textHud.transform.position = _mainCamera.WorldToScreenPoint(pos);
+        textHud.Init(value.ToString());
+    }
+    
+    public void ShowBarrier(Vector3 pos, int value)
+    {
+        var textHud = Instantiate(barrierHudPrefab, canvas);
         textHud.transform.position = _mainCamera.WorldToScreenPoint(pos);
         textHud.Init(value.ToString());
     }

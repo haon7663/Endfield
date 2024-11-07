@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -86,7 +87,7 @@ public class SpawnManager : Singleton<SpawnManager>
         for (var i = 0; i < maxEnemyCount; i++)
         {
             var tile = GridManager.Inst.GetRandomTile(tiles);
-            SpawnEnemy(UnitLoader.GetAllUnitData().Random().name, tile);
+            SpawnEnemy(UnitLoader.GetAllUnitData().Where(unit => unit.name != "Double Flower").ToList().Random().name, tile);
             tiles.Add(tile);
             _surviveEnemyCount++;
         }
