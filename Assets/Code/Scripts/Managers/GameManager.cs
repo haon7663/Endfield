@@ -20,6 +20,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
+        isGameActive = true;
         startViewPoint = DataManager.Inst.Data.stageCount * 7f;
     }
 

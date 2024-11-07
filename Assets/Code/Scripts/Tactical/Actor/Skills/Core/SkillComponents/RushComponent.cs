@@ -30,6 +30,16 @@ public class RushComponent : SkillComponent
     {
         var additionalDistance = CalculateDistance(info) * info.dirX;
         _previewSprite = GridManager.Inst.DisplayPreview(info.user, info.tile.Key + additionalDistance);
+        
+        for (var i = 1; i <= distance; i++)
+        {
+            var tile = GetStartingTile(info, i);
+            if (tile && tile.IsOccupied)
+            {
+                GridManager.Inst.ApplyGrid(info.user, new List<Tile> { tile });
+                break;
+            }
+        }
     }
 
     public override void Cancel(SkillComponentInfo info)
@@ -37,6 +47,7 @@ public class RushComponent : SkillComponent
         base.Cancel(info);
         _previewSprite?.Cancel();
         _previewSprite = null;
+        GridManager.Inst.RevertGrid(info.user);
     }
 
     private int CalculateDistance(SkillComponentInfo info)

@@ -141,20 +141,21 @@ public class AIController : MonoBehaviour
             return;
         }
         
-        int max = -100, min = 100;
-        for(int i = 1; i < _skillHolder.castingViewers[0].Data.skillComponents[0].distance; i++) //앞에 적이 있다면
+        for (var i = 1; i < _skillHolder.castingViewers[0].Data.skillComponents[0].distance; i++) //앞에 적이 있다면
         {
-            var tileKey = _unit.Tile.Key + (i * _movement.DirX);
-            Unit entity =  GridManager.Inst.GetTile(tileKey)?.content;
-            if (entity != null && entity.TryGetComponent(out AIController aIController))
+            var tileKey = _unit.Tile.Key + i * _movement.DirX;
+            var unit = GridManager.Inst.GetTile(tileKey)?.content;
+            if (unit)
             {
+                if (unit.unitType == UnitType.Player)
+                    break;
                 return;
             }
         }
 
-        List<Tile> areaTile = target.Tile.GetAreaInRange(_skillHolder.castingViewers[0].Data.skillComponents[0].distance);// 한 곳만 때리는거, 전체 때리는거 구분 해야함
+        var areaTile = target.Tile.GetAreaInRange(_skillHolder.castingViewers[0].Data.skillComponents[0].distance);// 한 곳만 때리는거, 전체 때리는거 구분 해야함
 
-        foreach (Tile tile in areaTile)
+        foreach (var tile in areaTile)
         {
             if (tile.Key == _unit.Tile.Key)
             {
@@ -165,6 +166,7 @@ public class AIController : MonoBehaviour
         //이미 범위 안에 플레이어가 있다면 스킬 시전
         //앞에 적이 있는지 없는지 감지해야 하는데 플레이어와 적을 구분하는게 없어 보임
 
+        int max = -100, min = 100;
         for(var i = 0; i < areaTile.Count; i++)  //가장 높은 값과 가장 낮은 값을 찾아냄
         {
             if (areaTile[i].Key > max) max = areaTile[i].Key;
