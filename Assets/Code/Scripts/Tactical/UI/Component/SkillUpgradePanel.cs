@@ -61,6 +61,8 @@ public class SkillUpgradePanel : MonoBehaviour
                 break;
         }
         
+        Debug.Log(skill.upgradeCount);
+        
         DataManager.Inst.Data.skillUpgradeTickets -= skill.upgradeCount + 1;
         DataManager.Inst.Data.skills[_saveIndex] = skill;
         skillUpgradeGroup.UpdateTicketLabel();

@@ -1,4 +1,6 @@
 using System;
+using System.Linq;
+using System.Text;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -24,7 +26,18 @@ public class InventorySkillInfo : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     public void SetInfo(Skill skill)
     {
-        nameLabel.text = skill.label;
+        var nameStringBuilder = new StringBuilder();
+        nameStringBuilder.Append(skill.label);
+        nameStringBuilder.Append("<color=#FFFF00>");
+        foreach (var subName in skill.skillComponents.Select(s => s.saveName).Where(s => s != skill.name))
+        {
+            if (string.IsNullOrEmpty(subName)) continue;
+            nameStringBuilder.Append(" ");
+            nameStringBuilder.Append(subName);
+        }
+        nameStringBuilder.Append("</color>");
+        nameLabel.text = nameStringBuilder.ToString();
+
         icon.sprite = SkillLoader.GetSkillSprite(skill.name);
 
         _skill = skill;

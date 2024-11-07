@@ -16,6 +16,7 @@ public class SkillUpgradeGroup : MonoBehaviour
     [SerializeField] private TMP_Text description;
     [SerializeField] private TMP_Text remainUpgradeTicketLabel;
     
+    [SerializeField] private Button upgradeButton;
     [SerializeField] private GameObject disableButton;
     
     private Skill _skill;
@@ -45,7 +46,18 @@ public class SkillUpgradeGroup : MonoBehaviour
     public void SetSkill(Skill skill)
     {
         skillIcon.sprite = SkillLoader.GetSkillSprite(skill.name);
-        nameLabel.text = skill.label;
+        
+        var nameStringBuilder = new StringBuilder();
+        nameStringBuilder.Append(skill.label);
+        nameStringBuilder.Append("<color=#FFFF00>");
+        foreach (var subName in skill.skillComponents.Select(s => s.saveName).Where(s => s != skill.name))
+        {
+            if (string.IsNullOrEmpty(subName)) continue;
+            nameStringBuilder.Append(" ");
+            nameStringBuilder.Append(subName);
+        }
+        nameStringBuilder.Append("</color>");
+        nameLabel.text = nameStringBuilder.ToString();
         
         var descriptionStringBuilder = new StringBuilder();
         descriptionStringBuilder.Append(skill.description);
@@ -59,10 +71,9 @@ public class SkillUpgradeGroup : MonoBehaviour
         descriptionStringBuilder.Append("</color>");
 
         description.text = descriptionStringBuilder.ToString();
-        
-        if (DataManager.Inst.Data.skillUpgradeTickets < skill.upgradeCount + 1) return;
-        
-        disableButton.SetActive(false);
+
+        upgradeButton.interactable = DataManager.Inst.Data.skillUpgradeTickets >= skill.upgradeCount + 1;
+        disableButton.SetActive(DataManager.Inst.Data.skillUpgradeTickets < skill.upgradeCount + 1);
         _skill = skill;
     }
 }
