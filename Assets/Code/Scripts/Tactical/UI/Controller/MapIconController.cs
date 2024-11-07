@@ -24,6 +24,8 @@ public class MapIconController : MonoBehaviour
     [SerializeField] private RectTransform icons;
     [SerializeField] private EventController eventController;
     [SerializeField] private ShopController shopController;
+    [SerializeField] private MoveTutorialController moveTutorialController;
+    [SerializeField] private AttackTutorialController attackTutorialController;
     [SerializeField] private EndingPanelController endingPanelController;
     private int showLastMapIndex = 4;
   
@@ -108,17 +110,21 @@ public class MapIconController : MonoBehaviour
                 break;
             case MapProperty.EventMap:
                 EnemyNoneSpawn();
+                GridManager.Inst.GenerateTransitionTiles();
                 eventController.Show();           
                 break;
             case MapProperty.ShopMap:
                 EnemyNoneSpawn();
+                GridManager.Inst.GenerateTransitionTiles();
                 shopController.Active();
                 break;
             case MapProperty.MoveTuto:
                 EnemyNoneSpawn();
+                moveTutorialController.Show();
                 break;
             case MapProperty.AttackTuto:
                 EnemyNoneSpawn();
+                attackTutorialController.Show();
                 //허수아비 소환
                 break;
 
@@ -128,7 +134,7 @@ public class MapIconController : MonoBehaviour
 
     private void EnemyNoneSpawn()
     {
-        GridManager.Inst.GenerateTransitionTiles();
+        
         GameManager.Inst.MapIconShow(true);
         SpawnManager.Inst.DoNotSpawn();
     }

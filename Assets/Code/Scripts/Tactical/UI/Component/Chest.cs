@@ -46,7 +46,7 @@ public class Chest : MonoBehaviour
         {
             new GetGold_ChestEvent(),
             new GetSkill_ChestEvent(),
-          //new GetSkillUpgrade_ChestEvent(),
+           new GetSkillUpgrade_ChestEvent(),
             new GetRelic_ChestEvent(),
             new GetHp_ChestEvent()
         };

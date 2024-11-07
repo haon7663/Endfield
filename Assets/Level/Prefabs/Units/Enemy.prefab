@@ -189,6 +189,10 @@ PrefabInstance:
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 911527452982774341, guid: 621ea78252239a3418d94c0d027a8d00, type: 3}
+      propertyPath: healthTextPrefab
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2712006975971924655, guid: 621ea78252239a3418d94c0d027a8d00, type: 3}
       propertyPath: unitType
       value: 1
