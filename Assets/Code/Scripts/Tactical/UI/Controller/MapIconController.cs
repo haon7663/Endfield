@@ -103,10 +103,10 @@ public class MapIconController : MonoBehaviour
         switch (mapSequence[_curMapIndex])
         {
             case MapProperty.EnemyMap:
-                Debug.Log("�� ����");
+                GameStartController.Inst.Show();
                 break;
             case MapProperty.BossMap:
-                Debug.Log("���� ����");
+                //GameStartController.Inst.Show();
                 break;
             case MapProperty.EventMap:
                 EnemyNoneSpawn();
@@ -125,16 +125,13 @@ public class MapIconController : MonoBehaviour
             case MapProperty.AttackTuto:
                 EnemyNoneSpawn();
                 attackTutorialController.Show();
-                
                 break;
-
         }
         SpawnManager.Inst.SpawnEnemies();
     }
 
     private void EnemyNoneSpawn()
     {
-        
         GameManager.Inst.MapIconShow(true);
         SpawnManager.Inst.DoNotSpawn();
     }

@@ -1,6 +1,6 @@
 $type,name,label,description,elixir,castingTime,executeCount,isAnimation,$type,executeType,value,distance,projectileSpeed,duration,isPenetrate,prefabName,statusEffectType,,saveName
 Skill,Slash,베기,전방 1칸을 공격한다.,1,0.5,1,1,FrontAttack,Default,5,1,,,,,,,
-Skill,Sword Throw,칼은 근접이 아니다,전방 3칸에 칼을 투척하여 피해를 준다.,1,1,1,1,LinearProjectileAttack,Default,4,3,12,,,Sword_LinearProjectile,,,
+Skill,Sword Throw,투척용 검,전방 3칸에 칼을 투척하여 피해를 준다.,1,1,1,1,LinearProjectileAttack,Default,4,3,12,,,Sword_LinearProjectile,,,
 Skill,Barrier,강인하게,2초간 방어막 5를 얻는다.,1,1,1,0,Barrier,Default,5,0,,2,,,,,
 Skill,Swap,위치 변경,전방의 적과 위치를 변경한다.,0,1,1,1,Swap,Default,,1,,,,,,,
 Skill,X Slash,X 베기,전방 1칸을 2회 공격한다.,1,1,2,1,FrontAttack,Default,3,1,,,,,,,
