@@ -84,7 +84,7 @@ public class Health : MonoBehaviour
 
             var isPlayer = _unit.unitType == UnitType.Player;
             if (isPlayer) ArtDirectionManager.Inst.OnHit();
-            CameraShake.Inst.Shake(isPlayer);
+            CameraShake.Inst.Shake(curHp <= 0 ? 0.45f : 0.225f, isPlayer);
             TextHudController.Inst.ShowDamage(transform.position + Vector3.up * 0.5f, value);
         }
 
@@ -125,7 +125,7 @@ public class Health : MonoBehaviour
     {
         barrierDurations.Add(new BarrierDuration(value, duration));
         
-        TextHudController.Inst.ShowRecovery(transform.position + Vector3.up * 0.5f, value);
+        TextHudController.Inst.ShowBarrier(transform.position + Vector3.up * 0.5f, value);
         
         onHpChanged?.Invoke();
     }

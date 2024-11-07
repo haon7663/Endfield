@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using DG.Tweening;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Movement : MonoBehaviour
 {
@@ -36,7 +37,7 @@ public class Movement : MonoBehaviour
     {
         if(_unit.unitType == UnitType.Player)
         {
-            SoundManager.Inst.Play("Move");
+            SoundManager.Inst.Play($"Move{Random.Range(0, 2)}");
         }
         var tile = GridManager.Inst.GetTile(_unit.Tile.Key + key);
         if (tile.IsOccupied) yield break;

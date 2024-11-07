@@ -74,9 +74,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4976203370979620335, guid: 621ea78252239a3418d94c0d027a8d00, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7171875375890556472}
-    - targetCorrespondingSourceObject: {fileID: 853972414502349469, guid: 621ea78252239a3418d94c0d027a8d00, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8222249976854691220}
   m_SourcePrefab: {fileID: 100100000, guid: 621ea78252239a3418d94c0d027a8d00, type: 3}
 --- !u!1 &640993786143075253 stripped
 GameObject:
@@ -264,22 +261,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5962787543850759491}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnFourthSkill
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 6e3b1ddc-c2ce-4980-8a0b-b032bdb2d027
-    m_ActionName: 'Player/FourthSkill[/Keyboard/k]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5962787543850759491}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnCancelSkill
         m_Mode: 0
         m_Arguments:
@@ -297,22 +278,3 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!1 &5058573212099032263 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 853972414502349469, guid: 621ea78252239a3418d94c0d027a8d00, type: 3}
-  m_PrefabInstance: {fileID: 5614373458782527066}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8222249976854691220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5058573212099032263}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e6b66a42dd74094592a06cf9a0c4a0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 1, g: 1, b: 1, a: 1}
-  outlineSize: 1

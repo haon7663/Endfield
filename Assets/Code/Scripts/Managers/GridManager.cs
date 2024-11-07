@@ -114,7 +114,7 @@ public class GridManager : Singleton<GridManager>
     {
         var tile = GetTile(key);
         var previewSprite = Instantiate(previewSpritePrefab, tile.transform.position, Quaternion.identity);
-        previewSprite.Init(tile.Key, user.Renderer.sprite, user.Movement.DirX);
+        previewSprite.Init(user, tile.Key, user.Renderer.sprite, user.Movement.DirX);
 
         return previewSprite;
     }

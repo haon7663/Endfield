@@ -12,6 +12,7 @@ public class SkillCastingViewer : MonoBehaviour
     public TMP_Text castLabel;
     public RectTransform rectTransform;
     public Image backGround;
+    public Image fill;
 
     [SerializeField] private Color targetColor;
 
@@ -34,6 +35,7 @@ public class SkillCastingViewer : MonoBehaviour
         
         sequence.Append(DOVirtual.Float(1, 0, Data.castingTime, value =>
         {
+            fill.fillAmount = value;
             castLabel.text = (value * Data.castingTime).ToString("F1");
         }).SetEase(Ease.Linear));
         backGround.DOColor(targetColor, Data.castingTime);

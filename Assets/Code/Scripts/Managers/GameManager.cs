@@ -18,13 +18,15 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
-        startViewPoint = DataManager.Inst.Data.stageCount * 9.8f;
+        startViewPoint = DataManager.Inst.Data.stageCount * 7f;
     }
 
     private IEnumerator Start()
     {
         yield return new WaitUntil(() => SpawnManager.Inst);
         Player = SpawnManager.Inst.Summon("Player", GridManager.Inst.GetTile(0), true);
+        
+        //SoundManager.Inst.Play("BattleBGM", Sound.Bgm);
     }
 
     private void Update()
