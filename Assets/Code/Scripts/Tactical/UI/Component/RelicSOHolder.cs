@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static ArtifactManager;
 
 public class RelicSOHolder : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -37,11 +38,11 @@ public class RelicSOHolder : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         return relicSO.relicType switch
         {
-            RelicSO.RelicType.HpRegen => ArtifactManager.Inst.hpRegenArtifact,
-            RelicSO.RelicType.GetGold => ArtifactManager.Inst.goldArtifact,
-            RelicSO.RelicType.MaxElixier => ArtifactManager.Inst.maxElixirArtifact,
-            RelicSO.RelicType.GetSkillUpgrade => ArtifactManager.Inst.skillUpgradeArtifact,
-            RelicSO.RelicType.MaxHp => ArtifactManager.Inst.maxHpArtifact,
+            RelicSO.RelicType.HpRegen => ArtifactManager.Inst.CalculateArtifactValue(ArtifactType.HpRegen),
+            RelicSO.RelicType.GetGold => ArtifactManager.Inst.CalculateArtifactValue(ArtifactType.MaxHp),
+            RelicSO.RelicType.MaxElixier => ArtifactManager.Inst.CalculateArtifactValue(ArtifactType.MaxElixir),
+            RelicSO.RelicType.GetSkillUpgrade => ArtifactManager.Inst.CalculateArtifactValue(ArtifactType.Gold),
+            RelicSO.RelicType.MaxHp => ArtifactManager.Inst.CalculateArtifactValue(ArtifactType.SkillUpgradeTicket),
             _ => 0 
         };
     }
