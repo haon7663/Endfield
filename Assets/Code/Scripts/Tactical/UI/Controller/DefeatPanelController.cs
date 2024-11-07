@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class DefeatPanelController : MonoBehaviour
 {
     [SerializeField] private Panel panel;
-    [SerializeField] private GameObject skillPrefab;
+    [SerializeField] private InventorySkillInfo skillPrefab;
     [SerializeField] private Transform inventoryContent;
     [SerializeField] private ClosePanel closePanel;
     [SerializeField] private TMP_Text plantKill;
@@ -16,9 +16,14 @@ public class DefeatPanelController : MonoBehaviour
     [SerializeField] private TMP_Text gainedSkill;
     [SerializeField] private TMP_Text gainedArtifact;
 
+    private void Start()
+    {
+        Debug.Log(inventoryContent.childCount);
+    }
+
     public void Show()
     {
-        //AddInventorySkill();
+        AddInventorySkill();
         panel.SetPosition(PanelStates.Show, true, 0.5f, Ease.OutBack);
         closePanel.onClose += Hide;
         ResetText();  
@@ -48,12 +53,10 @@ public class DefeatPanelController : MonoBehaviour
         foreach (var inventorySkill in inventoryContent.GetComponentsInChildren<InventorySkillInfo>())
             Destroy(inventorySkill.gameObject);
 
-        List<Skill> skills = DataManager.Inst.Data.skills;
-        foreach (var skill in skills)
+        foreach (var skill in DataManager.Inst.Data.skills)
         {
-            GameObject inventory = Instantiate(skillPrefab, inventoryContent);
-            if (inventory.TryGetComponent(out InventorySkillInfo inventorySkillInfo))
-                inventorySkillInfo.SetInfo(skill);
+            var inventory = Instantiate(skillPrefab, inventoryContent);
+            inventory.SetInfo(skill);
         }
     }
 
