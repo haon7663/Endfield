@@ -32,6 +32,8 @@ public class Health : MonoBehaviour
 
     private void Start()
     {
+        onDeath += ()=>SoundManager.Inst.Play("Dead");
+        onHpChanged += () => SoundManager.Inst.Play("Hitted");
         ArtifactManager.Inst.ResetMaxHp();//юс╫ц
         _unit = GetComponent<Unit>();
         _spriteRenderer = _unit.SpriteTransform.GetComponent<SpriteRenderer>();

@@ -34,6 +34,10 @@ public class Movement : MonoBehaviour
 
     public IEnumerator OnMove(int key)
     {
+        if(_unit.unitType == UnitType.Player)
+        {
+            SoundManager.Inst.Play("Move");
+        }
         var tile = GridManager.Inst.GetTile(_unit.Tile.Key + key);
         if (tile.IsOccupied) yield break;
         _unit.Place(tile);
