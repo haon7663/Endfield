@@ -8,8 +8,8 @@ public class GetSkill_ChestEvent : ChestEvent
     {
         var skills = SkillLoader.GetAllSkills("skill");
         var skill = skills[Random.Range(0, skills.Count)];
-        iconName = $"[{skill.label}] 카드 획득";
+        showIconName = $"[{skill.label}] 카드 획득";
         DataManager.Inst.Data.skills.Add(skill);
-        return (SkillLoader.GetSkillSprite(iconName),iconName);
+        return (SkillLoader.GetSkillSprite(skill.name),showIconName);
     }
 }
