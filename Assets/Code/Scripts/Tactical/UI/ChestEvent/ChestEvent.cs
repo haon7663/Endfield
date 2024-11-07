@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ChestEvent :MonoBehaviour
 {
-    public string iconName;
+    public string iconName,showIconName;
 
     public virtual (Sprite,string) Execute()
     {
@@ -11,6 +11,6 @@ public class ChestEvent :MonoBehaviour
             _iconName = "Icon/" + iconName;
 
         var sprite = Resources.Load<Sprite>(_iconName);
-        return (sprite,iconName);
+        return (sprite,showIconName);
     }
 }

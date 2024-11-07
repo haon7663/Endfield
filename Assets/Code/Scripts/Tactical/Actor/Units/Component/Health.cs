@@ -33,7 +33,7 @@ public class Health : MonoBehaviour
     private void Start()
     {
         onDeath += ()=>SoundManager.Inst.Play("Dead");
-        onHpChanged += () => SoundManager.Inst.Play("Hitted");      
+              
         _unit = GetComponent<Unit>();
         _spriteRenderer = _unit.SpriteTransform.GetComponent<SpriteRenderer>();
 
@@ -57,6 +57,7 @@ public class Health : MonoBehaviour
 
     public void OnDamage(int value)
     {
+        SoundManager.Inst.Play("Hitted");
         value = Mathf.RoundToInt(value * takeDamageMultiplier);
 
         for (var i = barrierDurations.Count - 1; i >= 0; i--)

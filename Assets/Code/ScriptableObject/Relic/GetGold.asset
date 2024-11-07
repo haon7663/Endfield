@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: GetGold
   m_EditorClassIdentifier: 
   relicType: 4
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: ca7cf641f99045c4a938d1da32f0a511, type: 3}
   name: "\uD558\uB298\uC5D0\uC11C \uC7AC\uD654\uAC00 \uB5A8\uC5B4\uC9C4\uB2E4"
   description: "\uC2A4\uD14C\uC774\uC9C0 \uC2DC\uC791\uB9C8\uB2E4 30ml\uB97C \uD68D\uB4DD\uD569\uB2C8\uB2E4"

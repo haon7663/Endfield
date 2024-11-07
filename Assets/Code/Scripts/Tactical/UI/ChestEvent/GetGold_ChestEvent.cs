@@ -8,7 +8,8 @@ public class GetGold_ChestEvent : ChestEvent
 
     public override (Sprite,string) Execute()
     {
-        iconName = $"{givingGold} 골드 획득";
+        showIconName = $"{givingGold} 골드 획득";
+        iconName = "Gold";
         GoldController.Inst.ReCountGold(+givingGold);
         return base.Execute();
     }

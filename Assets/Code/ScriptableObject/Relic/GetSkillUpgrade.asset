@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GetSkillUpgrade
   m_EditorClassIdentifier: 
   relicType: 3
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: c0fe251453c2eec488842a1b36b379cc, type: 3}
   name: "\uC778\uC0DD\uC740 \uC120\uD0DD\uC774 \uC544\uB2CC \uC6B4\uBA85"
   description: "\uC2A4\uD14C\uC774\uC9C0 \uC885\uB8CC \uC2DC 25%\uD655\uB960\uB85C
     \uC2A4\uD0AC\uAC15\uD654\uAD8C\uC744 1\uAC1C \uD68C\uBCF5\uD569\uB2C8\uB2E4"
