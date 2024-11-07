@@ -1,3 +1,4 @@
+using GDX.DataTables.CellValues;
 using JetBrains.Annotations;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -10,7 +11,7 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
     public int goldArtifact;
     public int maxHpArtifact;
     public int skillUpgradeArtifact;
-    public List<RelicSO> relics  = new List<RelicSO>();
+    public List<RelicSO> relics = new List<RelicSO>();
 
     [SerializeField] private int reGenHp;
     [SerializeField] private int increaseElixir;
@@ -21,19 +22,16 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
     private int baseMaxElixir = 4;
     private int baseMaxHp = 25;
 
-    private void Update()
+    public enum ArtifactType
     {
-        if (Input.GetKeyUp(KeyCode.C))
-        {
-            IncreaseHpMax();
-        }
-        else if (Input.GetKeyUp(KeyCode.X))
-        {
-            hpRegenArtifact++;
-        }
+        HpRegen,
+        MaxHp,
+        MaxElixir,
+        Gold,
+        SkillUpgradeTicket
     }
 
-    public void ArtifactForStage() 
+    public void ArtifactForStage()
     {
         ResetMaxHp();
         HpRegen();
@@ -64,7 +62,7 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
         if (maxElixirArtifact > 0)
         {
             int increaseAmount = maxElixirArtifact * increaseElixir;
-            DataManager.Inst.Data.maxElixir = baseMaxElixir + increaseAmount;  
+            DataManager.Inst.Data.maxElixir = baseMaxElixir + increaseAmount;
         }
     }
 
@@ -132,16 +130,22 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
         HealthTextController.Inst.UpdateUI(GameManager.Inst.Player.Health);
     }
 
-    private int ArtifactCalcul()
+    public int CalculateArtifactValue(ArtifactType artifactType)
     {
-        return relicSO.relicType switch
+        switch (artifactType)
         {
-            RelicSO.RelicType.HpRegen => ArtifactManager.Inst.hpRegenArtifact *,
-            RelicSO.RelicType.GetGold => ArtifactManager.Inst.goldArtifact,
-            RelicSO.RelicType.MaxElixier => ArtifactManager.Inst.maxElixirArtifact,
-            RelicSO.RelicType.GetSkillUpgrade => ArtifactManager.Inst.skillUpgradeArtifact,
-            RelicSO.RelicType.MaxHp => ArtifactManager.Inst.maxHpArtifact,
-            _ => 0
-        };
+            case ArtifactType.HpRegen:
+                return hpRegenArtifact * reGenHp;
+            case ArtifactType.MaxHp:
+                return maxHpArtifact * increaseHp;
+            case ArtifactType.MaxElixir:
+                return maxElixirArtifact * increaseElixir;
+            case ArtifactType.Gold:
+                return goldArtifact * bonusGold;
+            case ArtifactType.SkillUpgradeTicket:
+                return (int)(skillUpgradeTicketProb * skillUpgradeArtifact * 10);
+            default:
+                return 0;
+        }
     }
 }
