@@ -14,7 +14,7 @@ public static class SkillLoader
     public static Skill GetSkill(string skillName, bool isEnemy = false)
     {
         var skills = GetAllSkills(isEnemy ? "enemySkill" : "skill");
-        return skills.FirstOrDefault(s => s.name.StartsWith(skillName));
+        return skills.FirstOrDefault(s => s.name == skillName);
     }
     
     public static List<Skill> GetAllSkills(string path)

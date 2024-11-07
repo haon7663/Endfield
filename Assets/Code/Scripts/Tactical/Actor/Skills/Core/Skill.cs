@@ -7,6 +7,7 @@ using UnityEngine;
 public class Skill
 {
     public string name;
+    public string spriteName;
     public string label;
     public string description;
     public int elixir;
@@ -80,6 +81,7 @@ public class Skill
         var newSkill = new Skill(name)
         {
             label = label,
+            spriteName = spriteName,
             description = description,
             elixir = elixir,
             castingTime = castingTime,
