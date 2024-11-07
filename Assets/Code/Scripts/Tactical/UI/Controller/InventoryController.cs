@@ -11,7 +11,7 @@ public class InventoryController : MonoBehaviour
     [SerializeField] private Canvas inventoryCanvas;
     [SerializeField] private Transform inventoryContent, relicContent;
     [SerializeField] private InventorySkillInfo skillPrefab;
-    [SerializeField] private GameObject relicPrefab;
+    [SerializeField] private InventoryRelicInfo relicPrefab;
     [SerializeField] private ClosePanel closePanel;
 
     private bool _isShown;
@@ -50,10 +50,5 @@ public class InventoryController : MonoBehaviour
             inventory.SetInfo(skill);
             inventory.onClick += skillUpgradeGroup.SetSkill;
         }
-    }
-
-    public void AddRelic()
-    {
-        Instantiate(relicPrefab, relicContent);
     }
 }
