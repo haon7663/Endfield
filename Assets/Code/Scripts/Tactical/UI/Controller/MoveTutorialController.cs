@@ -19,34 +19,34 @@ public class MoveTutorialController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isActive)
+        if (!isActive) return;
+        if (!GameManager.Inst.isGameActive) return;
+        
+        if (tutoIndex == 0)
         {
-            if (tutoIndex == 0)
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
             {
-                if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+                moveIndex++;
+                if (moveIndex >= 3)
                 {
-                    moveIndex++;
-                    if (moveIndex >= 3)
-                    {
-                        tutoIndex++;
-                        Action1();
-                    }
-                }
-            }
-            else if (tutoIndex == 1)
-            {
-                if (Input.GetKeyDown(turnKeycode))
-                {
-                    turnIndex++;
-                    if (turnIndex >= 2)
-                    {
-                        tutoIndex++;
-                        Action2();
-                    }
+                    tutoIndex++;
+                    Action1();
                 }
             }
         }
-        
+        else if (tutoIndex == 1)
+        {
+            if (Input.GetKeyDown(turnKeycode))
+            {
+                turnIndex++;
+                if (turnIndex >= 2)
+                {
+                    tutoIndex++;
+                    Action2();
+                }
+            }
+        }
+
     }
 
     public void Show()

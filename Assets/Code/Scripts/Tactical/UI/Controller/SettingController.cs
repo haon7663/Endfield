@@ -6,35 +6,35 @@ public class SettingController : MonoBehaviour
     [SerializeField] private Panel panel;
     [SerializeField] private ClosePanel closePanel;
     private bool _isShown;
-
-   
-
+    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && !_isShown)
         {
-            
             Show();
         }
     }
     
     public void Show()
     {
+        Time.timeScale = 0;
+        GameManager.Inst.isGameActive = false;
+        
         _isShown = true;
-        Debug.Log("쇼쇼");
         panel.SetPosition(PanelStates.Show, true, 0.5f, Ease.OutBack);
         closePanel.onClose += Hide;
     }
     public void Hide()
     {
+        Time.timeScale = 1;
+        GameManager.Inst.isGameActive = true;
+        
         _isShown = false;
-        Debug.Log("나가기");
         panel.SetPosition(PanelStates.Hide, true, 0.25f);
     }
 
     private void HideKeyLayout()
     {
-        Debug.Log("키레이아웃");
         closePanel.onClose =null;
         keyLayoutCanvas.SetActive(false);
         settingCanvas.SetActive(true);

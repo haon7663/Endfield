@@ -21,22 +21,23 @@ public class ClosePanel : MonoBehaviour
         if (!_canHold) return;
         
         if (Input.GetKey(keyCode))
-        {
-            _fillAmount += Time.deltaTime * fillSpeed;
-        }
+            _fillAmount += Time.unscaledDeltaTime * fillSpeed;
         else
-        {
-            _fillAmount = Mathf.Lerp(_fillAmount, 0, Time.deltaTime * releaseSpeed); 
-        }
+            _fillAmount = Mathf.Lerp(_fillAmount, 0, Time.unscaledDeltaTime * releaseSpeed); 
 
         _fillAmount = Mathf.Clamp01(_fillAmount);
         fillImage.fillAmount = _fillAmount;
         
         if (_fillAmount < 1) return;
-        fillImage.fillAmount = 0;
-        _fillAmount = 0;
+        
         onClose?.Invoke();
         _canHold = false;
-        DOVirtual.DelayedCall(0.3f,()=> _canHold = true);
+        
+        DOVirtual.DelayedCall(0.5f,()=>
+        {
+            fillImage.fillAmount = 0;
+            _fillAmount = 0;
+            _canHold = true;
+        }).SetUpdate(true);
     }
 }

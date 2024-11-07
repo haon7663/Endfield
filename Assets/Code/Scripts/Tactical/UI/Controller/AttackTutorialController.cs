@@ -13,8 +13,8 @@ public class AttackTutorialController : MonoBehaviour
     bool keyJ, keyK, keyL;
 
     private bool isActive;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    
+    private void Start()
     {
         transform.position = new Vector3(CameraTransition.Inst.gameObject.transform.position.x, transform.position.y, transform.position.z);
     }
@@ -24,42 +24,36 @@ public class AttackTutorialController : MonoBehaviour
         isActive = true;
         skillPanel.SetPosition(PanelStates.Show, true, 0.5f, Ease.OutBack);
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    private void Update()
     {
-        if (isActive)
+        if (!isActive) return;
+        if (!GameManager.Inst.isGameActive) return;
+        if (tutoIndex != 0) return;
+        
+        if (Input.GetKeyDown(KeyCode.J))
         {
-            if (tutoIndex == 0)
-            {
-                if (Input.GetKeyDown(KeyCode.J))
-                {
-                    keyJ = true;
-                    keySolid[0].SetActive(true);
-                }
-
-                if (Input.GetKeyDown(KeyCode.K))
-                {
-                    keyK = true;
-                    keySolid[1].SetActive(true);
-                }
-
-                if (Input.GetKeyDown(KeyCode.L))
-                {
-                    keyL = true;
-                    keySolid[2].SetActive(true);
-                }
-
-                if (keyJ && keyK && keyL)
-                {
-                    tutoIndex++;
-                    Action1();
-                    return;
-                }
-            }
-      
+            keyJ = true;
+            keySolid[0].SetActive(true);
         }
 
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            keyK = true;
+            keySolid[1].SetActive(true);
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            keyL = true;
+            keySolid[2].SetActive(true);
+        }
+
+        if (keyJ && keyK && keyL)
+        {
+            tutoIndex++;
+            Action1();
+        }
     }
 
     private void Action1()
@@ -73,7 +67,7 @@ public class AttackTutorialController : MonoBehaviour
                 solid.SetActive(false);
             }
             Unit scareCrow =  SpawnManager.Inst.Summon("Double Flower", GridManager.Inst.GetTile(5));
-            scareCrow.Health.onDeath += ()=>ScarecrowDead();
+            scareCrow.Health.onDeath += ScarecrowDead;
         });
       
     }

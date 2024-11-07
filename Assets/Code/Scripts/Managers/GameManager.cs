@@ -6,6 +6,8 @@ public class GameManager : Singleton<GameManager>
 {
     public Unit Player { get; private set; }
 
+    public bool isGameActive;
+
     public int maxElixir;
     public float curElixir;
     public float elixirRegenerationSpeed = 1f;
@@ -25,8 +27,6 @@ public class GameManager : Singleton<GameManager>
     {
         yield return new WaitUntil(() => SpawnManager.Inst);
         Player = SpawnManager.Inst.Summon("Player", GridManager.Inst.GetTile(0), true);
-        
-        //SoundManager.Inst.Play("BattleBGM", Sound.Bgm);
     }
 
     private void Update()

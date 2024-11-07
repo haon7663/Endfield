@@ -1,34 +1,26 @@
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Sequences;
 
 public class TitleController : MonoBehaviour
 {
     [SerializeField] private Panel panel;
     [SerializeField] private ClosePanel closePanel;
     [SerializeField] private KeyCode keycode;
-    private bool _isActive = false;
-
-  
+    [SerializeField] private string sceneName;
+    
+    private bool _isSceneMoved;
 
     private void Start()
     {
-        Show();
-
+        closePanel.onClose += Hide;
     }
 
-
-
-    public void Show()
+    private void Hide()
     {
-        panel.SetPosition(PanelStates.Show, true,0.5f);
-        _isActive = true;
-        closePanel.onClose += ()=> Hide();
-    }
-
-    public void Hide()
-    {
-        SceneManager.LoadScene("Design");
-        _isActive = false;
+        if (_isSceneMoved) return;
+        
+        Fade.Inst.FadeOut(sceneName);
+        _isSceneMoved = true;
     }
 }

@@ -34,8 +34,21 @@ public class Fade : Singleton<Fade>
         sequence.Append(_fadeImage.DOFade(1, 0.5f).SetUpdate(true).From(0));
         sequence.AppendCallback(() =>
         {
-            DOTween.KillAll();
-            SceneManager.LoadSceneAsync(scene.buildIndex);
+            SceneManager.LoadSceneAsync(scene.name);
+        });
+    }
+    
+    public void FadeOut(string sceneName)
+    {
+        DOTween.Kill(this);
+        
+        _fadeImage.enabled = true;
+        
+        var sequence = DOTween.Sequence();
+        sequence.Append(_fadeImage.DOFade(1, 0.5f).SetUpdate(true).From(0));
+        sequence.AppendCallback(() =>
+        {
+            SceneManager.LoadSceneAsync(sceneName);
         });
     }
 }

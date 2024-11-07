@@ -76,6 +76,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnMoveLeft(InputAction.CallbackContext context)
     {
+        if (!GameManager.Inst.isGameActive) return;
+        
         if (context.started)
         {
             if (ArtDirectionManager.Inst.onBulletTime)
@@ -95,6 +97,8 @@ public class PlayerController : MonoBehaviour
     
     public void OnMoveRight(InputAction.CallbackContext context)
     {
+        if (!GameManager.Inst.isGameActive) return;
+        
         if (context.started)
         {
             if (ArtDirectionManager.Inst.onBulletTime)
@@ -114,6 +118,8 @@ public class PlayerController : MonoBehaviour
     
     public void OnFlip(InputAction.CallbackContext context)
     {
+        if (!GameManager.Inst.isGameActive) return;
+        
         if (context.started)
         {
             if (ArtDirectionManager.Inst.onBulletTime)
@@ -126,6 +132,8 @@ public class PlayerController : MonoBehaviour
     #region SkillInput
     public void OnFirstSkill(InputAction.CallbackContext context)
     {
+        if (!GameManager.Inst.isGameActive) return;
+        
         if (context.started)
             BufferedInput(OnSkillStarted(0));
 
@@ -134,6 +142,8 @@ public class PlayerController : MonoBehaviour
     }
     public void OnSecondSkill(InputAction.CallbackContext context)
     {
+        if (!GameManager.Inst.isGameActive) return;
+        
         if (context.started)
             BufferedInput(OnSkillStarted(1));
         
@@ -142,6 +152,8 @@ public class PlayerController : MonoBehaviour
     }
     public void OnThirdSkill(InputAction.CallbackContext context)
     {
+        if (!GameManager.Inst.isGameActive) return;
+        
         if (context.started)
             BufferedInput(OnSkillStarted(2));
         
@@ -151,6 +163,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnCancelSkill(InputAction.CallbackContext context)
     {
+        if (!GameManager.Inst.isGameActive) return;
+        
         if (context.started)
         {
             if (!ArtDirectionManager.Inst.onBulletTime)

@@ -83,10 +83,10 @@ public class Panel : MonoBehaviour
         CurrentPosition = p;
         if (useDotween)
         {
-            _rect.DOAnchorPos(p.offset, dotweenTime).SetEase(ease);
+            _rect.DOAnchorPos(p.offset, dotweenTime).SetEase(ease).SetUpdate(true);
             if (_canvasGroup)
             {
-                _canvasGroup.DOFade(p.alpha, dotweenTime);
+                _canvasGroup.DOFade(p.alpha, dotweenTime).SetUpdate(true);
                 _canvasGroup.blocksRaycasts = p.blockRay;
             }
         }
