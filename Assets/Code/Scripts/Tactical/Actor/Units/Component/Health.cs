@@ -111,7 +111,6 @@ public class Health : MonoBehaviour
         var sequence = DOTween.Sequence();
         sequence.AppendCallback(() =>
             {
-                _spriteRenderer.color = new Color(1, 0.25f, 0.25f);
                 _spriteRenderer.material = Sprite2DMaterial.GetWhiteMaterial();
             })
             .AppendInterval(0.1f)

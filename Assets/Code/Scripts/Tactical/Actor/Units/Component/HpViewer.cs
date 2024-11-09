@@ -4,8 +4,6 @@ using TMPro;
 
 public class HpViewer : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI healthTextPrefab;
-
     private Unit _unit;
     private Health _health;
 
@@ -29,7 +27,7 @@ public class HpViewer : MonoBehaviour
         _health.onDeath += () =>
         {
             transform.DOKill(this);
-            HealthTextController.Inst.DestroyUI(_health);
+            HealthTextController.Inst.Destroy(_health);
             GridManager.Inst.RevertGrid(_unit);
             SkillManager.Inst.RevertSkillArea(_unit);
         };

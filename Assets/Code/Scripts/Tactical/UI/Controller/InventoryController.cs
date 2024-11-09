@@ -9,10 +9,18 @@ public class InventoryController : MonoBehaviour
     
     [SerializeField] private Panel panel;
     [SerializeField] private Canvas inventoryCanvas;
-    [SerializeField] private Transform inventoryContent, relicContent;
+    [SerializeField] private Transform skillContent;
+    [SerializeField] private Transform relicContent;
     [SerializeField] private InventorySkillInfo skillPrefab;
     [SerializeField] private InventoryRelicInfo relicPrefab;
     [SerializeField] private ClosePanel closePanel;
+
+    [Header("Relic Holders")]
+    [SerializeField] private RelicSOHolder upgradeRelicHolder;
+    [SerializeField] private RelicSOHolder maxElixirRelicHolder;
+    [SerializeField] private RelicSOHolder hpgenRelicHolder;
+    [SerializeField] private RelicSOHolder maxHpRelicHolder;
+    [SerializeField] private RelicSOHolder goldRelicHolder;
 
     private bool _isShown;
 
@@ -27,6 +35,7 @@ public class InventoryController : MonoBehaviour
     public void Show()
     {
         AddInventorySkill();
+        SetRelicActive();
         closePanel.onClose += Hide;
         panel.SetPosition(PanelStates.Show, true);
         _isShown = true;
@@ -41,14 +50,23 @@ public class InventoryController : MonoBehaviour
 
     public void AddInventorySkill()
     {
-        foreach(var inventorySkill in inventoryContent.GetComponentsInChildren<InventorySkillInfo>())
+        foreach(var inventorySkill in skillContent.GetComponentsInChildren<InventorySkillInfo>())
             Destroy(inventorySkill.gameObject);
         
         foreach (var skill in DataManager.Inst.Data.skills)
         {
-            var inventory = Instantiate(skillPrefab, inventoryContent);
-            inventory.SetInfo(skill);
-            inventory.onClick += skillUpgradeGroup.SetSkill;
+            var invSkill = Instantiate(skillPrefab, skillContent);
+            invSkill.SetInfo(skill);
+            invSkill.onClick += skillUpgradeGroup.SetSkill;
         }
+    }
+
+    private void SetRelicActive()
+    {
+        upgradeRelicHolder.gameObject.SetActive(ArtifactManager.Inst.skillUpgradeArtifact > 0);
+        maxElixirRelicHolder.gameObject.SetActive(ArtifactManager.Inst.maxElixirArtifact > 0);
+        hpgenRelicHolder.gameObject.SetActive(ArtifactManager.Inst.hpRegenArtifact > 0);
+        maxHpRelicHolder.gameObject.SetActive(ArtifactManager.Inst.maxHpArtifact > 0);
+        goldRelicHolder.gameObject.SetActive(ArtifactManager.Inst.goldArtifact > 0);
     }
 }

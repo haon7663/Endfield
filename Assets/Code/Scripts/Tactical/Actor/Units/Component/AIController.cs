@@ -49,7 +49,7 @@ public class AIController : MonoBehaviour
         _movement = GetComponent<Movement>();
         _unit = GetComponent<Unit>();
         _skillHolder = GetComponent<SkillHolder>();
-        _unit.Health.onDeath+=()=> SpawnManager.Inst.EnemyDead();
+        _unit.Health.onDeath += () => SpawnManager.Inst.EnemyDead();
     }
 
     private void Start()
@@ -77,7 +77,7 @@ public class AIController : MonoBehaviour
         }
     }
 
-    private void UpdateCoolDown( float maxCool, Action onCooldownComplete)
+    private void UpdateCoolDown(float maxCool, Action onCooldownComplete)
     {
         if (_curActionCool > 0)
             _curActionCool -= Time.deltaTime;
@@ -96,19 +96,13 @@ public class AIController : MonoBehaviour
         }
     }
     
-    private void SkillExecute() //스킬 방출 실행
+    private IEnumerator SkillExecute() //스킬 방출 실행
     {
-        float executeTime = 0;
-        foreach (var skillCastingViewer in _skillHolder.castingViewers)
-        {
-            _skillAndCools.FirstOrDefault(sc => sc.skill == skillCastingViewer.Data)!.coolTime =
-                skillCastingViewer.Data.elixir * 1.5f;
-            executeTime += skillCastingViewer.Data.castingTime + 0.3f;
-        }
-        StartCoroutine(_skillHolder.Execute());
         _isActing = true;
-
-        DOVirtual.DelayedCall(executeTime , () => {  _isActing = false; }).SetUpdate(false);
+        foreach (var skillCastingViewer in _skillHolder.skillHoldPanel.SkillCastingViewers)
+            _skillAndCools.FirstOrDefault(sc => sc.skill == skillCastingViewer.Data)!.coolTime = skillCastingViewer.Data.elixir * 2f;
+        yield return StartCoroutine(_skillHolder.Execute());
+        _isActing = false;
     }
 
     private IEnumerator TryAddSkill() //머리 위에 스킬 보이기
@@ -116,8 +110,8 @@ public class AIController : MonoBehaviour
         _isActing = true;
         foreach (var skillAndCool in _skillAndCools.Where(skillAndCool => skillAndCool.coolTime <= 0))
         {
-            _skillHolder.AddCastingViewer(skillAndCool.skill);
-            yield return new WaitForSeconds(0.4f);
+            _skillHolder.AddViewer(skillAndCool.skill);
+            yield return new WaitForSeconds(0.25f);
         }
         _isActing = false;
     }
@@ -125,8 +119,10 @@ public class AIController : MonoBehaviour
 
     private void EnemyActing() // 적 -> 플레이어쪽으로 이동
     {
-        if(_isActing) Debug.Log("버그");
-        if (_skillHolder.castingViewers.Count == 0)
+        if (_isActing)
+            return;
+        
+        if (_skillHolder.skillHoldPanel.SkillCastingViewers.Count == 0)
         {
             StartCoroutine(TryAddSkill());
             return;
@@ -141,7 +137,7 @@ public class AIController : MonoBehaviour
             return;
         }
         
-        for (var i = 1; i < _skillHolder.castingViewers[0].Data.skillComponents[0].distance; i++) //앞에 적이 있다면
+        for (var i = 1; i < _skillHolder.skillHoldPanel.SkillCastingViewers[0].Data.skillComponents[0].distance; i++) //앞에 적이 있다면
         {
             var tileKey = _unit.Tile.Key + i * _movement.DirX;
             var unit = GridManager.Inst.GetTile(tileKey)?.content;
@@ -153,13 +149,13 @@ public class AIController : MonoBehaviour
             }
         }
 
-        var areaTile = target.Tile.GetAreaInRange(_skillHolder.castingViewers[0].Data.skillComponents[0].distance);// 한 곳만 때리는거, 전체 때리는거 구분 해야함
+        var areaTile = target.Tile.GetAreaInRange(_skillHolder.skillHoldPanel.SkillCastingViewers[0].Data.skillComponents[0].distance);// 한 곳만 때리는거, 전체 때리는거 구분 해야함
 
         foreach (var tile in areaTile)
         {
             if (tile.Key == _unit.Tile.Key)
             {
-                SkillExecute();
+                StartCoroutine(SkillExecute());
                 return;
             }
         }

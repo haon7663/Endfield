@@ -41,7 +41,7 @@ public class HealthTextController : Singleton<HealthTextController>
         }
     }
 
-    public void DestroyUI(Health targetHealth)
+    public void Destroy(Health targetHealth)
     {
         _healthTexts[targetHealth].DOKill();
         Destroy(_healthTexts[targetHealth].gameObject);

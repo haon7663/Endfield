@@ -9,20 +9,21 @@ public class RushComponent : SkillComponent
     {
         var movement = info.user.Movement;
         
-        var index = 0;
+        var task = new Task(movement.OnMove(CalculateDistance(info) * info.dirX));
+        
         for (var i = 1; i <= distance; i++)
         {
             var tile = GetStartingTile(info, i);
             if (tile && tile.IsOccupied)
             {
-                tile.content.Health.OnDamage(value);
+                task.Finished += manual =>
+                {
+                    if (tile && tile.IsOccupied)
+                        tile.content.Health.OnDamage(value);
+                };
                 break;
             }
-            index = i;
         }
-        
-        var task = new Task(movement.OnMove(index * info.dirX));
-        task.Start();
     }
 
     public override void Print(SkillComponentInfo info)

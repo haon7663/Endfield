@@ -3,6 +3,7 @@ using JetBrains.Annotations;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
 {
@@ -13,7 +14,7 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
     public int skillUpgradeArtifact;
     public List<RelicSO> relics = new List<RelicSO>();
 
-    [SerializeField] private int reGenHp;
+    [FormerlySerializedAs("reGenHp")] [SerializeField] private int regenHp;
     [SerializeField] private int increaseElixir;
     [SerializeField] private int bonusGold;
     [SerializeField] private int increaseHp;
@@ -43,7 +44,7 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
     {
         if (hpRegenArtifact > 0)
         {
-            int newHp = DataManager.Inst.Data.curHp + hpRegenArtifact * reGenHp;
+            int newHp = DataManager.Inst.Data.curHp + hpRegenArtifact * regenHp;
 
             if (newHp >= GameManager.Inst.Player.Health.maxHp)
             {
@@ -51,7 +52,7 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
             }
             else
             {
-                DataManager.Inst.Data.curHp += hpRegenArtifact * reGenHp;
+                DataManager.Inst.Data.curHp += hpRegenArtifact * regenHp;
             }
         }
     }
@@ -94,7 +95,7 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
     {
         if (skillUpgradeArtifact > 0)
         {
-            if (Random.value <= skillUpgradeTicketProb * skillUpgradeArtifact)
+            if (Random.value * 100 <= skillUpgradeTicketProb * skillUpgradeArtifact)
             {
                 DataManager.Inst.Data.skillUpgradeTickets++;
             }
@@ -108,7 +109,6 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
         goldArtifact = 0;
         maxHpArtifact = 0;
         skillUpgradeArtifact = 0;
-
     }
 
     public int ArtifactCount()
@@ -135,7 +135,7 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
         switch (artifactType)
         {
             case ArtifactType.HpRegen:
-                return hpRegenArtifact * reGenHp;
+                return hpRegenArtifact * regenHp;
             case ArtifactType.MaxHp:
                 return maxHpArtifact * increaseHp;
             case ArtifactType.MaxElixir:

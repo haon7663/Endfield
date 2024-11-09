@@ -143,8 +143,7 @@ public class GridManager : Singleton<GridManager>
     private void UpdateGrid()
     {
         RevertAllGrid();
-
-        Debug.Log(_previewTiles.Any(previewTile => previewTile.Key.unitType == UnitType.Enemy && previewTile.Value.Any(t => t.content && t.content.unitType == UnitType.Player)));
+        
         if (_previewTiles.Any(previewTile => previewTile.Key.unitType == UnitType.Enemy && previewTile.Value.Any(t => t.content && t.content.unitType == UnitType.Player)))
             ArtDirectionManager.Inst.EnterDanger();
         else
