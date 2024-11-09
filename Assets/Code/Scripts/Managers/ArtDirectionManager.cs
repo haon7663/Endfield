@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
@@ -8,6 +9,7 @@ using UnityEngine.Rendering.Universal;
 public class ArtDirectionManager : Singleton<ArtDirectionManager>
 {
     [Header("Hit")]
+    [SerializeField] private Volume dangerVolume;
     [SerializeField] private Volume hitVolume;
     
     [Header("BulletTime")]
@@ -26,8 +28,27 @@ public class ArtDirectionManager : Singleton<ArtDirectionManager>
 
     public void OnHit()
     {
-        Debug.Log("Hit D");
         DOVirtual.Float(1, 0, 0.6f, value => hitVolume.weight = value).SetEase(Ease.InCubic);
+    }
+    
+    public void EnterDanger()
+    {
+        DOTween.Kill("DangerSequence");
+        DOVirtual.Float(dangerVolume.weight, 1, 0.1f, value => dangerVolume.weight = value).SetEase(Ease.InCubic).SetId("DangerSequence");
+    }
+    public void ExitDanger()
+    {
+        DOVirtual.Float(dangerVolume.weight, 0, 0.25f, value => dangerVolume.weight = value).SetEase(Ease.OutCirc).SetId("DangerSequence");
+    }
+
+
+    public void KillUnitTime()
+    {
+        DOTween.Kill(this);
+        DOVirtual.Float(TimeCaster.TimeScale, 0.1f, 0.05f, value => TimeCaster.TimeScale = value).OnComplete(() =>
+        {
+            DOVirtual.Float(TimeCaster.TimeScale, 1f, 0.2f, value => TimeCaster.TimeScale = value);
+        });
     }
     
     public void StartBulletTime(List<Unit> targetUnits = null)
@@ -53,6 +74,8 @@ public class ArtDirectionManager : Singleton<ArtDirectionManager>
 
     public void EndBulletTime()
     {
+        return;
+        
         onBulletTime = false;
         
         SetVolume(false);

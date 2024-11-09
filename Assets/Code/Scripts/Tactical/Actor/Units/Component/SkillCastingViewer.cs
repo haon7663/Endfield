@@ -35,7 +35,7 @@ public class SkillCastingViewer : MonoBehaviour
         
         sequence.Append(DOVirtual.Float(1, 0, Data.castingTime, value =>
         {
-            fill.fillAmount = value;
+            fill.fillAmount = 1 - value;
             castLabel.text = (value * Data.castingTime).ToString("F1");
         }).SetEase(Ease.Linear));
         backGround.DOColor(targetColor, Data.castingTime);

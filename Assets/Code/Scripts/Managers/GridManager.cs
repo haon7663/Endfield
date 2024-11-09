@@ -143,10 +143,17 @@ public class GridManager : Singleton<GridManager>
     private void UpdateGrid()
     {
         RevertAllGrid();
+
+        Debug.Log(_previewTiles.Any(previewTile => previewTile.Key.unitType == UnitType.Enemy && previewTile.Value.Any(t => t.content && t.content.unitType == UnitType.Player)));
+        if (_previewTiles.Any(previewTile => previewTile.Key.unitType == UnitType.Enemy && previewTile.Value.Any(t => t.content && t.content.unitType == UnitType.Player)))
+            ArtDirectionManager.Inst.EnterDanger();
+        else
+            ArtDirectionManager.Inst.ExitDanger();
         
         foreach (var previewTile in _previewTiles)
         {
-            var color = previewTile.Key.unitType == UnitType.Player ? playerColor : enemyColor;
+            var isPlayer = previewTile.Key.unitType == UnitType.Player;
+            var color = isPlayer ? playerColor : enemyColor;
             previewTile.Value?.ForEach(t => t?.SetColor(color));
         }
         

@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [Serializable]
 public class BarrierDuration
@@ -55,6 +57,21 @@ public class Health : MonoBehaviour
             }
         }
     }
+    
+    private IEnumerator HitMove(float duration, Vector3 direction, float strength, int vibrato, float randomness)
+    {
+        var interval = duration / vibrato / 3;
+        for (var i = 0; i < vibrato; i++)
+        {
+            var randDirection = Quaternion.AngleAxis(Random.Range(-randomness, randomness), Vector3.forward) * direction;
+            _unit.SpriteTransform.localPosition = randDirection * strength;
+            yield return new WaitForSeconds(interval);
+            _unit.SpriteTransform.localPosition = randDirection * -strength;
+            yield return new WaitForSeconds(interval);
+            _unit.SpriteTransform.localPosition = Vector3.zero;
+            yield return new WaitForSeconds(interval);
+        }
+    }
 
     public void OnDamage(int value)
     {
@@ -85,7 +102,9 @@ public class Health : MonoBehaviour
 
             var isPlayer = _unit.unitType == UnitType.Player;
             if (isPlayer) ArtDirectionManager.Inst.OnHit();
-            CameraShake.Inst.Shake(curHp <= 0 ? 0.45f : 0.225f, isPlayer);
+            
+            StartCoroutine(HitMove(0.15f, Vector3.right, 0.25f, 2, 60));
+            CameraShake.Inst.Shake(curHp <= 0 ? 0.4f : 0.2f, isPlayer);
             TextHudController.Inst.ShowDamage(transform.position + Vector3.up * 0.5f, value);
         }
 
@@ -106,6 +125,9 @@ public class Health : MonoBehaviour
 
         if (curHp <= 0)
         {
+            var isPlayer = _unit.unitType == UnitType.Player;
+            if (!isPlayer) ArtDirectionManager.Inst.KillUnitTime();
+            
             ParticleLoader.Create("Destroy", transform.position + Vector3.up, Quaternion.identity);
             onDeath?.Invoke();
             onDeath = null;
