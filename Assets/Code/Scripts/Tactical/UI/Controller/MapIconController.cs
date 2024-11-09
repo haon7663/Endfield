@@ -105,38 +105,36 @@ public class MapIconController : MonoBehaviour
         {
             case MapProperty.EnemyMap:
                 GameStartController.Inst.Show();
+                SpawnManager.Inst.SpawnEnemies();
                 break;
             case MapProperty.BossMap:
                 //GameStartController.Inst.Show();
                 break;
             case MapProperty.EventMap:
-                EnemyNoneSpawn();
+                SpawnManager.Inst.isSpawnEnemy = false;
+                GameManager.Inst.MapIconShow(true);
                 GridManager.Inst.GenerateTransitionTiles();
                 eventController.Show();           
                 break;
             case MapProperty.ShopMap:
-                EnemyNoneSpawn();
+                SpawnManager.Inst.isSpawnEnemy = false;
+                GameManager.Inst.MapIconShow(true);
                 GridManager.Inst.GenerateTransitionTiles();
                 shopController.Active();
                 break;
             case MapProperty.MoveTuto:
-                EnemyNoneSpawn();
+                SpawnManager.Inst.isSpawnEnemy = false;
+                GameManager.Inst.MapIconShow(true);
                 moveTutorialController.Show();
                 break;
             case MapProperty.AttackTuto:
-                EnemyNoneSpawn();
+                SpawnManager.Inst.isSpawnEnemy = false;
+                GameManager.Inst.MapIconShow(true);
                 attackTutorialController.Show();
                 break;
         }
-        SpawnManager.Inst.SpawnEnemies();
     }
-
-    private void EnemyNoneSpawn()
-    {
-        GameManager.Inst.MapIconShow(true);
-        SpawnManager.Inst.DoNotSpawn();
-    }
-
+    
     public void MoveNextMap()
     {
         _curMapIndex = DataManager.Inst.Data.stageCount;

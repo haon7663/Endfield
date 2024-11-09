@@ -8,6 +8,6 @@ public class WaveController : Singleton<WaveController>
     
     public void UpdateWaveText(int waveCount)
     {
-        waveLabel.text = $"{waveCount} / {SpawnManager.Inst.maxWaveCount}";
+        waveLabel.text = $"{waveCount} / {SpawnManager.Inst.enemyCounts[DataManager.Inst.Data.stageCount].waveCount}";
     }
 }

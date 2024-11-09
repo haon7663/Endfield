@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 
@@ -15,9 +16,10 @@ public class SpawnManager : Singleton<SpawnManager>
 
     [SerializeField] private AnimationCurve levelCurve;
     
-    public int maxEnemyCount;
-    public int maxWaveCount;
+    public List<WaveInfo> enemyCounts;
     
+    public bool isSpawnEnemy = true;
+
     private int _stageGold;
     private int _surviveEnemyCount;
     private int _curWaveCount;
@@ -27,17 +29,12 @@ public class SpawnManager : Singleton<SpawnManager>
         Reset();
     }
 
-    private void Start()
-    {   
-        //SpawnEnemies();
+    private IEnumerator Start()
+    {
+        yield return new WaitUntil(() => DataManager.Inst);
         WaveController.Inst.UpdateWaveText(_curWaveCount);
     }
-
-    public void DoNotSpawn()
-    {
-        maxEnemyCount = 0;
-    }
-
+    
     public Unit Summon(string unitName, Tile tile, bool isPlayer = false)
     {
         var unitData = UnitLoader.GetUnitData(unitName);
@@ -61,7 +58,7 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         if(--_surviveEnemyCount <= 0)
         {
-            if (_curWaveCount >= maxWaveCount)
+            if (_curWaveCount >= enemyCounts[DataManager.Inst.Data.stageCount].waveCount)
             {
                 GameManager.Inst.StageEnd(true);
                 GoldController.Inst.ReCountGold(+ _stageGold);
@@ -76,15 +73,15 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         _stageGold = Random.Range(150, 180);
         _surviveEnemyCount = 0;
-      //  maxEnemyCount = 3;
-       // maxWaveCount = 3;
         _curWaveCount = 1;
     }
 
     public void SpawnEnemies()
     {
+        if (!isSpawnEnemy) return;
+        
         var tiles = new List<Tile>();
-        for (var i = 0; i < maxEnemyCount; i++)
+        for (var i = 0; i < enemyCounts[DataManager.Inst.Data.stageCount].EnemyCount; i++)
         {
             var tile = GridManager.Inst.GetRandomTile(tiles);
             SpawnEnemy(UnitLoader.GetAllUnitData().Where(unit => unit.name != "Double Flower").ToList().Random().name, tile);
@@ -92,4 +89,14 @@ public class SpawnManager : Singleton<SpawnManager>
             _surviveEnemyCount++;
         }
     }
+}
+
+[Serializable]
+public struct WaveInfo
+{
+    public int minEnemyCount;
+    public int maxEnemyCount;
+    public int waveCount;
+
+    public int EnemyCount => Random.Range(minEnemyCount, maxEnemyCount + 1);
 }

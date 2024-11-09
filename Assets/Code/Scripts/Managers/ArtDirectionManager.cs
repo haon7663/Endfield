@@ -41,14 +41,13 @@ public class ArtDirectionManager : Singleton<ArtDirectionManager>
         DOVirtual.Float(dangerVolume.weight, 0, 0.25f, value => dangerVolume.weight = value).SetEase(Ease.OutCirc).SetId("DangerSequence");
     }
 
-
     public void KillUnitTime()
     {
-        DOTween.Kill(this);
+        DOTween.Kill("KillUnitTime", true);
         DOVirtual.Float(TimeCaster.TimeScale, 0.1f, 0.05f, value => TimeCaster.TimeScale = value).OnComplete(() =>
         {
             DOVirtual.Float(TimeCaster.TimeScale, 1f, 0.2f, value => TimeCaster.TimeScale = value);
-        });
+        }).SetId("KillUnitTime");
     }
     
     public void StartBulletTime(List<Unit> targetUnits = null)
