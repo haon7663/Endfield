@@ -21,6 +21,7 @@ public class SkillChangeController : Singleton<SkillChangeController>
 
         _newSkill = newSkill;
         changeCard.Init(newSkill);
+        changeCard.ShowAnim();
     }
     public void Hide()
     {

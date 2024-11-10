@@ -28,7 +28,7 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
         _originLocalScale = transform.localScale;
     }
 
-    private void Start()
+    public void ShowAnim()
     {
         DOVirtual.Float(-45f, 0, 1f, value =>
         {

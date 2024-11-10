@@ -20,10 +20,8 @@ public class ShopController : MonoBehaviour
         {
             _cards.Add(sellCards.GetChild(i).GetComponent<ShopCard>());
         }
-       
     }
-
-
+    
     public void Active()
     {
         content.transform.position = new Vector3(CameraTransition.Inst.gameObject.transform.position.x,transform.position.y,transform.position.z);
@@ -35,7 +33,6 @@ public class ShopController : MonoBehaviour
     
     public void Show()
     {
-       
         _isActive = true;
         closePanel.onClose += Hide;
         panel.SetPosition(PanelStates.Show, true);

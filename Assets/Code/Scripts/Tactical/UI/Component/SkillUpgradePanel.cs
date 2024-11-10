@@ -51,6 +51,7 @@ public class SkillUpgradePanel : MonoBehaviour
             
             var card = Instantiate(cardPrefab, cardGroup);
             card.Init(newSkill);
+            card.ShowAnim();
             card.onClick += Hide;
             card.onClick += () => UpgradeSkill(newSkill, skillComponent);
             

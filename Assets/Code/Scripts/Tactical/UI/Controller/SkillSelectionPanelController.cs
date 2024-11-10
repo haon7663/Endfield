@@ -23,6 +23,7 @@ public class SkillSelectionPanelController : MonoBehaviour
             
             var card = Instantiate(cardPrefab, cardGroup);
             card.Init(skill);
+            card.ShowAnim();
             card.onClick += Hide;
             card.onClick += () => SkillChangeController.Inst.Show(skill);
         }

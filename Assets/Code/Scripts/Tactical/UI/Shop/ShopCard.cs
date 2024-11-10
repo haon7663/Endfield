@@ -23,6 +23,7 @@ public class ShopCard : ShopItem
         _skill = skill;
         Debug.Log(skill.name);
         card.Init(skill);
+        card.ShowAnim();
     }
 
     protected override void BuyAction()
