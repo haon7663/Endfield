@@ -6,6 +6,8 @@ using UnityEngine;
 [Serializable]
 public class Skill
 {
+    public string Id;
+    
     public string name;
     public string spriteName;
     public string label;
@@ -18,6 +20,11 @@ public class Skill
     public string baseComponent;
 
     public int upgradeCount;
+
+    public void Setup()
+    {
+        Id = Guid.NewGuid().ToString();
+    }
 
     public void Use(Unit user)
     {
@@ -81,6 +88,7 @@ public class Skill
     {
         var newSkill = new Skill(name)
         {
+            Id = Id,
             label = label,
             spriteName = spriteName,
             description = description,

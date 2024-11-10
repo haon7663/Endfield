@@ -78,8 +78,7 @@ public class DataManager : SingletonDontDestroyOnLoad<DataManager>
         Data.gold = 0;
         Data.skillUpgradeTickets = 0;
     }
-
-
+    
     public void Delete()
     {
         File.Delete(_playerDataFilePath);

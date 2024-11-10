@@ -17,6 +17,7 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     [SerializeField] private TMP_Text nameLabel;
     [SerializeField] private TMP_Text description;
     [SerializeField] private TMP_Text elixirLabel;
+    [SerializeField] private TMP_Text totalDamageLabel;
     
     private RectTransform _rectTransform;
     private Vector2 _originLocalScale;
@@ -60,13 +61,20 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
         foreach (var subDescription in skillData.skillComponents.Select(s => s.subDescription))
         {
             if (string.IsNullOrEmpty(subDescription)) continue;
-            descriptionStringBuilder.Append(" ");
+            descriptionStringBuilder.Append("\n");
             descriptionStringBuilder.Append(subDescription);
         }
         descriptionStringBuilder.Append("</color>");
         
         description.text = descriptionStringBuilder.ToString();
         elixirLabel.text = skillData.elixir.ToString();
+
+        var totalValue = skillData.skillComponents
+            .OfType<AttackComponent>().Where(c => c.ExecuteType == SkillExecuteType.Default)
+            .Sum(attackComponent => attackComponent.value);
+
+        totalDamageLabel.gameObject.SetActive(totalValue > 0);
+        totalDamageLabel.text = $"기본 피해량: {totalValue}";
     }
 
     public void OnPointerEnter(PointerEventData eventData)

@@ -464,6 +464,7 @@ MonoBehaviour:
   nameLabel: {fileID: 5601054873273594467}
   description: {fileID: 2900511996286931006}
   elixirLabel: {fileID: 1490752061959342352}
+  totalDamageLabel: {fileID: 5706523866151503860}
 --- !u!225 &949499293019420425
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -493,7 +494,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2455825077428527816
 RectTransform:
   m_ObjectHideFlags: 0

@@ -42,6 +42,13 @@ public class SkillPanelController : MonoBehaviour
         _prevSkillPanel = prevSkillPanel;
     }
     
+    public void UpdatePanel(int index, Skill updatedSkill)
+    {
+        // 특정 패널을 업데이트합니다.
+        skillFrames[index].Init(updatedSkill);
+        _skillPanels[index].Init(updatedSkill);
+    }
+    
     public void PopPanel(int nullIndex, Skill newSkill)
     {
         if (!_isSet) return;

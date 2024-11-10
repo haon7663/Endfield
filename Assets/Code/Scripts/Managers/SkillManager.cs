@@ -19,22 +19,56 @@ public class SkillManager : Singleton<SkillManager>
         SetupSkillBuffer();
         ArrangeSkills();
         skillPanelController.SetPanels(_skills, _skillBuffer[0]);
-        
-        foreach (var skill in _skills)
+    }
+
+    public void UpgradeSkill(Skill updatedSkill)
+    {
+        for (int i = 0; i < _skillBuffer.Count; i++)
         {
-            /*//Debug.Log(skill.skillComponents.Count);
-            foreach (var skillComponent in skill.skillComponents)
+            if (_skillBuffer[i].Id == updatedSkill.Id)
             {
-                Debug.Log(skillComponent.saveName);
-                Debug.Log(skillComponent.ExecuteType.ToString());
-            }*/
+                _skillBuffer[i] = updatedSkill;
+            }
         }
+        
+        for (int i = 0; i < _skills.Length; i++)
+        {
+            if (_skills[i] != null && _skills[i].Id == updatedSkill.Id)
+            {
+                _skills[i] = updatedSkill;
+                skillPanelController.UpdatePanel(i, updatedSkill);
+            }
+        }
+    }
+    
+    public void ChangeSkill(Skill originSkill, Skill newSkill)
+    {
+        for (var i = 0; i < _skills.Length; i++)
+        {
+            if (_skills[i] != null && _skills[i].Id == originSkill.Id)
+            {
+                _skills[i] = null;
+                ArrangeSkills();
+                break;
+            }
+        }
+        
+        for (var i = 0; i < _skillBuffer.Count; i++)
+        {
+            if (_skillBuffer[i].Id == originSkill.Id)
+            {
+                _skillBuffer.RemoveAt(i);
+                break;
+            }
+        }
+        
+        _skillBuffer.Add(newSkill);
     }
 
     public Skill GetSkillAtIndex(int index)
     {
         var skill = _skills[index];
-        /*//Debug.Log(skill.skillComponents.Count);
+        /*Debug.Log(skill.skillComponents.Count);
         foreach (var skillComponent in skill.skillComponents)
         {
             Debug.Log(skillComponent.saveName);
@@ -75,7 +109,11 @@ public class SkillManager : Singleton<SkillManager>
 
     private void SetupSkillBuffer()  //스킬 랜덤 재배치
     {
-        _skillBuffer = DataManager.Inst.Data.skills.ToList();
+        var skills = DataManager.Inst.Data.skills.ToList();
+        foreach (var skill in skills)
+            skill.Setup();
+        
+        _skillBuffer = skills;
         _skillBuffer.Shuffle();
     }
     

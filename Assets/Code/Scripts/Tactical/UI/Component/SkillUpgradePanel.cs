@@ -83,12 +83,12 @@ public class SkillUpgradePanel : MonoBehaviour
             {
                 case SkillExecuteType.AddModifier:
                     skillComponent.ApplyModify(skill);
-                    foreach (var component in skill.skillComponents)
+                    foreach (var component in skill.skillComponents.ToList())
                         skillComponent.UpdateModify(component);
                     break;
                 case SkillExecuteType.MultiplyModifier:
                     skillComponent.ApplyModify(skill);
-                    foreach (var component in skill.skillComponents)
+                    foreach (var component in skill.skillComponents.ToList())
                         skillComponent.UpdateModify(component);
                     break;
             }
@@ -96,6 +96,7 @@ public class SkillUpgradePanel : MonoBehaviour
         
         DataManager.Inst.Data.skillUpgradeTickets -= skill.upgradeCount + 1;
         DataManager.Inst.Data.skills[_saveIndex] = skill;
+        SkillManager.Inst.UpgradeSkill(skill);
         skillUpgradeGroup.UpdateTicketLabel();
 
         skill.upgradeCount++;

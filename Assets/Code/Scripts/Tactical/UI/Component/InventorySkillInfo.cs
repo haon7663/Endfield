@@ -13,6 +13,7 @@ public class InventorySkillInfo : MonoBehaviour, IPointerEnterHandler, IPointerE
     [SerializeField] private TextMeshProUGUI nameLabel;
     [SerializeField] private Image icon;
     [SerializeField] private Card cardInfo;
+    
     private InventoryController _inventoryController;
 
     public Action<Skill> onClick;
@@ -28,7 +29,7 @@ public class InventorySkillInfo : MonoBehaviour, IPointerEnterHandler, IPointerE
         _originSizeDelta = _rectTransform.sizeDelta;
     }
     
-    public void SetInfo(Skill skill,Card cardInfo ,InventoryController inventoryController)
+    public void SetInfo(Skill skill, Card cardInfo, InventoryController inventoryController)
     {
         this.cardInfo = cardInfo;
         _inventoryController = inventoryController;
@@ -75,10 +76,8 @@ public class InventorySkillInfo : MonoBehaviour, IPointerEnterHandler, IPointerE
         onClick?.Invoke(_skill);
     }
     
-    
     public void OnPointerMove(PointerEventData eventData)
     {
-        
         if (_cardRect != null)
         {
             _cardRect.transform.position = Input.mousePosition;

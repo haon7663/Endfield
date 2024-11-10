@@ -24,16 +24,11 @@ public class SkillSelectionPanelController : MonoBehaviour
             var card = Instantiate(cardPrefab, cardGroup);
             card.Init(skill);
             card.onClick += Hide;
-            card.onClick += () => GetSkill(skill);
+            card.onClick += () => SkillChangeController.Inst.Show(skill);
         }
         
         panel.SetPosition(PanelStates.Show, true, 0.5f, Ease.OutBack);
         closePanel.onClose += Hide;
-    }
-
-    private void GetSkill(Skill skill)
-    {
-        DataManager.Inst.Data.skills.Add(skill);
     }
     
     public void Hide()
