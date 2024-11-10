@@ -1,24 +1,39 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class SettingController : MonoBehaviour
 {
+    
+    
     [SerializeField] private GameObject settingCanvas,keyLayoutCanvas;
     [SerializeField] private Panel panel;
     [SerializeField] private ClosePanel closePanel;
 
     [SerializeField] private TextMeshProUGUI bgmText,seText;
+
+    [SerializeField] private AudioMixer audioMixer;
     
 
     [SerializeField] private Slider bgmSlider, seSlider;
     public float _bgmVolume, _seVolume;
     private bool _isShown;
+    
+    private OptionDataContainer _optionDataContainer;
 
-    private void Start()
+    private IEnumerator Start()
     {
+        yield return new WaitUntil(() => OptionDataContainer.Inst.soundSettingsData != null);
+
+        _optionDataContainer = OptionDataContainer.Inst;
+
+        bgmSlider.value = _optionDataContainer.soundSettingsData.musicVolume;
+        seSlider.value = _optionDataContainer.soundSettingsData.sfxVolume;
+
         ChangeSFXVolume();
         ChangeBGMVolume();
     }
@@ -33,14 +48,31 @@ public class SettingController : MonoBehaviour
 
     public void ChangeBGMVolume()
     {
+        _optionDataContainer.soundSettingsData.musicVolume = bgmSlider.value;
         _bgmVolume = Mathf.FloorToInt(bgmSlider.value * 100);
         bgmText.text = $"- {_bgmVolume} % -";
+        ApplySoundSettings();
     }
 
     public void ChangeSFXVolume()
     {
+        _optionDataContainer.soundSettingsData.sfxVolume = seSlider.value;
         _seVolume = Mathf.FloorToInt(seSlider.value * 100);
         seText.text = $"- {_seVolume} % -";
+        ApplySoundSettings();
+    }
+    
+    private void ApplySoundSettings()
+    {
+        var musicVolume = _optionDataContainer.soundSettingsData.musicVolume;
+        var musicMixerValue = musicVolume > 0.001f ? Mathf.Log10(musicVolume) * 20 : -80f;
+        audioMixer.SetFloat("BGM", musicMixerValue);
+        
+        var sfxVolume = _optionDataContainer.soundSettingsData.sfxVolume;
+        var sfxMixerValue = sfxVolume > 0.001f ? Mathf.Log10(sfxVolume) * 20 : -80f;
+        audioMixer.SetFloat("SFX", sfxMixerValue);
+        
+        _optionDataContainer.Save();
     }
     
     public void Show()

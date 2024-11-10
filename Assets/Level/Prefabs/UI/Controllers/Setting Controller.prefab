@@ -511,7 +511,19 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7919736360974776403}
+        m_TargetAssemblyTypeName: SettingController, Assembly-CSharp
+        m_MethodName: ChangeBGMVolume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1793750982434868280
 GameObject:
   m_ObjectHideFlags: 0
@@ -878,7 +890,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 99
   m_TargetDisplay: 0
 --- !u!114 &144986497690890868
 MonoBehaviour:
@@ -1614,7 +1626,19 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7919736360974776403}
+        m_TargetAssemblyTypeName: SettingController, Assembly-CSharp
+        m_MethodName: ChangeSFXVolume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3209171894243045836
 GameObject:
   m_ObjectHideFlags: 0
@@ -1738,7 +1762,7 @@ GameObject:
   - component: {fileID: 2055908768623663716}
   - component: {fileID: 4443286662040665068}
   m_Layer: 5
-  m_Name: bgm_volume
+  m_Name: sfx_volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2542,7 +2566,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6074515159620182005}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -3370,7 +3394,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7523555802304675225}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3394,6 +3418,13 @@ MonoBehaviour:
   keyLayoutCanvas: {fileID: 6698062842044682854}
   panel: {fileID: 713577451704502615}
   closePanel: {fileID: 3498999843706785411}
+  bgmText: {fileID: 2959149473181994229}
+  seText: {fileID: 4443286662040665068}
+  audioMixer: {fileID: 24100000, guid: a97443047d45f6148b37947a67d59fd2, type: 2}
+  bgmSlider: {fileID: 3718422448621868396}
+  seSlider: {fileID: 3025756298503624238}
+  _bgmVolume: 50
+  _seVolume: 50
 --- !u!1 &7603724636823284629
 GameObject:
   m_ObjectHideFlags: 0
