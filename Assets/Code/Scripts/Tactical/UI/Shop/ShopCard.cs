@@ -5,6 +5,7 @@ public class ShopCard : ShopItem
 {
     Card card;
     private Skill _skill;
+    ShopController _shopController;
 
     private void Awake()
     {
@@ -25,9 +26,15 @@ public class ShopCard : ShopItem
         card.ShowAnim();
     }
 
+    public void ShopConTrollerInput(ShopController shopController)
+    {
+        _shopController = shopController;
+    }
+
     protected override void BuyAction()
     {
         SkillChangeController.Inst.Show(_skill);
+        _shopController.Hide();
         Debug.Log("스킬 삼");
     }
 
