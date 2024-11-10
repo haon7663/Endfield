@@ -70,6 +70,7 @@ public class DataManager : SingletonDontDestroyOnLoad<DataManager>
 
     public void ResetData()
     {
+        Data.curHp = 60;
         Data.eliteKillCount = 0;
         Data.plantKillCount = 0;
         Data.artifactCount = 0;
