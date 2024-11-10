@@ -75,7 +75,7 @@ public class Health : MonoBehaviour
 
     public void OnDamage(int value)
     {
-        SoundManager.Inst.Play("Hitted");
+        SoundManager.Inst.Play("Player_Hit");
         value = Mathf.RoundToInt(value * takeDamageMultiplier);
 
         for (var i = barrierDurations.Count - 1; i >= 0; i--)

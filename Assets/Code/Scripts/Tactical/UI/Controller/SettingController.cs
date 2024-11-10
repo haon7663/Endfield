@@ -19,13 +19,12 @@ public class SettingController : MonoBehaviour
 
     private void Start()
     {
-        ChangeSEVolume();
+        ChangeSFXVolume();
         ChangeBGMVolume();
     }
 
     void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.Escape) && !_isShown)
         {
             Show();
@@ -38,7 +37,7 @@ public class SettingController : MonoBehaviour
         bgmText.text = $"- {_bgmVolume} % -";
     }
 
-    public void ChangeSEVolume()
+    public void ChangeSFXVolume()
     {
         _seVolume = Mathf.FloorToInt(seSlider.value * 100);
         seText.text = $"- {_seVolume} % -";
