@@ -32,12 +32,13 @@ public class InventoryController : MonoBehaviour
     {
         if (_isShown) return;
         
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P)&&!UIManager.Inst.AlreadyUIOpen())
             Show();
     }
 
     public void Show()
     {
+        UIManager.Inst.UIShow(true);
         AddInventorySkill();
         SetRelicActive();
         closePanel.onClose += Hide;
@@ -47,6 +48,7 @@ public class InventoryController : MonoBehaviour
 
     public void Hide()
     {
+        UIManager.Inst.UIShow(false);
         panel.SetPosition(PanelStates.Hide, true);
         closePanel.onClose -= Hide;
         _isShown = false;

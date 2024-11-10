@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -35,6 +36,16 @@ public class GameManager : Singleton<GameManager>
         maxElixir = DataManager.Inst.Data.maxElixir;
         curElixir += Time.deltaTime * elixirRegenerationSpeed;
         curElixir = Mathf.Clamp(curElixir, 0, maxElixir);
+
+        if (Input.GetKeyDown(KeyCode.F1)) //튜토리얼 스킵
+        {
+            if (DataManager.Inst.Data.stageCount < 2)
+            {
+                DataManager.Inst.Data.stageCount = 2;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+           
+        }
     }
 
     public void StageEnd(bool isPlayerWin)

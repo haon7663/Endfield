@@ -25,6 +25,7 @@ public class SkillChangeController : Singleton<SkillChangeController>
     }
     public void Hide()
     {
+        UIManager.Inst.UIShow(false);
         SkillManager.Inst.ChangeSkill(_selectedSkill, _newSkill);
         
         var skills = DataManager.Inst.Data.skills;

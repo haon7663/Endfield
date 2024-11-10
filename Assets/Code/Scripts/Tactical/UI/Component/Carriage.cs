@@ -21,7 +21,7 @@ public class Carriage : MonoBehaviour
 
         if (_isActive)
         {
-            if (Input.GetKeyDown(keyCode)&& !shopController.IsShopActive()) shopController.Show();
+            if (Input.GetKeyDown(keyCode)&& !shopController.IsShopActive()&&!UIManager.Inst.AlreadyUIOpen()) shopController.Show();
 
             bool _onPlayer = false;
             foreach (var index in interactTileIndex)

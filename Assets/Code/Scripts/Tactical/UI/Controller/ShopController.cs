@@ -33,6 +33,7 @@ public class ShopController : MonoBehaviour
     
     public void Show()
     {
+        UIManager.Inst.UIShow(true);
         _isActive = true;
         closePanel.onClose += Hide;
         panel.SetPosition(PanelStates.Show, true);
@@ -40,6 +41,7 @@ public class ShopController : MonoBehaviour
 
     public void Hide()
     {
+        UIManager.Inst.UIShow(false);
         _isActive = false;
         panel.SetPosition(PanelStates.Hide, true);
         closePanel.onClose -= Hide;

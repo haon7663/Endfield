@@ -13,6 +13,7 @@ public class SkillSelectionPanelController : MonoBehaviour
 
     public void Show()
     {
+        UIManager.Inst.UIShow(true);
         var skills = SkillLoader.GetAllSkills("skill");
         var haveSkills = new List<Skill>();
         haveSkills.AddRange(DataManager.Inst.Data.skills);
@@ -34,6 +35,7 @@ public class SkillSelectionPanelController : MonoBehaviour
     
     public void Hide()
     {
+      
         GridManager.Inst.GenerateTransitionTiles();
         panel.SetPosition(PanelStates.Hide, true, 0.25f);
     }
