@@ -24,13 +24,14 @@ public class ShopItem : MonoBehaviour, IPointerClickHandler
         Debug.Log("상점");
         if (!_isSelling || DataManager.Inst.Data.gold < _itemPrice) return;
         GoldController.Inst.ReCountGold( - _itemPrice);
-       
+        
+        SoundManager.Inst.Play("ShopEffect");
         BuyAction();
         _isSelling = false;
         if (!_multipleBuyable) itemPrice_Txt.text = "Sold";
         else
         {
-            float value = 1.5f;
+            float value = 1f;
             DOTween.To(() => value, x => value = x, 0, 1.5f).SetEase(Ease.Linear).OnUpdate(() =>
             {
                 value = Mathf.Round(value * 10) / 10;

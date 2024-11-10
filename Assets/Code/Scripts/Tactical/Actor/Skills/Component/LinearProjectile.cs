@@ -44,6 +44,8 @@ public class LinearProjectile : Projectile
             if (_getDamaged) return;
             
             health.OnDamage(damage);
+            if (info.user.unitType == UnitType.Player)
+                SoundManager.Inst.Play("Enemy_Hit");
             var newInfo = new SkillComponentInfo(info, currentTile);
             OnHit?.Invoke(newInfo);
             _getDamaged = true;

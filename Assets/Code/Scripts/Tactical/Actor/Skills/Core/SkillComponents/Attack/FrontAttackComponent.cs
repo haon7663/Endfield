@@ -15,6 +15,8 @@ public class FrontAttackComponent : AttackComponent
                 var newInfo = new SkillComponentInfo(info, currentTile);
                 OnHit?.Invoke(newInfo);
                 
+                if (info.user.unitType == UnitType.Player)
+                    SoundManager.Inst.Play("Enemy_Hit");
                 health.OnDamage(value);
             }
         }

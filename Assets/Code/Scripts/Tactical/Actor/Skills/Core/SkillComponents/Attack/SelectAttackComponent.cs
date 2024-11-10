@@ -32,6 +32,9 @@ public class SelectAttackComponent : AttackComponent
             if (targetUnit && targetUnit.TryGetComponent(out Health health))
             {
                 OnHit?.Invoke(newInfo);
+                
+                if (info.user.unitType == UnitType.Player)
+                    SoundManager.Inst.Play("Enemy_Hit");
                 health.OnDamage(value);
             }
 

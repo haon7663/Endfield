@@ -44,6 +44,7 @@ public class SoundManager : SingletonDontDestroyOnLoad<SoundManager>
 
     public void Play(string path, Sound type = Sound.Effect)
     {
+        Debug.Log(path);
         AudioClip audioClip = GetOrAddAudioClip(path, type);
         Play(audioClip, type);
     }

@@ -56,7 +56,6 @@ public class ShopController : MonoBehaviour
             var skill = skills.Where(s => !haveSkills.Contains(s)).ToList().Random();
             haveSkills.Add(skill);
             _cards[i].RandomCardInput(skill);
-
         }
     }
 

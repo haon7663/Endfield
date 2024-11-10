@@ -226,7 +226,10 @@ public class PlayerController : MonoBehaviour
         for (var i = 0; i < skill.executeCount; i++)
         {
             if (skill.isAnimation == 1)
+            {
                 _animator.SetTrigger(Attack);
+                SoundManager.Inst.Play("Attack_Sword");
+            }
             skill.Use(_unit);
             yield return new WaitForSeconds(0.2f / skill.executeCount);
         }

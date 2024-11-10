@@ -11,6 +11,7 @@ public class BarrierComponent : SkillComponent
         if (info.user.TryGetComponent(out Health health))
         {
             health.OnBarrier(value, duration);
+            SoundManager.Inst.Play("Barrier");
         }
     }
 

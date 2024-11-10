@@ -10,7 +10,6 @@ public class ShopCard : ShopItem
     {
         card = GetComponent<Card>();
         _multipleBuyable = false;
-       
     }
 
     protected override void Start()
@@ -28,7 +27,7 @@ public class ShopCard : ShopItem
 
     protected override void BuyAction()
     {
-        DataManager.Inst.Data.skills.Add(_skill);
+        SkillChangeController.Inst.Show(_skill);
         Debug.Log("스킬 삼");
     }
 

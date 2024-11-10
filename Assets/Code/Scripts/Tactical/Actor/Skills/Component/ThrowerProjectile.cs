@@ -29,6 +29,8 @@ public class ThrowerProjectile : Projectile
                 if (currentTile.content && currentTile.content.TryGetComponent(out Health health))
                 {
                     health.OnDamage(damage);
+                    if (info.user.unitType == UnitType.Player)
+                        SoundManager.Inst.Play("Enemy_Hit");
                     OnHit?.Invoke(newInfo);
                 }
             }
