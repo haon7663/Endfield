@@ -9,6 +9,7 @@ public abstract class SkillComponent
     public string saveName;
     public int distance;
     public string subDescription;
+    public string useAbleComponent;
     
     public SkillExecuteType ExecuteType => Enum.TryParse(executeType, out SkillExecuteType result) ? result : SkillExecuteType.Default;
 

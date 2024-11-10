@@ -31,19 +31,19 @@ public class AttackTutorialController : MonoBehaviour
         if (!GameManager.Inst.isGameActive) return;
         if (tutoIndex != 0) return;
         
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyUp(KeyCode.J))
         {
             keyJ = true;
             keySolid[0].SetActive(true);
         }
 
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyUp(KeyCode.K))
         {
             keyK = true;
             keySolid[1].SetActive(true);
         }
 
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyUp(KeyCode.L))
         {
             keyL = true;
             keySolid[2].SetActive(true);

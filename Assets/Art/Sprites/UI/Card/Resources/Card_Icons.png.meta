@@ -506,7 +506,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Card_Icons_18
+      name: Seppuku
       rect:
         serializedVersion: 2
         x: 1580
@@ -567,7 +567,6 @@ TextureImporter:
       Barrier: 2038631811
       Bleeding Slash: 1417350791
       Card_Icons_16: 292638505
-      Card_Icons_18: 797145624
       Double Side Slash: 1290511106
       Double Side Thorns: -683895842
       Far Thorns: 2081830560
@@ -577,6 +576,7 @@ TextureImporter:
       Quick Walk: 680806601
       Rush: 1917350573
       Self Explosion: 1587017780
+      Seppuku: 797145624
       Slash: 1851497798
       Smash: 311953953
       Swap: 1800889100

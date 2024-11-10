@@ -15,6 +15,7 @@ public class Skill
     public int executeCount;
     public List<SkillComponent> skillComponents = new();  // 스킬을 구성하는 컴포넌트 리스트
     public int isAnimation;
+    public string baseComponent;
 
     public int upgradeCount;
 

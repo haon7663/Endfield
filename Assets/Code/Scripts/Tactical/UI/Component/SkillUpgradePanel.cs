@@ -23,36 +23,31 @@ public class SkillUpgradePanel : MonoBehaviour
         _saveIndex = DataManager.Inst.Data.skills.FindIndex(s => s == skill);
         
         var skillComponents = SkillLoader.GetAllSkillComponent("upgradeSkill");
+        var arrangedSkillComponents = new List<List<SkillComponent>>();
 
-        /*var saveName = "";
+        var saveName = "";
         foreach (var skillComponent in skillComponents)
         {
-            var componentName = skillComponent.saveName;
-            if (string.IsNullOrEmpty(skillComponent.saveName))
-                componentName = saveName;
-            
-            saveName = skillComponent.saveName;
-
-            if (skill != null)
+            if (string.IsNullOrEmpty(skillComponent.saveName) || skillComponent.saveName == saveName)
             {
-                skill.skillComponents.Add(skillComponent);
+                skillComponent.saveName = null;
+                arrangedSkillComponents.Last().Add(skillComponent);
             }
             else
             {
-                var newSkill = skillData.FirstOrDefault(s => s.name == skillComponent.saveName);
-                if (newSkill == null) continue;
-                newSkill.skillComponents.Add(skillComponent);
-                skills.Add(newSkill);
+                arrangedSkillComponents.Add(new List<SkillComponent> { skillComponent });
+                saveName = skillComponent.saveName;
             }
-        }*/
+        }
         
-        var haveComponents = new List<SkillComponent>();
+        var haveComponents = new List<List<SkillComponent>>();
         for (var i = 0; i < 3; i++)
         {
-            var skillComponent = skillComponents.Where(s => !haveComponents.Contains(s)).ToList().Random();
+            var skillComponent = arrangedSkillComponents
+                .Where(s => !haveComponents.Contains(s) && IsUseAbleComponent(skill, s[0])).ToList().Random();
             haveComponents.Add(skillComponent);
             
-            var newSkill = SkillUpgrader(skill, skillComponent);
+            var newSkill = GetUpgradeSkill(skill, skillComponent);
             
             var card = Instantiate(cardPrefab, cardGroup);
             card.Init(newSkill);
@@ -66,25 +61,38 @@ public class SkillUpgradePanel : MonoBehaviour
         closePanel.onClose += Hide;
     }
 
-    private void UpgradeSkill(Skill skill, SkillComponent skillComponent)
+    private bool IsUseAbleComponent(Skill skill, SkillComponent component)
+    {
+        if (string.IsNullOrEmpty(component.useAbleComponent))
+            return true;
+
+        return component.useAbleComponent switch
+        {
+            "Attack" => skill.baseComponent == "Attack",
+            _ => true
+        };
+    }
+
+    private void UpgradeSkill(Skill skill, List<SkillComponent> skillComponents)
     {
         if (DataManager.Inst.Data.skillUpgradeTickets < skill.upgradeCount + 1) return;
-        
-        switch (skillComponent.ExecuteType)
+
+        foreach (var skillComponent in skillComponents)
         {
-            case SkillExecuteType.AddModifier:
-                skillComponent.ApplyModify(skill);
-                foreach (var component in skill.skillComponents)
-                    skillComponent.UpdateModify(component);
-                break;
-            case SkillExecuteType.MultiplyModifier:
-                skillComponent.ApplyModify(skill);
-                foreach (var component in skill.skillComponents)
-                    skillComponent.UpdateModify(component);
-                break;
+            switch (skillComponent.ExecuteType)
+            {
+                case SkillExecuteType.AddModifier:
+                    skillComponent.ApplyModify(skill);
+                    foreach (var component in skill.skillComponents)
+                        skillComponent.UpdateModify(component);
+                    break;
+                case SkillExecuteType.MultiplyModifier:
+                    skillComponent.ApplyModify(skill);
+                    foreach (var component in skill.skillComponents)
+                        skillComponent.UpdateModify(component);
+                    break;
+            }
         }
-        
-        Debug.Log(skill.upgradeCount);
         
         DataManager.Inst.Data.skillUpgradeTickets -= skill.upgradeCount + 1;
         DataManager.Inst.Data.skills[_saveIndex] = skill;
@@ -93,10 +101,10 @@ public class SkillUpgradePanel : MonoBehaviour
         skill.upgradeCount++;
     }
 
-    private Skill SkillUpgrader(Skill skill, SkillComponent skillComponent)
+    private Skill GetUpgradeSkill(Skill skill, List<SkillComponent> skillComponents)
     {
         var copySkill = skill.DeepCopy();
-        copySkill.skillComponents.Add(skillComponent);
+        copySkill.skillComponents.AddRange(skillComponents);
 
         return copySkill;
     }
