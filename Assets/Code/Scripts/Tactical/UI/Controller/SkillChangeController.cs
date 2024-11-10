@@ -23,6 +23,8 @@ public class SkillChangeController : Singleton<SkillChangeController>
         _newSkill = newSkill;
         changeCard.Init(newSkill);
         changeCard.ShowAnim();
+        
+        closePanel.gameObject.SetActive(false);
     }
     public void Hide()
     {
@@ -46,8 +48,11 @@ public class SkillChangeController : Singleton<SkillChangeController>
         {
             var inventory = Instantiate(skillPrefab, inventoryContent);
             inventory.SetInfo(skill);
-            inventory.onClick += s => _selectedSkill = s;
-            closePanel.gameObject.SetActive(true);
+            inventory.onClick += s =>
+            {
+                _selectedSkill = s;
+                closePanel.gameObject.SetActive(true);
+            };
         }
     }
 }

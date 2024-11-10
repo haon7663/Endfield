@@ -14,9 +14,9 @@ public class PlayerData
     public int artifactCount = ArtifactManager.Inst.ArtifactCount();
     public int skillCount;
     public int stageCount;
-    public int gold = 1500;
+    public int gold = 150;
     public int curHp;
-    public int skillUpgradeTickets = 5;
+    public int skillUpgradeTickets;
     public int maxElixir = 4;
     
     public PlayerData(List<Skill> skills)
