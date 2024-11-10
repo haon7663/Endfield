@@ -57,7 +57,6 @@ public class SelectAttackComponent : AttackComponent
     private IEnumerator EndHandler(SkillComponentInfo info)
     {
         yield return new WaitForSeconds(activeTime);
-        Debug.Log("End");
         OnEnd?.Invoke(info);
     }
 }

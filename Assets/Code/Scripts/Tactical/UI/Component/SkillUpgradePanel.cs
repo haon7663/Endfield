@@ -23,6 +23,29 @@ public class SkillUpgradePanel : MonoBehaviour
         _saveIndex = DataManager.Inst.Data.skills.FindIndex(s => s == skill);
         
         var skillComponents = SkillLoader.GetAllSkillComponent("upgradeSkill");
+
+        /*var saveName = "";
+        foreach (var skillComponent in skillComponents)
+        {
+            var componentName = skillComponent.saveName;
+            if (string.IsNullOrEmpty(skillComponent.saveName))
+                componentName = saveName;
+            
+            saveName = skillComponent.saveName;
+
+            if (skill != null)
+            {
+                skill.skillComponents.Add(skillComponent);
+            }
+            else
+            {
+                var newSkill = skillData.FirstOrDefault(s => s.name == skillComponent.saveName);
+                if (newSkill == null) continue;
+                newSkill.skillComponents.Add(skillComponent);
+                skills.Add(newSkill);
+            }
+        }*/
+        
         var haveComponents = new List<SkillComponent>();
         for (var i = 0; i < 3; i++)
         {

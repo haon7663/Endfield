@@ -42,6 +42,8 @@ public class SpawnManager : Singleton<SpawnManager>
             return null;
         
         var unit = Instantiate(isPlayer ? playerPrefab : enemyPrefab);
+        if (!isPlayer)
+            unitData.health = Mathf.FloorToInt(unitData.health * levelCurve.Evaluate((float)DataManager.Inst.Data.stageCount / 13));
         unit.Init(unitData, tile);
         return unit;
     }
@@ -79,13 +81,21 @@ public class SpawnManager : Singleton<SpawnManager>
     public void SpawnEnemies()
     {
         if (!isSpawnEnemy) return;
+
+        var spawnedEnemiesName = new List<string>();
+        var spawnedTiles = new List<Tile>();
+
+        var spawnCount = enemyCounts[DataManager.Inst.Data.stageCount].EnemyCount;
         
-        var tiles = new List<Tile>();
-        for (var i = 0; i < enemyCounts[DataManager.Inst.Data.stageCount].EnemyCount; i++)
+        for (var i = 0; i < spawnCount; i++)
         {
-            var tile = GridManager.Inst.GetRandomTile(tiles);
-            SpawnEnemy(UnitLoader.GetAllUnitData().Where(unit => unit.name != "Double Flower").ToList().Random().name, tile);
-            tiles.Add(tile);
+            var tile = GridManager.Inst.GetRandomTile(spawnedTiles);
+            var ableUnits = UnitLoader.GetAllUnitData().Where(unit => unit.name != "Double Flower" && spawnedEnemiesName.Count(e => unit.name == e) < spawnCount).ToList();
+            var targetUnitName = ableUnits.Random().name;
+
+            SpawnEnemy(targetUnitName, tile);
+            spawnedEnemiesName.Add(targetUnitName);
+            spawnedTiles.Add(tile);
             _surviveEnemyCount++;
         }
     }
