@@ -1,18 +1,47 @@
+using System;
 using UnityEngine;
 using DG.Tweening;
+using TMPro;
+using UnityEngine.UI;
+
 public class SettingController : MonoBehaviour
 {
     [SerializeField] private GameObject settingCanvas,keyLayoutCanvas;
     [SerializeField] private Panel panel;
     [SerializeField] private ClosePanel closePanel;
-    private bool _isShown;
+
+    [SerializeField] private TextMeshProUGUI bgmText,seText;
     
+
+    [SerializeField] private Slider bgmSlider, seSlider;
+    public float _bgmVolume, _seVolume;
+    private bool _isShown;
+
+    private void Start()
+    {
+        ChangeSEVolume();
+        ChangeBGMVolume();
+    }
+
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.Escape) && !_isShown)
         {
             Show();
         }
+    }
+
+    public void ChangeBGMVolume()
+    {
+        _bgmVolume = Mathf.FloorToInt(bgmSlider.value * 100);
+        bgmText.text = $"- {_bgmVolume} % -";
+    }
+
+    public void ChangeSEVolume()
+    {
+        _seVolume = Mathf.FloorToInt(seSlider.value * 100);
+        seText.text = $"- {_seVolume} % -";
     }
     
     public void Show()
