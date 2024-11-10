@@ -25,6 +25,7 @@ public class SkillUpgradeGroup : MonoBehaviour
     private void Start()
     {
         _dataManagerRef = DataManager.Inst;
+        skillIcon.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -45,6 +46,7 @@ public class SkillUpgradeGroup : MonoBehaviour
 
     public void SetSkill(Skill skill)
     {
+        skillIcon.gameObject.SetActive(true);
         skillIcon.sprite = SkillLoader.GetSkillSprite(skill.name);
         
         var nameStringBuilder = new StringBuilder();

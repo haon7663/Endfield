@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 01a20412deff4d5438c05c3684c9e50f
+guid: 0fed2017f8c320b40a2d5705fe1ccac6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -114,9 +114,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 804
-        width: 395
-        height: 401
+        y: 1194
+        width: 393
+        height: 398
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,8 +125,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 85d2befd734a20f478f4a414569a8b52
-      internalID: 366506833
+      spriteID: cacfcc22401682b4ebd140e17557d86e
+      internalID: 531439865
       vertices: []
       indices: 
       edges: []
@@ -135,10 +135,10 @@ TextureImporter:
       name: Penetrate Sword
       rect:
         serializedVersion: 2
-        x: 395
-        y: 804
-        width: 395
-        height: 401
+        x: 393
+        y: 1194
+        width: 393
+        height: 398
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,8 +147,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55d993875b03c734ebe89dae8337d7e3
-      internalID: -217260134
+      spriteID: 556f0e40d73a8ae43aaf38f2aa99ee18
+      internalID: -416985159
       vertices: []
       indices: 
       edges: []
@@ -157,10 +157,10 @@ TextureImporter:
       name: Slash
       rect:
         serializedVersion: 2
-        x: 790
-        y: 804
-        width: 395
-        height: 401
+        x: 786
+        y: 1194
+        width: 393
+        height: 398
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,8 +169,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e0d4ae325843b04ba418d82022fd8d9
-      internalID: 1851497798
+      spriteID: 9c4385ca4d3c37d48929fa87ae3447e8
+      internalID: -300129253
       vertices: []
       indices: 
       edges: []
@@ -179,10 +179,10 @@ TextureImporter:
       name: Swap
       rect:
         serializedVersion: 2
-        x: 1185
-        y: 804
-        width: 395
-        height: 401
+        x: 1179
+        y: 1194
+        width: 393
+        height: 398
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -191,8 +191,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e86f7ae6ccf66c4ebae5e75bdad5573
-      internalID: 1800889100
+      spriteID: 98d6c4dffc16f5d4aaa4395c186ac8b3
+      internalID: 852122233
       vertices: []
       indices: 
       edges: []
@@ -201,10 +201,10 @@ TextureImporter:
       name: Bleeding Slash
       rect:
         serializedVersion: 2
-        x: 1580
-        y: 804
-        width: 395
-        height: 401
+        x: 1572
+        y: 1194
+        width: 393
+        height: 398
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,8 +213,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d30224d67d0196b459605ff500f822ff
-      internalID: 1417350791
+      spriteID: 2dab1c4a4f44bce43b2c5d8815b71b72
+      internalID: 1987718176
       vertices: []
       indices: 
       edges: []
@@ -223,10 +223,10 @@ TextureImporter:
       name: Far Thorns
       rect:
         serializedVersion: 2
-        x: 1975
-        y: 804
-        width: 395
-        height: 401
+        x: 1965
+        y: 1194
+        width: 393
+        height: 398
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -235,8 +235,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e98e4c6b6dfa0af4bbfa71c6f0f57a03
-      internalID: 2081830560
+      spriteID: 5dfb41a67f023dd42ab985e887c570ef
+      internalID: 249214244
       vertices: []
       indices: 
       edges: []
@@ -245,10 +245,10 @@ TextureImporter:
       name: Double Side Thorns
       rect:
         serializedVersion: 2
-        x: 2370
-        y: 804
-        width: 395
-        height: 401
+        x: 2358
+        y: 1194
+        width: 393
+        height: 398
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,8 +257,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bfe19fae1bf7c084f8ee9454b37e44c4
-      internalID: -683895842
+      spriteID: 5f8466c616aa5534f9088a3c7a06a5fe
+      internalID: 438789540
       vertices: []
       indices: 
       edges: []
@@ -268,9 +268,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 403
-        width: 395
-        height: 401
+        y: 796
+        width: 393
+        height: 398
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -279,8 +279,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 556acd5388949244f8fe4634182f6c26
-      internalID: 2038631811
+      spriteID: a1941f6007e3f8e409f8d6d4d3831c49
+      internalID: 725540127
       vertices: []
       indices: 
       edges: []
@@ -289,10 +289,10 @@ TextureImporter:
       name: Sword Throw
       rect:
         serializedVersion: 2
-        x: 395
-        y: 403
-        width: 395
-        height: 401
+        x: 393
+        y: 796
+        width: 393
+        height: 398
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -301,8 +301,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 23f040b07be9c11459a9431424e9959b
-      internalID: -329984290
+      spriteID: 0057b8785d7df794e937949193d83aca
+      internalID: -825778886
       vertices: []
       indices: 
       edges: []
@@ -311,10 +311,10 @@ TextureImporter:
       name: Rush
       rect:
         serializedVersion: 2
-        x: 790
-        y: 403
-        width: 395
-        height: 401
+        x: 786
+        y: 796
+        width: 393
+        height: 398
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -323,8 +323,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ab6dda21436dd074780b4a09853721db
-      internalID: 1917350573
+      spriteID: e8cfeca96e97c964789720d68b167230
+      internalID: 1275883539
       vertices: []
       indices: 
       edges: []
@@ -333,10 +333,10 @@ TextureImporter:
       name: Smash
       rect:
         serializedVersion: 2
-        x: 1185
-        y: 403
-        width: 395
-        height: 401
+        x: 1179
+        y: 796
+        width: 393
+        height: 398
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -345,8 +345,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4793404b6d66da4db8ede6b05a7b8ee
-      internalID: 311953953
+      spriteID: 0b50b26fadef68f498e321cc1b9c5774
+      internalID: -1374121314
       vertices: []
       indices: 
       edges: []
@@ -355,10 +355,10 @@ TextureImporter:
       name: Plant Shoot
       rect:
         serializedVersion: 2
-        x: 1580
-        y: 403
-        width: 395
-        height: 401
+        x: 1572
+        y: 797
+        width: 393
+        height: 398
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -367,8 +367,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d48a52dac5b73044286b3ca88c03a4f4
-      internalID: -1583336097
+      spriteID: 11736eb566d979247848fe3570589bfb
+      internalID: 1687195295
       vertices: []
       indices: 
       edges: []
@@ -377,10 +377,10 @@ TextureImporter:
       name: Self Explosion
       rect:
         serializedVersion: 2
-        x: 1975
-        y: 403
-        width: 395
-        height: 401
+        x: 1965
+        y: 796
+        width: 393
+        height: 398
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -389,8 +389,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ff203948577ff24396100976f379895
-      internalID: 1587017780
+      spriteID: af42896693f8d84438f306c870f13329
+      internalID: 377511323
       vertices: []
       indices: 
       edges: []
@@ -399,10 +399,10 @@ TextureImporter:
       name: Ground Recovery
       rect:
         serializedVersion: 2
-        x: 2370
-        y: 406
-        width: 395
-        height: 401
+        x: 2358
+        y: 796
+        width: 393
+        height: 398
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -411,8 +411,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f2038c5ed110884ea9f54315ff44579
-      internalID: 455424490
+      spriteID: f94dae720efea284f87a96ef25a6f4fb
+      internalID: -1507964758
       vertices: []
       indices: 
       edges: []
@@ -422,9 +422,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2
-        width: 395
-        height: 401
+        y: 398
+        width: 393
+        height: 398
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -433,8 +433,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 099b99985d602204da97eaa57d21ba7b
-      internalID: -2139252693
+      spriteID: 4c604eecae18f284198369d9fd5d19f5
+      internalID: -2052315020
       vertices: []
       indices: 
       edges: []
@@ -443,10 +443,10 @@ TextureImporter:
       name: Quick Walk
       rect:
         serializedVersion: 2
-        x: 395
-        y: 2
-        width: 395
-        height: 401
+        x: 393
+        y: 398
+        width: 393
+        height: 398
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -455,20 +455,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1924b05749acba144af23e3441e57c42
-      internalID: 680806601
+      spriteID: 5cb328d40f6c2d7419c31eb0da492384
+      internalID: -1754172655
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Card_Icons_16
+      name: Card_Icons 1_16
       rect:
         serializedVersion: 2
-        x: 790
-        y: 2
-        width: 395
-        height: 401
+        x: 786
+        y: 398
+        width: 393
+        height: 398
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -477,8 +477,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 671a1aaccc3fa754698f0fa2543859e6
-      internalID: 292638505
+      spriteID: 9a52902e0e30aec46a3cb202fc9d65f0
+      internalID: -1386038492
       vertices: []
       indices: 
       edges: []
@@ -487,10 +487,10 @@ TextureImporter:
       name: Double Side Slash
       rect:
         serializedVersion: 2
-        x: 1185
-        y: 2
-        width: 395
-        height: 401
+        x: 1179
+        y: 398
+        width: 393
+        height: 398
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -499,8 +499,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d2326922430422845b5e9cf7ef9572f8
-      internalID: 1290511106
+      spriteID: 8846e29250654294e87a16b9798dabb7
+      internalID: -467633588
       vertices: []
       indices: 
       edges: []
@@ -509,10 +509,10 @@ TextureImporter:
       name: Seppuku
       rect:
         serializedVersion: 2
-        x: 1580
-        y: 2
-        width: 395
-        height: 401
+        x: 1572
+        y: 398
+        width: 393
+        height: 398
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -521,8 +521,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5509105ce1744e647bf5676ac3394c74
-      internalID: 797145624
+      spriteID: f9dfc04b82ec9794d908021a28247d71
+      internalID: -1710739592
       vertices: []
       indices: 
       edges: []
@@ -531,10 +531,10 @@ TextureImporter:
       name: BF Sword
       rect:
         serializedVersion: 2
-        x: 1975
-        y: 2
-        width: 395
-        height: 401
+        x: 1964
+        y: 398
+        width: 393
+        height: 398
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -543,8 +543,118 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d15b9c195e8f9c340a14d95b30ac0528
-      internalID: 272625503
+      spriteID: 3dbd6acc1403a8a48a13ac6c70857829
+      internalID: -106873255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Card_Icons 1_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 393
+        height: 398
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b57fb340e81f3f94788c44a80bae3ae2
+      internalID: 1678347810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vulnerable Slash
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 0
+        width: 393
+        height: 398
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da08ad0fff40d554da7de6ba33b5cbb6
+      internalID: -1488621628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Card_Icons 1_22
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 0
+        width: 393
+        height: 398
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 962d3fe009389ac44af1e85f9cd49e2e
+      internalID: -1460244184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medical Kit
+      rect:
+        serializedVersion: 2
+        x: 1179
+        y: 0
+        width: 393
+        height: 398
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30344df7149f633439b58a3b9038900e
+      internalID: -36737904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Back Dash Attack
+      rect:
+        serializedVersion: 2
+        x: 1572
+        y: 0
+        width: 393
+        height: 398
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a4c812a60dfe4848b4f93003b3017f3
+      internalID: -1529367931
       vertices: []
       indices: 
       edges: []
@@ -563,26 +673,31 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      BF Sword: 272625503
-      Barrier: 2038631811
-      Bleeding Slash: 1417350791
-      Card_Icons_16: 292638505
-      Double Side Slash: 1290511106
-      Double Side Thorns: -683895842
-      Far Thorns: 2081830560
-      Ground Recovery: 455424490
-      Penetrate Sword: -217260134
-      Plant Shoot: -1583336097
-      Quick Walk: 680806601
-      Rush: 1917350573
-      Self Explosion: 1587017780
-      Seppuku: 797145624
-      Slash: 1851497798
-      Smash: 311953953
-      Swap: 1800889100
-      Sword Throw: -329984290
-      Whirl Wind: -2139252693
-      X Slash: 366506833
+      BF Sword: -106873255
+      Back Dash Attack: -1529367931
+      Barrier: 725540127
+      Bleeding Slash: 1987718176
+      Card_Icons 1_16: -1386038492
+      Card_Icons 1_20: 1678347810
+      Card_Icons 1_22: -1460244184
+      Double Side Slash: -467633588
+      Double Side Thorns: 438789540
+      Far Thorns: 249214244
+      Ground Recovery: -1507964758
+      Medical Kit: -36737904
+      Penetrate Sword: -416985159
+      Plant Shoot: 1687195295
+      Quick Walk: -1754172655
+      Rush: 1275883539
+      Self Explosion: 377511323
+      Seppuku: -1710739592
+      Slash: -300129253
+      Smash: -1374121314
+      Swap: 852122233
+      Sword Throw: -825778886
+      Vulnerable Slash: -1488621628
+      Whirl Wind: -2052315020
+      X Slash: 531439865
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
