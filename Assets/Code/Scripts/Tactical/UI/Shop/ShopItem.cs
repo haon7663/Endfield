@@ -1,8 +1,9 @@
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class ShopItem : MonoBehaviour
+public class ShopItem : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private int maxPrice, minPrice;
     protected bool _multipleBuyable;
@@ -40,6 +41,11 @@ public class ShopItem : MonoBehaviour
                 itemPrice_Txt.text = _itemPrice.ToString() + " ml";
             });
         }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        BuyItem();
     }
 
     protected virtual void BuyAction(){}
