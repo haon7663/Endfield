@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skills: []
-  castingViewers: []
+  skillHoldPanel: {fileID: 0}
 --- !u!114 &3069635981706411156
 MonoBehaviour:
   m_ObjectHideFlags: 0
