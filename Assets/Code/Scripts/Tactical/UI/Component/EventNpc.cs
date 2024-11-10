@@ -14,7 +14,7 @@ public class EventNpc : MonoBehaviour
     [SerializeField] [TextArea] private string speakLine,failLine;
     [FormerlySerializedAs("txt")] [SerializeField] private TextMeshProUGUI speakLineTxt;
     [SerializeField] private TextMeshProUGUI giftNameTxt,failTxt;
-    [SerializeField] private List<Panel> panels = new List<Panel>();
+    public List<Panel> panels = new List<Panel>();
     [SerializeField] private Panel speakLinePanel;
     [SerializeField] private Panel giveItemPanel;
     [SerializeField] private Panel failLinePanel;
@@ -84,12 +84,20 @@ public class EventNpc : MonoBehaviour
         }
     }
 
-    private void Hide(Panel panel)
+    public void Hide(Panel panel)
     {
         panel.SetPosition(PanelStates.Hide, true, 0.3f, Ease.OutBack);
         if (panel == speakLinePanel)
         {
             _isActive = false;
+        }
+    }
+
+    public void HideAllPanels()
+    {
+        foreach (var panel in panels)
+        {
+            panel.SetPosition(PanelStates.Hide, true, 0.3f, Ease.OutBack);
         }
     }
     

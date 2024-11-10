@@ -22,7 +22,7 @@ public class AttackTutorialController : MonoBehaviour
     public void Show()
     {
         isActive = true;
-        skillPanel.SetPosition(PanelStates.Show, true, 0.5f, Ease.OutBack);
+        DOVirtual.DelayedCall(1f, () => skillPanel.SetPosition(PanelStates.Show, true, 0.5f, Ease.OutBack));
     }
     
     private void Update()
@@ -58,9 +58,9 @@ public class AttackTutorialController : MonoBehaviour
 
     private void Action1()
     {
-        DOVirtual.DelayedCall(1f, () =>
+        DOVirtual.DelayedCall(0.5f, () =>
         {
-            skillPanel.SetPosition(PanelStates.Hide, true, 0.5f, Ease.OutBack);
+            skillPanel.SetPosition(PanelStates.Hide, true, 0.3f, Ease.OutBack);
             scarecrowPanel.SetPosition(PanelStates.Show, true, 0.5f, Ease.OutBack);
             foreach (GameObject solid in keySolid)
             {
@@ -76,5 +76,10 @@ public class AttackTutorialController : MonoBehaviour
     {
         scareCrowCheck.SetActive(true);
         GridManager.Inst.GenerateTransitionTiles();
+        DOVirtual.DelayedCall(1f, () =>
+        {
+            scarecrowPanel.SetPosition(PanelStates.Hide, true, 0.5f, Ease.OutBack);
+
+        });
     }
 }

@@ -13,6 +13,7 @@ public class EventController : MonoBehaviour
 
     public void Hide()
     {
+      
         content.SetActive(false);
     }
 

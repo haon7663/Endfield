@@ -1,14 +1,14 @@
 using UnityEngine;
 using System.Collections.Generic;
+using DG.Tweening;
 
 public class MoveTutorialController : MonoBehaviour
 {
     [SerializeField] private Panel movePanel,turnPanel;
     [SerializeField] private GameObject[] checkObj;
-    [SerializeField] private  List<bool> checkFInish = new List<bool>();
     [SerializeField] private int tutoIndex;
     [SerializeField]private int turnIndex,moveIndex;
-    [SerializeField] private KeyCode moveKeyCode, turnKeycode;
+    [SerializeField] private KeyCode  turnKeycode;
     bool isActive;
 
     void Start()
@@ -51,8 +51,23 @@ public class MoveTutorialController : MonoBehaviour
 
     public void Show()
     {
-        isActive = true;
-        movePanel.SetPosition(PanelStates.Show, true, 0.5f);
+        
+        DOVirtual.DelayedCall(1f,()=>
+        {
+            isActive = true;
+            movePanel.SetPosition(PanelStates.Show, true, 0.5f);
+        });
+
+    }
+
+    public void Hide()
+    {
+        isActive = false;
+        DOVirtual.DelayedCall(1f,()=>
+        {
+            movePanel.SetPosition(PanelStates.Hide, true, 0.5f);
+            turnPanel.SetPosition(PanelStates.Hide, true, 0.5f);
+        });
     }
 
     private void Action1()
@@ -63,8 +78,9 @@ public class MoveTutorialController : MonoBehaviour
 
     private void Action2()
     {
-        isActive = false;
+        
         checkObj[1].SetActive(true);
+        Hide();
         GridManager.Inst.GenerateTransitionTiles();
     }
 
