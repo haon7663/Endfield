@@ -37,6 +37,8 @@ public class SkillChangeController : Singleton<SkillChangeController>
                 skills[i] = _newSkill;
         
         panel.SetPosition(PanelStates.Hide, true, 0.25f);
+        
+        GridManager.Inst.GenerateTransitionTiles();
     }
     
     public void AddInventorySkill()

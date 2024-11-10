@@ -1,9 +1,6 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GridManager : Singleton<GridManager>
@@ -177,20 +174,12 @@ public class GridManager : Singleton<GridManager>
         {
             if (_transition.content && _isTransitioning)
             {
-                ArtifactManager.Inst.ArtifactForStage();
+                Debug.Log($"{_transition.content.name} 위치 {_transition.Key}");
                 CameraTransition.Inst.CameraUp();
+                ArtifactManager.Inst.ArtifactForStage();
                 GameManager.Inst.MapIconShow(false);
                 _isTransitioning = false;
             }
         }
-    }
-
-    public void OnDrawGizmos()
-    {
-        /*foreach (var tile in _tiles)
-        {
-            Gizmos.color = Color.white;
-            Gizmos.DrawWireCube(tile.transform.position + new Vector3(0, 0.375f, 1.5f), new Vector3(1, 0f, 3));
-        }*/
     }
 }

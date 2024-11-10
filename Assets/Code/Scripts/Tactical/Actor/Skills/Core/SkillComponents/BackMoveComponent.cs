@@ -27,7 +27,7 @@ public class BackMoveComponent : SkillComponent
         var index = 0;
         for (var i = 1; i <= distance; i++)
         {
-            var tile = GetStartingTile(info, i);
+            var tile = GetStartingTile(info, i * -1);
             if (tile && tile.IsOccupied)
                 break;
             index = i;
