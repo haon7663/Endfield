@@ -12,8 +12,12 @@ public class InventoryController : MonoBehaviour
     [SerializeField] private Transform skillContent;
     [SerializeField] private Transform relicContent;
     [SerializeField] private InventorySkillInfo skillPrefab;
+    [SerializeField] private Card cardPrefab;
     [SerializeField] private InventoryRelicInfo relicPrefab;
     [SerializeField] private ClosePanel closePanel;
+
+    [SerializeField] public List<Card> cardPopUp;
+    [SerializeField] private Transform inventory;
 
     [Header("Relic Holders")]
     [SerializeField] private RelicSOHolder upgradeRelicHolder;
@@ -56,7 +60,16 @@ public class InventoryController : MonoBehaviour
         foreach (var skill in DataManager.Inst.Data.skills)
         {
             var invSkill = Instantiate(skillPrefab, skillContent);
-            invSkill.SetInfo(skill);
+            var cardInfo = Instantiate(cardPrefab, inventory);
+            
+            cardInfo.Init(skill);
+            cardInfo.gameObject.SetActive(false);
+            cardInfo.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            
+            cardPopUp.Add(cardInfo);
+            RectTransform _rect = cardInfo.GetComponent<RectTransform>();
+            _rect.pivot = new Vector2(0, 1);
+            invSkill.SetInfo(skill,cardInfo,this);
             invSkill.onClick += skillUpgradeGroup.SetSkill;
         }
     }
