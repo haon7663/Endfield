@@ -33,8 +33,9 @@ public class ShopCard : ShopItem
 
     protected override void BuyAction()
     {
-        SkillChangeController.Inst.Show(_skill);
         _shopController.Hide();
+        SkillChangeController.Inst.Show(_skill);
+       
         Debug.Log("스킬 삼");
     }
 
