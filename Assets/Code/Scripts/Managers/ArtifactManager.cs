@@ -143,7 +143,26 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
             case ArtifactType.Gold:
                 return goldArtifact * bonusGold;
             case ArtifactType.SkillUpgradeTicket:
-                return (int)(skillUpgradeTicketProb * skillUpgradeArtifact * 10);
+                return (int)(skillUpgradeTicketProb * skillUpgradeArtifact );
+            default:
+                return 0;
+        }
+    }
+    
+    public int CalculateArtifactValue(ArtifactType artifactType,int amount)
+    {
+        switch (artifactType)
+        {
+            case ArtifactType.HpRegen:
+                return amount * regenHp;
+            case ArtifactType.MaxHp:
+                return amount * increaseHp;
+            case ArtifactType.MaxElixir:
+                return amount* increaseElixir;
+            case ArtifactType.Gold:
+                return amount * bonusGold;
+            case ArtifactType.SkillUpgradeTicket:
+                return amount * skillUpgradeArtifact;
             default:
                 return 0;
         }

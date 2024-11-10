@@ -27,7 +27,7 @@ public class ShopRelic : ShopItem ,IPointerEnterHandler, IPointerExitHandler,IPo
         icon.sprite = relicSO.sprite;
         _relicSO = relicSO;
         _relicInfoRect = inventoryRelicInfo.GetComponent<RectTransform>();
-        inventoryRelicInfo.Init(_relicSO,1);
+        inventoryRelicInfo.Init(_relicSO,ArtifactCalculate(_relicSO));
     }
 
     protected override void BuyAction()
@@ -50,6 +50,19 @@ public class ShopRelic : ShopItem ,IPointerEnterHandler, IPointerExitHandler,IPo
     public void OnPointerExit(PointerEventData eventData)
     {
         inventoryRelicInfo.gameObject.SetActive(false);
+    }
+    
+    private int ArtifactCalculate(RelicSO relicSO)
+    {
+        return relicSO.relicType switch
+        {
+            RelicSO.RelicType.HpRegen => ArtifactManager.Inst.CalculateArtifactValue(ArtifactManager.ArtifactType.HpRegen,1),
+            RelicSO.RelicType.GetGold => ArtifactManager.Inst.CalculateArtifactValue(ArtifactManager.ArtifactType.Gold,1),
+            RelicSO.RelicType.MaxElixier => ArtifactManager.Inst.CalculateArtifactValue(ArtifactManager.ArtifactType.MaxElixir,1),
+            RelicSO.RelicType.GetSkillUpgrade => ArtifactManager.Inst.CalculateArtifactValue(ArtifactManager.ArtifactType.SkillUpgradeTicket,1),
+            RelicSO.RelicType.MaxHp => ArtifactManager.Inst.CalculateArtifactValue(ArtifactManager.ArtifactType.MaxHp,1),
+            _ => 0 
+        };
     }
 
   
