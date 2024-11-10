@@ -35,7 +35,7 @@ public class SkillSelectionPanelController : MonoBehaviour
     
     public void Hide()
     {
-      
+      UIManager.Inst.UIShow(false);
         GridManager.Inst.GenerateTransitionTiles();
         panel.SetPosition(PanelStates.Hide, true, 0.25f);
     }
