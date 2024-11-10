@@ -15,6 +15,7 @@ public class SkillChangeController : Singleton<SkillChangeController>
 
     public void Show(Skill newSkill)
     {
+        UIManager.Inst.UIShow(true);
         AddInventorySkill();
         panel.SetPosition(PanelStates.Show, true, 0.5f, Ease.OutBack);
         closePanel.onClose += Hide;
