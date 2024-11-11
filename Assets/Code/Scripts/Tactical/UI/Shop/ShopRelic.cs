@@ -16,7 +16,6 @@ public class ShopRelic : ShopItem ,IPointerEnterHandler, IPointerExitHandler,IPo
     {
         inventoryRelicInfo.gameObject.SetActive(false);
         base.Start();
-        RandomRelicInput();
     }
 
     public void RandomRelicInput()

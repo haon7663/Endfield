@@ -17,7 +17,7 @@ public class ShopItem : MonoBehaviour, IPointerClickHandler
     {
         if (maxPrice < minPrice)(maxPrice, minPrice) = (minPrice, maxPrice); //만약 최솟값, 최댓값 반대로 입력했으면 정상화
         _itemPrice = Random.Range(minPrice, maxPrice);
-        itemPrice_Txt.text = _itemPrice.ToString() + " ml";
+        itemPrice_Txt.text = _itemPrice + " ml";
     }
     public void BuyItem()
     {

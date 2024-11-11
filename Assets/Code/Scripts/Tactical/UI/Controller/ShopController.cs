@@ -11,7 +11,8 @@ public class ShopController : MonoBehaviour
     [SerializeField] private ClosePanel closePanel;
     [SerializeField] private Transform sellCards;
     [SerializeField] private Transform content;
-    [SerializeField]private List<ShopCard> _cards = new List<ShopCard>();
+    [SerializeField] private List<ShopCard> _cards = new List<ShopCard>();
+    [SerializeField] private ShopRelic shopRelic;
     private bool _isActive;
 
     private void Awake()
@@ -28,6 +29,7 @@ public class ShopController : MonoBehaviour
         content.gameObject.SetActive(true);
         
         CardInfo();
+        shopRelic.RandomRelicInput();
     }
     
     

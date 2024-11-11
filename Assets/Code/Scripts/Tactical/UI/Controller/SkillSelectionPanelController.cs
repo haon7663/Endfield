@@ -11,6 +11,8 @@ public class SkillSelectionPanelController : MonoBehaviour
     [SerializeField] private Transform cardGroup;
     [SerializeField] private ClosePanel closePanel;
 
+    private bool _isChangeControllerShown;
+
     public void Show()
     {
         UIManager.Inst.UIShow(true);
@@ -26,11 +28,20 @@ public class SkillSelectionPanelController : MonoBehaviour
             card.Init(skill);
             card.ShowAnim();
             card.onClick += Hide;
-            card.onClick += () => SkillChangeController.Inst.Show(skill);
+            card.onClick += () =>
+            {
+                _isChangeControllerShown = true;
+                SkillChangeController.Inst.Show(skill);
+            };
         }
         
         panel.SetPosition(PanelStates.Show, true, 0.5f, Ease.OutBack);
         closePanel.onClose += Hide;
+        closePanel.onClose += () =>
+        {
+            if (!_isChangeControllerShown)
+                GridManager.Inst.GenerateTransitionTiles();
+        };
     }
     
     public void Hide()
