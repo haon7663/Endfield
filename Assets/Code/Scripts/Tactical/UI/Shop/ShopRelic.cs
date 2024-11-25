@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -18,8 +19,9 @@ public class ShopRelic : ShopItem ,IPointerEnterHandler, IPointerExitHandler,IPo
         base.Start();
     }
 
-    public void RandomRelicInput()
+    public IEnumerator RandomRelicInput()
     {
+        yield return new WaitUntil(() => ArtifactManager.Inst);
         var relics = ArtifactManager.Inst.GetAllRelics();
         var relicSO = relics[Random.Range(0, relics.Count)];
         itemNameTxt.text = relicSO.name;

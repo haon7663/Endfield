@@ -76,7 +76,7 @@ public class DataManager : SingletonDontDestroyOnLoad<DataManager>
         Data.artifactCount = 0;
         Data.skillCount = 0;
         Data.stageCount = 0;
-        Data.gold = 0;
+        Data.gold = 150;
         Data.skillUpgradeTickets = 0;
     }
     

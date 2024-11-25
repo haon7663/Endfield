@@ -34,7 +34,7 @@ public class Fade : Singleton<Fade>
         sequence.Append(_fadeImage.DOFade(1, 0.5f).SetUpdate(true).From(0));
         sequence.AppendCallback(() =>
         {
-            SceneManager.LoadSceneAsync(scene.name);
+            SceneManager.LoadScene(scene.name);
         });
     }
     
@@ -48,7 +48,7 @@ public class Fade : Singleton<Fade>
         sequence.Append(_fadeImage.DOFade(1, 0.5f).SetUpdate(true).From(0));
         sequence.AppendCallback(() =>
         {
-            SceneManager.LoadSceneAsync(sceneName);
+            SceneManager.LoadScene(sceneName);
         });
     }
 }

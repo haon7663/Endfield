@@ -174,6 +174,7 @@ public class GridManager : Singleton<GridManager>
         {
             if (_transition.content && _isTransitioning)
             {
+                GameManager.Inst.isGameActive = false;
                 Debug.Log($"{_transition.content.name} 위치 {_transition.Key}");
                 CameraTransition.Inst.CameraUp();
                 ArtifactManager.Inst.ArtifactForStage();

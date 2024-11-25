@@ -29,7 +29,7 @@ public class ShopController : MonoBehaviour
         content.gameObject.SetActive(true);
         
         CardInfo();
-        shopRelic.RandomRelicInput();
+        StartCoroutine(shopRelic.RandomRelicInput());
     }
     
     

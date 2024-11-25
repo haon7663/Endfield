@@ -21,7 +21,6 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
-        isGameActive = true;
         startViewPoint = DataManager.Inst.Data.stageCount * 7f;
     }
 
@@ -29,6 +28,10 @@ public class GameManager : Singleton<GameManager>
     {
         yield return new WaitUntil(() => SpawnManager.Inst);
         Player = SpawnManager.Inst.Summon("Player", GridManager.Inst.GetTile(0), true);
+
+        yield return new WaitForSeconds(0.25f);
+
+        isGameActive = true;
     }
 
     private void Update()

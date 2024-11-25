@@ -1,7 +1,4 @@
-using GDX.DataTables.CellValues;
-using JetBrains.Annotations;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -12,7 +9,7 @@ public class ArtifactManager : SingletonDontDestroyOnLoad<ArtifactManager>
     public int goldArtifact;
     public int maxHpArtifact;
     public int skillUpgradeArtifact;
-    public List<RelicSO> relics = new List<RelicSO>();
+    public List<RelicSO> relics;
 
     [FormerlySerializedAs("reGenHp")] [SerializeField] private int regenHp;
     [SerializeField] private int increaseElixir;
