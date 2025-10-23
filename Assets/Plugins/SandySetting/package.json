@@ -1,0 +1,13 @@
+{
+  "name": "com.sandyfloor.sandysetting",
+  "author": "Wise",
+  "displayName": "SandySetting",
+  "description": "SandySetting",
+  "unity": "6000.0",
+  "version": "0.3.1",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "_fingerprint": "406c630e4e57a626041db2e244df8b5b24548bd9"
+}

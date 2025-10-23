@@ -1,0 +1,18 @@
+{
+      "ExcelPropertyName": "Key",
+      "PropertyName": "Key",
+      "Description": "Primary Key",
+      "BranchTag": "",
+      "UseServer": true,
+      "UseClient": true,
+      "TemplateType": 0,
+      "DataType": "string",
+      "ArrayGroupKey": null,
+      "KeyCheck": true,
+      "NullCheck": true,
+      "UniqueCheck": true,
+      "Enum": "",
+      "MinValue": 0,
+      "MaxValue": null,
+      "ResourcePath": ""
+    }

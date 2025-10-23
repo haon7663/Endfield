@@ -1,36 +1,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tile : MonoBehaviour
+namespace Code.Scripts.Tactical.Actor.Tiles
 {
-    public int Key { get; private set; }
-    public bool IsOccupied => content;
-
-    public Unit content;
-
-    [SerializeField] private List<SpriteRenderer> lineRenderers;
-    [SerializeField] private SpriteRenderer backGroundRenderer;
-
-    public void Init(int key)
+    public class Tile : MonoBehaviour
     {
-        Key = key;
-    }
+        public int Key { get; private set; }
+        public bool IsOccupied => content;
+
+        public Unit content;
+
+        [SerializeField] private List<SpriteRenderer> lineRenderers;
+        [SerializeField] private SpriteRenderer backGroundRenderer;
+
+        public void Init(int key)
+        {
+            Key = key;
+        }
     
-    public void SetDefaultColor()
-    {
-        foreach (var lineRenderer in lineRenderers)
+        public void SetDefaultColor()
         {
-            lineRenderer.color = Color.white;
+            foreach (var lineRenderer in lineRenderers)
+            {
+                lineRenderer.color = Color.white;
+            }
+            backGroundRenderer.color = new Color(0, 0, 0, 0.25f);
         }
-        backGroundRenderer.color = new Color(0, 0, 0, 0.25f);
-    }
 
-    public void SetColor(Color color)
-    {
-        foreach (var lineRenderer in lineRenderers)
+        public void SetColor(Color color)
         {
-            lineRenderer.color = color;
+            foreach (var lineRenderer in lineRenderers)
+            {
+                lineRenderer.color = color;
+            }
+            backGroundRenderer.color = new Color(color.r, color.g, color.b, 0.25f);
         }
-        backGroundRenderer.color = new Color(color.r, color.g, color.b, 0.25f);
     }
 }

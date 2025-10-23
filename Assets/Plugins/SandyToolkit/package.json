@@ -1,0 +1,13 @@
+{
+  "name": "com.sandyfloor.sandytoolkit",
+  "author": "Wise",
+  "displayName": "SandyToolkit",
+  "description": "SandyToolkit",
+  "unity": "6000.0",
+  "version": "0.9.2",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "_fingerprint": "fa43028d6bba76307ffcf284bbfd580ad0f12397"
+}

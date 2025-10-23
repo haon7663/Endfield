@@ -1,0 +1,17 @@
+{
+    "name": "SandyPooling",
+    "rootNamespace": "",
+    "references": [
+        "GUID:7c2c0010b3c8a8642b24a5e88194a089",
+        "GUID:d95bcd3df0dce984eb748b41737c75b9"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

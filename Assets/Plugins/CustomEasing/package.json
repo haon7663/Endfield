@@ -1,0 +1,13 @@
+{
+  "name": "com.sandyfloor.customeasing",
+  "author": "Wise",
+  "displayName": "CustomEasing",
+  "description": "CustomEasing",
+  "unity": "6000.0",
+  "version": "0.1.1",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "_fingerprint": "9b315db77e5595768a28d9db20ae253297211789"
+}

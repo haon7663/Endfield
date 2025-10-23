@@ -11,7 +11,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Level/Scenes/Design.unity
     guid: a746c3c0c6a96e8459209df6edad582d
+  - enabled: 1
+    path: Assets/Plugins/SandyToolkit/Scenes/SceneCleaner.unity
+    guid: 0ea5f961acdd91042ab4df5e40e8cd3a
   m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 51c42205d68ee9448b7b4506e31588c6, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: d8636fe71f0d54a4c89513ed3e132141, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

@@ -1,0 +1,13 @@
+{
+  "name": "com.sandyfloor.sandylogger",
+  "author": "Wise",
+  "displayName": "SandyLogger",
+  "description": "SandyLogger",
+  "unity": "6000.0",
+  "version": "0.2.1",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "_fingerprint": "b3c6ee1cc0a2cceb5a484e2a17184196f7a9f471"
+}

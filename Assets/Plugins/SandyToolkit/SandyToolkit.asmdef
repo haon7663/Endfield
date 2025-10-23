@@ -1,0 +1,26 @@
+{
+    "name": "SandyToolkit",
+    "rootNamespace": "",
+    "references": [
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:7c2c0010b3c8a8642b24a5e88194a089",
+        "GUID:d95bcd3df0dce984eb748b41737c75b9",
+        "GUID:81cd1ea1ee377ef4ea9da00e94cba51e",
+        "GUID:3ebc294acaa251d4e9a6c0acc24272c9"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.cysharp.unitask",
+            "expression": "2.5.10",
+            "define": "-"
+        }
+    ],
+    "noEngineReferences": false
+}

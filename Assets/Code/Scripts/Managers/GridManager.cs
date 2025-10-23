@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Code.Scripts.Tactical.Actor.Tiles;
 using TMPro;
 using UnityEngine;
 
@@ -131,7 +132,7 @@ public class GridManager : Singleton<GridManager>
             _previewTiles[user].AddRange(tiles);
         UpdateGrid();
     }
-    public void RevertGrid(Unit user)
+    public void RevertGrid(Unit user) 
     {
         if (_previewTiles.ContainsKey(user))
             _previewTiles.Remove(user);

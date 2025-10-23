@@ -1,4 +1,5 @@
 using System;
+using Code.Scripts.Tactical.Actor.Tiles;
 
 [Serializable]
 public class SkillComponentInfo

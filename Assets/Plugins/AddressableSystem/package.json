@@ -1,0 +1,13 @@
+{
+  "name": "com.sandyfloor.sandyaddressable",
+  "author": "Wise",
+  "displayName": "SandyAddressable",
+  "description": "SandyAddressable",
+  "unity": "6000.0",
+  "version": "0.2.4",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "_fingerprint": "bee8f9d83ff5c653031bf0aae4cd4fba073e093a"
+}

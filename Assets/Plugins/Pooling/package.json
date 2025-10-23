@@ -1,0 +1,13 @@
+{
+  "name": "com.sandyfloor.sandypooling",
+  "author": "Wise",
+  "displayName": "SandyPooling",
+  "description": "SandyPooling",
+  "unity": "6000.0",
+  "version": "0.1.9",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "_fingerprint": "c9aba59482229ec96c6bb40341e1fc5924161226"
+}
