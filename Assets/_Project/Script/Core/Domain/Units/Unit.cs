@@ -16,6 +16,8 @@ namespace Core.Domain.Units
         
         private static readonly int _isFrontDash = Animator.StringToHash("isFrontDash");
         private static readonly int _isBackDash = Animator.StringToHash("isBackDash");
+        private static readonly int IsReady = Animator.StringToHash("isReady");
+        private static readonly int Attack = Animator.StringToHash("attack");
 
         public override void OnSpawn()
         {
@@ -60,6 +62,16 @@ namespace Core.Domain.Units
             {
                 animator.SetBool(moveKey, false);
             }
+        }
+
+        public void SetAttackReady(bool value)
+        {
+            animator.SetBool(IsReady, value);
+        }
+
+        public void ExecuteAttack()
+        {
+            animator.SetTrigger(Attack);
         }
     }
 }

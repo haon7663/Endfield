@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using SandyCore;
-using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 using Tile = Core.Views.Map.Tile;
 
@@ -10,6 +9,8 @@ namespace Core.Controllers
     {
         public const float TILE_HORIZONTAL_INTERVAL = 1.2f;
         public const float TILE_VERTICAL_INTERVAL = 3.5f;
+        
+        public PathFinder PathFinder { get; private set; }
 
         public Vector2Int[] GridPositions { get; private set; }
         public Vector2Int GridSize { get; private set; }
@@ -24,6 +25,8 @@ namespace Core.Controllers
             GridOffset = (new Vector2(gridSize.x, gridSize.y) * 0.5f) - new Vector2(0.5f, 0.5f);
             
             GenerateGrid(gridSize);
+
+            PathFinder = new PathFinder(this);
         }
 
         private void GenerateGrid(Vector2Int gridSize)
