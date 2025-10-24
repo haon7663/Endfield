@@ -82,7 +82,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unit: {fileID: 5466996258041442469}
-  moveThreshold: 2
+  moveThreshold: 1
+  debugPath: 0
 --- !u!114 &5466996258041442469 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4618142997376320748, guid: 50a85bf1cf634684ea2c3d7bd61106bc, type: 3}
