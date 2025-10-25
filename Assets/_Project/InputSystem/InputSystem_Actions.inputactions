@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "InputSystem_Actions",
     "maps": [
         {
@@ -72,6 +73,42 @@
                     "name": "Move Down",
                     "type": "Button",
                     "id": "f178973a-6043-42f6-bbc6-e3e33a921284",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Turn Left",
+                    "type": "Button",
+                    "id": "18ea0740-6b9a-493a-a59f-0d073fc76344",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Turn Right",
+                    "type": "Button",
+                    "id": "9e08e1c5-3caa-4ff1-9f44-23c74cbc8c44",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Turn Up",
+                    "type": "Button",
+                    "id": "e355d045-f084-430e-abd3-2c8ab39eae4b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Turn Down",
+                    "type": "Button",
+                    "id": "9408c874-10ee-4757-a753-764f374769ae",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -184,6 +221,50 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Move Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9b0b54c5-efce-415f-80d0-16529b791429",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Turn Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3c1c6dc2-173c-4d69-b08b-27ad6e2a4c5e",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Turn Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3b1d5cf3-76c4-4288-9d61-18b8c10d6a25",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Turn Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9783c1c1-d600-4be7-8dab-90d97a59e0fb",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Turn Down",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

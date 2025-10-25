@@ -26,9 +26,10 @@ namespace Core.Controllers
         {
             base.OnSceneLoaded(sceneName);
 
-            ApplicationManager.Instance.PoolingService.GetPoolable<Domain.Units.Unit>("Enemy", new Vector3(5, 0));
-            ApplicationManager.Instance.PoolingService.GetPoolable<Domain.Units.Unit>("Enemy", new Vector3(2, 0));
-            ApplicationManager.Instance.PoolingService.GetPoolable<Domain.Units.Unit>("Enemy", new Vector3(-4, 0));
+            ApplicationManager.Instance.PoolingService.GetPoolable<Domain.Units.Unit>("Player", new Vector3(0, 0.5f));
+            ApplicationManager.Instance.PoolingService.GetPoolable<Domain.Units.Unit>("Enemy", new Vector3(5, 0.5f));
+            ApplicationManager.Instance.PoolingService.GetPoolable<Domain.Units.Unit>("Enemy", new Vector3(2, 0.5f));
+            ApplicationManager.Instance.PoolingService.GetPoolable<Domain.Units.Unit>("Enemy", new Vector3(-4, 0.5f));
         }
 
         public override void OnUpdate()

@@ -11,11 +11,13 @@ namespace Core.Domain.Units
         [SerializeField] private Animator animator;
         [SerializeField] private float moveSpeed;
         
+        public float CurrentHealth { get; private set; }
+        
         public Vector2Int GridPosition { get; private set; }
         public Vector2Int Direction { get; private set; }
         
-        private static readonly int _isFrontDash = Animator.StringToHash("isFrontDash");
-        private static readonly int _isBackDash = Animator.StringToHash("isBackDash");
+        private static readonly int IsFrontDash = Animator.StringToHash("isFrontDash");
+        private static readonly int IsBackDash = Animator.StringToHash("isBackDash");
         private static readonly int IsReady = Animator.StringToHash("isReady");
         private static readonly int Attack = Animator.StringToHash("attack");
 
@@ -23,11 +25,24 @@ namespace Core.Domain.Units
         {
             base.OnSpawn();
             
+            var unitController = ApplicationManager.Instance.GetModule<UnitController>();
+            unitController.Register(gameObject.GetInstanceID(), this);
+
+            CurrentHealth = 100;
+            
             var gridController = ApplicationManager.Instance.GetModule<GameplayController>().GridController;
             var gridPos = gridController.GetGridPosition(transform.position);
             
             gridController.OccupyGrid(gridPos, gameObject.GetInstanceID());
             GridPosition = gridPos;
+        }
+
+        public override void OnDespawn()
+        {
+            base.OnDespawn();
+            
+            var unitController = ApplicationManager.Instance.GetModule<UnitController>();
+            unitController.UnRegister(gameObject.GetInstanceID());
         }
         
         public async UniTask MoveAsync(Vector2Int gridPos)
@@ -43,8 +58,11 @@ namespace Core.Domain.Units
             
             var startPos = transform.position;
             var targetPos = ApplicationManager.Instance.GetModule<GameplayController>().GridController.GetWorldPosition(gridPos) + new Vector3(0, 0.5f);
+
+            var sign = Mathf.Sign(targetPos.x - startPos.x);
+            var dirSign = Mathf.Sign(Direction.x);
             
-            var moveKey = (targetPos.x - startPos.x) > 0 ? _isFrontDash : _isBackDash;
+            var moveKey = Mathf.Approximately(sign, dirSign) ? IsFrontDash : IsBackDash;
             animator.SetBool(moveKey, true);
 
             try
@@ -63,6 +81,14 @@ namespace Core.Domain.Units
                 animator.SetBool(moveKey, false);
             }
         }
+        
+        public void Turn(Vector2Int dir)
+        {
+            Direction = dir;
+            
+            if (dir.x != 0)
+                transform.localScale = new Vector3(dir.x > 0 ? 1 : -1, transform.localScale.y, transform.localScale.z);
+        }
 
         public void SetAttackReady(bool value)
         {
@@ -72,6 +98,20 @@ namespace Core.Domain.Units
         public void ExecuteAttack()
         {
             animator.SetTrigger(Attack);
+            
+            var targetGridPos = GridPosition + Direction;
+            
+            var gridController = ApplicationManager.Instance.GetModule<GameplayController>().GridController;
+            var targetObjectId = gridController.GetOccupiedObjectId(targetGridPos);
+
+            if (targetObjectId != -1)
+            {
+                var unitController = ApplicationManager.Instance.GetModule<UnitController>();
+                if (unitController.TryGet<Unit>(targetObjectId, out var target))
+                {
+                    target.CurrentHealth -= 40;
+                }
+            }
         }
     }
 }

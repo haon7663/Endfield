@@ -165,6 +165,42 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Turn Left"",
+                    ""type"": ""Button"",
+                    ""id"": ""18ea0740-6b9a-493a-a59f-0d073fc76344"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Turn Right"",
+                    ""type"": ""Button"",
+                    ""id"": ""9e08e1c5-3caa-4ff1-9f44-23c74cbc8c44"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Turn Up"",
+                    ""type"": ""Button"",
+                    ""id"": ""e355d045-f084-430e-abd3-2c8ab39eae4b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Turn Down"",
+                    ""type"": ""Button"",
+                    ""id"": ""9408c874-10ee-4757-a753-764f374769ae"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Filp"",
                     ""type"": ""Button"",
                     ""id"": ""45472eb6-66a2-43c7-9bad-1e49c2492444"",
@@ -271,6 +307,50 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Move Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9b0b54c5-efce-415f-80d0-16529b791429"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Turn Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3c1c6dc2-173c-4d69-b08b-27ad6e2a4c5e"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Turn Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3b1d5cf3-76c4-4288-9d61-18b8c10d6a25"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Turn Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9783c1c1-d600-4be7-8dab-90d97a59e0fb"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Turn Down"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -886,6 +966,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_MoveRight = m_Player.FindAction("Move Right", throwIfNotFound: true);
         m_Player_MoveUp = m_Player.FindAction("Move Up", throwIfNotFound: true);
         m_Player_MoveDown = m_Player.FindAction("Move Down", throwIfNotFound: true);
+        m_Player_TurnLeft = m_Player.FindAction("Turn Left", throwIfNotFound: true);
+        m_Player_TurnRight = m_Player.FindAction("Turn Right", throwIfNotFound: true);
+        m_Player_TurnUp = m_Player.FindAction("Turn Up", throwIfNotFound: true);
+        m_Player_TurnDown = m_Player.FindAction("Turn Down", throwIfNotFound: true);
         m_Player_Filp = m_Player.FindAction("Filp", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -989,6 +1073,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_MoveRight;
     private readonly InputAction m_Player_MoveUp;
     private readonly InputAction m_Player_MoveDown;
+    private readonly InputAction m_Player_TurnLeft;
+    private readonly InputAction m_Player_TurnRight;
+    private readonly InputAction m_Player_TurnUp;
+    private readonly InputAction m_Player_TurnDown;
     private readonly InputAction m_Player_Filp;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
@@ -1033,6 +1121,22 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/MoveDown".
         /// </summary>
         public InputAction @MoveDown => m_Wrapper.m_Player_MoveDown;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/TurnLeft".
+        /// </summary>
+        public InputAction @TurnLeft => m_Wrapper.m_Player_TurnLeft;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/TurnRight".
+        /// </summary>
+        public InputAction @TurnRight => m_Wrapper.m_Player_TurnRight;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/TurnUp".
+        /// </summary>
+        public InputAction @TurnUp => m_Wrapper.m_Player_TurnUp;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/TurnDown".
+        /// </summary>
+        public InputAction @TurnDown => m_Wrapper.m_Player_TurnDown;
         /// <summary>
         /// Provides access to the underlying input action "Player/Filp".
         /// </summary>
@@ -1087,6 +1191,18 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @MoveDown.started += instance.OnMoveDown;
             @MoveDown.performed += instance.OnMoveDown;
             @MoveDown.canceled += instance.OnMoveDown;
+            @TurnLeft.started += instance.OnTurnLeft;
+            @TurnLeft.performed += instance.OnTurnLeft;
+            @TurnLeft.canceled += instance.OnTurnLeft;
+            @TurnRight.started += instance.OnTurnRight;
+            @TurnRight.performed += instance.OnTurnRight;
+            @TurnRight.canceled += instance.OnTurnRight;
+            @TurnUp.started += instance.OnTurnUp;
+            @TurnUp.performed += instance.OnTurnUp;
+            @TurnUp.canceled += instance.OnTurnUp;
+            @TurnDown.started += instance.OnTurnDown;
+            @TurnDown.performed += instance.OnTurnDown;
+            @TurnDown.canceled += instance.OnTurnDown;
             @Filp.started += instance.OnFilp;
             @Filp.performed += instance.OnFilp;
             @Filp.canceled += instance.OnFilp;
@@ -1125,6 +1241,18 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @MoveDown.started -= instance.OnMoveDown;
             @MoveDown.performed -= instance.OnMoveDown;
             @MoveDown.canceled -= instance.OnMoveDown;
+            @TurnLeft.started -= instance.OnTurnLeft;
+            @TurnLeft.performed -= instance.OnTurnLeft;
+            @TurnLeft.canceled -= instance.OnTurnLeft;
+            @TurnRight.started -= instance.OnTurnRight;
+            @TurnRight.performed -= instance.OnTurnRight;
+            @TurnRight.canceled -= instance.OnTurnRight;
+            @TurnUp.started -= instance.OnTurnUp;
+            @TurnUp.performed -= instance.OnTurnUp;
+            @TurnUp.canceled -= instance.OnTurnUp;
+            @TurnDown.started -= instance.OnTurnDown;
+            @TurnDown.performed -= instance.OnTurnDown;
+            @TurnDown.canceled -= instance.OnTurnDown;
             @Filp.started -= instance.OnFilp;
             @Filp.performed -= instance.OnFilp;
             @Filp.canceled -= instance.OnFilp;
@@ -1495,6 +1623,34 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMoveDown(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Turn Left" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTurnLeft(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Turn Right" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTurnRight(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Turn Up" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTurnUp(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Turn Down" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTurnDown(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Filp" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

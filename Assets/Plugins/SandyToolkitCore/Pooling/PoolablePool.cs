@@ -60,7 +60,7 @@ namespace SandyToolkitCore.Pooling
         private void OnReturnToPool(PoolingBase poolable)
         {
             poolable.gameObject.SetActive(false);
-            poolable.OnUnSpawn();
+            poolable.OnDespawn();
         }
 
         private void OnDestroyPoolObject(PoolingBase poolable)

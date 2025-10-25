@@ -30,7 +30,7 @@ namespace SandyToolkitCore.Pooling
         {
         }
 
-        public virtual void OnUnSpawn()
+        public virtual void OnDespawn()
         {
         }
 

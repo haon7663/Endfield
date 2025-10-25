@@ -65,6 +65,9 @@ namespace Core.Domain.Units
             // 인접한 경우 공격 준비
             if (IsAdjacentToPlayer(currentPosition, playerPosition))
             {
+                var dir = playerPosition - currentPosition;
+                unit.Turn(dir);
+                
                 PrepareAttack();
                 return;
             }
@@ -129,7 +132,6 @@ namespace Core.Domain.Units
             }
             else
             {
-                // 경로를 찾을 수 없으면 대체 이동 시도
                 await AttemptFallbackMove(currentPos, targetPos);
             }
         }
@@ -185,12 +187,6 @@ namespace Core.Domain.Units
                 _currentPath = new List<Vector2Int>(bestPath);
                 _currentPathIndex = 0;
                 _lastTargetPosition = playerPos;
-                
-                if (debugPath)
-                {
-                    Debug.Log($"[AI] 새 경로 계산: {_currentPath.Count}칸 이동 필요");
-                    DrawDebugPath();
-                }
             }
         }
         
@@ -248,13 +244,16 @@ namespace Core.Domain.Units
                 }
                 else
                 {
-                    return; // 경로 끝에 도달
+                    return;
                 }
             }
             
             // 이동 가능 여부 확인
             if (!_gridController.IsOccupied(nextPosition))
             {
+                var dir = nextPosition - currentPos;
+                unit.Turn(dir);
+                
                 _isMoving = true;
                 await unit.MoveAsync(nextPosition);
                 _isMoving = false;
@@ -310,6 +309,8 @@ namespace Core.Domain.Units
             // 이동 시도
             foreach (var move in moveOptions)
             {
+                unit.Turn(move);
+                
                 var targetPos = currentPos + move;
                 if (!_gridController.IsOccupied(targetPos))
                 {
@@ -376,31 +377,17 @@ namespace Core.Domain.Units
             _lastTargetPosition = Vector2Int.zero;
         }
         
-        /// <summary>
-        /// 디버그용 경로 시각화
-        /// </summary>
-        private void DrawDebugPath()
-        {
-            if (!debugPath || _currentPath == null) return;
-            
-            for (int i = _currentPathIndex; i < _currentPath.Count - 1; i++)
-            {
-                var start = _gridController.GetWorldPosition(_currentPath[i]);
-                var end = _gridController.GetWorldPosition(_currentPath[i + 1]);
-                Debug.DrawLine(start, end, Color.yellow, 2f);
-            }
-        }
-        
 #if UNITY_EDITOR
         private void OnDrawGizmos()
         {
             if (!debugPath || _currentPath == null || _gridController == null) return;
             
             Gizmos.color = Color.yellow;
-            for (int i = _currentPathIndex; i < _currentPath.Count; i++)
+            for (int i = _currentPathIndex - 1; i < _currentPath.Count - 1; i++)
             {
-                var worldPos = _gridController.GetWorldPosition(_currentPath[i]);
-                Gizmos.DrawWireCube(worldPos, Vector3.one * 0.8f);
+                var start = _gridController.GetWorldPosition(_currentPath[i]) + new Vector3(0, 0.5f);
+                var end = _gridController.GetWorldPosition(_currentPath[i + 1]) + new Vector3(0, 0.5f);
+                Gizmos.DrawLine(start, end);
             }
         }
 #endif
