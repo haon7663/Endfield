@@ -28,7 +28,7 @@ namespace Core.Domain.Units
             var unitController = ApplicationManager.Instance.GetModule<UnitController>();
             unitController.Register(gameObject.GetInstanceID(), this);
 
-            CurrentHealth = 100;
+            CurrentHealth = 5;
             
             var gridController = ApplicationManager.Instance.GetModule<GameplayController>().GridController;
             var gridPos = gridController.GetGridPosition(transform.position);
@@ -90,6 +90,16 @@ namespace Core.Domain.Units
                 transform.localScale = new Vector3(dir.x > 0 ? 1 : -1, transform.localScale.y, transform.localScale.z);
         }
 
+        public void TakeDamage(int damage)
+        {
+            CurrentHealth -= damage;
+
+            if (CurrentHealth <= 0)
+            {
+                ApplicationManager.Instance.PoolingService.ReturnPoolable(this);
+            }
+        }
+
         public void SetAttackReady(bool value)
         {
             animator.SetBool(IsReady, value);
@@ -109,7 +119,7 @@ namespace Core.Domain.Units
                 var unitController = ApplicationManager.Instance.GetModule<UnitController>();
                 if (unitController.TryGet<Unit>(targetObjectId, out var target))
                 {
-                    target.CurrentHealth -= 40;
+                    target.TakeDamage(1);
                 }
             }
         }

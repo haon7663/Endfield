@@ -12,6 +12,7 @@ namespace Core.Domain.Units
         [Header("기본 설정")]
         [SerializeField] private Unit unit;
         [SerializeField] private int moveThreshold = 2;
+        [SerializeField] private int actionThreshold = 2;
         
         [Header("디버깅")]
         [SerializeField] private bool debugPath = false;
@@ -23,6 +24,7 @@ namespace Core.Domain.Units
         
         // 상태 관련 변수
         private int _moveWaitingTurns;
+        private int _actionWaitingTurns;
         private bool _isAttackReady;
         private bool _isMoving;
         
@@ -50,34 +52,41 @@ namespace Core.Domain.Units
         {
             // 이미 이동 중이면 스킵
             if (_isMoving) return;
-            
+
             // 공격 준비 상태면 공격 실행
             if (_isAttackReady)
             {
                 ExecuteAttack();
                 return;
             }
-            
+
             // 플레이어와의 거리 확인
             var currentPosition = _gridController.GetGridPosition(transform.position);
             var playerPosition = PlayerController.Player.GridPosition;
-            
+
             // 인접한 경우 공격 준비
-            if (IsAdjacentToPlayer(currentPosition, playerPosition))
+            _actionWaitingTurns++;
+            if (_actionWaitingTurns > actionThreshold)
             {
-                var dir = playerPosition - currentPosition;
-                unit.Turn(dir);
-                
-                PrepareAttack();
-                return;
+                if (IsAdjacentToPlayer(currentPosition, playerPosition))
+                {
+                    _actionWaitingTurns = 0;
+                    
+                    var dir = playerPosition - currentPosition;
+                    unit.Turn(dir);
+
+                    PrepareAttack();
+                    return;
+                }
             }
-            
+
             // 이동 대기 턴 체크
             _moveWaitingTurns++;
-            if (_moveWaitingTurns <= moveThreshold) return;
-            
-            // 이동 실행
-            await MoveTowardsPlayer(currentPosition, playerPosition);
+            if (_moveWaitingTurns > moveThreshold)
+            {
+                _moveWaitingTurns = 0;
+                await MoveTowardsPlayer(currentPosition, playerPosition);
+            }
         }
         
         /// <summary>
@@ -117,23 +126,20 @@ namespace Core.Domain.Units
         /// </summary>
         private async UniTask MoveTowardsPlayer(Vector2Int currentPos, Vector2Int targetPos)
         {
-            _moveWaitingTurns = 0;
+            if (IsAdjacentToPlayer(currentPos, targetPos))
+                return;
             
-            // 경로가 없거나 목표가 변경되었으면 새로 계산
-            if (NeedsPathRecalculation(targetPos))
-            {
-                CalculatePath(currentPos, targetPos);
-            }
+            CalculatePath(currentPos, targetPos);
             
             // 유효한 경로가 있으면 다음 위치로 이동
             if (HasValidPath())
             {
                 await MoveAlongPath(currentPos);
             }
-            else
+            /*else
             {
                 await AttemptFallbackMove(currentPos, targetPos);
-            }
+            }*/
         }
         
         /// <summary>

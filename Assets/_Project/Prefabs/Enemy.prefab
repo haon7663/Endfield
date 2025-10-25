@@ -83,6 +83,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unit: {fileID: 5466996258041442469}
   moveThreshold: 1
+  actionThreshold: 2
   debugPath: 1
 --- !u!114 &5466996258041442469 stripped
 MonoBehaviour:

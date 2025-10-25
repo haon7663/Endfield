@@ -90,6 +90,7 @@ namespace Core.Domain.Units
         private void TurnToDirection(Vector2Int direction)
         {
             unit.Turn(direction);
+            unit.ExecuteAttack();
             
             ChangeTurn();
         }
