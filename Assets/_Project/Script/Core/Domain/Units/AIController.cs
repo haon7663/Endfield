@@ -51,7 +51,8 @@ namespace Core.Domain.Units
         private async void HandleTurnChanged(int turnCount)
         {
             // 이미 이동 중이면 스킵
-            if (_isMoving) return;
+            if (_isMoving)
+                return;
 
             // 공격 준비 상태면 공격 실행
             if (_isAttackReady)
@@ -59,13 +60,15 @@ namespace Core.Domain.Units
                 ExecuteAttack();
                 return;
             }
+            
+            _actionWaitingTurns++;
+            _moveWaitingTurns++;
 
             // 플레이어와의 거리 확인
             var currentPosition = _gridController.GetGridPosition(transform.position);
             var playerPosition = PlayerController.Player.GridPosition;
 
             // 인접한 경우 공격 준비
-            _actionWaitingTurns++;
             if (_actionWaitingTurns > actionThreshold)
             {
                 if (IsAdjacentToPlayer(currentPosition, playerPosition))
@@ -81,7 +84,6 @@ namespace Core.Domain.Units
             }
 
             // 이동 대기 턴 체크
-            _moveWaitingTurns++;
             if (_moveWaitingTurns > moveThreshold)
             {
                 _moveWaitingTurns = 0;
