@@ -37,9 +37,9 @@ namespace Core.Controllers
             base.OnUpdate();
             
             _turnProcess += Time.deltaTime;
-            if (_turnProcess >= 1f)
+            if (_turnProcess >= 0.5f)
             {
-                _turnProcess -= 1f;
+                _turnProcess -= 0.5f;
                 ChangeTurn();
             }
         }

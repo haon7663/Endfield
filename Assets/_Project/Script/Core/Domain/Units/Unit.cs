@@ -43,6 +43,9 @@ namespace Core.Domain.Units
             
             var unitController = ApplicationManager.Instance.GetModule<UnitController>();
             unitController.UnRegister(gameObject.GetInstanceID());
+            
+            var gridController = ApplicationManager.Instance.GetModule<GameplayController>().GridController;
+            gridController.ReleaseGrid(GridPosition);
         }
         
         public async UniTask MoveAsync(Vector2Int gridPos)
